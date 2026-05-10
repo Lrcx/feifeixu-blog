@@ -1,0 +1,222 @@
+---
+title: "05.10 NVIDIA、Hermes、Isomorphic 等重点更新 | AI 早报"
+date: "2026-05-10"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 05.10 NVIDIA、Hermes、Isomorphic 等重点更新 | AI 早报
+
+> 2026年05月10日 周日 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- NVIDIA Star Elastic 单检查点含30B/23B/12B模型，零样本切片 —— AI推理效率革命性突破
+- Hermes Agent单日消耗271B Token，超越OpenClaw成全球第一 —— 开源Agent首次在真实用量上超越闭源竞品
+- Isomorphic Labs 拟融20亿美元，推进AI药物设计引擎研发 —— AI制药进入资本重注硬科技阶段
+- 蚂蚁 Ring-2.6-1T 万亿参数，PinchBench超Claude-Opus-4.7，AIME得分95.83 —— 国产万亿模型首次在多项推理基准反超GPT-5.4
+- OpenAI 翁家翌提出启发式学习：无参数更新，GPT-5.4自写Python代码达成Atari满分 —— 强化学习突破：用代码代替神经网络训练
+
+**今日共收录 18 条动态，涵盖 模型与产品 8条、开源热门 5条、技术洞察 2条、行业动态 3条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. NVIDIA Star Elastic 发布
+
+![](images/e761650bbce3.png)
+
+通过单次训练生成嵌套的30B、23B、12B三个推理模型，共享权重并支持按需零样本提取，活跃参数分别为3.6B、2.8B、2.0B，存储空间从126.1GB降至58.9GB（BF16）。
+
+实现推理阶段动态切换模型（如23B思考+30B作答），准确率提升16%、延迟降低1.9倍，NVFP4量化后仅18.7GB可运行于RTX 5080，显著降低企业部署成本。
+
+📎 [原文链接](https://www.marktechpost.com/2026/05/09/nvidia-ai-releases-star-elastic-one-checkpoint-that-contains-30b-23b-and-12b-reasoning-models-with-zero-shot-slicing/)
+
+
+### 2. Hermes Agent登顶全球调用第一
+
+![](images/dc358995ab7d.png)
+
+Hermes Agent单日Token消耗达2710亿，超越OpenClaw（245B）登顶OpenRouter全球应用榜，累计消耗超6.37万亿Token，GitHub Star达14万。
+
+其自进化能力与多平台适配（支持微信、钉钉、阿里云、DeepSeek等）推动真实高频使用，标志开源Agent从技术实验转向规模化落地。
+
+📎 [原文链接](https://zhidx.com/p/556795.html)
+
+
+### 3. Isomorphic Labs 拟融136亿元
+
+由DeepMind分拆的Isomorphic Labs计划融资超20亿美元（约136亿元），用于自研药物设计引擎与全球化布局，已获Thrive Capital领投，Alphabet跟投。
+
+公司依托AlphaFold技术优势，与强生、诺华等药企合作，构建算法-数据-实验闭环，推动AI从科研工具向真实药物研发引擎转型。
+
+📎 [原文链接](https://zhidx.com/p/556543.html)
+
+
+### 4. 蚂蚁 Ring-2.6-1T 发布
+
+![](images/afd23668c61f.png)
+
+支持high/xhigh双推理模式，在PinchBench达87.60分、AIME 2026得95.83分、GPQA Diamond达88.27分，超越Claude-Opus-4.7、GPT-5.4等海外模型。
+
+可免费体验并即将开源，适用于Agent、数学推理、长文本创作等复杂任务，标志着国产大模型在真实场景推理能力上逼近国际顶尖水平。
+
+📎 [原文链接](https://zhidx.com/p/556551.html)
+
+
+### 5. DeepSeek V4 Flash 发布
+
+DeepSeek V4 Flash引擎通过专为Metal平台优化的ds4.c实现LLM推理吞吐量提升1.25至4.3倍，显著降低延迟与算力消耗。
+
+该优化直接提升国产大模型在苹果设备端侧推理的实用性，推动高并发API服务与边缘AI部署成本下降，加速企业级落地。
+
+📎 [原文链接](https://presciente.com/edition/77)
+
+
+### 6. 高德ABot-NeoVerse夺冠AGIBot
+
+高德ABot-NeoVerse在AGIBot全球挑战赛世界模型赛道以0.829总分夺冠，Visual Quality（0.6246）和Action Following（0.9651）两项核心指标均位列第一，显著优于全球150支参赛团队。
+
+该模型通过自研仿真数据生成技术破解具身智能数据稀缺难题，支撑高德途途机器人实现开放环境全自主作业，标志着国内首个可工程落地的全栈具身智能体系成型。
+
+📎 [原文链接](https://www.qbitai.com/2026/05/414826.html)
+
+
+### 7. 百度文心5.1发布
+
+![](images/3cee07061a27.png)
+
+参数规模压缩至原模型1/3，激活参数减半，预训练成本仅为同规模模型的6%，在LMArena榜单中全球第14、国内搜索能力排名第一，Agentic与知识推理能力接近Gemini-3.1 Pro。
+
+在创意写作、数学推理和信息整合场景表现优异，但编程与电子表格工具调用仍存短板，适合搜索增强型应用与企业知识服务，强化百度AI搜索生态竞争力。
+
+📎 [原文链接](https://zhidx.com/p/556617.html)
+
+
+### 8. DeepSeek/Kimi等中国AI编程计划被推荐
+
+用户对比GLM、BytePlus（$10）、Kimi（$19）、MiniMax（$20）和DeepSeek，发现其月费仅为Claude/ChatGPT的1/3至1/2，但部分用户反馈token消耗速度反而更快，如Kimi单日消耗达60%，DeepSeek日均开销高达$60。
+
+中国AI编程服务因低价吸引海外开发者，但实际使用成本因token效率低可能反超，反映国产模型在推理优化与计费设计上仍存短板，影响企业级长期采用。
+
+📎 [原文链接](https://news.ycombinator.com/item?id=48081266)
+
+
+---
+
+## 🔥 开源热门
+
+### 1. anthropics/financial-services 金融AI服务框架
+
+⭐ 17,100 stars · 今日增长 2,551 stars
+
+提供基于AI的金融行业自动化解决方案，支持风险评估、合规审查与客户交互，适用于金融机构与金融科技开发者快速构建智能服务系统。
+
+📎 [原文链接](https://github.com/anthropics/financial-services)
+
+
+### 2. addyosmani/agent-skills AI编码代理技能库
+
+⭐ 37,200 stars · 今日增长 2,263 stars
+
+为AI编码代理提供生产级工程技能集合，帮助自动化完成代码生成、调试与重构任务，适用于开发者和AI工程团队提升自动化开发效率。
+
+📎 [原文链接](https://github.com/addyosmani/agent-skills)
+
+
+### 3. Hmbown/DeepSeek-TUI 终端编码代理
+
+⭐ 23,200 stars · 今日增长 1,612 stars
+
+在终端中直接运行 DeepSeek 模型的编码代理，帮助开发者快速生成、调试和优化代码，无需离开命令行环境，适合习惯 CLI 工作流的程序员。
+
+📎 [原文链接](https://github.com/Hmbown/DeepSeek-TUI)
+
+
+### 4. mattpocock/skills AI编程技能库
+
+⭐ 67,900 stars · 今日增长 1,455 stars
+
+一个由开发者实际使用的AI编程技能集合，直接源自其.clauae配置，帮助开发者快速获取高效提示工程与AI协作实践，适用于希望提升AI编程效率的工程师。
+
+📎 [原文链接](https://github.com/mattpocock/skills)
+
+
+### 5. datawhalechina/hello-agents 从零构建智能体教程
+
+⭐ 45,600 stars · 今日增长 1,130 stars
+
+帮助开发者从零掌握智能体（Agent）的设计原理与实战方法，涵盖提示工程、工具调用和多智能体协作，适合AI应用开发者快速构建自主智能系统。
+
+📎 [原文链接](https://github.com/datawhalechina/hello-agents)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. OpenAI 翁家翌提出启发式学习
+
+通过GPT-5.4驱动Codex自动生成和迭代Python代码，实现无梯度更新的强化学习，在Atari Breakout游戏达成864分满分，Atari 57基准中位表现媲美PPO，MuJoCo机器人任务中HalfCheetah得分达11836。
+
+该方法将策略从神经网络权重转为显式代码，解决传统DRL的灾难性遗忘与黑箱问题，支持持续学习与人工可解释干预，为AI系统长期自适应提供新架构路径。
+
+📎 [原文链接](https://www.qbitai.com/2026/05/414827.html)
+
+
+### 2. NVIDIA cuda-oxide 发布
+
+NVIDIA发布实验性编译器cuda-oxide，可将Rust源码直接编译为CUDA PTX指令，支持#[kernel]宏、线程索引、共享内存、TMA等完整CUDA特性，主机与设备代码共存于单文件。
+
+首次实现Rust原生表达SIMT模型，绕过C++/Triton依赖，提升GPU内核开发安全性与效率，为高性能计算提供纯Rust栈新路径。
+
+📎 [原文链接](https://www.marktechpost.com/2026/05/09/nvidia-ai-just-released-cuda-oxide-an-experimental-rust-to-cuda-compiler-backend-that-compiles-simt-gpu-kernels-directly-to-ptx/)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. Anthropic签下122亿云订单
+
+![](images/191dc95ad4c5.png)
+
+Anthropic与Akamai签署18亿美元（约122.4亿元）为期7年的云计算协议，用于支持Claude模型推理，其一季度产品使用量较此前增长80倍。
+
+交易标志着AI算力采购从巨头云厂商向边缘基础设施商外溢，Akamai借机切入AI推理市场，验证了分布式GPU部署的商业可行性。
+
+📎 [原文链接](https://zhidx.com/p/556716.html)
+
+
+### 2. 字节跳动AI算力支出超2000亿
+
+![](images/cf2a3c409d79.png)
+
+2025年AI基础设施预算上调至超2000亿元人民币，较原计划1600亿增长超25%，并显著增加国产AI芯片采购比例。
+
+在海外同步投入超250亿元建设数据中心，虽规模仍低于谷歌、微软，但国产芯片布局标志着国内大厂对自主算力供应链的战略转向。
+
+📎 [原文链接](https://zhidx.com/p/556694.html)
+
+
+### 3. xAI核心团队集体离职
+
+![](images/b9c7b3305327.jpg)
+
+xAI预训练负责人庄钧堂离职，他曾主导Grok 2至Grok 4.3全系列模型训练，并曾是GPT-4o、DALL-E 3和OpenAI Embedding核心贡献者；同期李修宇、Fraster Cook等多名成员亦确认离职。
+
+xAI被并入SpaceX并更名为SpaceXAI，同时将22万张GPU算力全数交付竞争对手Anthropic，模型性能落后GPT-5.5与Claude Opus，技术团队几乎全员出走，创新体系已实质性瓦解。
+
+📎 [原文链接](https://zhidx.com/p/556605.html)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
