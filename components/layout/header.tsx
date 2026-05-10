@@ -7,7 +7,7 @@ const navLinks = [
   { href: "/", label: "首页" },
   { href: "/blog", label: "博客" },
   { href: "/ai-daily-report", label: "AI日报" },
-  { href: "/about", label: "关于" },
+  { href: "/about", label: "关于我" },
 ];
 
 export function Header() {
