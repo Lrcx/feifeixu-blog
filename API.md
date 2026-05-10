@@ -38,6 +38,17 @@ python3 scripts/daily_publish.py --batch daily_items.json --commit --push-git
 
 推送到 GitHub 后，Cloudflare Pages 会自动重新部署。
 
+## Cloudflare Workers Static Assets 配置
+
+如果 Cloudflare 控制台只有 Workers 入口，使用以下配置：
+
+- Build command: `npm run build`
+- Deploy command: `npx wrangler deploy`
+- Non-production branch deploy command: `npx wrangler deploy`
+- Path: `/`
+
+项目里的 `wrangler.jsonc` 会告诉 Wrangler 上传 `out/` 静态目录，不会触发 OpenNext。
+
 ## Cloudflare Pages 配置
 
 - Framework preset: `Next.js`

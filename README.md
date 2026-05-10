@@ -39,9 +39,18 @@ npm run build
 out/
 ```
 
-## Cloudflare Pages
+## Cloudflare Workers Static Assets
 
-- Framework preset: `Next.js`
+- Build command: `npm run build`
+- Deploy command: `npx wrangler deploy`
+- Static assets directory: `out`
+- Node.js version: `22`
+
+`wrangler.jsonc` 已配置为上传 `out/` 目录的静态资源。不要使用 OpenNext 迁移流程。
+
+如果你的 Cloudflare 控制台仍显示 Pages 配置，可使用：
+
+- Framework preset: `Next.js Static HTML Export`
 - Build command: `npm run build`
 - Build output directory: `out`
 - Node.js version: `22`
