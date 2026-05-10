@@ -5,13 +5,26 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "export": "next build",
+    "start": "npx serve out",
     "lint": "eslint"
   },
   "dependencies": {
+    "@ai-sdk/openai": "^3.0.53",
+    "ai": "^6.0.168",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.38.0",
+    "gray-matter": "^4.0.3",
+    "lucide-react": "^1.8.0",
     "next": "16.2.4",
+    "next-mdx-remote": "^6.0.0",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "react-markdown": "^10.1.0",
+    "rehype-highlight": "^7.0.2",
+    "rehype-raw": "^7.0.0",
+    "remark-gfm": "^4.0.1",
+    "shiki": "^4.0.2"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

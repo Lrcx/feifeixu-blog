@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 肥肥旭 Blog
 
-## Getting Started
+面向 AI/LLM 工程师个人品牌的静态博客。项目使用 Next.js App Router、MDX 内容文件和 Cloudflare Pages 部署。
 
-First, run the development server:
+## 本地开发
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+访问 `http://localhost:3000`。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 内容管理
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+博客文章：
 
-## Learn More
+```txt
+content/blog/*.mdx
+```
 
-To learn more about Next.js, take a look at the following resources:
+AI 日报：
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```txt
+content/daily/*.mdx
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+新增文章后提交到 GitHub，Cloudflare Pages 会自动构建发布。
 
-## Deploy on Vercel
+## 静态构建
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm run build
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+构建产物输出到：
+
+```txt
+out/
+```
+
+## Cloudflare Pages
+
+- Framework preset: `Next.js`
+- Build command: `npm run build`
+- Build output directory: `out`
+- Node.js version: `22`

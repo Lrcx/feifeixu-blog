@@ -1,0 +1,65 @@
+---
+title: "用 RAG 增强 LLM 的知识边界"
+date: "2024-04-18"
+excerpt: "深入探讨检索增强生成（RAG）技术，如何让 LLM 获得更精准的领域知识"
+tags: ["RAG", "LLM", "知识检索", "向量数据库"]
+category: "LLM"
+author: "Feifeixu"
+---
+
+# 用 RAG 增强 LLM 的知识边界
+
+检索增强生成（RAG）是解决 LLM 知识局限性的关键技术。通过结合外部知识库，RAG 让模型能够回答超出训练数据范围的问题。
+
+## RAG 的工作原理
+
+RAG 系统的核心流程：
+
+```
+用户问题 → 向量化 → 知识检索 → 上下文构建 → LLM生成 → 回答
+```
+
+## 关键组件
+
+### 1. 向量数据库
+
+选择合适的向量数据库至关重要：
+
+- **Pinecone** - 云端托管，易于使用
+- **Milvus** - 开源，高性能
+- **Weaviate** - 支持混合搜索
+
+### 2. Embedding 模型
+
+文本向量化的质量直接影响检索效果：
+
+```python
+from sentence_transformers import SentenceTransformer
+
+model = SentenceTransformer('all-MiniLM-L6-v2')
+embeddings = model.encode(documents)
+```
+
+### 3. 检索策略
+
+- 语义相似度搜索
+- 关键词过滤
+- 混合检索
+- 重排序优化
+
+## 最佳实践
+
+1. **数据预处理** - 清理、分块、去重
+2. **索引优化** - 合理的 chunk 大小
+3. **检索调优** - top-k 参数选择
+4. **缓存策略** - 减少重复计算
+
+## 性能优化技巧
+
+- 使用小模型处理简单查询
+- 实现渐进式检索
+- 添加引用溯源功能
+
+---
+
+RAG 技术正在快速发展，掌握它将让你在 AI 应用开发中占据优势！

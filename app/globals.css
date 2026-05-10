@@ -1,26 +1,87 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ═══════════════════════════════════════════════════════════════════════════
+   SWISS MODERNISM 2.0 - Minimal Blog Design System (Light Mode Only)
+════════════════════════════════════════════════════════════════════════════ */
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: #FAFAFA;
+  --color-foreground: #09090B;
+  --color-primary: #18181B;
+  --color-secondary: #71717A;
+  --color-muted: #E4E4E7;
+  --color-border: #E4E4E7;
+  --color-accent: #2563EB;
+  --color-card: #FFFFFF;
+  --font-sans: 'Noto Sans SC', system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ═══════════════════════════════════════════════════════════════════════════
+   BASE
+════════════════════════════════════════════════════════════════════════════ */
+
+body {
+  background: #FAFAFA;
+  color: #09090B;
+  font-family: 'Noto Sans SC', system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   FOCUS (Accessibility)
+════════════════════════════════════════════════════════════════════════════ */
+
+:focus-visible {
+  outline: 2px solid #2563EB;
+  outline-offset: 2px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   REDUCED MOTION
+════════════════════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ═══════════════════════════════════════════════════════════════════════════
+   SELECTION
+════════════════════════════════════════════════════════════════════════════ */
+
+::selection {
+  background: #2563EB;
+  color: white;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ARTICLE CONTENT
+════════════════════════════════════════════════════════════════════════════ */
+
+.article-content {
+  font-size: 15px;
+}
+
+.article-content h2 {
+  font-size: 1.125rem;
+}
+
+.article-content h3 {
+  font-size: 1rem;
+}
+
+.article-content p {
+  max-width: 65ch;
+  margin-bottom: 1rem;
+}
+
+.article-content ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.article-content figure {
+  margin: 1.5rem 0;
 }
