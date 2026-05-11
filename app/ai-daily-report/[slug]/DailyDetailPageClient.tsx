@@ -129,7 +129,10 @@ export default function DailyDetailPageClient({ item }: { item: DailyItem }) {
                   ),
                   img: ({ src, alt }) => {
                     if (typeof src !== "string" || !src) return null;
-                    const imgSrc = src.startsWith("/") ? src : `/daily-images/${item.frontmatter.date}/${src}`;
+                    const isRemoteImage = /^https?:\/\//i.test(src) || src.startsWith("//");
+                    const imgSrc = isRemoteImage || src.startsWith("/")
+                      ? src
+                      : `/daily-images/${item.frontmatter.date}/${src}`;
                     return (
                       <figure className="my-6">
                         <Image
