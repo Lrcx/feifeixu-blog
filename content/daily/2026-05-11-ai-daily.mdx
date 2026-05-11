@@ -1,11 +1,11 @@
 ---
-title: "05.11 OpenAI员工套现66亿，Hermes Agent登顶榜首 | AI 早报"
+title: "05.11 谷歌AI解60年数学猜想，Claude自动生成办公文档 | AI 早报"
 date: "2026-05-11"
 source: "AI 日报"
 category: "AI日报"
 tags: ["AI日报", "AI"]
 ---
-# 05.11 OpenAI员工套现66亿，Hermes Agent登顶榜首 | AI 早报
+# 05.11 谷歌AI解60年数学猜想，Claude自动生成办公文档 | AI 早报
 
 > 2026年05月11日 周一 · 每日精选 AI 领域重要动态
 
@@ -13,23 +13,41 @@ tags: ["AI日报", "AI"]
 
 ## 📋 今日摘要
 
-- OpenAI员工套现66亿美元，75人顶格套现3000万美元 —— OpenAI商业化落地关键信号
-- Hermes Agent 日令牌量2240亿，超越OpenClaw登顶OpenRouter榜首 —— 开源智能体竞争进入深度进化阶段
-- NVIDIA cuda-oxide 支持Rust直接编译为PTX，无需C++绑定 —— Rust取代C++写GPU内核成真
-- 纽约时报误将AI生成摘要当直接引语，已更正并致歉 —— 主流媒体首次公开AI引语事故
-- AI工具投毒暴露企业代理行为完整性缺失 —— 企业AI代理安全亟需行为级防护
+- 谷歌AI数学家解出60年未解数学猜想，正确率48%碾压人类专家 —— AI首次自主破解顶级数学难题
+- Claude 可通过自然语言自动生成Excel公式、PPT大纲、Word报告和Outlook邮件 —— AI 直接操作 Office，办公自动化革命
+- OpenAI员工套现66亿美元，75人顶格套现3000万美元 —— OpenAI估值落地，员工巨额套现引爆关注
+- Hermes Agent 日均生成令牌2240亿，登顶OpenRouter全球第一 —— 开源代理进入自进化时代
+- NVIDIA cuda-oxide 支持Rust直接编译为PTX，无需C++或FFI —— Rust开发者可原生编写CUDA内核
 
-**今日共收录 10 条动态，涵盖 模型与产品 1条、开源热门 5条、技术洞察 2条、行业动态 2条。**
+**今日共收录 10 条动态，涵盖 模型与产品 3条、开源热门 4条、技术洞察 1条、行业动态 2条。**
 
 ---
 
 ## 🚀 模型与产品
 
-### 1. Hermes Agent 登顶OpenRouter
+### 1. 谷歌AI数学家发布
 
-Hermes Agent 日生成令牌量达2240亿，超越OpenClaw的1860亿，成为OpenRouter全球日活跃量第一的开源智能体，支持20个通信平台，采用执行—学习—改进闭环架构，自动生成可复用技能文件。
+谷歌研发的AI系统成功破解数论领域60年未解的‘Erdős discrepancy problem’变体，推理正确率达48%，超越人类数学家平均表现。
 
-其轻量级、安全优先的设计和持续快速迭代（v0.13.0修复8项P0漏洞）吸引开发者转向深度进化型智能体，标志着开源AI智能体市场从广度覆盖转向长期复利价值的竞争转折点。
+首次在纯数学猜想验证中实现AI主导突破，标志着AI从辅助工具转向自主科研主体，或将重塑数学研究范式。
+
+📎 [原文链接](https://news.cnblogs.com/n/822060/)
+
+
+### 2. Claude 集成 Office 365
+
+用户只需用自然语言描述需求，Claude 即可自动在 Excel 中生成复杂公式、在 PowerPoint 中构建结构化大纲、在 Word 中撰写完整报告、在 Outlook 中起草邮件。
+
+首次实现 AI 深度嵌入微软 Office 全家桶，无需插件或切换应用，显著降低企业用户数据处理门槛。
+
+📎 [原文链接](https://news.cnblogs.com/n/822055/)
+
+
+### 3. Hermes Agent 登顶 OpenRouter
+
+Hermes Agent 由 Nous Research 开发，日均生成令牌达 2240 亿，超越 OpenClaw 的 1860 亿，成为 OpenRouter 排名第一的开源 AI 代理，支持 20 个通信平台，具备执行—学习—改进的自进化架构。
+
+其基于 SQLite FTS5 的持久记忆与自动生成功能，使长期任务效率显著提升，同时安全漏洞远少于 OpenClaw，推动开发者从广度覆盖转向深度进化路线。
 
 📎 [原文链接](https://www.marktechpost.com/2026/05/10/openclaw-vs-hermes-agent-why-nous-researchs-self-improving-agent-now-leads-openrouters-global-rankings/)
 
@@ -38,25 +56,16 @@ Hermes Agent 日生成令牌量达2240亿，超越OpenClaw的1860亿，成为Ope
 
 ## 🔥 开源热门
 
-### 1. anthropics/financial-services 金融AI服务框架
-
-⭐ 18,600 stars · 今日增长 1,444 stars
-
-提供基于AI的金融行业自动化解决方案，支持风险评估、合规审查与客户交互，适用于金融机构与金融科技开发者快速构建智能服务系统。
-
-📎 [原文链接](https://github.com/anthropics/financial-services)
-
-
-### 2. mattpocock/skills AI编程技能库
+### 1. mattpocock/skills AI编程技能库
 
 ⭐ 68,900 stars · 今日增长 1,034 stars
 
-一个由开发者实际使用的AI编程技能集合，直接源自其.claude配置，帮助开发者快速学习和复用高效提示工程与工作流，适合AI辅助编程实践者参考。
+一个由开发者实际使用的AI编程技能集合，直接源自其.claude配置目录，帮助开发者快速学习和复用高效AI交互技巧，适用于希望提升AI辅助编码效率的程序员。
 
 📎 [原文链接](https://github.com/mattpocock/skills)
 
 
-### 3. addyosmani/agent-skills AI编码代理技能库
+### 2. addyosmani/agent-skills AI编码代理技能库
 
 ⭐ 38,200 stars · 今日增长 999 stars
 
@@ -65,20 +74,20 @@ Hermes Agent 日生成令牌量达2240亿，超越OpenClaw的1860亿，成为Ope
 📎 [原文链接](https://github.com/addyosmani/agent-skills)
 
 
-### 4. 9router 无限免费AI编程
+### 3. 9router 无限免费AI编码工具
 
 ⭐ 7,200 stars · 今日增长 774 stars
 
-9router 通过集成40多家AI编程服务商，免费接入Claude、GPT、Copilot等模型，自动切换备用接口并用RTK技术降低40%令牌消耗，帮助开发者突破使用限制，实现持续免费AI编码。
+9router 通过集成40多家AI编码服务商，免费接入Claude、GPT、Copilot等模型，自动切换备选API并利用RTK技术降低40%令牌消耗，帮助开发者突破使用限制，实现持续免费AI编程。
 
 📎 [原文链接](https://github.com/decolua/9router)
 
 
-### 5. datawhalechina/hello-agents 从零构建智能体教程
+### 4. datawhalechina/hello-agents 从零构建智能体教程
 
 ⭐ 46,400 stars · 今日增长 766 stars
 
-帮助开发者从零掌握智能体（Agent）的设计原理与实战技巧，涵盖提示工程、工具调用和多智能体协作，适合AI应用开发者快速入门智能体系统开发。
+帮助开发者从零掌握智能体（Agent）的设计原理与实战方法，涵盖提示工程、工具调用和多智能体协作，适合AI应用开发者快速入门智能体系统开发。
 
 📎 [原文链接](https://github.com/datawhalechina/hello-agents)
 
@@ -89,20 +98,13 @@ Hermes Agent 日生成令牌量达2240亿，超越OpenClaw的1860亿，成为Ope
 
 ### 1. NVIDIA cuda-oxide 发布
 
-NVIDIA NVlabs发布实验性编译器cuda-oxide，可将Rust代码通过稳定MIR、Pliron IR和LLVM直接编译为CUDA PTX，支持#[kernel]宏、泛型、闭包和完整GPU内置函数，无需C/C++或Triton。
+![](images/e950e1ff4989.png)
 
-首次实现Rust原生表达CUDA SIMT模型，提升GPU编程安全性与开发效率，为AI基础设施提供去C++化新路径，影响未来AI框架底层开发范式。
+NVIDIA发布实验性编译器cuda-oxide，可将Rust源码直接编译为CUDA PTX指令，支持#[kernel]宏、线程索引、共享内存、TMA等完整CUDA特性，无需C++或rust-cuda等中间层。
+
+首次实现Rust原生表达SIMT模型，填补了Rust GPU生态中直接面向CUDA的空白，为高性能计算开发者提供安全、高效、无unsafe的GPU编程新路径。
 
 📎 [原文链接](https://www.marktechpost.com/2026/05/09/nvidia-ai-just-released-cuda-oxide-an-experimental-rust-to-cuda-compiler-backend-that-compiles-simt-gpu-kernels-directly-to-ptx/)
-
-
-### 2. AI工具投毒漏洞曝光
-
-攻击者可通过篡改工具描述注入提示词、伪造行为规范，绕过代码签名、SBOM等工件完整性验证，导致代理误选恶意工具或执行数据外泄。
-
-现有供应链安全机制（如SLSA）仅验证工具来源，无法检测运行时行为漂移与描述注入，必须新增端点白名单、输出模式验证与发现绑定三重运行时校验。
-
-📎 [原文链接](https://venturebeat.com/security/ai-tool-poisoning-exposes-a-major-flaw-in-enterprise-agent-security)
 
 
 ---
@@ -111,18 +113,18 @@ NVIDIA NVlabs发布实验性编译器cuda-oxide，可将Rust代码通过稳定MI
 
 ### 1. OpenAI员工套现66亿美元
 
-OpenAI员工通过股票期权一次性套现66亿美元，75名核心员工达到最高3000万美元的个人套现上限。
+OpenAI员工通过股票期权一次性套现66亿美元，75名员工达到最高3000万美元的个人套现限额。
 
-此举反映OpenAI商业化加速，员工股权兑现规模远超行业常态，凸显其估值与盈利预期的市场认可。
+此次大规模套现反映OpenAI商业化估值已获资本高度认可，但引发关于AI公司盈利模式与员工激励可持续性的行业讨论。
 
 📎 [原文链接](https://news.cnblogs.com/n/822043/)
 
 
-### 2. 纽约时报误用AI生成引语
+### 2. 纽约时报承认AI伪造引语
 
-《纽约时报》误将AI生成的加拿大政客言论摘要当作直接引语刊发，后核实原文发现内容失实，已撤回并修正为真实演讲内容。
+《纽约时报》刊发文章时误将AI生成的摘要当作加拿大政客皮埃尔·波利耶夫的直接引语，后更正为引用其2026年4月真实演讲内容，原文未使用‘叛徒’一词。
 
-事件暴露主流媒体在AI辅助写作中缺乏内容验证机制，引发新闻业对AI幻觉与伦理规范的紧急反思。
+事件暴露主流媒体在AI辅助写作中缺乏内容核实机制，引发对AI生成内容在新闻采编中滥用的广泛担忧。
 
 📎 [原文链接](https://simonwillison.net/2026/May/10/new-york-times-editors-note/#atom-everything)
 
