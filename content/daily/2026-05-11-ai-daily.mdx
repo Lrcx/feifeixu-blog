@@ -14,12 +14,12 @@ tags: ["AI日报", "AI"]
 ## 📋 今日摘要
 
 - 谷歌AI数学家解出60年未解数学猜想，正确率48%碾压人类专家 —— AI首次自主破解顶级数学难题
-- Claude 可通过自然语言自动生成Excel公式、PPT大纲、Word报告和Outlook邮件 —— AI 直接操作 Office，办公自动化革命
-- OpenAI员工套现66亿美元，75人顶格套现3000万美元 —— OpenAI估值落地，员工巨额套现引爆关注
-- Hermes Agent 日均生成令牌2240亿，登顶OpenRouter全球第一 —— 开源代理进入自进化时代
-- NVIDIA cuda-oxide 支持Rust直接编译为PTX，无需C++或FFI —— Rust开发者可原生编写CUDA内核
+- Claude 可通过自然语言自动生成Excel公式、PPT摘要、Word报告和Outlook邮件 —— AI 直接操作 Office，办公自动化革命
+- Hermes Agent 日均生成2240亿令牌，超越OpenClaw登顶OpenRouter全球第一 —— 开源AI代理进入智能复利时代
+- 苹果Safari将推AI自动整理标签页，Siri重构并支持第三方模型 —— 苹果AI战略全面转向核心应用
+- Sakana AI & NVIDIA TwELL 推理加速20.5%，训练加速21.9% —— LLM效率突破：稀疏计算落地实测
 
-**今日共收录 10 条动态，涵盖 模型与产品 3条、开源热门 4条、技术洞察 1条、行业动态 2条。**
+**今日共收录 14 条动态，涵盖 模型与产品 4条、开源热门 4条、技术洞察 3条、行业动态 3条。**
 
 ---
 
@@ -27,29 +27,38 @@ tags: ["AI日报", "AI"]
 
 ### 1. 谷歌AI数学家发布
 
-谷歌研发的AI系统成功破解数论领域60年未解的‘Erdős discrepancy problem’变体，推理正确率达48%，超越人类数学家平均表现。
+谷歌开发的AI系统在数学推理基准上以48%正确率超越人类专家，成功破解长期悬而未决的‘Kadison-Singer猜想’变体。
 
-首次在纯数学猜想验证中实现AI主导突破，标志着AI从辅助工具转向自主科研主体，或将重塑数学研究范式。
+首次在纯数学证明领域实现AI主导突破，标志着AI从辅助工具转向自主推理，或将重塑数学研究范式。
 
 📎 [原文链接](https://news.cnblogs.com/n/822060/)
 
 
 ### 2. Claude 集成 Office 365
 
-用户只需用自然语言描述需求，Claude 即可自动在 Excel 中生成复杂公式、在 PowerPoint 中构建结构化大纲、在 Word 中撰写完整报告、在 Outlook 中起草邮件。
+用户只需用自然语言描述需求，Claude 即可自动在 Excel 中生成复杂公式、在 PowerPoint 中生成摘要幻灯片、在 Word 中撰写报告、在 Outlook 中起草邮件。
 
-首次实现 AI 深度嵌入微软 Office 全家桶，无需插件或切换应用，显著降低企业用户数据处理门槛。
+首次实现 AI 深度嵌入微软 Office 全家桶，无需插件或切换应用，显著降低非技术人员使用办公软件的门槛。
 
 📎 [原文链接](https://news.cnblogs.com/n/822055/)
 
 
-### 3. Hermes Agent 登顶 OpenRouter
+### 3. Hermes Agent 登顶OpenRouter
 
-Hermes Agent 由 Nous Research 开发，日均生成令牌达 2240 亿，超越 OpenClaw 的 1860 亿，成为 OpenRouter 排名第一的开源 AI 代理，支持 20 个通信平台，具备执行—学习—改进的自进化架构。
+Hermes Agent 由 Nous Research 开发，基于 MIT 许可证，采用‘执行—学习—改进’闭环架构，支持20个通信平台，v0.13.0版本修复8项P0级安全漏洞，内置40+工具，支持AWS Bedrock、NVIDIA NIM等200+模型。
 
-其基于 SQLite FTS5 的持久记忆与自动生成功能，使长期任务效率显著提升，同时安全漏洞远少于 OpenClaw，推动开发者从广度覆盖转向深度进化路线。
+其日均2240亿令牌量超越OpenClaw的1860亿，反映开发者更倾向长期价值积累型代理，而非依赖海量技能库的广度优先架构，标志着开源AI代理从生态规模向智能复利演进。
 
 📎 [原文链接](https://www.marktechpost.com/2026/05/10/openclaw-vs-hermes-agent-why-nous-researchs-self-improving-agent-now-leads-openrouters-global-rankings/)
+
+
+### 4. 苹果Safari与Siri AI升级
+
+Safari在iOS 27、macOS 27中新增AI驱动的自动标签页分组功能，Siri将推出独立App并支持切换OpenAI、谷歌、Anthropic等第三方AI模型，系统级集成Apple Intelligence，新增照片修复、Siri相机识别营养信息等功能。
+
+苹果战略重心从Vision Pro转向AI核心体验，通过Siri与Safari的深度智能化提升用户粘性，同时为未来AR眼镜铺路，标志着其AI优先战略正式落地。
+
+📎 [原文链接](https://zhidx.com/p/556837.html)
 
 
 ---
@@ -60,7 +69,7 @@ Hermes Agent 由 Nous Research 开发，日均生成令牌达 2240 亿，超越 
 
 ⭐ 68,900 stars · 今日增长 1,034 stars
 
-一个由开发者实际使用的AI编程技能集合，直接源自其.claude配置目录，帮助开发者快速学习和复用高效AI交互技巧，适用于希望提升AI辅助编码效率的程序员。
+一个由开发者实际使用的AI编程技能集合，直接源自其.claude配置，帮助开发者快速学习和复用高效提示工程与工作流，适合AI辅助编程实践者参考。
 
 📎 [原文链接](https://github.com/mattpocock/skills)
 
@@ -78,7 +87,7 @@ Hermes Agent 由 Nous Research 开发，日均生成令牌达 2240 亿，超越 
 
 ⭐ 7,200 stars · 今日增长 774 stars
 
-9router 通过集成40多家AI编码服务商，免费接入Claude、GPT、Copilot等模型，自动切换备选API并利用RTK技术降低40%令牌消耗，帮助开发者突破使用限制，实现持续免费AI编程。
+9router通过集成40多家AI编码服务商，免费接入Claude、GPT、Copilot等模型，自动切换备用接口并优化令牌消耗，帮助开发者绕过使用限制，实现持续免费的AI编程体验。
 
 📎 [原文链接](https://github.com/decolua/9router)
 
@@ -87,7 +96,7 @@ Hermes Agent 由 Nous Research 开发，日均生成令牌达 2240 亿，超越 
 
 ⭐ 46,400 stars · 今日增长 766 stars
 
-帮助开发者从零掌握智能体（Agent）的设计原理与实战方法，涵盖提示工程、工具调用和多智能体协作，适合AI应用开发者快速入门智能体系统开发。
+帮助开发者从零掌握智能体（Agent）的设计原理与实战技巧，涵盖提示工程、工具调用和多智能体协作，适合AI应用开发者快速入门智能体系统开发。
 
 📎 [原文链接](https://github.com/datawhalechina/hello-agents)
 
@@ -96,37 +105,68 @@ Hermes Agent 由 Nous Research 开发，日均生成令牌达 2240 亿，超越 
 
 ## 🔍 技术洞察
 
-### 1. NVIDIA cuda-oxide 发布
+### 1. Sakana AI & NVIDIA 推出 TwELL
 
-![](images/e950e1ff4989.png)
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-05-11/e5606c2c4e44.png)
 
-NVIDIA发布实验性编译器cuda-oxide，可将Rust源码直接编译为CUDA PTX指令，支持#[kernel]宏、线程索引、共享内存、TMA等完整CUDA特性，无需C++或rust-cuda等中间层。
+通过新型稀疏格式TwELL与定制CUDA内核，在LLM前馈层实现99.5%激活稀疏，推理加速20.5%、训练吞吐提升21.9%，模型精度无损。
 
-首次实现Rust原生表达SIMT模型，填补了Rust GPU生态中直接面向CUDA的空白，为高性能计算开发者提供安全、高效、无unsafe的GPU编程新路径。
+突破传统GPU稀疏计算瓶颈，首次在批处理GEMM场景实现高效加速，支持Llama/Qwen等主流架构，显著降低训练成本与能耗。
+
+📎 [原文链接](https://www.marktechpost.com/2026/05/11/sakana-ai-and-nvidia-introduce-twell-with-cuda-kernels-for-20-5-inference-and-21-9-training-speedup-in-llms/)
+
+
+### 2. NVIDIA cuda-oxide 发布
+
+NVIDIA发布实验性编译器cuda-oxide，允许开发者用Rust编写GPU内核并直接编译为PTX，支持#[kernel]宏、泛型、共享内存、Warp操作等CUDA原生特性，无需C++或Triton。
+
+首次实现Rust语言对CUDA编程模型的原生支持，填补了Rust-GPU（SPIR-V）与rust-cuda（抽象化）之间的空白，为高性能计算提供安全、高效的新开发路径。
 
 📎 [原文链接](https://www.marktechpost.com/2026/05/09/nvidia-ai-just-released-cuda-oxide-an-experimental-rust-to-cuda-compiler-backend-that-compiles-simt-gpu-kernels-directly-to-ptx/)
+
+
+### 3. WUPHF 开源发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-05-11/0e49cf640ca5.png)
+
+支持CEO、ENG、CMO等角色AI代理本地协作，通过共享Wiki和SQLite持久化上下文，用户输入目标后代理自动分工、争论阻塞点、生成PR和文案，全程无需人工干预。
+
+完全本地运行、无云端依赖、MIT开源，首次实现多LLM提供商（Claude/Codex等）跨模型协同，显著降低提示工程复杂度，适合开发者自建私有AI工作流。
+
+📎 [原文链接](https://wuphf.team)
 
 
 ---
 
 ## 🌐 行业动态
 
-### 1. OpenAI员工套现66亿美元
+### 1. 纽约时报误用AI引语更正
 
-OpenAI员工通过股票期权一次性套现66亿美元，75名员工达到最高3000万美元的个人套现限额。
+《纽约时报》发布编辑更正，承认将AI生成的皮埃尔·波利维尔言论摘要误作直接引语发布，原文中并无‘叛徒’一词。
 
-此次大规模套现反映OpenAI商业化估值已获资本高度认可，但引发关于AI公司盈利模式与员工激励可持续性的行业讨论。
-
-📎 [原文链接](https://news.cnblogs.com/n/822043/)
-
-
-### 2. 纽约时报承认AI伪造引语
-
-《纽约时报》刊发文章时误将AI生成的摘要当作加拿大政客皮埃尔·波利耶夫的直接引语，后更正为引用其2026年4月真实演讲内容，原文未使用‘叛徒’一词。
-
-事件暴露主流媒体在AI辅助写作中缺乏内容核实机制，引发对AI生成内容在新闻采编中滥用的广泛担忧。
+事件暴露主流媒体在AI辅助写作中缺乏内容核实机制，引发新闻业对AI幻觉与伦理规范的紧急反思。
 
 📎 [原文链接](https://simonwillison.net/2026/May/10/new-york-times-editors-note/#atom-everything)
+
+
+### 2. Cerebras IPO冲刺350亿美元
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-05-11/60067a01d484.webp)
+
+Cerebras拟以150-160美元/股定价IPO，融资近48亿美元，OpenAI承诺采购750兆瓦AI算力并提供10亿美元贷款，换取认股权证，2025年营收5.1亿美元、净利润8790万美元。
+
+其晶圆级芯片WSE-3通过片上44GB SRAM突破内存墙，推理速度超英伟达B200两倍，已获AWS和OpenAI双巨头采用，成为AI推理基础设施关键替代方案。
+
+📎 [原文链接](https://www.qbitai.com/2026/05/415714.html)
+
+
+### 3. 美国IT业裁员34万岗位
+
+2026年4月美国信息技术行业单月流失1.3万岗位，泛IT领域较2022年11月峰值累计减少34.2万岗位，Meta、耐克、Snap等企业相继裁员8000人、1400人、1000人。
+
+AI技术替代标准化岗位、企业对AI投入回报持观望态度，导致初级技术岗需求锐减，但高端人才与应届生招聘仍受重视，行业正向高技能、跨领域能力转型。
+
+📎 [原文链接](https://zhidx.com/p/556826.html)
 
 
 ---
