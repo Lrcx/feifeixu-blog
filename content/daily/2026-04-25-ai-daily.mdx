@@ -1,0 +1,176 @@
+---
+title: "04.25 DeepSeek V4 百万token智能体调用| AI 早报"
+date: "2026-04-25"
+source: "AI早报"
+category: "AI早报"
+tags: ['AI早报']
+---
+
+# 04.25 DeepSeek V4 百万token智能体调用| AI 早报
+
+> 2026年04月25日 周六 · 每日精选 AI 领域重要动态
+> 
+
+---
+
+# 📋 今日摘要
+
+- DeepSeek V4 支持百万token上下文，智能体可实际调用 —— 国产大模型突破百万token实用瓶颈
+- DeepSeek V4 支持超长上下文，提示长度大幅提升 —— 国产长文本模型再突破
+- Google DeepMind Decoupled DiLoCo 在高故障率下实现88%有效吞吐量 —— 大模型训练容错能力重大突破
+- OpenAI GPT-5.5 在Terminal-Bench 2.0得分82.7%，GDPval得分84.9% —— AI智能体迈向自主执行新阶段
+- Meta 采购数百万颗亚马逊自研 AI CPU 用于代理工作负载 —— AI 芯片架构迎来 CPU 突破
+
+**今日共收录 15 条动态，涵盖 产品速递 7条、开源热门 5条、行业洞察 3条。**
+
+---
+
+# 🚀 产品速递
+
+# 1. DeepSeek V4 发布
+
+上下文长度达100万token，支持长程推理与多轮智能体协作，实测在代码生成、文档分析等任务中显著优于GPT-4o和Claude 3.5。
+
+首次实现百万级上下文在真实智能体场景中的稳定运行，打破大模型‘长上下文无用’的行业认知，推动AI代理进入复杂任务新阶段。
+
+[原文链接](https://huggingface.co/blog/deepseekv4)
+
+# 2. DeepSeek V4 预览版发布
+
+![4511d2100a0e.jpg](/daily-images/2026-04-25/4511d2100a0e.jpg)
+
+DeepSeek V4 预览版采用新架构，上下文长度显著超越V3，可高效处理超长文本输入，适用于文档分析、代码库理解等场景。
+
+延续开源策略，降低企业与开发者使用门槛，推动国产大模型在长文本任务中与GPT-4o、Claude 3等国际模型竞争。
+
+[原文链接](https://www.technologyreview.com/2026/04/24/1136422/why-deepseeks-v4-matters/)
+
+# 3. Google DeepMind 发布 Decoupled DiLoCo
+
+![94d6bcc23c2e.png](/daily-images/2026-04-25/94d6bcc23c2e.png)
+
+新架构 Decoupled DiLoCo 通过异步梯度更新机制，突破传统同步训练对硬件一致性的依赖，在30%节点故障率下仍保持88%有效吞吐量。
+
+显著降低大模型训练对昂贵硬件稳定性的依赖，为分布式训练提供高容错方案，有望降低千亿参数模型训练成本与门槛。
+
+[原文链接](https://www.marktechpost.com/2026/04/23/google-deepmind-introduces-decoupled-diloco-an-asynchronous-training-architecture-achieving-88-goodput-under-high-hardware-failure-rates/)
+
+# 4. OpenAI GPT-5.5 发布
+
+![d0ba2950b161.webp](/daily-images/2026-04-25/d0ba2950b161.webp)
+
+GPT-5.5 是一款完全重新训练的智能体模型，在Terminal-Bench 2.0（终端操作任务）和GDPval（综合决策评估）上分别取得82.7%和84.9%的分数，可自主完成编程、数据分析与软件操作全流程。
+
+该模型实现无监督端到端自动化，标志着AI从辅助工具向自主代理的关键跃迁，将重塑开发者工作流与企业自动化部署范式。
+
+[原文链接](https://www.marktechpost.com/2026/04/23/openai-releases-gpt-5-5-a-fully-retrained-agentic-model-that-scores-82-7-on-terminal-bench-2-0-and-84-9-on-gdpval/)
+
+# 5. Meta 采购亚马逊 AI CPU
+
+Meta 与亚马逊达成协议，采购数百万颗基于 Graviton 架构的自研 CPU，专用于 AI 代理推理任务，而非依赖传统 GPU。
+
+这是头部科技公司首次大规模采用 CPU 替代 GPU 处理 AI 代理负载，可能重塑 AI 芯片市场格局，降低训练与推理成本。
+
+[原文链接](https://techcrunch.com/2026/04/24/in-another-wild-turn-for-ai-chips-meta-signs-deal-for-millions-of-amazon-ai-cpus/)
+
+# 6. 微软允许企业卸载Copilot
+
+微软发布组策略RemoveMicrosoftCopilotApp，支持IT管理员通过Intune或SCCM在Windows 11 25H2设备上移除预装Copilot应用，条件为未手动安装且28天内未启动。
+
+此举反映微软正收缩Copilot在系统层的强制集成，回应企业对AI冗余和隐私的顾虑，标志其AI战略从‘预装优先’转向‘企业可控’。
+
+[原文链接](https://www.ithome.com/0/943/396.htm)
+
+# 7. Deepgram Python SDK 教程
+
+提供完整编码示例，涵盖身份验证、同步与异步音频处理、语音识别、文本转语音及文本智能分析，直接操作真实音频数据。
+
+虽为技术教程，但 Deepgram 为国际主流语音 AI 服务商，该实践可直接迁移至企业语音应用开发，提升多模态语音系统构建效率。
+
+[原文链接](https://www.marktechpost.com/2026/04/24/a-coding-implementation-on-deepgram-python-sdk-for-transcription-text-to-speech-async-audio-processing-and-text-intelligence/)
+
+---
+
+# 🔥 开源热门
+
+# 1. CC-Canary 开源
+
+开源工具 CC-Canary 通过自动化代码变更对比，检测 Claude Code 模型在代码生成中的功能回归，准确率超 92%，支持 CI/CD 集成。
+
+填补了大模型代码生成质量监控的空白，开发者可低成本验证 AI 编程工具的稳定性，提升生产环境代码可靠性。
+
+[原文链接](https://github.com/delta-hq/cc-canary)
+
+# 2. andrej-karpathy-skills AI编程技能库
+
+项目定位：整理Andrej Karpathy的AI编程方法论
+
+核心特性：精选AI开发实战技巧与思维模型
+
+适用场景：AI工程师快速学习顶尖实践
+
+[原文链接](https://github.com/forrestchang/andrej-karpathy-skills)
+
+# 3. free-claude-code 免费Claude-Code终端工具
+
+项目定位：免费接入Claude-Code的AI编码助手
+
+核心特性：支持终端/VSCode/Discord多端使用
+
+适用场景：开发者免费调用Claude-Code写代码
+
+[原文链接](https://github.com/Alishahryar1/free-claude-code)
+
+# 4. huggingface/ml-intern 机器学习工程师
+
+项目定位：自动化ML工程师工作流
+
+核心特性：读论文、训模型、自动部署
+
+适用场景：研究者快速落地ML实验
+
+[原文链接](https://github.com/huggingface/ml-intern)
+
+# 5. TIPSv2 发布
+
+通过改进图像补丁与文本片段的细粒度对齐机制，在多个视觉语言基准上实现平均3.2%的性能提升。
+
+该方法为多模态模型提供轻量级架构优化路径，但属学术研究，无开源代码或API，暂无直接工程落地价值。
+
+[原文链接](https://gdm-tipsv2.github.io/)
+
+---
+
+# 🌐 行业洞察
+
+# 1. 谷歌拟投400亿美金给Anthropic
+
+谷歌计划向Anthropic投资最高400亿美元，资金包括现金和云计算资源，以强化其在大模型训练中的算力供给。
+
+此举直接回应OpenAI、Meta等公司在算力资源上的激烈竞争，标志着全球AI基础设施军备竞赛升级，影响未来大模型训练成本与技术路线。
+
+[原文链接](https://techcrunch.com/2026/04/24/google-to-invest-up-to-40b-in-anthropic-in-cash-and-compute/)
+
+# 2. DeepSeek 融资达200亿美金
+
+DeepSeek 正在寻求至少3亿美元融资，最新估值被抬升至200亿美元以上，阿里与腾讯均已介入洽谈投资。
+
+作为国产大模型头部企业，DeepSeek 获两大互联网巨头竞相押注，标志着中国AI大模型进入资本密集爆发期，技术商业化路径获主流平台认可。
+
+[原文链接](https://news.cnblogs.com/n/821264/)
+
+# 3. 用户集体弃用Claude
+
+多位开发者反馈Claude出现token计数错误、响应质量明显下降，且官方支持响应缓慢或无回复。
+
+该文在Hacker News获780分，反映用户对Anthropic产品稳定性和体验的集体失望，可能影响企业级信任。
+
+[原文链接](https://nickyreinert.de/en/2026/2026-04-24-claude-critics/)
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。

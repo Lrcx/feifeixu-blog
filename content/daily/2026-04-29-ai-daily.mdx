@@ -1,0 +1,164 @@
+---
+title: "04.29 OpenAI开源PII模型可浏览器运行 | Op| AI 早报"
+date: "2026-04-29"
+source: "AI早报"
+category: "AI早报"
+tags: ['AI早报']
+---
+
+# 04.29 OpenAI开源PII模型可浏览器运行 | Op| AI 早报
+
+> 2026年04月29日 周三 · 每日精选 AI 领域重要动态
+> 
+
+---
+
+# 📋 今日摘要
+
+- OpenAI 发布15亿参数开源PII模型，5000万激活参数可浏览器运行 —— AI隐私保护首次实现端侧大模型落地
+- OpenAI 模型正式接入 Amazon Bedrock，支持 GPT-4o、o1 等模型 API 调用 —— AWS 与 OpenAI 生态正式合并
+- NVIDIA Nemotron 3 Nano 单模型支持多模态代理推理，参数仅1.8B —— 端侧多模态AI代理新基准
+- 商汤 SenseNova U1 用统一架构实现原生理解与生成，终结多模态缝合怪 —— 国产多模态架构迎来范式突破
+- 阿里 HappyHorse 开启灰测，悟空已率先接入 —— 阿里视频生成模型正式进入企业落地阶段
+
+**今日共收录 14 条动态，涵盖 产品速递 9条、开源热门 3条、行业洞察 2条。**
+
+---
+
+# 🚀 产品速递
+
+# 1. OpenAI 发布隐私过滤器
+
+基于蒸馏解码器构建，参数规模达15亿，仅5000万参数在推理时激活，支持在浏览器端实时脱敏敏感信息（PII）。
+
+首次实现大模型级PII检测在端侧运行，降低企业数据合规成本，推动AI隐私保护从云端向终端迁移。
+
+[原文链接](https://www.marktechpost.com/2026/04/28/openai-releases-privacy-filter-a-1-5b-parameter-open-source-pii-redaction-model-with-50m-active-parameters/)
+
+# 2. OpenAI 模型上线 Amazon Bedrock
+
+OpenAI 将 GPT-4o、o1 等模型通过 AWS Bedrock 提供企业级 API 访问，客户可直接在 AWS 生态中调用，无需跳转 OpenAI 平台。
+
+此举打通了全球最大云平台与最强大模型的生态壁垒，企业用户可统一管理多厂商 AI 服务，降低集成成本并提升合规性。
+
+[原文链接](https://stratechery.com/2026/an-interview-with-openai-ceo-sam-altman-and-aws-ceo-matt-garman-about-bedrock-managed-agents/)
+
+# 3. NVIDIA Nemotron 3 Nano 发布
+
+![6fcae6593eb3.webp](/daily-images/2026-04-29/6fcae6593eb3.webp)
+
+NVIDIA发布Nemotron 3 Nano，首个开源轻量级多模态大模型，支持文本、图像、音频、视频统一推理，参数量仅1.8B，可在边缘设备运行。
+
+打破多模态代理依赖多个模型的架构瓶颈，为AI代理在手机、机器人等端侧场景落地提供高效解决方案，降低部署成本。
+
+[原文链接](https://developer.nvidia.com/blog/nvidia-nemotron-3-nano-omni-powers-multimodal-agent-reasoning-in-a-single-efficient-open-model/)
+
+# 4. 商汤 SenseNova U1 开源
+
+SenseNova U1 采用单一神经网络架构，原生支持文本、图像、视频的联合理解与生成，无需多模型拼接，推理延迟降低 40%，参数效率提升 35%。
+
+打破国内多模态模型依赖拼接式架构的现状，为开发者提供端到端统一训练与部署方案，推动国产多模态大模型从‘能用’走向‘好用’。
+
+[原文链接](https://www.jiqizhixin.com/articles/2026-04-28-13)
+
+# 5. 阿里 HappyHorse 开启灰测
+
+![c236b12df4fe.jpg](/daily-images/2026-04-29/c236b12df4fe.jpg)
+
+阿里视频生成模型 HappyHorse 启动企业级灰度测试，首批接入方包括通义悟空，支持高保真人像驱动与动态表情生成。
+
+标志着阿里大模型生态向视频生成企业应用落地迈出关键一步，有望重塑智能客服与虚拟人交互体验。
+
+[原文链接](https://www.qbitai.com/2026/04/410314.html)
+
+# 6. 支付宝AI收发布
+
+![c4119c250f29.png](/daily-images/2026-04-29/c4119c250f29.png)
+
+支付宝AI收面向个人开发者免费开放，支持语音识别、智能客服、交易分析等AI能力，无需接入费或抽成。
+
+降低AI应用落地门槛，推动小微商户和个体开发者低成本接入智能服务，加速AI在零售与服务业的普惠化。
+
+[原文链接](https://www.qbitai.com/2026/04/410450.html)
+
+# 7. Poolside Laguna XS.2 开源发布
+
+Laguna XS.2 是一款330亿总参数（30亿激活）的MoE模型，采用Apache 2.0开源，可在单张RTX 4090（24GB）上量化运行，在SWE-bench Pro基准上得分44.5%，超越Claude Haiku 4.5和Gemma 4 31B。
+
+作为首个由美国初创公司发布的高性能开源智能体模型，它填补了欧美开源生态在本地化代码智能体领域的空白，为开发者提供无需联网、可私有部署的替代方案，挑战OpenAI与Anthropic的封闭模型垄断。
+
+[原文链接](https://venturebeat.com/technology/american-ai-startup-poolside-launches-free-high-performing-open-model-laguna-xs-2-for-local-agentic-coding)
+
+# 8. Mistral AI Workflows 发布
+
+基于Temporal引擎构建，支持代码优先的AI工作流编排，实现编排与执行分离，数据可完全驻留客户本地，已用于物流放行、KYC审查、客服工单三大生产场景，日均执行超百万次。
+
+通过解耦架构满足金融、物流等强监管行业对数据主权和系统可靠性的核心需求，与Forge模型训练、Vibe交互层构成全栈企业AI平台，直接挑战AWS、微软、Google的AI编排生态。
+
+[原文链接](https://venturebeat.com/technology/mistral-ai-launches-workflows-a-temporal-powered-orchestration-engine-already-running-millions-of-daily-executions)
+
+# 9. DOOM 在 ChatGPT/Claude 运行
+
+开发者在 ChatGPT 和 Claude 中成功运行经典游戏 DOOM，用户通过自然语言指令控制移动、射击等操作，无需图形界面。
+
+证明大模型可作为交互式系统内核，虽为演示性质，但为 AI 驱动的交互式应用（如游戏、仿真）提供新思路。
+
+[原文链接](https://chrisnager.com/blog/doom-runs-in-chatgpt-and-claude/)
+
+---
+
+# 🔥 开源热门
+
+# 1. 小米 MiMo-V2.5-Pro 开源
+
+MiMo-V2.5-Pro 实现 macOS 环境下 54 个应用无中断并发，内置浏览器支持真实网页加载与交互，响应延迟低于 800ms。
+
+作为首个开源的国产多模态智能体系统，免费开放万亿 token 训练资源与框架接口，降低 Agent 开发门槛，推动国产 AI 智能体生态建设。
+
+[原文链接](https://www.qbitai.com/2026/04/410519.html)
+
+# 2. 蚂蚁百灵 Ling-2.6-flash 开源
+
+Ling-2.6-flash 为104B总参数、7.4B激活参数的Instruct模型，支持BF16/FP8/INT4量化，在4卡H20环境下推理速度达340 tokens/s，Prefill吞吐量是Nemotron-3-Super的2.2倍，训练Token消耗仅15M，为同类模型1/10。
+
+开源提供多版本适配，显著提升中英文混合与Coding框架兼容性，在Agent基准测试中逼近甚至超越更大参数模型，降低企业级AI Agent部署成本与硬件门槛。
+
+[原文链接](https://www.ithome.com/0/944/768.htm)
+
+# 3. 浙大开源OpenStory
+
+OpenStory通过30+智能体模拟《红楼梦》人物互动，自主演化出‘大圣棒打王熙凤’等非原作剧情，系统在无干预下导致大观园叙事崩溃。
+
+首次在文化叙事场景中验证多智能体系统的不可控演化风险，为AGI安全与可控性研究提供真实案例，推动中文语境下AI伦理实验范式。
+
+[原文链接](https://news.cnblogs.com/n/821444/)
+
+---
+
+# 🌐 行业洞察
+
+# 1. 谷歌获美军AI合同
+
+![a9199b90a0ad.jpg](/daily-images/2026-04-29/a9199b90a0ad.jpg)
+
+谷歌已与美国国防部达成新协议，提供AI技术用于此前被Anthropic拒绝的军事应用场景，包括国内监控与自主武器系统支持。
+
+此举凸显美国军方AI供应链转向，谷歌成为关键供应商，引发伦理争议，也反映大模型公司对军事合作的分化策略。
+
+[原文链接](https://techcrunch.com/2026/04/28/google-expands-pentagons-access-to-its-ai-after-anthropics-refusal/)
+
+# 2. Claude system prompt 漏洞曝光
+
+用户发现Claude的system prompt存在严重bug，导致已付费的托管智能体（managed agents）无法正常运行，功能完全瘫痪。
+
+该漏洞直接影响企业级用户对AI智能体的可靠性预期，暴露Anthropic在生产级服务稳定性上的重大缺陷。
+
+[原文链接](https://github.com/anthropics/claude-code/issues/49363)
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。

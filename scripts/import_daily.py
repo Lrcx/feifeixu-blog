@@ -7,6 +7,7 @@ import os
 import re
 import shutil
 import zipfile
+import argparse
 from pathlib import Path
 from datetime import datetime
 
@@ -117,16 +118,13 @@ tags: {parsed['tags']}
 
 def process_all_zips():
     """处理所有 zip 文件"""
+    parser = argparse.ArgumentParser(description="将 AI 日报 zip 文件转换为博客 MDX 格式")
+    parser.add_argument("--start-date", help="开始日期，格式 YYYY-MM-DD")
+    parser.add_argument("--end-date", help="结束日期，格式 YYYY-MM-DD")
+    args = parser.parse_args()
+
     TARGET_DIR.mkdir(parents=True, exist_ok=True)
     IMAGE_DIR.mkdir(parents=True, exist_ok=True)
-
-    # 清理旧的导入文件
-    for f in TARGET_DIR.glob("*-ai-daily.mdx"):
-        f.unlink()
-
-    for d in IMAGE_DIR.iterdir():
-        if d.is_dir():
-            shutil.rmtree(d)
 
     # 获取所有 zip 文件
     zip_files = sorted(SOURCE_DIR.glob("*.zip"))
@@ -134,6 +132,18 @@ def process_all_zips():
     print(f"找到 {len(zip_files)} 个 zip 文件")
 
     for zip_file in zip_files:
+        zip_date_match = re.search(r'(\d{4})年(\d{2})月(\d{2})日', zip_file.name)
+        zip_date = (
+            f"{zip_date_match.group(1)}-{zip_date_match.group(2)}-{zip_date_match.group(3)}"
+            if zip_date_match
+            else ""
+        )
+
+        if args.start_date and zip_date and zip_date < args.start_date:
+            continue
+        if args.end_date and zip_date and zip_date > args.end_date:
+            continue
+
         print(f"\n处理: {zip_file.name}")
 
         # 创建临时目录
