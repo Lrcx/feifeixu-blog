@@ -1,0 +1,193 @@
+---
+title: "05.12 Claude Platform on AWS接入IAM | AI 早报"
+date: "2026-05-12"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 05.12 Claude Platform on AWS接入IAM | AI 早报
+
+> 2026年05月12日 周二 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- Claude Platform on AWS 通过IAM认证访问，支持Claude-sonnet-4-6与智能体全功能 —— 企业级AI接入方式重大升级
+- 字节跳动今年资本支出超2000亿，重点投入AI算力与数据中心 —— 国内AI算力军备竞赛升级
+- 千问在淘宝内实现对话购物流程闭环，支持推荐、下单、领券、查物流 —— AI购物首次实现淘宝全链路闭环
+- 苹果Safari将推AI自动整理标签页，Siri重构支持第三方模型 —— 苹果AI战略全面转向，Vision Pro被搁置
+- Meta BLT 内存带宽降超50%，无需分词生成字节级文本 —— 字节级大模型推理效率实现质变
+
+**今日共收录 15 条动态，涵盖 模型与产品 4条、开源热门 4条、技术洞察 4条、行业动态 3条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. Claude Platform on AWS 上线
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-05-12/4c79eefc59d6.png)
+
+用户可通过AWS账户直接访问Anthropic原生Claude平台，支持Messages API、Managed Agents、代码执行、网页搜索等全部功能，使用AWS IAM凭证认证，计费通过AWS Marketplace统一结算。
+
+首次实现大模型平台与云基础设施深度集成，企业无需管理多账户即可安全调用Claude高级能力，显著降低AI治理与成本管理复杂度。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/introducing-claude-platform-on-aws-anthropics-native-platform-through-your-aws-account/)
+
+
+### 2. 千问接入淘宝
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-05-12/425192e45aad.png)
+
+用户可通过对话完成从需求表达、商品推荐、比价选品、领券下单到物流查询的全流程，支持模糊需求理解（如‘提升厨房幸福感’）和跨品类场景方案（如赛博朋克风全屋改造）。
+
+首次将AI导购能力深度嵌入国内最大电商交易闭环，降低决策成本并减少页面跳转，推动AI从‘种草’向‘成交’全链路落地，重塑电商交互范式。
+
+📎 [原文链接](https://zhidx.com/p/556997.html)
+
+
+### 3. 苹果Safari与Siri AI升级
+
+Safari在iOS 27、macOS 27中新增AI自动分组标签页功能，Siri将推出独立App并支持切换OpenAI、谷歌、Anthropic等第三方大模型，系统级集成Apple Intelligence用于照片修复、相机识物等场景。
+
+苹果放弃Vision Pro硬件优先级，团队拆分并转向AR眼镜与AI可穿戴设备，Siri与Safari的AI升级标志着其战略重心从硬件创新转向端侧AI体验落地。
+
+📎 [原文链接](https://zhidx.com/p/556837.html)
+
+
+### 4. Amazon Nova 多模态嵌入发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-05-12/025851fdd843.png)
+
+Amazon Nova 多模态嵌入可将文本、CAD图纸、热力图等图像直接映射至共享向量空间，支持1024维嵌入与DOCUMENT_IMAGE模式，实现图文跨模态检索。
+
+突破传统OCR文本提取局限，使制造企业能通过自然语言查询精准定位图纸中的标注信息，显著提升航空航天、汽车等行业技术文档检索准确率。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/manufacturing-intelligence-with-amazon-nova-multimodal-embeddings/)
+
+
+---
+
+## 🔥 开源热门
+
+### 1. mattpocock/skills AI编程技能库
+
+⭐ 71,900 stars · 今日增长 2,975 stars
+
+一个由开发者实际使用的AI编程技能集合，直接源自其.claudefiles，帮助开发者快速学习和复用高效提示工程与AI协作技巧。
+
+📎 [原文链接](https://github.com/mattpocock/skills)
+
+
+### 2. datawhalechina/hello-agents 从零构建智能体教程
+
+⭐ 47,500 stars · 今日增长 1,159 stars
+
+帮助开发者从零掌握智能体（Agent）架构设计与实战，涵盖提示工程、工具调用和多智能体协作，适合AI工程新手和希望系统学习智能体开发的开发者。
+
+📎 [原文链接](https://github.com/datawhalechina/hello-agents)
+
+
+### 3. Hmbown/DeepSeek-TUI 终端编码代理
+
+⭐ 25,100 stars · 今日增长 1,144 stars
+
+在终端中直接调用 DeepSeek 模型进行代码生成与调试的智能代理，帮助开发者无需离开命令行即可完成编程任务，适合习惯 CLI 工作流的程序员。
+
+📎 [原文链接](https://github.com/Hmbown/DeepSeek-TUI)
+
+
+### 4. addyosmani/agent-skills AI编码代理技能库
+
+⭐ 39,400 stars · 今日增长 1,136 stars
+
+为AI编码代理提供生产级工程技能集合，帮助自动化完成代码生成、调试与重构任务，适用于开发者和AI工程团队提升自动化开发效率。
+
+📎 [原文链接](https://github.com/addyosmani/agent-skills)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. Meta BLT 推理效率突破
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-05-12/a05149a6517a.png)
+
+Meta与斯坦福提出Fast Byte Latent Transformer，通过BLT-D、BLT-S、BLT-DV三种方法，在3B参数模型上将推理内存带宽降低50%–92%，无需分词直接处理原始字节，单次前向传播生成多字节输出。
+
+该技术突破LLM推理中内存带宽瓶颈，为字节级模型在低延迟、高并发场景（如边缘部署、实时翻译）落地提供可行路径，推动去分词架构从理论走向工程实用。
+
+📎 [原文链接](https://www.marktechpost.com/2026/05/11/meta-and-stanford-researchers-propose-fast-byte-latent-transformer-that-reduces-inference-memory-bandwidth-by-over-50-without-tokenization/)
+
+
+### 2. Sakana AI & NVIDIA 推出 TwELL
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-05-12/e5606c2c4e44.png)
+
+通过新型稀疏格式TwELL与定制CUDA内核，在2B模型上实现推理加速20.5%、训练加速21.9%，仅需替换SiLU为ReLU并添加L1=2×10⁻⁵正则化，无需架构改动。
+
+该技术突破GPU密集计算瓶颈，显著降低显存与能耗，且在RTX PRO 6000等非顶级硬件上收益更优，为大模型高效训练与推理提供可落地的通用方案。
+
+📎 [原文链接](https://www.marktechpost.com/2026/05/11/sakana-ai-and-nvidia-introduce-twell-with-cuda-kernels-for-20-5-inference-and-21-9-training-speedup-in-llms/)
+
+
+### 3. LLM 用于 shebang 行实验
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-05-12/230f04cf5464.jpg)
+
+通过 `#!/usr/bin/env -S llm -f` 可在脚本首行直接调用 LLM 生成内容，支持工具调用和 YAML 定义自定义函数，如数学计算、时间查询等。
+
+该用法将 LLM 作为轻量级命令行工具嵌入系统脚本，为开发者提供无需编程即可实现自动化任务的新范式，但依赖第三方工具 llm。
+
+📎 [原文链接](https://simonwillison.net/2026/May/11/llm-shebang/#atom-everything)
+
+
+### 4. Shopify River 推动渗透式学习
+
+Shopify 内部编码代理 River 仅在公开 Slack 频道响应请求，所有交互可被全员查看，单个频道有超百人参与讨论、代码审查与知识补充。
+
+通过强制工作透明化，实现无需培训的渗透式学习，类似 Midjourney 早期 Discord 公开提示分享机制，推动组织级持续学习文化。
+
+📎 [原文链接](https://simonwillison.net/2026/May/11/learning-on-the-shop-floor/#atom-everything)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. 字节跳动年资本支出超2000亿
+
+2024年资本支出预计超2000亿元，主要用于自建AI训练集群、国产芯片采购及全球数据中心扩张。
+
+大规模基建投入将支撑其多模态大模型、推荐系统与AIGC产品的算力需求，强化与阿里、腾讯在AI基础设施层面的竞争。
+
+📎 [原文链接](https://news.cnblogs.com/n/822115/)
+
+
+### 2. 谷歌披露挫败AI驱动黑客攻击
+
+谷歌安全团队识别并拦截了一起利用大模型生成个性化钓鱼邮件的攻击，累计伪造超1000万个账户，攻击覆盖全球20国企业邮箱。
+
+这是首次公开披露AI驱动的规模化自动化攻击被成功防御，标志着大模型滥用已进入实战阶段，企业安全体系亟需升级对抗机制。
+
+📎 [原文链接](https://news.cnblogs.com/n/822100/)
+
+
+### 3. OpenAI 推出 DeployCo
+
+OpenAI 成立独立子公司 DeployCo，专门协助企业将大模型从实验阶段落地为可量化的商业应用。
+
+填补了企业AI落地中工程化与价值转化的空白，有望推动GPT系列模型在金融、制造等行业的规模化渗透。
+
+📎 [原文链接](https://openai.com/index/openai-launches-the-deployment-company)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
