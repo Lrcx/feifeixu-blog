@@ -1,0 +1,45 @@
+---
+title: "Pycharm远程debug出现Couldn't apply path mapping to the remote file.解决方案和原理。"
+date: "2024-10-22"
+excerpt: "Pycharm远程debug出现Couldn't apply path mapping to the remote file.解决方案和原理。"
+tags: []
+category: "博客"
+author: "肥肥旭"
+---
+<aside>
+😀 前言：
+在pycharm远程debug的时候，想进入pip install下载的包里面看看原理，比如peft,transformers，可能会出现：
+
+![image.png](/blog-images/pycharm远程debug出现couldnt-apply-path-mapping-to-the-remote-file解决方案和原理/image.png)
+
+</aside>
+
+# 📝 本质原因
+
+我们本地debug的时候，所有安装的包都存在本地，同样远程debug的时候也需要远程安装的包在本地，当不在的时候就会出现`Couldn't apply path mapping to the remote file.`
+
+# 🤗 解决方案
+
+1. 如果你远程解释器装了新包，而本地没有同步，这个时候需要在本地pycharm的右下角重新点击一下配置的远程python解释器，这个时候pycharm下方中间会出现`Updating Python interpreter`字样，说明已经在更新了。
+更新完了之后会在你本地文件夹中出现远程包的代码，如下图所示。
+不同的pycharm版本路径会有些许不一致，但都是在remote_sources文件夹中。
+    
+    ![image.png](/blog-images/pycharm远程debug出现couldnt-apply-path-mapping-to-the-remote-file解决方案和原理/image-1.png)
+    
+    ![image.png](/blog-images/pycharm远程debug出现couldnt-apply-path-mapping-to-the-remote-file解决方案和原理/image-2.png)
+    
+    总之是将远程的代码存一份到本地，这个时候debug的时候就不会出现`Couldn't apply path mapping to the remote file.` 了。
+    
+2. 如果都同步了，还是这样，删除远程解释器重新配置。等待`Updating Python interpreter`进程结束再debug，上述问题便可以得到解决。
+
+本质上远程debug的时候找不到远程路径映射，就是远程包没有在本地存一份，配置远程解释器之后其实是会将远程的包copy一份到本地的缓存文件的，如果远程环境更新了包，需要重新点击一下远程python解释器进行更新。
+当然如果什么方式都没法解决的话，就删除了远程解释器重新进行配置吧，亲测可用。
+
+# 📎 参考文章
+
+- 实验出来的
+
+<aside>
+💡 有问题，欢迎您在底部评论区留言，一起交流~
+
+</aside>

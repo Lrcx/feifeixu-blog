@@ -1,0 +1,83 @@
+---
+title: "nanobot源码解析（八）：Gateway进阶——定时任务与心跳机制"
+date: "2026-03-23"
+excerpt: "为什么 nanobot 能主动给你发消息？本文带你拆解 gateway 命令背后的“自动化双雄”：CronService 与 HeartbeatService，看它们如何让 AI 从“被动响应”转变为“主动服务”。"
+tags: ["agent", "nanobot"]
+category: "技术分享"
+author: "肥肥旭"
+---
+在前面的章节中，我们看到的 Agent 都是“被动”的：你发一条消息，它回一条消息。但在真正的生产环境中，我们希望 AI 能更主动一些，比如：
+- “每隔 2 小时提醒我喝水。”
+- “每天早上 8 点为我总结昨天的 GitHub 动态。”
+- “定期检查我的待办事项，看看有没有过期的任务。”
+
+这些功能，全靠 `nanobot gateway` 命令背后的**定时任务（Cron）**与**心跳（Heartbeat）**机制。今天我们就来拆解它们。
+
+---
+
+### 1. Gateway：全能编排者
+
+当你运行 `nanobot gateway` 时，它不仅仅是启动了一个网关，而是启动了一个**多任务并行系统**。在 `nanobot/cli/commands.py` 中，你可以看到它同时拉起了四个核心服务：
+
+1. **AgentLoop**：负责对话逻辑。
+2. **ChannelManager**：负责连接 Telegram/飞书等渠道。
+3. **CronService**：负责执行预设的定时任务。
+4. **HeartbeatService**：负责驱动 AI 的“自主思考”。
+
+这四个服务通过 `asyncio.gather` 并发运行，共同构成了一个 24/7 在线的智能体系统。
+
+---
+
+### 2. CronService：精准的“闹钟”
+
+`CronService`（`nanobot/cron/service.py`）负责处理那些有明确时间要求的任务。
+
+**存储机制**：
+所有的定时任务都存储在 `~/.nanobot/cron/jobs.json` 中。你可以通过工具让 AI 帮你添加任务，它会生成如下格式的配置：
+- **`every`**：每隔一段时间执行（如每 5 分钟）。
+- **`at`**：在特定时间点执行。
+- **`cron`**：使用标准的 Cron 表达式（如 `0 8 * * *`）。
+
+**执行逻辑**：
+`CronService` 内部维护了一个计时器。每当任务到期，它就会调用 `on_job` 回调，将预设的 `message` 发送给 `AgentLoop` 处理，并将结果通过指定的渠道（如 Telegram）推送给你。
+
+---
+
+### 3. HeartbeatService：AI 的“自主意识”
+
+如果说 Cron 是“闹钟”，那么 `HeartbeatService`（`nanobot/heartbeat/service.py`）就是 AI 的“脉搏”。它是 nanobot 最具特色的设计之一。
+
+**两阶段决策机制**：
+为了节省 Token 并提高准确性，心跳服务分为两个阶段：
+
+**第一阶段：决策（Decision）**
+每隔一段时间（默认 30 分钟），服务会读取 `HEARTBEAT.md` 文件，并询问 LLM：“请看这份文档，现在有需要我主动处理的任务吗？”
+- 如果 LLM 回复 `skip`，则继续休眠。
+- 如果 LLM 回复 `run`，并给出了具体的任务描述，则进入第二阶段。
+
+**第二阶段：执行（Execution）**
+一旦决定运行，心跳服务会启动一个完整的 `AgentLoop` 来执行 LLM 刚才提出的任务。执行完成后，结果会自动推送到你最常用的聊天渠道。
+
+**为什么这么设计？**
+这种“先判断、再执行”的机制，避免了 AI 在没有任务时也频繁“说废话”，同时也让 AI 能够根据 `HEARTBEAT.md` 中的上下文（比如你记录的长期目标）来决定什么时候该主动找你。
+
+---
+
+### 4. 开发者视角：如何 Debug 自动化任务？
+
+在运行 `nanobot gateway` 时，你会看到如下启动日志：
+- `✓ Channels enabled: telegram`
+- `✓ Cron: 2 scheduled jobs`
+- `✓ Heartbeat: every 1800s`
+
+如果你想测试心跳逻辑，可以手动修改 `HEARTBEAT.md`，添加一些紧迫的任务，然后观察日志中是否出现了 `Heartbeat: tasks found, executing...`。
+
+---
+
+### 总结
+
+通过 `CronService` 和 `HeartbeatService`，nanobot 完成了从“工具”到“助手”的蜕变。它不再仅仅等待指令，而是开始根据时间、计划和上下文，主动融入你的工作流。
+
+至此，**nanobot 源码解析系列** 真正画上了句号。我们从最底层的配置，一路走到了最上层的自动化编排。希望这八篇文章能成为你探索 AI Agent 世界的一盏明灯。
+
+再次感谢你的陪伴，祝你在 AI 的世界里玩得开心！🐈✨

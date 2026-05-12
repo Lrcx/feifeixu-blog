@@ -1,0 +1,515 @@
+---
+title: "Qanything 2.0源码解析系列4: 图片解析逻辑"
+date: "2024-09-20"
+excerpt: "对Qanything2.0的图片解析逻辑进行剖析，包括ocr、doc切分合并、向量化"
+tags: []
+category: "技术分享"
+author: "肥肥旭"
+---
+<aside>
+😀 前言：
+这篇文章介绍Qanything针对图片类型文件的处理逻辑
+
+</aside>
+
+qanything_kernel/core/retriever/general_document.py文件中`LocalFileForInsert` 类的`split_file_to_docs` 方法的这一段。
+
+```python
+        elif self.file_path.lower().endswith(".jpg") or self.file_path.lower().endswith(
+                ".png") or self.file_path.lower().endswith(".jpeg"):
+            txt_file_path = self.image_ocr_txt(filepath=self.file_path)
+            loader = TextLoader(txt_file_path, autodetect_encoding=True)
+            docs = loader.load()
+```
+
+核心是两块：
+
+1. 将图片内容进行ocr识别
+2. 识别的文字内容组装成`Document` 类型的doc
+
+# 📝 ocr识别
+
+## 核心方法
+
+> 引用的话语
+> 
+
+```python
+def image_ocr_txt(filepath, dir_path="tmp_files"):
+		'''
+		filepath = '/tmp/pycharm_project_419/QANY_DB/content/feifeixu__1234/KBb17bd2d168604a84a59abe24e855d574_240625/9770b07842994e628d92558777f9ac98/9.png'
+		full_dir_path = '/tmp/pycharm_project_419/QANY_DB/content/feifeixu__1234/KBb17bd2d168604a84a59abe24e855d574_240625/9770b07842994e628d92558777f9ac98/tmp_files'
+		'''
+    full_dir_path = os.path.join(os.path.dirname(filepath), dir_path)
+    
+    # 如果full_dir_path文件夹不存在，则创建
+    if not os.path.exists(full_dir_path):
+        os.makedirs(full_dir_path)
+        
+    # 拿到filename 是 9.png
+    filename = os.path.split(filepath)[-1]
+
+    # 读取图片
+    img_np = open(filepath, 'rb').read()
+		
+		# base64编解码
+    img_data = {
+        "img64": base64.b64encode(img_np).decode("utf-8"),
+    }
+		
+		# 调用ocr服务，拿到ocr识别的结果
+    result = get_ocr_result_sync(img_data)
+		
+		# 去除空行，所有行内容存到list中
+    ocr_result = [line for line in result if line]
+    
+    # 行与行之间用\n拼成一个大str
+    ocr_result = '\n'.join(ocr_result)
+
+    insert_logger.info(f'ocr_res[:100]: {ocr_result[:100]}')
+
+    # 写入结果到文本文件
+    txt_file_path = os.path.join(full_dir_path, "%s.txt" % (filename))
+    with open(txt_file_path, 'w', encoding='utf-8') as fout:
+        fout.write(ocr_result)
+		
+		# 返回文件路径
+    return txt_file_path
+```
+
+## get_ocr_result_sync方法
+
+```python
+def get_ocr_result_sync(image_data):
+    try:
+        response = requests.post(f"http://{LOCAL_OCR_SERVICE_URL}/ocr", data=image_data, timeout=120)
+        response.raise_for_status()  # 如果请求返回了错误状态码，将会抛出异常
+        ocr_res = response.text
+        ocr_res = json.loads(ocr_res)
+        return ocr_res['result']
+    except Exception as e:
+        insert_logger.warning(f"ocr error: {traceback.format_exc()}")
+        return None
+```
+
+### ocr服务启动
+
+执行上述方法之前，应先将ocr服务启动起来，不然直接异常报错了。
+
+在项目scripts/entrypoint.sh文件中看到ocr的启动命令是：
+
+```python
+nohup python3 -u qanything_kernel/dependent_server/ocr_server/ocr_server.py > /workspace/QAnything/logs/debug_logs/ocr_server.log 2>&1 &
+```
+
+模型文件下载：[https://github.com/netease-youdao/QAnything/tree/v1.4.1/qanything_kernel/dependent_server/ocr_server/ocr_models](https://github.com/netease-youdao/QAnything/tree/v1.4.1/qanything_kernel/dependent_server/ocr_server/ocr_models)
+
+存放路径：qanything_kernel/dependent_server/ocr_server/ocr_models下
+
+对于这样一张图片：
+
+![9.png](/blog-images/qanything-20源码解析系列4-图片解析逻辑/9.png)
+
+ocr识别的结果为：
+
+```
+押金，自如与出租人另行结算。承租人同意自如返还押金时有权抵扣承租人应付自如的款
+项。若上述款项尚在自如的监管或托管账户的，自如应在15日内退还。
+(四）承租人续租、换租或转租房屋的，租金以届时自如和出租人商定的报价为准。
+(五）房租发票由房屋出租人开具，自如予以相应协助。如果在租赁期内承租人索要了相关
+发票，办理服务费及房租退费时，承租人须按照税法规定配合自如进行发票红冲手
+续，包括但不限于承租人自双方办理完毕解约之日（含当日）起1个月内，依据税法要
+求将其此前取得的增值税普通发票或增值税专用发票原件（如有）交还自如或配合自
+如进行红字发票处理，否则自如有权代出租人拒绝向承租人退还服务费或房租且不承
+担任何违约责任。
+(六）生活费用的品类及价格详见物业交割补充协议：
+1．租赁期限内，承租人需配合自如定期上门查表（包括但不限于协助自如拍摄示数照
+片）。
+2.后付费的生活费用由自如定期生成相应账单，承租人应及时支付。预付费的生活费用，
+承租人应根据实际使用情况自行合理购买，并及时与房屋其他实际使用人结清，否则造
+成的损失和后果由承租人自行承担。
+3.非出租人及自如原因导致无法上门查表或生活费用收费单位未定时生成相应账单的，自
+如有权代出租人通过预估的形式生成生活费用账单，后期按照承租人的实际使用情况多
+退少补。
+4.承租人应承担的生活费用计算方式为：按使用示数或使用时长计算的生活费用总额除以
+房屋实际居住户数。
+5.本合同约定的生活费用单价仅供参考，具体以实际收费标准为准。
+第四条房屋维护与维修
+（一）自如受出租人委托，如房屋及原有物品、设备设施在租赁期限内因老化产生的维护、维
+修事宜由自如承担；如发生人为损坏的，应按照附件三及物业交割补充协议的标准进行赔偿
+或维修；若附件三及物业交割补充协议未有明确约定的，依据“谁导致谁承担”的原则处理。
+（二）租赁期限内，承租人对房屋具有一般性保管义务，如有房屋设施设备损毁或发生故障情
+况，应及时通知自如，否则由此造成的财产损失、人身损害等由承租人承担。
+第五条转租及换租
+（一）转租：合同起租日后，承租人向自如提出转租申请的，经自如及出租人同意后的45日
+内，可将所租赁的房屋重新上架并租给第三方。转租期间改为解约申请的，以提出转租申请
+日为解约申请日。
+（二）换租：本合同生效后，经协商一致，承租人可换租至自如管理的其他房屋（换租不支
+持由整租换成非整租产品）。承租人应先与该房屋的出租人就拟换租的房屋签订租赁期限
+不少于90天的租赁合同，该合同起租后60日内（不含60日，含起租日当日）应办理本
+合同的退租手续，否则自如有权拒绝办理换租。本合同租金计算至退租完成日。
+（三）三天不满意无理由换租：
+1．对新签合同（不含转租、换租），承租人享有一次在本合同生效日起3日内（含生
+3/20
+```
+
+# 组装doc
+
+```python
+def lazy_load(self) -> Iterator[Document]:
+    """Load from file path."""
+    text = ""
+    try:
+		    # 读取ocr返回的文件的文字内容
+        with open(self.file_path, encoding=self.encoding) as f:
+            text = f.read()
+    except UnicodeDecodeError as e:
+        xxx
+    metadata = {"source": str(self.file_path)}
+    
+    # 生成一个doc，一张图片的整个ocr结果作为一个doc进行返回
+    yield Document(page_content=text, metadata=metadata)
+```
+
+## 为每个doc注入元数据（不重要）
+
+主要是为doc注入file_id,kb_id之类的元数据，还有个操作是合并短的doc，对pdf、doc这类文件起作用，对图片类文件不起作用，因为一个图片只有一个doc。所以下面这个方法可以忽略。
+
+```python
+def inject_metadata(self, docs: List[Document]):
+  # 这里给每个docs片段的metadata里注入file_id
+  new_docs = []
+  for doc in docs:
+      page_content = re.sub(r'\t+', ' ', doc.page_content)  # 将制表符替换为单个空格
+      page_content = re.sub(r'\n{3,}', '\n\n', page_content)  # 将三个或更多换行符替换为两个
+      page_content = page_content.strip()  # 去除首尾空白字符
+      new_doc = Document(page_content=page_content)
+      new_doc.metadata["user_id"] = self.user_id
+      new_doc.metadata["kb_id"] = self.kb_id
+      new_doc.metadata["file_id"] = self.file_id
+      new_doc.metadata["file_name"] = self.file_name
+      new_doc.metadata["nos_key"] = self.file_location
+      new_doc.metadata["file_url"] = self.file_url
+      new_doc.metadata["title_lst"] = doc.metadata.get("title_lst", [])
+      new_doc.metadata["has_table"] = doc.metadata.get("has_table", False)
+      # 从文本中提取图片数量：![figure]（x-figure-x.jpg）
+      new_doc.metadata["images"] = re.findall(r'!\[figure]\(\d+-figure-\d+.jpg.*?\)', page_content)
+      new_doc.metadata["page_id"] = doc.metadata.get("page_id", 0)
+      kb_name = self.mysql_client.get_knowledge_base_name([self.kb_id])[0][2]
+      metadata_infos = {"知识库名": kb_name, '文件名': self.file_name}
+      new_doc.metadata['headers'] = metadata_infos
+
+      if 'faq_dict' not in doc.metadata:
+          new_doc.metadata['faq_dict'] = {}
+      else:
+          new_doc.metadata['faq_dict'] = doc.metadata['faq_dict']
+      new_docs.append(new_doc)
+  if new_docs:
+      insert_logger.info('langchain analysis content head: %s', new_docs[0].page_content[:100])
+  else:
+      insert_logger.info('langchain analysis docs is empty!')
+
+  # merge short docs
+  insert_logger.info(f"before merge doc lens: {len(new_docs)}")
+  child_chunk_size = min(DEFAULT_CHILD_CHUNK_SIZE, int(self.chunk_size / 2))
+  merged_docs = []
+  for doc_idx, doc in enumerate(new_docs):
+      if not merged_docs:
+          merged_docs.append(doc)
+      else:
+          last_doc = merged_docs[-1]
+          # insert_logger.info(f"doc_idx: {doc_idx}, doc_content: {doc.page_content[:100]}")
+          # insert_logger.info(f"last_doc_len: {num_tokens_embed(last_doc.page_content)}, doc_len: {num_tokens_embed(doc.page_content)}")
+          if num_tokens_embed(last_doc.page_content) + num_tokens_embed(doc.page_content) <= child_chunk_size or \
+                  num_tokens_embed(doc.page_content) < child_chunk_size / 4:
+              tmp_content_slices = doc.page_content.split('\n')
+              # print(last_doc.metadata['title_lst'], tmp_content)
+              tmp_content_slices_clear = [line for line in tmp_content_slices if clear_string(line) not in
+                                          [clear_string(t) for t in last_doc.metadata['title_lst']]]
+              tmp_content = '\n'.join(tmp_content_slices_clear)
+              # for title in last_doc.metadata['title_lst']:
+              #     tmp_content = tmp_content.replace(title, '')
+              last_doc.page_content += '\n\n' + tmp_content
+              # for title in last_doc.metadata['title_lst']:
+              #     last_doc.page_content = self.remove_substring_after_first(last_doc.page_content, '![figure]')
+              last_doc.metadata['title_lst'] += doc.metadata.get('title_lst', [])
+              last_doc.metadata['has_table'] = last_doc.metadata.get('has_table', False) or doc.metadata.get(
+                  'has_table', False)
+              last_doc.metadata['images'] += doc.metadata.get('images', [])
+          else:
+              merged_docs.append(doc)
+  insert_logger.info(f"after merge doc lens: {len(merged_docs)}")
+  self.docs = merged_docs
+```
+
+到这里得到了以整个ocr结果为整体的一个doc，后续会对这个doc进行split。
+
+1. 第一步拆分，将这一个doc拆分成长度都小于800的n个父doc,父doc和父doc之间没有overlap， 父doc存入mysql数据库Documents表中；
+2. 第二步拆分，将n个父doc，每个都拆分成m个长度小于400的子doc，子doc和子doc之间有100个chunk_overlap，子doc进行embedding编码后存入milvus向量数据库中。
+
+至于为什么要两步拆分，后续有解释。
+
+# 存milvus向量数据库
+
+1. 先用num_tokens_embed这个方法判断一下这个doc的tokenizer后长度有没有超过800，不超过不做处理，超过的话需要对doc切分（split）。
+
+```python
+embedding_tokenizer = AutoTokenizer.from_pretrained(LOCAL_EMBED_PATH, local_files_only=True)
+
+def num_tokens_embed(text: str) -> int:
+    """Return the number of tokens in a string."""
+    return len(embedding_tokenizer.encode(text, add_special_tokens=True))
+```
+
+1. split用的是这个
+
+DEFAULT_PARENT_CHUNK_SIZE=800, chunk_overlap=0
+
+```python
+init_parent_splitter = RecursiveCharacterTextSplitter(
+            separators=["\n\n", "\n", "。", "!", "！", "?", "？", "；", ";", "……", "…", "、", "，", ",", " ", ""],
+            chunk_size=DEFAULT_PARENT_CHUNK_SIZE,
+            chunk_overlap=0,
+            length_function=num_tokens_embed)
+```
+
+```
+押金，自如与出租人另行结算。承租人同意自如返还押金时有权抵扣承租人应付自如的款
+项。若上述款项尚在自如的监管或托管账户的，自如应在15日内退还。
+(四）承租人续租、换租或转租房屋的，租金以届时自如和出租人商定的报价为准。
+(五）房租发票由房屋出租人开具，自如予以相应协助。如果在租赁期内承租人索要了相关
+发票，办理服务费及房租退费时，承租人须按照税法规定配合自如进行发票红冲手
+续，包括但不限于承租人自双方办理完毕解约之日（含当日）起1个月内，依据税法要
+求将其此前取得的增值税普通发票或增值税专用发票原件（如有）交还自如或配合自
+如进行红字发票处理，否则自如有权代出租人拒绝向承租人退还服务费或房租且不承
+担任何违约责任。
+(六）生活费用的品类及价格详见物业交割补充协议：
+1．租赁期限内，承租人需配合自如定期上门查表（包括但不限于协助自如拍摄示数照
+片）。
+2.后付费的生活费用由自如定期生成相应账单，承租人应及时支付。预付费的生活费用，
+承租人应根据实际使用情况自行合理购买，并及时与房屋其他实际使用人结清，否则造
+成的损失和后果由承租人自行承担。
+3.非出租人及自如原因导致无法上门查表或生活费用收费单位未定时生成相应账单的，自
+如有权代出租人通过预估的形式生成生活费用账单，后期按照承租人的实际使用情况多
+退少补。
+4.承租人应承担的生活费用计算方式为：按使用示数或使用时长计算的生活费用总额除以
+房屋实际居住户数。
+5.本合同约定的生活费用单价仅供参考，具体以实际收费标准为准。
+第四条房屋维护与维修
+（一）自如受出租人委托，如房屋及原有物品、设备设施在租赁期限内因老化产生的维护、维
+修事宜由自如承担；如发生人为损坏的，应按照附件三及物业交割补充协议的标准进行赔偿
+或维修；若附件三及物业交割补充协议未有明确约定的，依据“谁导致谁承担”的原则处理。
+（二）租赁期限内，承租人对房屋具有一般性保管义务，如有房屋设施设备损毁或发生故障情
+况，应及时通知自如，否则由此造成的财产损失、人身损害等由承租人承担。
+第五条转租及换租
+（一）转租：合同起租日后，承租人向自如提出转租申请的，经自如及出租人同意后的45日
+内，可将所租赁的房屋重新上架并租给第三方。转租期间改为解约申请的，以提出转租申请
+日为解约申请日。
+（二）换租：本合同生效后，经协商一致，承租人可换租至自如管理的其他房屋（换租不支
+持由整租换成非整租产品）。承租人应先与该房屋的出租人就拟换租的房屋签订租赁期限
+不少于90天的租赁合同，该合同起租后60日内（不含60日，含起租日当日）应办理本
+合同的退租手续，否则自如有权拒绝办理换租。本合同租金计算至退租完成日。
+（三）三天不满意无理由换租：
+1．对新签合同（不含转租、换租），承租人享有一次在本合同生效日起3日内（含生
+3/20
+```
+
+1. 对于这样一个text，先从separators=["\n\n", "\n", "。", "!", "！", "?", "？", "；", ";", "……", "…", "、", "，", ",", " ", ""]中从左到右判断哪个符号可以对这个text进行拆分，\n\n不行，\n可以。
+2. 按照\n对text进行拆分，然后每个句子和前面的\n进行合并，处理完就变成了一个列表。
+    
+    ```
+    ['押金，自如与出租人另行结算。承租人同意自如返还押金时有权抵扣承租人应付自如的款', '\n项。若上述款项尚在自如的监管或托管账户的，自如应在15日内退还。', '\n(四）承租人续租、换租或转租房屋的，租金以届时自如和出租人商定的报价为准。', '\n(五）房租发票由房屋出租人开具，自如予以相应协助。如果在租赁期内承租人索要了相关', '\n发票，办理服务费及房租退费时，承租人须按照税法规定配合自如进行发票红冲手', '\n续，包括但不限于承租人自双方办理完毕解约之日（含当日）起1个月内，依据税法要', '\n求将其此前取得的增值税普通发票或增值税专用发票原件（如有）交还自如或配合自', '\n如进行红字发票处理，否则自如有权代出租人拒绝向承租人退还服务费或房租且不承', '\n担任何违约责任。', '\n(六）生活费用的品类及价格详见物业交割补充协议：', '\n1．租赁期限内，承租人需配合自如定期上门查表（包括但不限于协助自如拍摄示数照', '\n片）。', '\n2.后付费的生活费用由自如定期生成相应账单，承租人应及时支付。预付费的生活费用，', '\n承租人应根据实际使用情况自行合理购买，并及时与房屋其他实际使用人结清，否则造', '\n成的损失和后果由承租人自行承担。', '\n3.非出租人及自如原因导致无法上门查表或生活费用收费单位未定时生成相应账单的，自', '\n如有权代出租人通过预估的形式生成生活费用账单，后期按照承租人的实际使用情况多', '\n退少补。', '\n4.承租人应承担的生活费用计算方式为：按使用示数或使用时长计算的生活费用总额除以', '\n房屋实际居住户数。', '\n5.本合同约定的生活费用单价仅供参考，具体以实际收费标准为准。', '\n第四条房屋维护与维修', '\n（一）自如受出租人委托，如房屋及原有物品、设备设施在租赁期限内因老化产生的维护、维', '\n修事宜由自如承担；如发生人为损坏的，应按照附件三及物业交割补充协议的标准进行赔偿', '\n或维修；若附件三及物业交割补充协议未有明确约定的，依据“谁导致谁承担”的原则处理。', '\n（二）租赁期限内，承租人对房屋具有一般性保管义务，如有房屋设施设备损毁或发生故障情', '\n况，应及时通知自如，否则由此造成的财产损失、人身损害等由承租人承担。', '\n第五条转租及换租', '\n（一）转租：合同起租日后，承租人向自如提出转租申请的，经自如及出租人同意后的45日', '\n内，可将所租赁的房屋重新上架并租给第三方。转租期间改为解约申请的，以提出转租申请', '\n日为解约申请日。', '\n（二）换租：本合同生效后，经协商一致，承租人可换租至自如管理的其他房屋（换租不支', '\n持由整租换成非整租产品）。承租人应先与该房屋的出租人就拟换租的房屋签订租赁期限', '\n不少于90天的租赁合同，该合同起租后60日内（不含60日，含起租日当日）应办理本', '\n合同的退租手续，否则自如有权拒绝办理换租。本合同租金计算至退租完成日。', '\n（三）三天不满意无理由换租：', '\n1．对新签合同（不含转租、换租），承租人享有一次在本合同生效日起3日内（含生', '\n3/20']
+    ```
+    
+3. 遍历上述列表，看看是不是还有长度超过800的chunk，如果有，\n已经用过了，用\n后面的符号按照上述流程，继续拆分这个chunk。这也就是RecursiveCharacterTextSplitter这个名字的来源，递归的去处理。
+    
+    <aside>
+    💡
+    
+    注意这里的长度是通过num_tokens_embed函数计算出来的，不一定是文字本身的长度，但是可以这么理解。
+    
+    </aside>
+    
+    遍历的过程中如果发现这个chunk的长度小于800，将其添加到`_good_splits` 列表中，直到遇到大于800的chunk。遇到之后两步操作：
+    
+    - 如果`_good_splits` 不为空，则将`_good_splits`列表内容进行merge
+    - 继续按照上述逻辑递归的处理这个chunk
+    
+    如果遍历完这个列表都没遇到大于800的chunk，最终对`_good_splits` 进行一遍merge操作。
+    
+4. merge的逻辑
+    
+    以我们这个text为例，执行完c步骤后，`_good_splits` 的内容和b步骤的列表是一模一样的，总共是38行，所以列表长度也是38，因为所有chunk的长度都小于800，不涉及递归的操作。
+    
+    遍历这个`_good_splits`，定义一个total统计遍历过的所有chunk的总长度，直到遍历到当前的chunk，发现总长度超过800，则对当前chunk之前的所有chunk进行merge（不包含当前chunk）。合并逻辑直接按照切分符号拼接成字符串，拼接成一个大chunk（切分符号是空字符串）。
+    
+    chunk_overlap的逻辑也在merge的逻辑内：
+    
+    为了提高文档检索的效果，一般都会设置一个overlap,增加每个document（简称doc）的上下文关联。
+    
+    举个例子，比如对于这样一个splits，设置了chunk_overlap那么每个doc开头都会和上一个doc的末尾有重叠，这样就增加了每个doc的上下文关联。
+    
+    ```
+    ['押金，自如与出租人另行结算。承租人同意自如返还押金时有权抵扣承租人应付自如的款', '\n项。若上述款项尚在自如的监管或托管账户的，自如应在15日内退还。', '\n(四）承租人续租、换租或转租房屋的，租金以届时自如和出租人商定的报价为准。', '\n(五）房租发票由房屋出租人开具，自如予以相应协助。如果在租赁期内承租人索要了相关', '\n发票，办理服务费及房租退费时，承租人须按照税法规定配合自如进行发票红冲手']
+    
+    比如设置了chunk_overlap=20，merge完的doc长度设置为50，最终的doc列表会变成：
+    ['押金，自如与出租人另行结算。承租人同意自如返还押金时有权抵扣承租人应付自如的款\n项。若上述款项尚在自如的监管或托管账户的，自如应在15日内退还。', '\n项。若上述款项尚在自如的监管或托管账户的，自如应在15日内退还。\n(四）承租人续租、换租或转租房屋的，租金以届时自如和出租人商定的报价为准。', '\n(四）承租人续租、换租或转租房屋的，租金以届时自如和出租人商定的报价为准。\n(五）房租发票由房屋出租人开具，自如予以相应协助。如果在租赁期内承租人索要了相关', '\n(五）房租发票由房屋出租人开具，自如予以相应协助。如果在租赁期内承租人索要了相关\n发票，办理服务费及房租退费时，承租人须按照税法规定配合自如进行发票红冲手', '\n发票，办理服务费及房租退费时，承租人须按照税法规定配合自如进行发票红冲手']
+    ```
+    
+    merge逻辑的源代码：
+    
+    ```python
+    # splits：长度为38的列表， separator: ''
+    def _merge_splits(self, splits: Iterable[str], separator: str) -> List[str]:
+        # We now want to combine these smaller pieces into medium size
+        # chunks to send to the LLM.
+        separator_len = self._length_function(separator)
+    
+        docs = []
+        current_doc: List[str] = []
+        total = 0
+        # 遍历每个chunk
+        for d in splits:
+    		    # 使用tokenizer计算长度
+            _len = self._length_function(d)
+            # 如果当前chunk的长度加上之前累计的chunk的长度>800了，最长的chunk长度是800，说明改进行merge了。
+            if (
+                total + _len + (separator_len if len(current_doc) > 0 else 0)
+                > self._chunk_size
+            ):
+                if total > self._chunk_size:
+                    logger.warning(
+                        f"Created a chunk of size {total}, "
+                        f"which is longer than the specified {self._chunk_size}"
+                    )
+                if len(current_doc) > 0:
+    		            # 使用separator进行列表内容拼接
+                    doc = self._join_docs(current_doc, separator)
+                    if doc is not None:
+                        docs.append(doc)
+                    # Keep on popping if:
+                    # - we have a larger chunk than in the chunk overlap
+                    # - or if we still have any chunks and the length is long
+                    
+                    # 留在current_doc列表中的chunk的长度刚好大于_chunk_overlap，在这里是0，表示不留。如果_chunk_overlap是200，则留下几个chunk，使其长度大于_chunk_overlap
+                    while total > self._chunk_overlap or (
+                        total + _len + (separator_len if len(current_doc) > 0 else 0)
+                        > self._chunk_size
+                        and total > 0
+                    ):
+    		                # 每次减去current_doc的第一个chunk的长度
+                        total -= self._length_function(current_doc[0]) + (
+                            separator_len if len(current_doc) > 1 else 0
+                        )
+                        # 更新current_doc列表，丢弃第0个chunk，列表是有一个从左到右顺序，列表右边的chunk和后续的chunk才能连贯起来，所以是从左到右删。
+                        current_doc = current_doc[1:]
+            # 将当前chunk添加到current_doc列表中
+            current_doc.append(d)
+            # 计算累计chunk的长度
+            total += _len + (separator_len if len(current_doc) > 1 else 0)
+        doc = self._join_docs(current_doc, separator)
+        if doc is not None:
+            docs.append(doc)
+        return docs
+    ```
+    
+    c步骤的结果经d步骤处理完之后变成了两个doc，每个doc长度都在800内，且没有overlap，因为参数传递的chunk_overlap=0。这两个doc会存入mysql Documents表中。
+    
+    ```
+    [Document(page_content='押金，自如与出租人另行结算。承租人同意自如返还押金时有权抵扣承租人应付自如的款\n项。若上述款项尚在自如的监管或托管账户的，自如应在15日内退还。\n(四）承租人续租、换租或转租房屋的，租金以届时自如和出租人商定的报价为准。\n(五）房租发票由房屋出租人开具，自如予以相应协助。如果在租赁期内承租人索要了相关\n发票，办理服务费及房租退费时，承租人须按照税法规定配合自如进行发票红冲手\n续，包括但不限于承租人自双方办理完毕解约之日（含当日）起1个月内，依据税法要\n求将其此前取得的增值税普通发票或增值税专用发票原件（如有）交还自如或配合自\n如进行红字发票处理，否则自如有权代出租人拒绝向承租人退还服务费或房租且不承\n担任何违约责任。\n(六）生活费用的品类及价格详见物业交割补充协议：\n1．租赁期限内，承租人需配合自如定期上门查表（包括但不限于协助自如拍摄示数照\n片）。\n2.后付费的生活费用由自如定期生成相应账单，承租人应及时支付。预付费的生活费用，\n承租人应根据实际使用情况自行合理购买，并及时与房屋其他实际使用人结清，否则造\n成的损失和后果由承租人自行承担。\n3.非出租人及自如原因导致无法上门查表或生活费用收费单位未定时生成相应账单的，自\n如有权代出租人通过预估的形式生成生活费用账单，后期按照承租人的实际使用情况多\n退少补。\n4.承租人应承担的生活费用计算方式为：按使用示数或使用时长计算的生活费用总额除以\n房屋实际居住户数。\n5.本合同约定的生活费用单价仅供参考，具体以实际收费标准为准。\n第四条房屋维护与维修\n（一）自如受出租人委托，如房屋及原有物品、设备设施在租赁期限内因老化产生的维护、维\n修事宜由自如承担；如发生人为损坏的，应按照附件三及物业交割补充协议的标准进行赔偿\n或维修；若附件三及物业交割补充协议未有明确约定的，依据“谁导致谁承担”的原则处理。\n（二）租赁期限内，承租人对房屋具有一般性保管义务，如有房屋设施设备损毁或发生故障情\n况，应及时通知自如，否则由此造成的财产损失、人身损害等由承租人承担。\n第五条转租及换租\n（一）转租：合同起租日后，承租人向自如提出转租申请的，经自如及出租人同意后的45日', metadata={'user_id': 'feifeixu__1234', 'kb_id': 'KBb17bd2d168604a84a59abe24e855d574_240625', 'file_id': 'e1368aa4c0cf4d88bda9874ae3686811', 'file_name': '9.png', 'nos_key': '/tmp/pycharm_project_419/QANY_DB/content/feifeixu__1234/KBb17bd2d168604a84a59abe24e855d574_240625/e1368aa4c0cf4d88bda9874ae3686811/9.png', 'file_url': '', 'title_lst': [], 'has_table': False, 'images': [], 'page_id': 0, 'headers': {'知识库名': 'qanything2.0', '文件名': '9.png'}, 'faq_dict': {}}), 
+    
+    Document(page_content='内，可将所租赁的房屋重新上架并租给第三方。转租期间改为解约申请的，以提出转租申请\n日为解约申请日。\n（二）换租：本合同生效后，经协商一致，承租人可换租至自如管理的其他房屋（换租不支\n持由整租换成非整租产品）。承租人应先与该房屋的出租人就拟换租的房屋签订租赁期限\n不少于90天的租赁合同，该合同起租后60日内（不含60日，含起租日当日）应办理本\n合同的退租手续，否则自如有权拒绝办理换租。本合同租金计算至退租完成日。\n（三）三天不满意无理由换租：\n1．对新签合同（不含转租、换租），承租人享有一次在本合同生效日起3日内（含生\n3/20', metadata={'user_id': 'feifeixu__1234', 'kb_id': 'KBb17bd2d168604a84a59abe24e855d574_240625', 'file_id': 'e1368aa4c0cf4d88bda9874ae3686811', 'file_name': '9.png', 'nos_key': '/tmp/pycharm_project_419/QANY_DB/content/feifeixu__1234/KBb17bd2d168604a84a59abe24e855d574_240625/e1368aa4c0cf4d88bda9874ae3686811/9.png', 'file_url': '', 'title_lst': [], 'has_table': False, 'images': [], 'page_id': 0, 'headers': {'知识库名': 'qanything2.0', '文件名': '9.png'}, 'faq_dict': {}})]
+    ```
+    
+
+3.为每个doc注入doc_id
+
+这里有两个doc，每个doc长度都在800内，且没有overlap。
+
+这个很简单，就是file_id + ‘_’ + doc的位置
+`doc_ids = [file_id + '_' + str(i) for i, _ in enumerate(documents)]`
+
+1. 对前面生成的两个doc继续split。
+
+这个split和前面的split参数有些不同，DEFAULT_CHILD_CHUNK_SIZE=400，chunk_overlap=100.
+
+```
+init_child_splitter = RecursiveCharacterTextSplitter(
+            separators=["\n\n", "\n", "。", "!", "！", "?", "？", "；", ";", "……", "…", "、", "，", ",", " ", ""],
+            chunk_size=DEFAULT_CHILD_CHUNK_SIZE,
+            chunk_overlap=int(DEFAULT_CHILD_CHUNK_SIZE / 4),
+            length_function=num_tokens_embed)
+```
+
+为每个子doc注入doc_id：
+
+前面生成了两个doc，以第一个doc生成的子doc为例，子doc的长度是400左右，且个其他子doc之间有100个token的重复。子doc的doc_id都是e1368aa4c0cf4d88bda9874ae3686811_0。
+
+```
+[Document(page_content="[headers]({'知识库名': 'qanything2.0', '文件名': '9.png'})\n押金，自如与出租人另行结算。承租人同意自如返还押金时有权抵扣承租人应付自如的款\n项。若上述款项尚在自如的监管或托管账户的，自如应在15日内退还。\n(四）承租人续租、换租或转租房屋的，租金以届时自如和出租人商定的报价为准。\n(五）房租发票由房屋出租人开具，自如予以相应协助。如果在租赁期内承租人索要了相关\n发票，办理服务费及房租退费时，承租人须按照税法规定配合自如进行发票红冲手\n续，包括但不限于承租人自双方办理完毕解约之日（含当日）起1个月内，依据税法要\n求将其此前取得的增值税普通发票或增值税专用发票原件（如有）交还自如或配合自\n如进行红字发票处理，否则自如有权代出租人拒绝向承租人退还服务费或房租且不承\n担任何违约责任。\n(六）生活费用的品类及价格详见物业交割补充协议：\n1．租赁期限内，承租人需配合自如定期上门查表（包括但不限于协助自如拍摄示数照\n片）。\n2.后付费的生活费用由自如定期生成相应账单，承租人应及时支付。预付费的生活费用，", metadata={'user_id': 'feifeixu__1234', 'kb_id': 'KBb17bd2d168604a84a59abe24e855d574_240625', 'file_id': 'e1368aa4c0cf4d88bda9874ae3686811', 'file_name': '9.png', 'nos_key': '/tmp/pycharm_project_419/QANY_DB/content/feifeixu__1234/KBb17bd2d168604a84a59abe24e855d574_240625/e1368aa4c0cf4d88bda9874ae3686811/9.png', 'file_url': '', 'title_lst': [], 'has_table': False, 'images': [], 'page_id': 0, 'headers': {'知识库名': 'qanything2.0', '文件名': '9.png'}, 'faq_dict': {}, 'doc_id': 'e1368aa4c0cf4d88bda9874ae3686811_0'}), 
+
+Document(page_content="[headers]({'知识库名': 'qanything2.0', '文件名': '9.png'})\n(六）生活费用的品类及价格详见物业交割补充协议：\n1．租赁期限内，承租人需配合自如定期上门查表（包括但不限于协助自如拍摄示数照\n片）。\n2.后付费的生活费用由自如定期生成相应账单，承租人应及时支付。预付费的生活费用，\n承租人应根据实际使用情况自行合理购买，并及时与房屋其他实际使用人结清，否则造\n成的损失和后果由承租人自行承担。\n3.非出租人及自如原因导致无法上门查表或生活费用收费单位未定时生成相应账单的，自\n如有权代出租人通过预估的形式生成生活费用账单，后期按照承租人的实际使用情况多\n退少补。\n4.承租人应承担的生活费用计算方式为：按使用示数或使用时长计算的生活费用总额除以\n房屋实际居住户数。\n5.本合同约定的生活费用单价仅供参考，具体以实际收费标准为准。\n第四条房屋维护与维修\n（一）自如受出租人委托，如房屋及原有物品、设备设施在租赁期限内因老化产生的维护、维\n修事宜由自如承担；如发生人为损坏的，应按照附件三及物业交割补充协议的标准进行赔偿\n或维修；若附件三及物业交割补充协议未有明确约定的，依据“谁导致谁承担”的原则处理。", metadata={'user_id': 'feifeixu__1234', 'kb_id': 'KBb17bd2d168604a84a59abe24e855d574_240625', 'file_id': 'e1368aa4c0cf4d88bda9874ae3686811', 'file_name': '9.png', 'nos_key': '/tmp/pycharm_project_419/QANY_DB/content/feifeixu__1234/KBb17bd2d168604a84a59abe24e855d574_240625/e1368aa4c0cf4d88bda9874ae3686811/9.png', 'file_url': '', 'title_lst': [], 'has_table': False, 'images': [], 'page_id': 0, 'headers': {'知识库名': 'qanything2.0', '文件名': '9.png'}, 'faq_dict': {}, 'doc_id': 'e1368aa4c0cf4d88bda9874ae3686811_0'}), 
+
+Document(page_content="[headers]({'知识库名': 'qanything2.0', '文件名': '9.png'})\n（一）自如受出租人委托，如房屋及原有物品、设备设施在租赁期限内因老化产生的维护、维\n修事宜由自如承担；如发生人为损坏的，应按照附件三及物业交割补充协议的标准进行赔偿\n或维修；若附件三及物业交割补充协议未有明确约定的，依据“谁导致谁承担”的原则处理。\n（二）租赁期限内，承租人对房屋具有一般性保管义务，如有房屋设施设备损毁或发生故障情\n况，应及时通知自如，否则由此造成的财产损失、人身损害等由承租人承担。\n第五条转租及换租\n（一）转租：合同起租日后，承租人向自如提出转租申请的，经自如及出租人同意后的45日", metadata={'user_id': 'feifeixu__1234', 'kb_id': 'KBb17bd2d168604a84a59abe24e855d574_240625', 'file_id': 'e1368aa4c0cf4d88bda9874ae3686811', 'file_name': '9.png', 'nos_key': '/tmp/pycharm_project_419/QANY_DB/content/feifeixu__1234/KBb17bd2d168604a84a59abe24e855d574_240625/e1368aa4c0cf4d88bda9874ae3686811/9.png', 'file_url': '', 'title_lst': [], 'has_table': False, 'images': [], 'page_id': 0, 'headers': {'知识库名': 'qanything2.0', '文件名': '9.png'}, 'faq_dict': {}, 'doc_id': 'e1368aa4c0cf4d88bda9874ae3686811_0'})]
+```
+
+1. 子doc向量化并存入milvus向量数据库
+
+本来有两个父doc，第一个doc产生了三个子doc，第二个doc产生了一个子doc，总共4个子doc，现在要对着4个子doc进行操作。4个doc如下，删除了一些无用的属性。
+
+```
+[Document(page_content="[headers]({'知识库名': 'qanything2.0', '文件名': '9.png'})\n押金，自如与出租人另行结算。承租人同意自如返还押金时有权抵扣承租人应付自如的款\n项。若上述款项尚在自如的监管或托管账户的，自如应在15日内退还。\n(四）承租人续租、换租或转租房屋的，租金以届时自如和出租人商定的报价为准。\n(五）房租发票由房屋出租人开具，自如予以相应协助。如果在租赁期内承租人索要了相关\n发票，办理服务费及房租退费时，承租人须按照税法规定配合自如进行发票红冲手\n续，包括但不限于承租人自双方办理完毕解约之日（含当日）起1个月内，依据税法要\n求将其此前取得的增值税普通发票或增值税专用发票原件（如有）交还自如或配合自\n如进行红字发票处理，否则自如有权代出租人拒绝向承租人退还服务费或房租且不承\n担任何违约责任。\n(六）生活费用的品类及价格详见物业交割补充协议：\n1．租赁期限内，承租人需配合自如定期上门查表（包括但不限于协助自如拍摄示数照\n片）。\n2.后付费的生活费用由自如定期生成相应账单，承租人应及时支付。预付费的生活费用，", metadata={'user_id': 'feifeixu__1234', 'kb_id': 'KBb17bd2d168604a84a59abe24e855d574_240625', 'file_id': 'e1368aa4c0cf4d88bda9874ae3686811', 'file_url': '', 'headers': {'知识库名': 'qanything2.0', '文件名': '9.png'}, 'doc_id': 'e1368aa4c0cf4d88bda9874ae3686811_0'}), 
+
+Document(page_content="[headers]({'知识库名': 'qanything2.0', '文件名': '9.png'})\n(六）生活费用的品类及价格详见物业交割补充协议：\n1．租赁期限内，承租人需配合自如定期上门查表（包括但不限于协助自如拍摄示数照\n片）。\n2.后付费的生活费用由自如定期生成相应账单，承租人应及时支付。预付费的生活费用，\n承租人应根据实际使用情况自行合理购买，并及时与房屋其他实际使用人结清，否则造\n成的损失和后果由承租人自行承担。\n3.非出租人及自如原因导致无法上门查表或生活费用收费单位未定时生成相应账单的，自\n如有权代出租人通过预估的形式生成生活费用账单，后期按照承租人的实际使用情况多\n退少补。\n4.承租人应承担的生活费用计算方式为：按使用示数或使用时长计算的生活费用总额除以\n房屋实际居住户数。\n5.本合同约定的生活费用单价仅供参考，具体以实际收费标准为准。\n第四条房屋维护与维修\n（一）自如受出租人委托，如房屋及原有物品、设备设施在租赁期限内因老化产生的维护、维\n修事宜由自如承担；如发生人为损坏的，应按照附件三及物业交割补充协议的标准进行赔偿\n或维修；若附件三及物业交割补充协议未有明确约定的，依据“谁导致谁承担”的原则处理。", metadata={'user_id': 'feifeixu__1234', 'kb_id': 'KBb17bd2d168604a84a59abe24e855d574_240625', 'file_id': 'e1368aa4c0cf4d88bda9874ae3686811', 'file_url': '', 'headers': {'知识库名': 'qanything2.0', '文件名': '9.png'}, 'doc_id': 'e1368aa4c0cf4d88bda9874ae3686811_0'}), 
+
+Document(page_content="[headers]({'知识库名': 'qanything2.0', '文件名': '9.png'})\n（一）自如受出租人委托，如房屋及原有物品、设备设施在租赁期限内因老化产生的维护、维\n修事宜由自如承担；如发生人为损坏的，应按照附件三及物业交割补充协议的标准进行赔偿\n或维修；若附件三及物业交割补充协议未有明确约定的，依据“谁导致谁承担”的原则处理。\n（二）租赁期限内，承租人对房屋具有一般性保管义务，如有房屋设施设备损毁或发生故障情\n况，应及时通知自如，否则由此造成的财产损失、人身损害等由承租人承担。\n第五条转租及换租\n（一）转租：合同起租日后，承租人向自如提出转租申请的，经自如及出租人同意后的45日", metadata={'user_id': 'feifeixu__1234', 'kb_id': 'KBb17bd2d168604a84a59abe24e855d574_240625', 'file_id': 'e1368aa4c0cf4d88bda9874ae3686811', 'file_url': '', 'headers': {'知识库名': 'qanything2.0', '文件名': '9.png'}, 'doc_id': 'e1368aa4c0cf4d88bda9874ae3686811_0'}), 
+
+Document(page_content="[headers]({'知识库名': 'qanything2.0', '文件名': '9.png'})\n内，可将所租赁的房屋重新上架并租给第三方。转租期间改为解约申请的，以提出转租申请\n日为解约申请日。\n（二）换租：本合同生效后，经协商一致，承租人可换租至自如管理的其他房屋（换租不支\n持由整租换成非整租产品）。承租人应先与该房屋的出租人就拟换租的房屋签订租赁期限\n不少于90天的租赁合同，该合同起租后60日内（不含60日，含起租日当日）应办理本\n合同的退租手续，否则自如有权拒绝办理换租。本合同租金计算至退租完成日。\n（三）三天不满意无理由换租：\n1．对新签合同（不含转租、换租），承租人享有一次在本合同生效日起3日内（含生\n3/20", metadata={'user_id': 'feifeixu__1234', 'kb_id': 'KBb17bd2d168604a84a59abe24e855d574_240625', 'file_id': 'e1368aa4c0cf4d88bda9874ae3686811', 'file_url': '', 'headers': {'知识库名': 'qanything2.0', '文件名': '9.png'}, 'doc_id': 'e1368aa4c0cf4d88bda9874ae3686811_1'})]
+```
+
+1. 起bce-embedding的服务,得到四个doc的embedding向量
+
+```bash
+nohup python3 -u qanything_kernel/dependent_server/embedding_server/embedding_server.py > /workspace/QAnything/logs/debug_logs/embedding_server.log 2>&1 &
+```
+
+b. 存milvus向量数据库。
+
+<aside>
+💡
+
+两个父doc存入了mysql数据库中，四个子doc进行向量化存入了milvus数据库中。
+
+</aside>
+
+> 为什么有了父doc，直接不直接将父doc向量化存milvus数据库中呢。Qanything父doc之间没有overlap，但我们也可以直接设置一个呀。为什么还要对父doc进行split。
+> 
+
+<aside>
+💡
+
+以我的理解回答上述问题：
+是为了问答接口的检索逻辑和大模型回答这样做的。
+1. 父doc的长度是800，子doc的长度是400，短的chunk有助于提高milvus的搜索准确率，当用户问了一个问题之后，能在milvus向量数据库中检索到更相关的片段。
+2. 大模型问答的时候，其实是拿到了子doc的doc_id对应的父doc，这样给大模型提供了更多的上下文信息，提高大模型的回答效果。
+
+</aside>
+
+# 🤗 总结归纳
+
+以上就是图片解析逻辑的全部流程了。
+
+1. 图片ocr识别文字，这些文字注入元数据，组成一个doc
+2. 对doc进行split并merge，doc和doc之间的chunk_overlap为0，也就是没有overlap，每个doc长度在800内。
+3. 对每个doc再split并merge，doc的子doc之间有100的chunk_overlap，子doc长度400内
+4. 对所有的子doc使用bce-embedding向量化并存入milvus向量数据库
+
+# 📎 参考文章
+
+- Qanything v2.0源码
+- 
+
+<aside>
+💡 有问题，欢迎您在底部评论区留言，一起交流~
+
+</aside>

@@ -1,0 +1,228 @@
+---
+title: "Qanything 2.0项目部署启动手把手教程"
+date: "2024-09-13"
+excerpt: "最终目的是以debug的形式将项目启动起来，方便了解项目原理"
+tags: ["开发"]
+category: "技术分享"
+author: "肥肥旭"
+---
+<aside>
+😀 前言：
+该项目是以debug的思想启动的，方便后期通过debug了解项目原理，如果想直接启动项目，可以一键运行项目根目录下的run.sh脚本文件。
+
+项目要配置的东西很多，需要有一定的动手能力。
+
+qanything_kernel/configs/model_config.py里面存放了项目需要的配置信息，启动服务的过程中需要修改这里面的配置。
+
+Qanything 2.x版本和1.x版本的其中一个更新就是，在1.x中堆在一起的服务，改成了微服务的架构，将需要用到的很多功能作为服务单独提供出来了。
+
+</aside>
+
+拿到这个项目，我们也不知道项目的启动入口文件在哪里，应该怎么启动。
+
+1. 阅读readme，可以看到项目根目录下面有一个run.sh的脚本文件
+2. 阅读这个.sh文件，所有的服务都被编排到了根目录下的docker-compose.yaml文件中，以linux版本为例，打开docker-compose-linux.yaml.
+3. docker-compose-linux.yaml中已经将服务编排好了，在这里面也可以看到依赖的一些镜像的版本、镜像依赖等。可以很方便的根据这个yaml的内容将容器服务启动起来。
+4. 其中qanything服务本身的配置如下：
+    
+    通过command可以看到执行的命令是`bash scripts/entrypoint.sh`
+    
+    ```python
+      qanything_local:
+        container_name: qanything-container-local
+        image: xixihahaliu01/qanything-linux:v1.5.1
+        command: /bin/bash -c "cd /workspace/QAnything && bash scripts/entrypoint.sh"
+        privileged: true
+        shm_size: '8gb'
+        volumes:
+          - ${DOCKER_VOLUME_DIRECTORY:-.}/:/workspace/QAnything/
+        ports:
+          - "8777:8777"
+        environment:
+          - NCCL_LAUNCH_MODE=PARALLEL
+          - GPUID=${GPUID:-0}
+          - USER_IP=${USER_IP:-localhost}
+        depends_on:
+          standalone:
+            condition: service_healthy
+          mysql:
+            condition: service_started
+          elasticsearch:
+            condition: service_healthy
+        tty: true
+        stdin_open: true
+    ```
+    
+5. 打开scripts/entrypoint.sh文件，有这样一段内容。包含启动rerank服务，embedding服务，ocr服务，pdf解析服务等。其中最后一条命令是`python3 -u qanything_kernel/qanything_server/sanic_api.py` 启动Qanything服务的核心命令，执行的是sanic_api.py这个文件。
+
+```python
+echo "embedding和rerank服务将在CPU上运行"
+nohup python3 -u qanything_kernel/dependent_server/rerank_server/rerank_server.py > /workspace/QAnything/logs/debug_logs/rerank_server.log 2>&1 &
+PID1=$!
+nohup python3 -u qanything_kernel/dependent_server/embedding_server/embedding_server.py > /workspace/QAnything/logs/debug_logs/embedding_server.log 2>&1 &
+PID2=$!
+nohup python3 -u qanything_kernel/dependent_server/pdf_parser_server/pdf_parser_server.py > /workspace/QAnything/logs/debug_logs/pdf_parser_server.log 2>&1 &
+PID3=$!
+nohup python3 -u qanything_kernel/dependent_server/ocr_server/ocr_server.py > /workspace/QAnything/logs/debug_logs/ocr_server.log 2>&1 &
+PID4=$!
+nohup python3 -u qanything_kernel/dependent_server/insert_files_serve/insert_files_server.py --port 8110 --workers 1 > /workspace/QAnything/logs/debug_logs/insert_files_server.log 2>&1 &
+PID5=$!
+nohup python3 -u qanything_kernel/qanything_server/sanic_api.py --host $USER_IP --port 8777 --workers 1 > /workspace/QAnything/logs/debug_logs/main_server.log 2>&1 &
+PID6=$!
+```
+
+# 📝 项目配置
+
+## 克隆代码
+
+```bash
+# 克隆代码到本地
+git clone https://github.com/netease-youdao/QAnything.git
+
+# 切换到tag v2.0.0
+git checkout v2.0.0
+```
+
+## 环境配置
+
+```bash
+conda create -n xxx python=3.10
+# 安装项目根目录提供的requirements.txt
+pip install requirements.txt
+```
+
+项目的启动文件是`sanic_api.py`,存放在根目录/qanything_kernel/qanything_server下。直觉告诉我，我直接运行sanic_api.py一定会报错，但其实我也不知道项目缺少哪些依赖，我一般的做法是直接运行，哪里报错解决哪里。
+
+通过上述分析，了解到，python3 -u qanything_kernel/qanything_server/sanic_api.py是项目的启动命令，在pycharm中这样配置一下，正常是script选择module，点击绿色的运行符号。
+
+![image.png](/blog-images/qanything-20项目部署启动手把手教程/image.png)
+
+点了运行符号之后，会有第一个报错，找不到handler，修改源码第18行：
+
+这是因为当前目录没有加入到python的sys.path中，找不到handler，一种方式你加一下，另一种方式修改成下面的代码样式，采用相对路径的方式导模块。
+
+```python
+from .handler import *
+```
+
+接下来就是解决其他服务依赖以及配置问题了，大概也能猜到哪些地方会报错：
+
+1. embedding以及reranker的模型文件缺少
+2. mysql数据库配置
+3. milvus向量数据库配置
+4. 大模型问答接口配置，key的配置
+5. ocr服务配置
+6. …
+
+## 模型相关文件提供
+
+首先第一个报错,找不到文件
+
+```bash
+ File "/tmp/pycharm_project_419/qanything_kernel/utils/general_utils.py", line 231, in <module>
+    embedding_tokenizer = AutoTokenizer.from_pretrained(LOCAL_EMBED_PATH, local_files_only=True)
+    raise EnvironmentError(
+OSError: Incorrect path_or_model_id: '/tmp/pycharm_project_419/qanything_kernel/dependent_server/embedding_server/embedding_model_configs_v0.0.1'. Please provide either the path to a local folder or the repo_id of a model on the Hub.
+
+Process finished with exit code 1
+```
+
+1. 将有道bce-embedding模型的相关文件放置在`qanything_kernel/dependent_server/embedding_server/embedding_model_configs_v0.0.1` 下
+    
+    从huggingface或者modelscope下载都可以，这里贴一个modelscope的地址：[https://modelscope.cn/models/netease-youdao/bce-embedding-base_v1](https://modelscope.cn/models/netease-youdao/bce-embedding-base_v1)
+    下载命令：
+    `git clone https://www.modelscope.cn/netease-youdao/bce-embedding-base_v1.git`
+    
+2. 将有道bce-reranker模型相关文件放置在`qanything_kernel/dependent_server/rerank_server/rerank_model_configs_v0.0.1`下
+    
+    下载命令：
+    `git clone https://www.modelscope.cn/netease-youdao/bce-reranker-base_v1.git`
+    
+
+下面就是一些docker容器的启动了，可以参考官方给的docker-compose-linux.yaml的镜像版本和启动命令：https://github.com/netease-youdao/QAnything/blob/qanything-v2/requirements.txt，直接根据yaml起docker服务一了百了。下面是分开起的。
+
+## 配置mysql数据库
+
+第二个报错，mysql数据库连接不上
+
+```bash
+mysql.connector.errors.DatabaseError: 2005 (HY000): Unknown MySQL server host 'mysql-container-local' (-2)
+[2024-09-13 19:03:05 +0800] [3147295] [ERROR] Not all workers acknowledged a successful startup. Shutting down.
+```
+
+现在已经步入容器化时代了，直接起mysql的docker容器。安装docker的过程自行google。
+
+```bash
+docker run --restart=always -d --name qanything-mysql -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 mysql:8.4.2
+```
+
+启动好之后在qanything_kernel/configs/model_config.py配置一下mysql的相关信息。
+
+```bash
+MYSQL_HOST_LOCAL = 'mysql-container-local'
+MYSQL_PORT_LOCAL = 3306
+MYSQL_USER_LOCAL = 'root'
+MYSQL_PASSWORD_LOCAL = '123456'
+MYSQL_DATABASE_LOCAL = 'qanything'
+```
+
+## 配置milvus向量数据库
+
+如何安装参考：https://www.milvus-io.com/getstarted/standalone/install_standalone-docker
+
+milvus服务启动好之后在model_config.py配置一下milvus的相关信息
+
+```bash
+KB_SUFFIX = '_240625'
+MILVUS_HOST_LOCAL = '1.12.xxx.xxx'
+MILVUS_PORT = 19530
+MILVUS_COLLECTION_NAME = 'qanything_collection' + KB_SUFFIX
+```
+
+## 配置elasticsearch
+
+es这里用的是7.x的版本，官方用的是8.x的，es一般用不到。
+
+```bash
+docker run --name elasticsearch -p 8102:9200 -p 9300:9300 -e "discovery.type=single-node" -d elasticsearch:7.17.7
+```
+
+es服务启动好之后在model_config.py配置一下es的相关信息
+
+```bash
+ES_URL = 'http://1.94.98.xxx:8081'
+ES_USER = None
+ES_PASSWORD = None
+ES_TOP_K = 30
+ES_INDEX_NAME = 'qanything_es_index' + KB_SUFFIX
+```
+
+## 服务启动成功
+
+配置好这些之后，就没有其他报错了，说明服务已经启动起来了。尽管还有一些要用到的依赖服务没有配置，但是qanything的核心服务已经启动起来了，已经可以调用接口新建知识库、上传文件等操作了，其他一些服务用到了报错在修改就好了。
+
+当然sanic_api中的端口号和workers数量可以根据需要修改，服务器公网暴露了8080端口，所以我改了端口号。
+
+项目启动好之后，根据控制台的提示，浏览器打开http://ip:8080/qanything/就是Qanything的前端界面。
+
+![image.png](/blog-images/qanything-20项目部署启动手把手教程/image-1.png)
+
+作为一名算法工程师，前端并不是我想要的，所以我会访问[http://ip:8080/docs](http://ip:8080/docs)，可以看到接口文档信息，服务启动好之后打断点，debug每个接口，这一套操作下来，对于rag的原理也就吃透了。
+
+![image.png](/blog-images/qanything-20项目部署启动手把手教程/image-2.png)
+
+# 🤗 总结归纳
+
+对于这种微服务架构的服务，启动的核心过程就是解决各种服务的配置问题。
+
+项目启动起来之后，接下来就可以愉快的玩耍了。debug的过程是理解Qanything以及RAG原理的核心过程，通过debug可以看到所有变量的值、可以看到一个请求进来之后这个项目的流转过程、可以看到一些很多介绍RAG的blog中忽略的细节信息。
+
+# 📎 参考文章
+
+- [使用 Docker 安装 Milvus 独立版 – Milvus向量库中文文档 (milvus-io.com)](https://www.milvus-io.com/getstarted/standalone/install_standalone-docker)
+- [https://github.com/netease-youdao/QAnything/blob/qanything-v2/requirements.txt](https://github.com/netease-youdao/QAnything/blob/qanything-v2/requirements.txt)
+
+<aside>
+💡 有问题，欢迎您在底部评论区留言，一起交流~
+
+</aside>

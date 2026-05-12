@@ -1,0 +1,354 @@
+---
+title: "Qanything 2.0源码解析系列5：问答接口中的检索逻辑（以图片为例）"
+date: "2024-09-23"
+excerpt: "以图片检索为例子，介绍qanything的检索逻辑（问答逻辑）"
+tags: []
+category: "技术分享"
+author: "肥肥旭"
+---
+<aside>
+😀 前言：
+在 [Qanything 2.0源码解析系列4: 图片解析逻辑](https://www.notion.so/Qanything-2-0-4-8bb8401b9689453fab86e3ecae414e12?pvs=21) 文章中，介绍了针对一张图片内容是如何处理最后embedding并存入milvus中的。
+
+本文介绍Qanything的问答接口，以图片为例，详细阐述一下Qanything的检索逻辑。
+
+</aside>
+
+RAG问答其实还是涉及到蛮多流程的，主要包含一下内容
+1. 检索 （retrieve）
+2. 重排 （reranker）图片的话内容较少，其实这一步就不需要了。
+3. 大模型问答 （llm answer）
+
+# 📝 前情提要
+
+![9.png](/blog-images/qanything-20源码解析系列5问答接口中的检索逻辑以图片为例/9.png)
+
+对这样一张图片：
+
+产生了两个父doc，并存入了mysql数据库中，两个父doc如下：
+
+```
+[Document(page_content='押金，自如与出租人另行结算。承租人同意自如返还押金时有权抵扣承租人应付自如的款\n项。若上述款项尚在自如的监管或托管账户的，自如应在15日内退还。\n(四）承租人续租、换租或转租房屋的，租金以届时自如和出租人商定的报价为准。\n(五）房租发票由房屋出租人开具，自如予以相应协助。如果在租赁期内承租人索要了相关\n发票，办理服务费及房租退费时，承租人须按照税法规定配合自如进行发票红冲手\n续，包括但不限于承租人自双方办理完毕解约之日（含当日）起1个月内，依据税法要\n求将其此前取得的增值税普通发票或增值税专用发票原件（如有）交还自如或配合自\n如进行红字发票处理，否则自如有权代出租人拒绝向承租人退还服务费或房租且不承\n担任何违约责任。\n(六）生活费用的品类及价格详见物业交割补充协议：\n1．租赁期限内，承租人需配合自如定期上门查表（包括但不限于协助自如拍摄示数照\n片）。\n2.后付费的生活费用由自如定期生成相应账单，承租人应及时支付。预付费的生活费用，\n承租人应根据实际使用情况自行合理购买，并及时与房屋其他实际使用人结清，否则造\n成的损失和后果由承租人自行承担。\n3.非出租人及自如原因导致无法上门查表或生活费用收费单位未定时生成相应账单的，自\n如有权代出租人通过预估的形式生成生活费用账单，后期按照承租人的实际使用情况多\n退少补。\n4.承租人应承担的生活费用计算方式为：按使用示数或使用时长计算的生活费用总额除以\n房屋实际居住户数。\n5.本合同约定的生活费用单价仅供参考，具体以实际收费标准为准。\n第四条房屋维护与维修\n（一）自如受出租人委托，如房屋及原有物品、设备设施在租赁期限内因老化产生的维护、维\n修事宜由自如承担；如发生人为损坏的，应按照附件三及物业交割补充协议的标准进行赔偿\n或维修；若附件三及物业交割补充协议未有明确约定的，依据“谁导致谁承担”的原则处理。\n（二）租赁期限内，承租人对房屋具有一般性保管义务，如有房屋设施设备损毁或发生故障情\n况，应及时通知自如，否则由此造成的财产损失、人身损害等由承租人承担。\n第五条转租及换租\n（一）转租：合同起租日后，承租人向自如提出转租申请的，经自如及出租人同意后的45日', metadata={'user_id': 'feifeixu__1234', 'kb_id': 'KBb17bd2d168604a84a59abe24e855d574_240625', 'file_id': 'e1368aa4c0cf4d88bda9874ae3686811', 'file_name': '9.png', 'nos_key': '/tmp/pycharm_project_419/QANY_DB/content/feifeixu__1234/KBb17bd2d168604a84a59abe24e855d574_240625/e1368aa4c0cf4d88bda9874ae3686811/9.png', 'file_url': '', 'title_lst': [], 'has_table': False, 'images': [], 'page_id': 0, 'headers': {'知识库名': 'qanything2.0', '文件名': '9.png'}, 'faq_dict': {}}), 
+
+Document(page_content='内，可将所租赁的房屋重新上架并租给第三方。转租期间改为解约申请的，以提出转租申请\n日为解约申请日。\n（二）换租：本合同生效后，经协商一致，承租人可换租至自如管理的其他房屋（换租不支\n持由整租换成非整租产品）。承租人应先与该房屋的出租人就拟换租的房屋签订租赁期限\n不少于90天的租赁合同，该合同起租后60日内（不含60日，含起租日当日）应办理本\n合同的退租手续，否则自如有权拒绝办理换租。本合同租金计算至退租完成日。\n（三）三天不满意无理由换租：\n1．对新签合同（不含转租、换租），承租人享有一次在本合同生效日起3日内（含生\n3/20', metadata={'user_id': 'feifeixu__1234', 'kb_id': 'KBb17bd2d168604a84a59abe24e855d574_240625', 'file_id': 'e1368aa4c0cf4d88bda9874ae3686811', 'file_name': '9.png', 'nos_key': '/tmp/pycharm_project_419/QANY_DB/content/feifeixu__1234/KBb17bd2d168604a84a59abe24e855d574_240625/e1368aa4c0cf4d88bda9874ae3686811/9.png', 'file_url': '', 'title_lst': [], 'has_table': False, 'images': [], 'page_id': 0, 'headers': {'知识库名': 'qanything2.0', '文件名': '9.png'}, 'faq_dict': {}})]
+```
+
+产生了4个子doc，并存入了向量数据库中。4个doc如下：
+
+```
+[Document(page_content="[headers]({'知识库名': 'qanything2.0', '文件名': '9.png'})\n押金，自如与出租人另行结算。承租人同意自如返还押金时有权抵扣承租人应付自如的款\n项。若上述款项尚在自如的监管或托管账户的，自如应在15日内退还。\n(四）承租人续租、换租或转租房屋的，租金以届时自如和出租人商定的报价为准。\n(五）房租发票由房屋出租人开具，自如予以相应协助。如果在租赁期内承租人索要了相关\n发票，办理服务费及房租退费时，承租人须按照税法规定配合自如进行发票红冲手\n续，包括但不限于承租人自双方办理完毕解约之日（含当日）起1个月内，依据税法要\n求将其此前取得的增值税普通发票或增值税专用发票原件（如有）交还自如或配合自\n如进行红字发票处理，否则自如有权代出租人拒绝向承租人退还服务费或房租且不承\n担任何违约责任。\n(六）生活费用的品类及价格详见物业交割补充协议：\n1．租赁期限内，承租人需配合自如定期上门查表（包括但不限于协助自如拍摄示数照\n片）。\n2.后付费的生活费用由自如定期生成相应账单，承租人应及时支付。预付费的生活费用，", metadata={'user_id': 'feifeixu__1234', 'kb_id': 'KBb17bd2d168604a84a59abe24e855d574_240625', 'file_id': 'e1368aa4c0cf4d88bda9874ae3686811', 'file_url': '', 'headers': {'知识库名': 'qanything2.0', '文件名': '9.png'}, 'doc_id': 'e1368aa4c0cf4d88bda9874ae3686811_0'}), 
+
+Document(page_content="[headers]({'知识库名': 'qanything2.0', '文件名': '9.png'})\n(六）生活费用的品类及价格详见物业交割补充协议：\n1．租赁期限内，承租人需配合自如定期上门查表（包括但不限于协助自如拍摄示数照\n片）。\n2.后付费的生活费用由自如定期生成相应账单，承租人应及时支付。预付费的生活费用，\n承租人应根据实际使用情况自行合理购买，并及时与房屋其他实际使用人结清，否则造\n成的损失和后果由承租人自行承担。\n3.非出租人及自如原因导致无法上门查表或生活费用收费单位未定时生成相应账单的，自\n如有权代出租人通过预估的形式生成生活费用账单，后期按照承租人的实际使用情况多\n退少补。\n4.承租人应承担的生活费用计算方式为：按使用示数或使用时长计算的生活费用总额除以\n房屋实际居住户数。\n5.本合同约定的生活费用单价仅供参考，具体以实际收费标准为准。\n第四条房屋维护与维修\n（一）自如受出租人委托，如房屋及原有物品、设备设施在租赁期限内因老化产生的维护、维\n修事宜由自如承担；如发生人为损坏的，应按照附件三及物业交割补充协议的标准进行赔偿\n或维修；若附件三及物业交割补充协议未有明确约定的，依据“谁导致谁承担”的原则处理。", metadata={'user_id': 'feifeixu__1234', 'kb_id': 'KBb17bd2d168604a84a59abe24e855d574_240625', 'file_id': 'e1368aa4c0cf4d88bda9874ae3686811', 'file_url': '', 'headers': {'知识库名': 'qanything2.0', '文件名': '9.png'}, 'doc_id': 'e1368aa4c0cf4d88bda9874ae3686811_0'}), 
+
+Document(page_content="[headers]({'知识库名': 'qanything2.0', '文件名': '9.png'})\n（一）自如受出租人委托，如房屋及原有物品、设备设施在租赁期限内因老化产生的维护、维\n修事宜由自如承担；如发生人为损坏的，应按照附件三及物业交割补充协议的标准进行赔偿\n或维修；若附件三及物业交割补充协议未有明确约定的，依据“谁导致谁承担”的原则处理。\n（二）租赁期限内，承租人对房屋具有一般性保管义务，如有房屋设施设备损毁或发生故障情\n况，应及时通知自如，否则由此造成的财产损失、人身损害等由承租人承担。\n第五条转租及换租\n（一）转租：合同起租日后，承租人向自如提出转租申请的，经自如及出租人同意后的45日", metadata={'user_id': 'feifeixu__1234', 'kb_id': 'KBb17bd2d168604a84a59abe24e855d574_240625', 'file_id': 'e1368aa4c0cf4d88bda9874ae3686811', 'file_url': '', 'headers': {'知识库名': 'qanything2.0', '文件名': '9.png'}, 'doc_id': 'e1368aa4c0cf4d88bda9874ae3686811_0'}), 
+
+Document(page_content="[headers]({'知识库名': 'qanything2.0', '文件名': '9.png'})\n内，可将所租赁的房屋重新上架并租给第三方。转租期间改为解约申请的，以提出转租申请\n日为解约申请日。\n（二）换租：本合同生效后，经协商一致，承租人可换租至自如管理的其他房屋（换租不支\n持由整租换成非整租产品）。承租人应先与该房屋的出租人就拟换租的房屋签订租赁期限\n不少于90天的租赁合同，该合同起租后60日内（不含60日，含起租日当日）应办理本\n合同的退租手续，否则自如有权拒绝办理换租。本合同租金计算至退租完成日。\n（三）三天不满意无理由换租：\n1．对新签合同（不含转租、换租），承租人享有一次在本合同生效日起3日内（含生\n3/20", metadata={'user_id': 'feifeixu__1234', 'kb_id': 'KBb17bd2d168604a84a59abe24e855d574_240625', 'file_id': 'e1368aa4c0cf4d88bda9874ae3686811', 'file_url': '', 'headers': {'知识库名': 'qanything2.0', '文件名': '9.png'}, 'doc_id': 'e1368aa4c0cf4d88bda9874ae3686811_1'})]
+```
+
+query的问题如下：
+
+```
+自如的转租政策是什么？
+```
+
+# 🐵 问答接口
+
+local_doc_chat方法定义在handler文件下
+
+```python
+app.add_route(local_doc_chat, "/api/local_doc_qa/local_doc_chat", methods=['POST'])  # tags=["问答接口"] 
+```
+
+常用请求参数如下：
+
+```python
+user_id : 用户id
+kb_ids : 列表，要查询的kb_id
+question: 用户问题
+rerank: bool类型，是否需要rerank，默认True
+streaming: 大模型回答是否需要流式输出，默认False
+history：历史问答，默认为[]
+api_base：配置大模型
+api_key：配置大模型
+model：大模型名称，默认gpt-3.5-turbo-0613
+max_token：最大输出token个数
+```
+
+```python
+{
+    "user_id" : "feifeixu",
+    "kb_ids" : ["KBb17bd2d168604a84a59abe24e855d574"],
+    "question": "自如的转租政策是什么？",
+    "rerank": false,
+    "streaming": false,
+    "api_base": "xxx",
+    "api_key": "sk-xxx",
+    "model": "gpt-3.5-turbo",
+    "max_token": 20
+}
+```
+
+# 🤗 检索逻辑
+
+1. 从mysql File表中查询到这些kb_id对应的status为green的file_id，为green表示该文件的解析逻辑正确处理，doc也都存入了milvus库中。如果有效文件的长度<1，说明没有知识库，设置kb_ids为空,相当于进入和大模型的纯聊天模式了。
+    
+    源码在handler.py的第718行。
+    
+    ```python
+    for kb_id in kb_ids:
+        file_infos.extend(local_doc_qa.milvus_summary.get_files(user_id, kb_id))
+    valid_files = [fi for fi in file_infos if fi[2] == 'green']
+    if len(valid_files) == 0:
+        debug_logger.info("valid_files is empty, use only chat mode.")
+        kb_ids = []
+    ```
+    
+2. 核心方法是 handler.py第736行（非流式）的这个方法：
+    
+    ```python
+    async for resp, next_history in local_doc_qa.get_knowledge_based_answer(model=model,                                                                              
+    ```
+    
+    这个方法内部执行了很多模块，大体如下：
+    
+    1. 使用bce-embedding对query：【自如的转租政策是什么？】进行embedding。使用milvus的search方法从库中搜索前top-k个向量，默认topk=30,所以上面存储的4个doc都会被检索出来。
+    2. 子doc的处理
+        
+        将子doc的doc_id放入ids列表中，4个子doc得到两个doc_id，然后从mysql Documents表中根据doc_id得到父doc的内容。两个doc_id对应两个父doc。这一步根据4个子doc得到了两个父doc。
+        
+        ```python
+        # parent_retriever.py第53行
+        ids = []
+        # 得到不重复的doc_id
+        for d in sub_docs:
+            if self.id_key in d.metadata and d.metadata[self.id_key] not in ids:
+                ids.append(d.metadata[self.id_key])
+        # 从mysql Documents表中根据doc_id得到父doc的内容
+        docs = await self.docstore.amget(ids)
+        ```
+        
+    3. docs根据page_content内容去重，这里就两个，没有重复的。
+        
+        ```python
+        def deduplicate_documents(source_docs):
+            unique_docs = set()
+            deduplicated_docs = []
+            for doc in source_docs:
+                if doc.page_content not in unique_docs:
+                    unique_docs.add(doc.page_content)
+                    deduplicated_docs.append(doc)
+            return deduplicated_docs
+        ```
+        
+    4. 组装prompt, prompt定义在model_config.py文件中
+        
+        ```python
+        PROMPT_TEMPLATE = """
+        <SYSTEM>
+        {{system}}
+        </SYSTEM>
+        
+        <INSTRUCTIONS>
+        {{instructions}}
+        </INSTRUCTIONS>
+        
+        <DOCUMENTS>
+        {{context}}
+        </DOCUMENTS>
+        
+        <INSTRUCTIONS>
+        {{instructions}}
+        </INSTRUCTIONS>
+        """
+        ```
+        
+        1）替换掉{{system}}和{{instructions}}
+        
+        ```python
+        
+        <SYSTEM>
+        
+        You are a helpful assistant. 
+        You are always a reliable assistant that can answer questions with the help of external documents.
+        Today's date is 2024-09-25. The current time is 15:56:07.
+        
+        </SYSTEM>
+        
+        <INSTRUCTIONS>
+        
+        - All contents between <DOCUMENTS> and </DOCUMENTS> are reference information retrieved from an external knowledge base.
+        - If you cannot answer based on the given information, you will return the sentence "抱歉，检索到的参考信息并未提供充足的信息，因此无法回答。".
+        - Before answering, confirm the number of key points or pieces of information required, ensuring nothing is overlooked.
+        - Now, answer the following question based on the above retrieved documents(Let's think step by step):
+        {{question}}
+        - Return your answer in Markdown formatting, and in the same language as the question "{{question}}".
+        
+        </INSTRUCTIONS>
+        
+        <DOCUMENTS>
+        {{context}}
+        </DOCUMENTS>
+        
+        <INSTRUCTIONS>
+        
+        - All contents between <DOCUMENTS> and </DOCUMENTS> are reference information retrieved from an external knowledge base.
+        - If you cannot answer based on the given information, you will return the sentence "抱歉，检索到的参考信息并未提供充足的信息，因此无法回答。".
+        - Before answering, confirm the number of key points or pieces of information required, ensuring nothing is overlooked.
+        - Now, answer the following question based on the above retrieved documents(Let's think step by step):
+        {{question}}
+        - Return your answer in Markdown formatting, and in the same language as the question "{{question}}".
+        
+        </INSTRUCTIONS>
+        
+        ```
+        
+    5. 处理source_documents，得到source_documents、retrieval_documents。
+        
+        c步骤得到的两个父doc称之为source_documents。
+        
+        1) 处理source_documents:
+        
+        prompt的默认长度是4096，这里计算一下两个source_documents的token长度+prompt模版的长度+如果有历史问答加上历史+额外的符号的。
+        
+        如果超过了4096,就会有source_documents被丢弃，从相似度最高的开始遍历，丢弃相似度低的。因为是图片内容，包含的文字有限。这里source_documents只有两个，都加上也不会超过4096，返回的retrieval_documents和source_documents是一样的，limited_token_nums=3061。
+        
+        ```python
+        retrieval_documents, limited_token_nums = self.reprocess_source_documents
+        
+        ···
+        return source_documents, retrieval_documents
+        ```
+        
+        2）聚合文档, 处理retrieval_documents，1）步骤的内部方法
+        
+        retrieval_documents包含两个文档，这两个文档的file_id是一样的，都是一张图片的，根据前面的介绍已知哈。第一个文档是相似度最高的，aggregate_documents这个方法的逻辑是返回相似度最高的这个doc_id对应的file_id的完整文档，会从数据库中查的。也就是说对于两张图片或者pdf之类的，会返回第一个完整文档，超过4096了会截取。逻辑会比较复杂一点，但是对于图片来说，理解起来就很简单了，返回的new_docs就是两个retrieval_documents拼接在一起的doc，也就是整个ocr内容作为一个整体的doc。然后将source_documents赋值new_docs。
+        
+        ```python
+        new_docs = self.aggregate_documents(retrieval_documents, limited_token_nums, custom_llm)
+        ```
+        
+        ```python
+        [Document(page_content='押金，自如与出租人另行结算。承租人同意自如返还押金时有权抵扣承租人应付自如的款\n项。若上述款项尚在自如的监管或托管账户的，自如应在15日内退还。\n(四）承租人续租、换租或转租房屋的，租金以届时自如和出租人商定的报价为准。\n(五）房租发票由房屋出租人开具，自如予以相应协助。如果在租赁期内承租人索要了相关\n发票，办理服务费及房租退费时，承租人须按照税法规定配合自如进行发票红冲手\n续，包括但不限于承租人自双方办理完毕解约之日（含当日）起1个月内，依据税法要\n求将其此前取得的增值税普通发票或增值税专用发票原件（如有）交还自如或配合自\n如进行红字发票处理，否则自如有权代出租人拒绝向承租人退还服务费或房租且不承\n担任何违约责任。\n(六）生活费用的品类及价格详见物业交割补充协议：\n1．租赁期限内，承租人需配合自如定期上门查表（包括但不限于协助自如拍摄示数照\n片）。\n2.后付费的生活费用由自如定期生成相应账单，承租人应及时支付。预付费的生活费用，\n承租人应根据实际使用情况自行合理购买，并及时与房屋其他实际使用人结清，否则造\n成的损失和后果由承租人自行承担。\n3.非出租人及自如原因导致无法上门查表或生活费用收费单位未定时生成相应账单的，自\n如有权代出租人通过预估的形式生成生活费用账单，后期按照承租人的实际使用情况多\n退少补。\n4.承租人应承担的生活费用计算方式为：按使用示数或使用时长计算的生活费用总额除以\n房屋实际居住户数。\n5.本合同约定的生活费用单价仅供参考，具体以实际收费标准为准。\n第四条房屋维护与维修\n（一）自如受出租人委托，如房屋及原有物品、设备设施在租赁期限内因老化产生的维护、维\n修事宜由自如承担；如发生人为损坏的，应按照附件三及物业交割补充协议的标准进行赔偿\n或维修；若附件三及物业交割补充协议未有明确约定的，依据“谁导致谁承担”的原则处理。\n（二）租赁期限内，承租人对房屋具有一般性保管义务，如有房屋设施设备损毁或发生故障情\n况，应及时通知自如，否则由此造成的财产损失、人身损害等由承租人承担。\n第五条转租及换租\n（一）转租：合同起租日后，承租人向自如提出转租申请的，经自如及出租人同意后的45日\n\n内，可将所租赁的房屋重新上架并租给第三方。转租期间改为解约申请的，以提出转租申请\n日为解约申请日。\n（二）换租：本合同生效后，经协商一致，承租人可换租至自如管理的其他房屋（换租不支\n持由整租换成非整租产品）。承租人应先与该房屋的出租人就拟换租的房屋签订租赁期限\n不少于90天的租赁合同，该合同起租后60日内（不含60日，含起租日当日）应办理本\n合同的退租手续，否则自如有权拒绝办理换租。本合同租金计算至退租完成日。\n（三）三天不满意无理由换租：\n1．对新签合同（不含转租、换租），承租人享有一次在本合同生效日起3日内（含生\n3/20\n\n', metadata={'user_id': 'feifeixu__1234', 'kb_id': 'KBb17bd2d168604a84a59abe24e855d574_240625', 'file_id': '7e0a9e47a9b943d386de889a292f5414', 'file_name': '9.png', 'nos_key': '/tmp/pycharm_project_419/QANY_DB/content/feifeixu__1234/KBb17bd2d168604a84a59abe24e855d574_240625/7e0a9e47a9b943d386de889a292f5414/9.png', 'file_url': '', 'title_lst': [], 'has_table': False, 'images': [], 'page_id': 0, 'headers': {'知识库名': 'qanything2.0', '文件名': '9.png'}, 'faq_dict': {}, 'score': 0.8272488117218018})]
+        ```
+        
+        3）根据2）知道，方法1）得到的source_documents是整个图片内容是一个整体的doc, retrieval_documents是两个doc。
+        
+    6. 将e步骤得到的source_documents和d步骤的模版拼起来。
+        
+        ```python
+        prompt = self.generate_prompt(query=query,source_docs=source_documents,prompt_template=prompt_template)
+        ```
+        
+        得到的prompt如下：
+        
+        ```python
+        
+        <SYSTEM>
+        
+        You are a helpful assistant. 
+        You are always a reliable assistant that can answer questions with the help of external documents.
+        Today's date is 2024-09-25. The current time is 15:56:07.
+        
+        </SYSTEM>
+        
+        <INSTRUCTIONS>
+        
+        - All contents between <DOCUMENTS> and </DOCUMENTS> are reference information retrieved from an external knowledge base.
+        - If you cannot answer based on the given information, you will return the sentence "抱歉，检索到的参考信息并未提供充足的信息，因此无法回答。".
+        - Before answering, confirm the number of key points or pieces of information required, ensuring nothing is overlooked.
+        - Now, answer the following question based on the above retrieved documents(Let's think step by step):
+        自如的转租政策是什么？
+        - Return your answer in Markdown formatting, and in the same language as the question "自如的转租政策是什么？".
+        
+        </INSTRUCTIONS>
+        
+        <DOCUMENTS>
+        <reference headers={'知识库名': 'qanything2.0', '文件名': '9.png'}>[1]
+        押金，自如与出租人另行结算。承租人同意自如返还押金时有权抵扣承租人应付自如的款
+        项。若上述款项尚在自如的监管或托管账户的，自如应在15日内退还。
+        (四）承租人续租、换租或转租房屋的，租金以届时自如和出租人商定的报价为准。
+        (五）房租发票由房屋出租人开具，自如予以相应协助。如果在租赁期内承租人索要了相关
+        发票，办理服务费及房租退费时，承租人须按照税法规定配合自如进行发票红冲手
+        续，包括但不限于承租人自双方办理完毕解约之日（含当日）起1个月内，依据税法要
+        求将其此前取得的增值税普通发票或增值税专用发票原件（如有）交还自如或配合自
+        如进行红字发票处理，否则自如有权代出租人拒绝向承租人退还服务费或房租且不承
+        担任何违约责任。
+        (六）生活费用的品类及价格详见物业交割补充协议：
+        1．租赁期限内，承租人需配合自如定期上门查表（包括但不限于协助自如拍摄示数照
+        片）。
+        2.后付费的生活费用由自如定期生成相应账单，承租人应及时支付。预付费的生活费用，
+        承租人应根据实际使用情况自行合理购买，并及时与房屋其他实际使用人结清，否则造
+        成的损失和后果由承租人自行承担。
+        3.非出租人及自如原因导致无法上门查表或生活费用收费单位未定时生成相应账单的，自
+        如有权代出租人通过预估的形式生成生活费用账单，后期按照承租人的实际使用情况多
+        退少补。
+        4.承租人应承担的生活费用计算方式为：按使用示数或使用时长计算的生活费用总额除以
+        房屋实际居住户数。
+        5.本合同约定的生活费用单价仅供参考，具体以实际收费标准为准。
+        第四条房屋维护与维修
+        （一）自如受出租人委托，如房屋及原有物品、设备设施在租赁期限内因老化产生的维护、维
+        修事宜由自如承担；如发生人为损坏的，应按照附件三及物业交割补充协议的标准进行赔偿
+        或维修；若附件三及物业交割补充协议未有明确约定的，依据“谁导致谁承担”的原则处理。
+        （二）租赁期限内，承租人对房屋具有一般性保管义务，如有房屋设施设备损毁或发生故障情
+        况，应及时通知自如，否则由此造成的财产损失、人身损害等由承租人承担。
+        第五条转租及换租
+        （一）转租：合同起租日后，承租人向自如提出转租申请的，经自如及出租人同意后的45日
+        
+        内，可将所租赁的房屋重新上架并租给第三方。转租期间改为解约申请的，以提出转租申请
+        日为解约申请日。
+        （二）换租：本合同生效后，经协商一致，承租人可换租至自如管理的其他房屋（换租不支
+        持由整租换成非整租产品）。承租人应先与该房屋的出租人就拟换租的房屋签订租赁期限
+        不少于90天的租赁合同，该合同起租后60日内（不含60日，含起租日当日）应办理本
+        合同的退租手续，否则自如有权拒绝办理换租。本合同租金计算至退租完成日。
+        （三）三天不满意无理由换租：
+        1．对新签合同（不含转租、换租），承租人享有一次在本合同生效日起3日内（含生
+        3/20
+        
+        </reference>
+        
+        </DOCUMENTS>
+        
+        <INSTRUCTIONS>
+        
+        - All contents between <DOCUMENTS> and </DOCUMENTS> are reference information retrieved from an external knowledge base.
+        - If you cannot answer based on the given information, you will return the sentence "抱歉，检索到的参考信息并未提供充足的信息，因此无法回答。".
+        - Before answering, confirm the number of key points or pieces of information required, ensuring nothing is overlooked.
+        - Now, answer the following question based on the above retrieved documents(Let's think step by step):
+        自如的转租政策是什么？
+        - Return your answer in Markdown formatting, and in the same language as the question "自如的转租政策是什么？".
+        
+        </INSTRUCTIONS>
+        
+        ```
+        
+    7. 将f步骤的prompt提问大模型得到结果。
+        
+        ```python
+        async for answer_result in custom_llm.generatorAnswer(prompt=prompt, history=chat_history, streaming=streaming):
+        
+        ```
+        
+        将answer_result做一些处理，就可以返回给用户【自如的转租政策是什么？】的回答了。
+        
+
+# 📎 总结
+
+图片的问答逻辑相比pdf、doc还是简单很多的，没有太多复杂的逻辑，基本上就是拿到整个ocr的识别结果喂给大模型去处理。
+
+![image.png](/blog-images/qanything-20源码解析系列5问答接口中的检索逻辑以图片为例/image.png)
+
+> 思考：
+> 
+
+一般而言，知识库中很少是以很多张图片组成的。图片文档更合理的逻辑是：用户上传了一张图片或两张图片，然后针对这一两张图片问个问题，相当于是图片理解类任务。比如一张机构和用户的聊天记录，让大模型根据这个图片写一段营销话术。
+
+因此我认为完全不需要图片ocr完了之后还要split父doc，还要split子doc，还要存向量数据库。因为最终检索出来的内容还是整个ocr识别的结果。不如用户上传一张图片之后直接对其进行ocr存mysql数据库，然后根据用户问题，从数据库拿到ocr结果组装prompt提问大模型。当然Qanything提供了一套更通用的方法。如果你的业务本身就是说图解画类型的，完全可以采用ocr+大模型的方式，省去了embedding和retriever的流程，整体的速度也会快很多。
+
+# 📎 参考文章
+
+- Qanything源码
+
+<aside>
+💡 有问题，欢迎您在底部评论区留言，一起交流~
+
+</aside>

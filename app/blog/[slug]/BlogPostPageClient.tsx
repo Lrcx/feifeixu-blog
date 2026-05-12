@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -86,6 +87,12 @@ export default function BlogPostPageClient({ post }: { post: Post }) {
                       <div className="text-gray-600 italic">{children}</div>
                     </blockquote>
                   ),
+                  hr: () => (
+                    <hr className="my-10 border-gray-200" />
+                  ),
+                  strong: ({ children }) => (
+                    <strong className="font-semibold text-gray-900">{children}</strong>
+                  ),
                   code: ({ children }) => (
                     <code className="rounded bg-gray-100 px-1.5 py-0.5 text-sm text-gray-800">
                       {children}
@@ -106,6 +113,27 @@ export default function BlogPostPageClient({ post }: { post: Post }) {
                       {children}
                     </a>
                   ),
+                  img: ({ src, alt }) => {
+                    if (typeof src !== "string" || !src) return null;
+
+                    return (
+                      <figure className="my-8 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+                        <Image
+                          src={src}
+                          alt={alt || ""}
+                          width={960}
+                          height={540}
+                          className="h-auto w-full"
+                          unoptimized
+                        />
+                        {alt && (
+                          <figcaption className="border-t border-gray-100 px-4 py-3 text-center text-xs text-gray-500">
+                            {alt}
+                          </figcaption>
+                        )}
+                      </figure>
+                    );
+                  },
                 }}
               >
                 {post.content}

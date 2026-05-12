@@ -1,0 +1,79 @@
+---
+title: "Qanything 2.0 源码解析系列3 : 文件解析服务"
+date: "2024-09-20"
+excerpt: "Qanything文件解析服务两个重要函数讲解"
+tags: []
+category: "技术分享"
+author: "肥肥旭"
+---
+<aside>
+😀 前言：
+在1.x的版本中文件上传和文件解析是一起执行的。通过文件上传的接口`/api/local_doc_qa/upload_files`，将相关信息存入数据库之后会按照不同的文件类型进行文件解析。
+但是在2.0之后，文件解析是一个单独的服务，本文主要介绍这个服务的相关内容，涉及到不同的文件类型解析逻辑，会出专门的帖子进行介绍。
+
+</aside>
+
+[Qanything 2.0项目部署启动手把手教程](https://www.notion.so/Qanything-2-0-4f3a3a70a05d47e3a92044cc86c39fba?pvs=21) 中分析了各个服务的启动命令。
+
+其中，文件解析（插入文件服务）的启动命令如下：
+
+```bash
+nohup python3 -u qanything_kernel/dependent_server/insert_files_serve/insert_files_server.py --port 8110 --workers 1 > /workspace/QAnything/logs/debug_logs/insert_files_server.log 2>&1 &
+```
+
+# 📝 文件解析服务
+
+insert_files_server.py主要是两个方法：
+
+1. `check_and_process` 从表中拿文件交给process_data方法处理
+2. `process_data` 
+    1. 文件切分doc
+    2. doc向量化存milvus向量数据库
+
+下面只介绍核心代码逻辑：
+
+## `check_and_process`
+
+服务启动之前通过app.add_task方法将一个异步任务(check_and_process函数)添加到应用的任务列表中。
+
+```bash
+@app.listener('before_server_start')
+async def setup_workers(app, loop):
+    # 创建数据库连接池
+    app.ctx.pool = await aiomysql.create_pool(**db_config, minsize=1, maxsize=16, loop=loop, autocommit=False,
+                                              init_command='SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED')  # 更改事务隔离级别
+    app.add_task(check_and_process(app.ctx.pool))
+```
+
+`check_and_process` 的核心是一个while True循环。该循环从File表中拿到`status=’gray’` 的文件记录，一次取一个，交给`process_data` 函数处理。
+
+调用上传文件接口时，给定的每个文件的状态都是gray，表示该文件已经上传成功，但是还没有进行解析。
+
+## `process_data`
+
+proces_data的核心：
+
+1. 初始化`LocalFileForInsert` 类对象，在qanything_kernel/core/retriever/general_document.py中定义，包含了很多方法，是文件解析服务的核心类。每个文件都会初始化一个`LocalFileForInsert` 对象进行后续处理。
+
+`local_file = LocalFileForInsert(user_id, kb_id, file_id, file_location, file_name, file_url, chunk_size, mysql_client)` 
+
+1. 执行`local_file.split_file_to_docs` 方法，将文件切分成doc
+    
+    切分逻辑：
+    
+    1. 图片类型（png、jpg、jpeg）: [Qanything 2.0源码解析系列4: 图片解析逻辑](https://www.notion.so/Qanything-2-0-4-8bb8401b9689453fab86e3ecae414e12?pvs=21) 
+    2. pdf类型（pdf）：writing, coming soon！
+2. 执行`retriever.insert_documents(local_file.docs, chunk_size)` 将doc进行split后通过bce-embedding模型向量化并存入Milvus数据库。
+
+# 🤗 总结归纳
+
+总结文章的内容
+
+# 📎 参考文章
+
+- source code
+
+<aside>
+💡 有问题，欢迎您在底部评论区留言，一起交流~
+
+</aside>

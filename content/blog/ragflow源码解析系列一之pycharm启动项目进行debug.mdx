@@ -1,0 +1,143 @@
+---
+title: "ragflow源码解析系列一之Pycharm启动项目进行debug"
+date: "2025-07-08"
+excerpt: "通过pycharm的方式启动ragflow进行debug"
+tags: ["ragflow"]
+category: "rag"
+author: "肥肥旭"
+---
+环境说明：
+
+macbook air m3
+
+pycharm  2025.1.2
+
+## Pycharm Debug项目启动
+
+官方启动debug教程：https://ragflow.io/docs/v0.19.1/launch_ragflow_from_source
+
+<aside>
+💡
+
+想要吃透ragflow的原理，尤其是各种文件的切分方式，是肯定要自己debug很多遍源码的。本文也是在官方启动教程的基础上将项目启动起来的，所以大家还是要懂得多看官方教程。
+
+</aside>
+
+1. clone仓库
+
+```bash
+git clone https://github.com/infiniflow/ragflow.git
+```
+
+仓库克隆下来之后使用pycharm打开，并切换到当前最新的0.19.1：
+
+![image.png](/blog-images/ragflow源码解析系列一之pycharm启动项目进行debug/image.png)
+
+1. 环境依赖
+
+我采用一种pycharm的方式，因为我的源码都是下载到本地电脑了。pycharm内置了uv工具，可以自动识别项目目录下的pyproject.toml进行环境安装
+
+![image.png](/blog-images/ragflow源码解析系列一之pycharm启动项目进行debug/image-1.png)
+
+安装好之后出现一个.venv的目录，存放了所有安装的依赖包：
+
+![image.png](/blog-images/ragflow源码解析系列一之pycharm启动项目进行debug/image-2.png)
+
+或许你将源码clone在了有gpu的远程服务器上，你也可以通过官方给的安装uv工具的教程，官网采用的pipx，可以在conda环境中通过pip安装pipx，但要注意如果直接pipx install uv发现uv不在环境变量中，请记得在之前加一步pipx ensurepath。最后采用pycharm配置远程解释器的方式引入
+
+```bash
+pip install pipx
+pipx ensurepath
+pipx install uv
+uv sync --python 3.10 --all-extras # install RAGFlow dependent python modules
+```
+
+1. 依赖的三方服务启动
+
+有mysql、es、`minio` 等，官方也很贴心的给出了docker的yaml文件
+
+```bash
+docker compose -f docker/docker-compose-base.yml up -d
+```
+
+我是在mac上直接安装的docker desktop，启动好的容器如下：
+
+![image.png](/blog-images/ragflow源码解析系列一之pycharm启动项目进行debug/image-3.png)
+
+备注：如果源码和docker容器都在一个机器下，那么不需要额外修改配置文件。如果源码和容器不在一个机器下，大多数可能源码在本地，mysql等容器在服务器上，就需要修改源码的配置文件去访问这些容器了。
+
+那么问题来了，在哪里修改
+
+官方文档里有这样一个步骤：
+
+![image.png](/blog-images/ragflow源码解析系列一之pycharm启动项目进行debug/image-4.png)
+
+因为.env里面配置的HOST都不是127.0.0.1，而是mysql, minio等方式，由此需要在/etc/host中设置127.0.0.1与host的对应关系。由此更改ip的时候很有可能在.env中。其实不是的，我们这种启动方式读取的是conf下的service_conf.yaml文件中。因此如果需要配置mysql、es等服务的ip，在这里修改。
+
+![image.png](/blog-images/ragflow源码解析系列一之pycharm启动项目进行debug/image-5.png)
+
+1. 服务启动
+
+```bash
+# 前端服务
+需先下载npm，下载地址：https://nodejs.org/en/download
+cd web
+npm install
+npm run dev
+
+```
+
+![image.png](/blog-images/ragflow源码解析系列一之pycharm启动项目进行debug/image-6.png)
+
+```bash
+# 后端服务
+pycharm配置两个configuration
+
+```
+
+ragflow_server.py 与前端交互的后端服务
+
+![image.png](/blog-images/ragflow源码解析系列一之pycharm启动项目进行debug/image-7.png)
+
+task_executor.py 专门处理文件切分、存向量数据库的任务
+
+![image.png](/blog-images/ragflow源码解析系列一之pycharm启动项目进行debug/image-8.png)
+
+## Tips 如何Debug
+
+1. sdk目录下提供了一些请求接口的代码，也可以用，但是这样的话乍一看其实不知道请求的接口的作用是什么。不如直接从前端来的直观。
+2. 举个例子，以创建知识库为例
+
+**创建知识库**
+
+前端点击创建知识库，可以在pycharm控制台看，调用了4个接口
+
+![image.png](/blog-images/ragflow源码解析系列一之pycharm启动项目进行debug/image-9.png)
+
+```bash
+2025-07-07 16:34:47,329 INFO     7061 127.0.0.1 - - [07/Jul/2025 16:34:47] "GET /v1/user/info HTTP/1.1" 200 -
+2025-07-07 16:34:47,338 INFO     7061 127.0.0.1 - - [07/Jul/2025 16:34:47] "GET /v1/user/tenant_info HTTP/1.1" 200 -
+2025-07-07 16:34:47,339 INFO     7061 127.0.0.1 - - [07/Jul/2025 16:34:47] "GET /v1/tenant/list HTTP/1.1" 200 -
+2025-07-07 16:34:47,348 INFO     7061 127.0.0.1 - - [07/Jul/2025 16:34:47] "POST /v1/kb/list?page=1&page_size=30&keywords= HTTP/1.1" 200 -
+
+```
+
+**以接口1: /v1/user/info 为例**
+
+在pycharm中双击shift，考虑到接口前缀拼接的问题，我们搜索/info
+
+![image.png](/blog-images/ragflow源码解析系列一之pycharm启动项目进行debug/image-10.png)
+
+瞄一眼，可以看到这个接口内容，是在api/apps/user_app.py下，然后点击进去，就可以看到这个接口内容，然后打一个断点。前端点击创建知识库之后，会在这个断点停下，然后在debug的控制台就可以愉快的玩耍了。
+
+![image.png](/blog-images/ragflow源码解析系列一之pycharm启动项目进行debug/image-11.png)
+
+这个接口使用flask_login获取当前用户登陆信息，不重要，以此为例告诉大家如何debug项目
+
+```bash
+{'access_token': 'cda7e2585b0c11f0ae4e96d3b73ad777', 'avatar': None, 'color_schema': 'Bright', 'create_date': datetime.datetime(2025, 7, 4, 19, 26, 35), 'create_time': 1751628395696, 'email': '1016312264@qq.com', 'id': 'be836e0e58c911f0a70996d3b73ad778', 'is_active': '1', 'is_anonymous': '0', 'is_authenticated': '1', 'is_superuser': False, 'language': 'Chinese', 'last_login_time': datetime.datetime(2025, 7, 4, 19, 26, 35), 'login_channel': 'password', 'nickname': 'chaoxu.ren', 'password': 'scrypt:32768:8:1$6Wse6wf0VmksHpIe$73fccb2ba4dfa8aadcb069d13079f29a72bff8bb2776e99c4d93b45ab570fbf385eb35c85125fce5aa123c730e762927fb364008fe16cf69ede54d295a4e041c', 'status': '1', 'timezone': 'UTC+8	Asia/Shanghai', 'update_date': datetime.datetime(2025, 7, 7, 16, 31, 39), 'update_time': 1751877099656}
+```
+
+给自己一些时间和耐心，吃透ragflow的原理，横扫面试，做回自我。
+
+Done!

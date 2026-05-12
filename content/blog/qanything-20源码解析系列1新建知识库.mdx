@@ -1,0 +1,137 @@
+---
+title: "Qanything 2.0源码解析系列1：新建知识库"
+date: "2024-09-19"
+excerpt: "Qanything 新建知识库的逻辑"
+tags: []
+category: "技术分享"
+author: "肥肥旭"
+---
+<aside>
+😀 前言：
+qanything所有接口都定义在sanic_api.py中
+接口函数定义在同级目录下的handler.py中
+新建知识库接口：
+`http://ip:8080/api/local_doc_qa/new_knowledge_base`
+
+</aside>
+
+如何启动qanything服务，参考 [Qanything 2.0项目部署启动手把手教程](https://www.notion.so/Qanything-2-0-4f3a3a70a05d47e3a92044cc86c39fba?pvs=21) 
+
+# 📝 逐行代码解析
+
+handle.py中找到new_knowledge_base这个方法。
+
+```bash
+@get_time_async
+async def new_knowledge_base(req: request):
+		# local_doc_qa这个是在app.run启动之前初始化好的一个全局变量，是LocalDocQA类的类对象，是Qanything的核心类。
+    local_doc_qa: LocalDocQA = req.app.ctx.local_doc_qa
+    
+    # 拿到请求参数传递的user_id的值
+    user_id = safe_get(req, 'user_id')
+    
+    # 拿到请求参数传递的user_info的值，不传默认是1234
+    user_info = safe_get(req, 'user_info', "1234")
+    
+    '''
+    检查user_id和user_info的有效性
+    1. user_id、user_info不能是None
+    2. user_id的长度不能超过64，必须是字符串类型，只能是数字、字母、下划线的组合，且必须以字母开头
+    3. user_info必须是纯数字
+    '''
+    passed, msg = check_user_id_and_user_info(user_id, user_info)
+    if not passed:
+        return sanic_json({"code": 2001, "msg": msg})
+	  
+	  # 将user_id和user_info拼成一个新user_id
+    user_id = user_id + '__' + user_info
+    debug_logger.info("new_knowledge_base %s", user_id)
+    
+    # 拿到请求参数传递的kb_name的值
+    kb_name = safe_get(req, 'kb_name')
+    debug_logger.info("kb_name: %s", kb_name)
+    
+    # 随机初始化一个默认kb_id
+    default_kb_id = 'KB' + uuid.uuid4().hex
+    
+    # 如果请求参数中传递了kb_id，那么以请求传递的这个做为kb_id，否则以随机初始化的作为kb_id
+    kb_id = safe_get(req, 'kb_id', default_kb_id)
+    
+    '''
+    kb_id纠正, 就是在这个kb_id后面拼接一个KB_SUFFIX，如果有这个KB_SUFFIX,直接返回kb_id，如果不存在，那么：
+    1. 如果kb_id以"_FAQ"结尾,比如KBc86eaa3f278f4ef9908780e8e558c6eb_FAQ，那么在kb_id和FAQ之间增加一个KB_SUFFIX，默认是_240625, 最终变成了如KBc86eaa3f278f4ef9908780e8e558c6eb_240625_FAQ
+    2. 如果kb_id不以"_FAQ"结尾，直接在kb_id后面增加一个KB_SUFFIX
+    3. 返回新的kb_id
+    '''
+    kb_id = correct_kb_id(kb_id)
+		
+		# 拿到请求参数传递的quick的值
+    is_quick = safe_get(req, 'quick', False)
+    if is_quick:
+        kb_id += "_QUICK"
+		
+		# kb_id必须以“KB”开头
+    if kb_id[:2] != 'KB':
+        return sanic_json({"code": 2001, "msg": "fail, kb_id must start with 'KB'"})
+    
+    # 从mysql qanything数据库 KnowledgeBase表中 查看这个user_id对应的kb_id是否存在
+    not_exist_kb_ids = local_doc_qa.milvus_summary.check_kb_exist(user_id, [kb_id])
+    
+    # kb_id如果存在，直接返回已存在
+    if not not_exist_kb_ids:
+        return sanic_json({"code": 2001, "msg": "fail, knowledge Base {} already exist".format(kb_id)})
+
+    # local_doc_qa.create_milvus_collection(user_id, kb_id, kb_name)
+    
+    '''
+    先从User表中检查一下User_id是否存在，如果不存在，往User表中插入一条记录，包含（user_id, user_name）这两个字段，user_name默认为None。这里官方有个bug，有人提了issue:https://github.com/netease-youdao/QAnything/issues/506. 自己先改一下代码。
+    往KnowledgeBase表中，插入一条记录，kb_id, user_id, kb_name
+    '''
+    local_doc_qa.milvus_summary.new_milvus_base(kb_id, user_id, kb_name)
+    
+    now = datetime.now()
+    timestamp = now.strftime("%Y%m%d%H%M")
+    return sanic_json({"code": 200, "msg": "success create knowledge base {}".format(kb_id),
+                       "data": {"kb_id": kb_id, "kb_name": kb_name, "timestamp": timestamp}})
+
+```
+
+# 🤗 总结归纳
+
+新建知识库请求传参如下：
+
+```bash
+{
+    "user_id": "feifeixu",
+    "kb_name": "qanything2.0",
+    "kb_id": "KBb17bd2d168604a84a59abe24e855d574"
+}
+```
+
+返回结果：
+
+```bash
+{
+    "code": 200,
+    "msg": "success create knowledge base KBb17bd2d168604a84a59abe24e855d574_240625",
+    "data": {
+        "kb_id": "KBb17bd2d168604a84a59abe24e855d574_240625",
+        "kb_name": "qanything2.0",
+        "timestamp": "202409191505"
+    }
+}
+```
+
+新建知识库主要是写数据库的操作，主要涉及两张表：
+
+1. 在User表中增加user_id的记录
+2. 在KnowledgeBase中增加user_id, kb_id, kb_name的记录
+
+# 📎 参考文章
+
+- 无
+
+<aside>
+💡 有问题，欢迎您在底部评论区留言，一起交流~
+
+</aside>

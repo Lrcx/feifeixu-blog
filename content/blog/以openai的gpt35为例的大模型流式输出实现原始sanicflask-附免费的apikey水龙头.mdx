@@ -1,0 +1,135 @@
+---
+title: "以openai的gpt3.5为例的大模型流式输出实现（原始、Sanic、Flask）- 附免费的apikey水龙头"
+date: "2024-10-09"
+excerpt: "针对大模型的流式输出，采用Sanic和Flask两种方式实现"
+tags: []
+category: "技术分享"
+author: "肥肥旭"
+---
+<aside>
+😀 前言：
+为什么需要流式输出这里就不多言了，本文主要介绍几种框架的流式输出的实现代码
+
+</aside>
+
+# 📝 原始
+
+```python
+import openai
+
+openai.api_key = 'sk-xxx'
+openai.base_url = 'xxx'
+
+resp = openai.chat.completions.create(
+    model = 'gpt-3.5-turbo',
+    messages = [{"role":'user', "content": '详细介绍一下内马尔'}],
+    stream = True
+)
+
+for chunk in resp:
+    # if chunk.choices[0].delta.content:
+    print(chunk.choices[0].delta.content, end='')
+```
+
+# 🤗 Sanic
+
+```python
+import json
+from sanic import Sanic, response
+import openai
+
+app = Sanic(__name__)
+
+openai.api_key = "sk-xxx"
+openai.base_url = "xxx"
+
+async def process_large_model(prompt):
+    resp = openai.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=[{"role": "user", "content": prompt}],
+        stream=True,
+    )
+    for chunk in resp:
+        yield chunk.choices[0].delta.content
+
+@app.post("/large_model")
+async def large_model_handler(request):
+    prompt = request.json.get("prompt")
+
+    headers = {"Cache-Control": "no-cache"}
+
+    async def stream_fn(response):
+        accumulated_response = ""
+        async for data in process_large_model(prompt):
+            # gpt3.5 最后返回的内容是None，如果是None，则结束流式响应
+            if data != None:
+                # 和SSE协议的\n\n进行区分才进行的替换，如果你发现你的流式输出多了很多empty，多半就是没有替换惹的祸
+                data = data.replace("\\n", "__hh__").replace("\n", "__hh__")
+                accumulated_response += data
+                # 最终响应的组装形式，可以根据想要输出的内容进行拼接，但必须是data：开头，\n\n结尾。
+                # output = "data: " + accumulated_response + "\n\n"
+                output = "data: " + json.dumps({"query":prompt, "answer":accumulated_response}, ensure_ascii=False) + "\n\n"
+                await response.write(output)
+            else:
+                await response.eof()
+
+    return response.ResponseStream(
+        stream_fn, content_type="text/event-stream", headers=headers
+    )
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=8080, auto_reload=True)
+
+```
+
+# 🤗 Flask
+
+```python
+from flask import Flask, Response, request
+import openai
+
+openai.api_key = "sk-xxx"
+openai.base_url = "xxx"
+
+app = Flask(__name__)
+
+def process_large_model(prompt):
+    resp = openai.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=[{"role": "user", "content": prompt}],
+        stream=True,
+    )
+    accumulated_response = ""
+    for chunk in resp:
+        if chunk.choices[0].delta.content != None:
+            accumulated_response += chunk.choices[0].delta.content
+            accumulated_response = accumulated_response.replace("\\n", "__hh__").replace("\n", "__hh__")
+            yield "data: " + accumulated_response + "\n\n"
+        # else:
+        #     yield "data: [DONE] \n\n"
+
+@app.post("/large_model")
+def large_model():
+    prompt = request.json.get("prompt")
+    return Response(
+        process_large_model(prompt),
+        # mimetype="text/event-stream",
+        content_type="text/event-stream",
+    )
+
+if __name__ == "__main__":
+    app.run("0.0.0.0", port=8081, debug=True)
+
+```
+
+# 📎 参考文章
+
+如果需要gpt水龙头的（免费获得key），这里推荐两个我自己用的：
+
+1. [https://faucet.openkey.cloud/](https://faucet.openkey.cloud/)
+2. [https://github.com/chatanywhere/GPT_API_free](https://github.com/chatanywhere/GPT_API_free)
+
+<aside>
+💡 有问题，欢迎您在底部评论区留言，一起交流~
+
+</aside>

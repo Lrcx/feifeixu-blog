@@ -1,0 +1,360 @@
+---
+title: "“MySQL性能大揭秘：同步 vs 异步插入，谁更快？”"
+date: "2025-03-04"
+excerpt: "同步与异步插入mysql效率对比，有图有代码展示mysql同步插入与异步插入的耗时情况"
+tags: []
+category: "技术分享"
+author: "肥肥旭"
+---
+<aside>
+😀 前言：
+在python中
+既有同步操作mysql的mysql-connector-python
+也有异步操作mysql的aiomysql
+
+本篇文章探索插入相同数量的数据，耗时怎么样。
+
+</aside>
+
+## 同步代码
+
+```python
+import mysql.connector
+from mysql.connector import pooling
+from mysql.connector.errors import Error as MySQLError
+from config import config
+from loguru import logger
+import time
+
+class MysqlClient:
+    def __init__(self, pool_size=8):
+        host = config.MYSQL_HOST
+        port = config.MYSQL_PORT
+        user = config.MYSQL_USER
+        password = config.MYSQL_PWD
+        database = config.MYSQL_DATABASE
+
+        self.check_database_(host, port, user, password, database)
+        dbconfig = {
+            "host": host,
+            "user": user,
+            "port": port,
+            "password": password,
+            "database": database
+        }
+        # pooling.CNX_POOL_MAXNAMESIZE = 128
+        self.cnxpool = pooling.MySQLConnectionPool(
+            pool_name='customer_service_platform', pool_size=pool_size, pool_reset_session=True, **dbconfig
+        )
+        self.free_cnx = pool_size
+        self.used_cnx = 0
+        self.create_tables_()
+        logger.info("[SUCCESS] 数据库{}连接成功".format(database))
+
+    def check_database_(self, host, port, user, password, database_name):
+        # 连接 MySQL 服务器
+        cnx = mysql.connector.connect(
+            host=host, port=port, user=user, password=password
+        )
+
+        # 检查数据库是否存在
+        cursor = cnx.cursor(buffered=True)
+        cursor.execute("SHOW DATABASES")
+        databases = [database[0] for database in cursor]
+
+        if database_name not in databases:
+            # 如果数据库不存在，则新建数据库
+            cursor.execute("CREATE DATABASE IF NOT EXISTS {}".format(database_name))
+            logger.info("数据库{}新建成功或已存在".format(database_name))
+        logger.info("[SUCCESS] 数据库{}检查通过".format(database_name))
+        # 关闭游标
+        cursor.close()
+        # 连接到数据库
+        cnx.database = database_name
+        # 关闭数据库连接
+        cnx.close()
+
+    def create_tables_(self):
+        query = f"""
+            CREATE TABLE IF NOT EXISTS ai_test (id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    timestamp TIMESTAMP NOT NULL,
+    service_name VARCHAR(255) NOT NULL,
+    log_level VARCHAR(50) NOT NULL,
+    log_message TEXT NOT NULL);
+        """
+        self.execute_query_(query, (), commit=True)
+
+    def execute_query_(
+        self,
+        query,
+        params,
+        commit=False,
+        fetch=False,
+        check=False,
+        user_dict=False,
+        multiple=False,
+    ):
+        try:
+            conn = self.cnxpool.get_connection()
+            self.used_cnx += 1
+            self.free_cnx -= 1
+            if self.free_cnx < 4:
+                logger.info(
+                    "获取连接成功，当前连接池状态：空闲连接数 {}，已使用连接数 {}".format(
+                        self.free_cnx, self.used_cnx
+                    )
+                )
+        except MySQLError as err:
+            logger.error("从连接池获取连接失败：{}".format(err))
+            return None
+
+        result = None
+        cursor = None
+        try:
+            if user_dict:
+                cursor = conn.cursor(dictionary=True)
+            else:
+                cursor = conn.cursor(buffered=True)
+
+            if multiple:
+                cursor.executemany(query, params)
+            else:
+                cursor.execute(query, params)
+
+            if commit:
+                conn.commit()
+
+            if fetch:
+                result = cursor.fetchall()
+            elif check:
+                result = cursor.rowcount
+        except MySQLError as err:
+            if err.errno == 1061:
+                logger.info(f"Index already exists (this is okay): {query}")
+            else:
+                logger.error("执行数据库操作失败：{}，SQL：{}".format(err, query))
+            if commit:
+                conn.rollback()
+        finally:
+            if cursor is not None:
+                cursor.close()
+            conn.close()
+            self.used_cnx -= 1
+            self.free_cnx += 1
+            if self.free_cnx <= 4:
+                logger.info(
+                    "连接关闭，返回连接池。当前连接池状态：空闲连接数 {}，已使用连接数 {}".format(
+                        self.free_cnx, self.used_cnx
+                    )
+                )
+
+        return result
+
+mysql_client = MysqlClient()
+
+if __name__ == '__main__':
+    data = [
+        ('2023-10-01 10:00:00', 'service1', 'INFO', 'Log message 1')
+        for _ in range(1000)
+    ]
+
+    # 记录开始时间
+    start_time = time.time()
+    # 插入数据
+    for record in data:
+        insert_sql = "INSERT INTO ai_test (timestamp, service_name, log_level, log_message) VALUES (%s, %s, %s, %s)"
+        mysql_client.execute_query_(insert_sql, record, commit=True)
+    # 记录结束时间
+    end_time = time.time()
+
+    # 计算总时间
+    total_time = end_time - start_time
+
+    print(f"Total time for synchronous insertion: {total_time:.2f} seconds")
+```
+
+![image.png](/blog-images/mysql性能大揭秘同步-vs-异步插入谁更快/image.png)
+
+## 异步代码
+
+```python
+import asyncio
+import aiomysql
+from config import config
+from loguru import logger
+import time
+
+class AsyncMysqlClient:
+    def __init__(self, pool_size=8):
+        self.host = config.MYSQL_HOST
+        self.port = config.MYSQL_PORT
+        self.user = config.MYSQL_USER
+        self.password = config.MYSQL_PWD
+        self.database = config.MYSQL_DATABASE
+        self.pool_size = pool_size
+        self.pool = None
+        self.free_cnx = pool_size
+        self.used_cnx = 0
+
+    async def initialize(self):
+        """初始化连接池并检查数据库"""
+        await self.check_database()
+        self.pool = await aiomysql.create_pool(
+            host=self.host,
+            port=self.port,
+            user=self.user,
+            password=self.password,
+            db=self.database,
+            minsize=1,
+            maxsize=self.pool_size,
+            pool_recycle=3600
+        )
+        await self.create_tables()
+        logger.info("[SUCCESS] 数据库{}连接成功".format(self.database))
+
+    async def check_database(self):
+        """检查并创建数据库"""
+        conn = await aiomysql.connect(
+            host=self.host,
+            port=self.port,
+            user=self.user,
+            password=self.password
+        )
+        async with conn.cursor() as cursor:
+            await cursor.execute("SHOW DATABASES")
+            databases = [row[0] for row in await cursor.fetchall()]
+            if self.database not in databases:
+                await cursor.execute(f"CREATE DATABASE IF NOT EXISTS {self.database}")
+                logger.info("数据库{}新建成功或已存在".format(self.database))
+            logger.info("[SUCCESS] 数据库{}检查通过".format(self.database))
+        conn.close()
+
+    async def create_tables(self):
+        """创建表"""
+        query = """
+            CREATE TABLE IF NOT EXISTS ai_test (
+                id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                timestamp TIMESTAMP NOT NULL,
+                service_name VARCHAR(255) NOT NULL,
+                log_level VARCHAR(50) NOT NULL,
+                log_message TEXT NOT NULL
+            );
+        """
+        await self.execute_query(query, (), commit=True)
+
+    async def execute_query(
+            self,
+            query,
+            params,
+            commit=False,
+            fetch=False,
+            check=False,
+            use_dict=False,
+            multiple=False,
+    ):
+        """执行数据库查询"""
+        conn = None
+        try:
+            conn = await self.pool.acquire()
+            self.used_cnx += 1
+            self.free_cnx -= 1
+
+        except Exception as err:
+            logger.error("从连接池获取连接失败：{}".format(err))
+            return None
+
+        result = None
+        cursor = None
+        try:
+            cursor_type = aiomysql.DictCursor if use_dict else aiomysql.Cursor
+            async with conn.cursor(cursor_type) as cursor:
+                if multiple:
+                    await cursor.executemany(query, params)
+                else:
+                    await cursor.execute(query, params)
+                if commit:
+                    await conn.commit()
+                if fetch:
+                    result = await cursor.fetchall()
+                elif check:
+                    result = cursor.rowcount
+        except Exception as err:
+            if "1061" in str(err):  # Duplicate key error
+                logger.info(f"Index already exists (this is okay): {query}")
+            else:
+                logger.error("执行数据库操作失败：{}，SQL：{}".format(err, query))
+            if commit:
+                await conn.rollback()
+        finally:
+            if cursor is not None:
+                await cursor.close()
+            if conn is not None:
+                self.pool.release(conn)
+                self.used_cnx -= 1
+                self.free_cnx += 1
+        return result
+
+    async def close(self):
+        """关闭连接池"""
+        if self.pool:
+            self.pool.close()
+            await self.pool.wait_closed()
+            logger.info("数据库连接池已关闭")
+
+async def insert_single_record(mysql_client, record):
+    """异步插入单条记录"""
+    insert_sql = "INSERT INTO ai_test (timestamp, service_name, log_level, log_message) VALUES (%s, %s, %s, %s)"
+    await mysql_client.execute_query(insert_sql, record, commit=True)
+
+async def main():
+    mysql_client = AsyncMysqlClient()
+    await mysql_client.initialize()
+
+    data = [
+        ('2023-10-03 10:00:00', 'service1', 'INFO', 'Log message 1')
+        for _ in range(1000)
+    ]
+    # 记录开始时间
+    start_time = time.time()
+    # 插入数据
+    # 创建所有插入任务
+    tasks = [insert_single_record(mysql_client, record) for record in data]
+    # 等待所有任务完成
+    await asyncio.gather(*tasks)
+    # 记录结束时间
+    end_time = time.time()
+    # 计算总时间
+    total_time = end_time - start_time
+    print(f"Total time for asynchronous insertion: {total_time:.2f} seconds")
+
+    # 关闭连接池
+    await mysql_client.close()
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+![image.png](/blog-images/mysql性能大揭秘同步-vs-异步插入谁更快/image-1.png)
+
+# 🤗 总结归纳
+
+一条一条插入1000条数据
+
+|  | 8连接池 | 16连接池 |
+| --- | --- | --- |
+| 同步插入 | 36.74s | 34.53 |
+| 异步插入 | 1.14 | 0.76 |
+
+在同步代码无论是8连接池还是16连接池，其实都是连接池中的一个连接在操作，表格中的时间不一样也是正常的波动。
+
+可以看到异步插入的效率远高于同步插入。有人说，1000条数据我完全可以使用`cursor.executemany` 操作呀，只需要0.06s就插入了1000条数据，是的，你当然可以，如果你的服务中插入操作并不频繁，一次插入多条数据也ok，这么操作完全可以，效率比一条一条插入高很多。但是比如在日志等场景下，插入操作比较频繁，异步插入首选。
+
+# 📎 参考文章
+
+- 同步代码参考Qanything项目源码
+- 异步代码使用grok3将同步代码进行重构
+
+<aside>
+💡 有问题，欢迎您在底部评论区留言，一起交流~
+
+</aside>

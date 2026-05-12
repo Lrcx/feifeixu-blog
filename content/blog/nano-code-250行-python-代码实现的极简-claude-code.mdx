@@ -1,0 +1,175 @@
+---
+title: "Nano Code: 250行 Python 代码实现的极简 Claude Code"
+date: "2026-01-21"
+excerpt: "这是一个极简版的 Claude Code 替代方案"
+tags: ["agent", "nanocode"]
+category: "技术分享"
+author: "肥肥旭"
+---
+😀 **前言**
+这是一个极简版的 Claude Code 替代方案。
+核心特点：**单 Python 文件实现**、**零第三方依赖**、**代码量约 250 行**。
+它完美展示了 LLM Agent 的核心工作流：思考 -> 调用工具 -> 获取结果 -> 最终反馈。
+
+## 1. 核心原理：工具定义 (Tools)
+
+为了让 AI 具备操作文件系统和执行命令的能力，我们定义了 `read`, `write`, `edit`, `glob`, `grep`, `bash` 这六个基础工具。
+
+AI 模型（如 Claude 3.5 Sonnet / Opus）通过识别这些工具的定义，来决定何时以及如何调用它们。
+
+```python
+TOOLS = {
+    "read": (
+        "Read file with line numbers (file path, not directory)",
+        {"path": "string", "offset": "number?", "limit": "number?"},
+        read,
+    ),
+    "write": (
+        "Write content to file",
+        {"path": "string", "content": "string"},
+        write,
+    ),
+    "edit": (
+        "Replace old with new in file (old must be unique unless all=true)",
+        {"path": "string", "old": "string", "new": "string", "all": "boolean?"},
+        edit,
+    ),
+    "glob": (
+        "Find files by pattern, sorted by mtime",
+        {"pat": "string", "path": "string?"},
+        glob,
+    ),
+    "grep": (
+        "Search files for regex pattern",
+        {"pat": "string", "path": "string?"},
+        grep,
+    ),
+    "bash": (
+        "Run shell command",
+        {"cmd": "string"},
+        bash,
+    ),
+}
+```
+
+## 2. 交互逻辑拆解 (The Agent Loop)
+
+Nano Code 的核心是一个由 `messages` 列表驱动的状态机。我记录了一次包含三个连续任务的完整交互日志，以此来展示 Nano Code、工具（Tool）与大模型（Model）之间的协作流程。
+
+### 第一回合：环境侦察
+
+**用户 (User):** `what files are here?`
+
+**模型 (Assistant):**
+模型判断需要查看目录，于是发起工具调用请求。
+
+```json
+{
+  "role": "assistant",
+  "content": [
+    {
+      "type": "tool_use",
+      "name": "bash",
+      "input": {"cmd": "ls -la"}
+    }
+  ]
+}
+```
+
+**工具 (Tool Result):**
+本地 Python 脚本执行 `ls -la` 并返回结果。
+
+```json
+{
+  "role": "user",
+  "content": [
+    {
+      "type": "tool_result",
+      "content": "total 384\n... nanocode.py ... README.md ..."
+    }
+  ]
+}
+```
+
+**模型 (Assistant):**
+收到文件列表后，模型生成了人类可读的总结。
+> “Here are the files in the current directory: … This appears to be a Python project called ‘nanocode’.”
+
+---
+
+### 第二回合：精确查询
+
+**用户 (User):** `how many lines does nanocode.py have?`
+
+**模型 (Assistant):**
+模型选择使用 `bash` 工具运行 `wc -l` 命令（它也可以选择用 `read` 读取文件，但 `wc -l` 更高效，体现了模型的智能）。
+
+```json
+{
+  "type": "tool_use",
+  "name": "bash",
+  "input": {"cmd": "wc -l nanocode.py"}
+}
+```
+
+**工具 (Tool Result):**
+返回 `276 nanocode.py`。
+
+**模型 (Assistant):**
+> “`nanocode.py` has **276 lines**.” 
+
+---
+
+### 第三回合：代码生成与测试 (Agentic Behavior)
+
+这是最精彩的部分。用户只给了一个指令，模型自动完成了“编写”和“测试”两个步骤。
+
+**用户 (User):** `写个脚本实现python冒泡排序`
+
+**步骤 1：编写代码**
+模型调用 `write` 工具创建文件。
+
+```json
+{
+  "type": "tool_use",
+  "name": "write",
+  "input": {
+    "path": "bubble_sort.py",
+    "content": "def bubble_sort(arr):..."
+  }
+}
+```
+
+*系统反馈：ok*
+
+**步骤 2：自我修正/验证**
+模型并没有直接结束，而是决定运行一下刚才写的代码来确保它是工作的。
+
+```json
+{
+  "role": "assistant",
+  "text": "已创建 `bubble_sort.py`，运行测试一下：",
+  "content": [
+    {
+      "type": "tool_use",
+      "name": "bash",
+      "input": {"cmd": "python3 bubble_sort.py"}
+    }
+  ]
+}
+```
+
+**工具 (Tool Result):**
+返回程序的运行输出：
+> 原数组: [64, 34, 25, 12, 22, 11, 90]
+> 排序后: [11, 12, 22, 25, 34, 64, 90]
+
+**步骤 3：最终确认**
+模型看到输出正确，向用户汇报最终结果。
+> “脚本已创建并测试通过！冒泡排序的时间复杂度为 O(n²)。”
+
+## 总结
+
+这个简单的 `messages` 列表记录了 AI 从“被动问答”进化到“主动行动”的过程。通过标准化的 Input/Output 接口，哪怕只有 250 行代码，也能构建出强大的 AI 编程助手。
+
+💡 **有问题？** 欢迎在底部评论区留言，一起交流 Agent 开发心得~
