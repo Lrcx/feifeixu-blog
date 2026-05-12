@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { ArrowRight, BookOpen, Newspaper, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { Header, Footer, Container } from "@/components/layout/header";
 import type { Post } from "@/lib/mdx";
@@ -11,36 +12,63 @@ function formatDateChinese(date: string): string {
 }
 
 export default function HomePageClient({ posts }: { posts: Post[] }) {
+  const featured = posts.slice(0, 6);
+
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAFAFA]">
+    <div className="min-h-screen flex flex-col">
       <Header />
 
-      <main className="flex-1 py-24">
+      <main className="flex-1 py-16 md:py-24">
         <Container>
           <motion.section
-            className="mb-16"
+            className="mb-16 grid gap-10 md:grid-cols-[1.15fr_0.85fr] md:items-end"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <h1 className="text-4xl font-bold mb-4">
-              你好，我是肥肥旭
-            </h1>
-            <p className="text-lg text-secondary max-w-xl mb-6">
-              AI/LLM 工程师，探索智能系统前沿。
-              分享 Agent、RAG 以及 AI 应用开发的技术洞察。
-            </p>
-            <div className="flex gap-4">
+            <div>
+              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-border bg-card/80 px-3 py-1.5 text-sm font-medium text-secondary shadow-sm">
+                <Sparkles className="size-4 text-accent" aria-hidden="true" />
+                AI 工程、Agent 与长期写作
+              </div>
+              <h1 className="max-w-3xl text-4xl font-bold leading-tight tracking-normal text-primary md:text-6xl">
+                把复杂的 AI 系统，写成可以复用的工程经验。
+              </h1>
+              <p className="mt-6 max-w-2xl text-base leading-8 text-secondary md:text-lg">
+                我是肥肥旭，记录 LLM 应用、RAG、Agent、源码阅读和产品工程里的真实问题。这里更像一张持续更新的技术工作台。
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link
+                  href="/blog"
+                  className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(24,24,27,0.18)] transition-colors duration-200 hover:bg-accent"
+                >
+                  阅读博客
+                  <ArrowRight className="size-4" aria-hidden="true" />
+                </Link>
+                <Link
+                  href="/ai-daily-report"
+                  className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-5 py-2.5 text-sm font-semibold text-primary transition-colors duration-200 hover:border-accent/50 hover:text-accent"
+                >
+                  看 AI 日报
+                </Link>
+              </div>
+            </div>
+
+            <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-1">
               <Link
                 href="/blog"
-                className="px-4 py-2 bg-accent text-white rounded-md hover:bg-accent/90 transition-colors"
+                className="group rounded-2xl border border-border bg-card/90 p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-md"
               >
-                阅读博客
+                <BookOpen className="mb-5 size-5 text-accent" aria-hidden="true" />
+                <p className="text-3xl font-bold text-primary">{posts.length}</p>
+                <p className="mt-1 text-sm text-secondary">篇技术文章与源码笔记</p>
               </Link>
               <Link
-                href="/about"
-                className="px-4 py-2 border border-border text-secondary rounded-md hover:border-accent hover:text-accent transition-colors"
+                href="/ai-daily-report"
+                className="group rounded-2xl border border-border bg-card/90 p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-md"
               >
-                关于我
+                <Newspaper className="mb-5 size-5 text-accent" aria-hidden="true" />
+                <p className="text-lg font-semibold text-primary">AI Daily</p>
+                <p className="mt-1 text-sm leading-6 text-secondary">每天筛一遍新工具、新模型和工程动态。</p>
               </Link>
             </div>
           </motion.section>
@@ -50,18 +78,22 @@ export default function HomePageClient({ posts }: { posts: Post[] }) {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
-            <div className="flex items-center justify-between mb-8">
-              <h2 className="text-xl font-semibold">最新文章</h2>
+            <div className="mb-8 flex items-end justify-between gap-4 border-t border-border pt-8">
+              <div>
+                <p className="text-sm font-medium text-accent">Latest writing</p>
+                <h2 className="mt-1 text-2xl font-bold text-primary">最新文章</h2>
+              </div>
               <Link
                 href="/blog"
-                className="text-sm text-accent hover:text-accent/80"
+                className="inline-flex items-center gap-1 text-sm font-medium text-accent hover:text-primary"
               >
-                查看全部 →
+                查看全部
+                <ArrowRight className="size-4" aria-hidden="true" />
               </Link>
             </div>
 
-            <div className="space-y-4">
-              {posts.map((post, i) => (
+            <div className="grid gap-4 md:grid-cols-2">
+              {featured.map((post, i) => (
                 <motion.article
                   key={post.slug}
                   initial={{ opacity: 0, y: 10 }}
@@ -70,20 +102,24 @@ export default function HomePageClient({ posts }: { posts: Post[] }) {
                 >
                   <Link
                     href={`/blog/${post.slug}`}
-                    className="block p-4 border border-border rounded-lg hover:border-accent/50 transition-colors bg-card"
+                    className="group flex h-full flex-col rounded-2xl border border-border bg-card/90 p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-md"
                   >
-                    <div className="flex items-center gap-2 mb-2">
+                    <div className="mb-3 flex flex-wrap items-center gap-2">
                       {post.frontmatter.category && (
-                        <span className="text-xs text-accent">{post.frontmatter.category}</span>
+                        <span className="rounded-full bg-blue-50 px-2.5 py-1 text-xs font-medium text-blue-700">{post.frontmatter.category}</span>
                       )}
                       <span className="text-xs text-secondary">
                         {formatDateChinese(post.frontmatter.date)}
                       </span>
                     </div>
-                    <h3 className="font-medium mb-1">{post.frontmatter.title}</h3>
+                    <h3 className="text-lg font-semibold leading-7 text-primary transition-colors group-hover:text-accent">{post.frontmatter.title}</h3>
                     {post.frontmatter.excerpt && (
-                      <p className="text-sm text-secondary">{post.frontmatter.excerpt}</p>
+                      <p className="mt-3 line-clamp-2 text-sm leading-6 text-secondary">{post.frontmatter.excerpt}</p>
                     )}
+                    <span className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-accent">
+                      阅读
+                      <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+                    </span>
                   </Link>
                 </motion.article>
               ))}

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { ArrowRight, CalendarDays, Filter } from "lucide-react";
 import Link from "next/link";
 import { Header, Footer, Container } from "@/components/layout/header";
 import type { DailyItem } from "@/lib/daily";
@@ -55,7 +56,7 @@ export default function DailyPageClient({ items }: { items: DailyItem[] }) {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAFAFA]">
+    <div className="min-h-screen flex flex-col">
       <Header />
 
       <main className="flex-1 py-16 md:py-24">
@@ -65,25 +66,33 @@ export default function DailyPageClient({ items }: { items: DailyItem[] }) {
             animate={{ opacity: 1, y: 0 }}
             className="mb-12"
           >
-            <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">AI 日报</h1>
-            <p className="text-gray-500 leading-relaxed">
-              每日精选 AI 资讯，紧跟技术前沿
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-card/80 px-3 py-1.5 text-sm font-medium text-secondary">
+              <CalendarDays className="size-4 text-accent" aria-hidden="true" />
+              每日精选
+            </div>
+            <h1 className="text-4xl font-bold leading-tight text-primary md:text-5xl">AI 日报</h1>
+            <p className="mt-4 max-w-2xl text-secondary leading-8">
+              快速扫描 AI 产品、模型、开源项目和工程动态，把零散资讯变成可回看的时间线。
             </p>
           </motion.div>
 
-          <div className="mb-8 flex flex-col gap-3 border-y border-gray-200 py-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="mb-8 flex flex-col gap-4 rounded-2xl border border-border bg-card/90 p-4 shadow-sm sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-900">
+              <p className="text-sm font-medium text-primary">
                 {selectedYear && selectedMonth
                   ? `${selectedYear}年${Number(selectedMonth)}月`
                   : "暂无可筛选日报"}
               </p>
-              <p className="text-xs text-gray-500">
+              <p className="text-xs text-secondary">
                 共 {filteredItems.length} 篇日报
               </p>
             </div>
 
-            <div className="flex gap-3">
+            <div className="flex flex-wrap gap-3">
+              <span className="inline-flex h-10 items-center gap-2 rounded-full bg-black/[0.035] px-3 text-sm font-medium text-secondary">
+                <Filter className="size-4" aria-hidden="true" />
+                筛选
+              </span>
               <label className="sr-only" htmlFor="daily-year">
                 年份
               </label>
@@ -91,7 +100,7 @@ export default function DailyPageClient({ items }: { items: DailyItem[] }) {
                 id="daily-year"
                 value={selectedYear}
                 onChange={(event) => handleYearChange(event.target.value)}
-                className="h-10 rounded-md border border-gray-200 bg-white px-3 text-sm text-gray-900 outline-none transition-colors hover:border-gray-300 focus:border-blue-500"
+                className="h-10 cursor-pointer rounded-full border border-border bg-white px-3 text-sm text-primary outline-none transition-colors hover:border-accent/50 focus:border-accent"
               >
                 {years.map((year) => (
                   <option key={year} value={year}>
@@ -107,7 +116,7 @@ export default function DailyPageClient({ items }: { items: DailyItem[] }) {
                 id="daily-month"
                 value={selectedMonth}
                 onChange={(event) => setSelectedMonth(event.target.value)}
-                className="h-10 rounded-md border border-gray-200 bg-white px-3 text-sm text-gray-900 outline-none transition-colors hover:border-gray-300 focus:border-blue-500"
+                className="h-10 cursor-pointer rounded-full border border-border bg-white px-3 text-sm text-primary outline-none transition-colors hover:border-accent/50 focus:border-accent"
               >
                 {months.map((month) => (
                   <option key={month} value={month}>
@@ -118,42 +127,45 @@ export default function DailyPageClient({ items }: { items: DailyItem[] }) {
             </div>
           </div>
 
-          <div className="grid gap-4">
+          <div className="grid gap-4 md:grid-cols-2">
             {filteredItems.map((item, i) => (
               <motion.article
                 key={item.slug}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.05 + i * 0.03 }}
+                transition={{ delay: 0.05 + Math.min(i, 8) * 0.03 }}
               >
                 <Link
                   href={`/ai-daily-report/${item.slug}`}
-                  className="group block bg-white rounded-xl border border-gray-200 p-5 hover:border-blue-500 hover:shadow-sm transition-all duration-200"
+                  className="group flex h-full flex-col rounded-2xl border border-border bg-card/90 p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-md"
                 >
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-blue-50 text-blue-700">
+                  <div className="mb-3 flex flex-wrap items-center gap-2">
+                    <span className="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-1 text-xs font-medium text-blue-700">
                       {item.frontmatter.category}
                     </span>
-                    <time className="text-xs text-gray-500">
+                    <time className="text-xs text-secondary">
                       {formatDateChinese(item.frontmatter.date)}
                     </time>
-                    <span className="text-gray-300">·</span>
-                    <span className="text-xs text-gray-500">{item.frontmatter.source}</span>
+                    <span className="text-xs text-secondary">{item.frontmatter.source}</span>
                   </div>
-                  <h2 className="text-base font-semibold text-gray-900 group-hover:text-blue-600 transition-colors mb-2">
+                  <h2 className="text-base font-semibold leading-7 text-primary transition-colors group-hover:text-accent">
                     {item.frontmatter.title}
                   </h2>
-                  <p className="text-sm text-gray-500 line-clamp-2 leading-relaxed">
+                  <p className="mt-3 line-clamp-3 text-sm leading-6 text-secondary">
                     {item.content.slice(0, 150).replace(/[#*>\-]/g, '').trim()}
                   </p>
+                  <span className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-accent">
+                    查看日报
+                    <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+                  </span>
                 </Link>
               </motion.article>
             ))}
           </div>
 
           {filteredItems.length === 0 && (
-            <div className="text-center py-16">
-              <p className="text-gray-500">暂无日报内容</p>
+            <div className="rounded-2xl border border-border bg-card/80 py-16 text-center">
+              <p className="text-secondary">暂无日报内容</p>
             </div>
           )}
         </Container>

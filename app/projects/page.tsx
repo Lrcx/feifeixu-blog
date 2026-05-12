@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Star } from "lucide-react";
 import { Header, Footer, Container } from "@/components/layout/header";
 
 const projects = [
@@ -26,40 +27,45 @@ const projects = [
 
 export default function ProjectsPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAFAFA]">
+    <div className="min-h-screen flex flex-col">
       <Header />
 
-      <main className="flex-1 py-24">
+      <main className="flex-1 py-16 md:py-24">
         <Container>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
+            className="mb-12"
           >
-            <h1 className="text-3xl font-bold mb-2">作品集</h1>
-            <p className="text-secondary mb-12">
-              AI 应用和开源项目
+            <p className="mb-3 text-sm font-medium text-accent">Projects</p>
+            <h1 className="text-4xl font-bold leading-tight text-primary md:text-5xl">作品集</h1>
+            <p className="mt-4 max-w-2xl text-secondary leading-8">
+              AI 应用和开源项目。这里展示的是我关注的工程方向和可复用的产品实验。
             </p>
           </motion.div>
 
-          <div className="space-y-6">
+          <div className="grid gap-4 md:grid-cols-3">
             {projects.map((project, i) => (
               <motion.div
                 key={project.name}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 + i * 0.1 }}
-                className="border border-border rounded-lg p-6 hover:border-accent/50 transition-colors bg-card"
+                className="rounded-2xl border border-border bg-card/90 p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-md"
               >
-                <div className="flex items-start justify-between mb-2">
-                  <h2 className="font-semibold">{project.name}</h2>
-                  <span className="text-sm text-secondary">★ {project.stars}</span>
+                <div className="mb-3 flex items-start justify-between gap-3">
+                  <h2 className="font-semibold text-primary">{project.name}</h2>
+                  <span className="inline-flex items-center gap-1 rounded-full bg-black/[0.035] px-2 py-1 text-xs font-medium text-secondary">
+                    <Star className="size-3.5 fill-current" aria-hidden="true" />
+                    {project.stars}
+                  </span>
                 </div>
-                <p className="text-sm text-secondary mb-4">{project.desc}</p>
-                <div className="flex gap-2">
+                <p className="mb-5 text-sm leading-6 text-secondary">{project.desc}</p>
+                <div className="flex flex-wrap gap-2">
                   {project.tech.map((t) => (
                     <span
                       key={t}
-                      className="text-xs px-2 py-1 bg-muted rounded"
+                      className="rounded-full bg-muted px-2.5 py-1 text-xs font-medium text-secondary"
                     >
                       {t}
                     </span>

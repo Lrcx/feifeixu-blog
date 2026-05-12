@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { ArrowLeft, CalendarDays } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
@@ -15,41 +16,40 @@ function formatDateChinese(date: string): string {
 
 export default function BlogPostPageClient({ post }: { post: Post }) {
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAFAFA]">
+    <div className="min-h-screen flex flex-col">
       <Header />
 
       <main className="flex-1 py-16 md:py-24">
-        <Container>
+        <Container size="narrow">
           <motion.article
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
             <Link
               href="/blog"
-              className="inline-flex items-center text-sm text-gray-500 hover:text-gray-900 transition-colors mb-6"
+              className="mb-8 inline-flex items-center gap-2 rounded-full border border-border bg-card/80 px-3 py-1.5 text-sm font-medium text-secondary transition-colors hover:border-accent/40 hover:text-accent"
             >
-              <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
+              <ArrowLeft className="size-4" aria-hidden="true" />
               返回博客列表
             </Link>
 
-            <header className="mb-10 pb-8 border-b border-gray-200">
-              <div className="flex items-center gap-3 mb-4">
+            <header className="mb-10 rounded-3xl border border-border bg-card/90 p-6 shadow-sm md:p-8">
+              <div className="mb-5 flex flex-wrap items-center gap-3">
                 {post.frontmatter.category && (
-                  <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-blue-50 text-blue-700">
+                  <span className="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-1 text-xs font-medium text-blue-700">
                     {post.frontmatter.category}
                   </span>
                 )}
-                <time className="text-sm text-gray-500">
+                <time className="inline-flex items-center gap-1.5 text-sm text-secondary">
+                  <CalendarDays className="size-4" aria-hidden="true" />
                   {formatDateChinese(post.frontmatter.date)}
                 </time>
               </div>
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight">
+              <h1 className="text-3xl font-bold leading-tight text-primary md:text-5xl">
                 {post.frontmatter.title}
               </h1>
               {post.frontmatter.excerpt && (
-                <p className="mt-4 text-gray-500 leading-relaxed">
+                <p className="mt-5 text-base leading-8 text-secondary">
                   {post.frontmatter.excerpt}
                 </p>
               )}
@@ -59,47 +59,47 @@ export default function BlogPostPageClient({ post }: { post: Post }) {
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
                 components={{
-                  h1: ({ children }) => null,
+                  h1: () => null,
                   h2: ({ children }) => (
-                    <h2 className="text-xl font-bold text-gray-900 mt-12 mb-4">
+                    <h2 className="text-xl font-bold text-primary">
                       {children}
                     </h2>
                   ),
                   h3: ({ children }) => (
-                    <h3 className="text-lg font-semibold text-gray-800 mt-8 mb-3">
+                    <h3 className="text-lg font-semibold text-primary">
                       {children}
                     </h3>
                   ),
                   p: ({ children }) => (
-                    <p className="text-gray-600 leading-relaxed">{children}</p>
+                    <p>{children}</p>
                   ),
                   ul: ({ children }) => (
-                    <ul className="space-y-2 my-4">{children}</ul>
+                    <ul className="list-disc">{children}</ul>
                   ),
                   ol: ({ children }) => (
                     <ol className="space-y-2 my-4 list-decimal pl-5">{children}</ol>
                   ),
                   li: ({ children }) => (
-                    <li className="text-gray-600 leading-relaxed">{children}</li>
+                    <li>{children}</li>
                   ),
                   blockquote: ({ children }) => (
-                    <blockquote className="px-4 py-3 bg-gray-50 border-l-4 border-blue-500 rounded-r-lg my-6">
-                      <div className="text-gray-600 italic">{children}</div>
+                    <blockquote className="my-7 rounded-r-2xl border-l-4 border-accent bg-blue-50/60 px-5 py-4">
+                      <div className="text-secondary">{children}</div>
                     </blockquote>
                   ),
                   hr: () => (
                     <hr className="my-10 border-gray-200" />
                   ),
                   strong: ({ children }) => (
-                    <strong className="font-semibold text-gray-900">{children}</strong>
+                    <strong className="font-semibold text-primary">{children}</strong>
                   ),
                   code: ({ children }) => (
-                    <code className="rounded bg-gray-100 px-1.5 py-0.5 text-sm text-gray-800">
+                    <code className="rounded-md bg-muted px-1.5 py-0.5 text-sm text-primary">
                       {children}
                     </code>
                   ),
                   pre: ({ children }) => (
-                    <pre className="overflow-x-auto rounded-xl bg-gray-950 p-4 text-sm text-gray-100">
+                    <pre className="overflow-x-auto rounded-2xl bg-gray-950 p-5 text-sm leading-7 text-gray-100">
                       {children}
                     </pre>
                   ),
@@ -108,7 +108,7 @@ export default function BlogPostPageClient({ post }: { post: Post }) {
                       href={href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:text-blue-700 hover:underline transition-colors"
+                      className="font-medium text-accent underline decoration-blue-200 underline-offset-4 transition-colors hover:text-primary"
                     >
                       {children}
                     </a>
@@ -117,7 +117,7 @@ export default function BlogPostPageClient({ post }: { post: Post }) {
                     if (typeof src !== "string" || !src) return null;
 
                     return (
-                      <figure className="my-8 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+                      <figure className="my-8 overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
                         <Image
                           src={src}
                           alt={alt || ""}
@@ -127,7 +127,7 @@ export default function BlogPostPageClient({ post }: { post: Post }) {
                           unoptimized
                         />
                         {alt && (
-                          <figcaption className="border-t border-gray-100 px-4 py-3 text-center text-xs text-gray-500">
+                          <figcaption className="border-t border-border px-4 py-3 text-center text-xs text-secondary">
                             {alt}
                           </figcaption>
                         )}

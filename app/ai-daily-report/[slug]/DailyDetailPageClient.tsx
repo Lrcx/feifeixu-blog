@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { ArrowLeft, CalendarDays } from "lucide-react";
 import Link from "next/link";
 import { Header, Footer, Container } from "@/components/layout/header";
 import type { DailyItem } from "@/lib/daily";
@@ -15,44 +16,39 @@ function formatDateChinese(date: string): string {
 
 export default function DailyDetailPageClient({ item }: { item: DailyItem }) {
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAFAFA]">
+    <div className="min-h-screen flex flex-col">
       <Header />
 
       <main className="flex-1 py-16 md:py-24">
-        <Container>
+        <Container size="narrow">
           <motion.article
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            {/* Back */}
             <Link
               href="/ai-daily-report"
-              className="inline-flex items-center text-sm text-gray-500 hover:text-gray-900 transition-colors mb-6"
+              className="mb-8 inline-flex items-center gap-2 rounded-full border border-border bg-card/80 px-3 py-1.5 text-sm font-medium text-secondary transition-colors hover:border-accent/40 hover:text-accent"
             >
-              <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
+              <ArrowLeft className="size-4" aria-hidden="true" />
               返回日报列表
             </Link>
 
-            {/* Header */}
-            <header className="mb-10 pb-8 border-b border-gray-200">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-blue-50 text-blue-700">
+            <header className="mb-10 rounded-3xl border border-border bg-card/90 p-6 shadow-sm md:p-8">
+              <div className="mb-5 flex flex-wrap items-center gap-3">
+                <span className="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-1 text-xs font-medium text-blue-700">
                   {item.frontmatter.category}
                 </span>
-                <time className="text-sm text-gray-500">
+                <time className="inline-flex items-center gap-1.5 text-sm text-secondary">
+                  <CalendarDays className="size-4" aria-hidden="true" />
                   {formatDateChinese(item.frontmatter.date)}
                 </time>
-                <span className="text-gray-300">·</span>
-                <span className="text-sm text-gray-500">{item.frontmatter.source}</span>
+                <span className="text-sm text-secondary">{item.frontmatter.source}</span>
               </div>
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight">
+              <h1 className="text-3xl font-bold leading-tight text-primary md:text-5xl">
                 {item.frontmatter.title}
               </h1>
             </header>
 
-            {/* Content */}
             <div className="article-content space-y-6">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
@@ -75,57 +71,48 @@ export default function DailyDetailPageClient({ item }: { item: DailyItem }) {
                     // 数字编号的标题 -> 子标题
                     if (text.match(/^\d+\./)) {
                       return (
-                        <h3 className="text-base font-semibold text-gray-800 mt-6 mb-3">
+                        <h3 className="text-base font-semibold text-primary">
                           {children}
                         </h3>
                       );
                     }
                     return (
-                      <h2 className="text-xl font-bold text-gray-900 mt-10 mb-4">
+                      <h2 className="text-xl font-bold text-primary">
                         {children}
                       </h2>
                     );
                   },
                   h2: ({ children }) => (
-                    <h3 className="text-lg font-semibold text-gray-800 mt-8 mb-3">
+                    <h3 className="text-lg font-semibold text-primary">
                       {children}
                     </h3>
                   ),
                   p: ({ children }) => (
-                    <p className="text-gray-600 leading-relaxed">
+                    <p>
                       {children}
                     </p>
                   ),
                   ul: ({ children }) => (
-                    <ul className="space-y-2 my-4">
+                    <ul className="list-disc">
                       {children}
                     </ul>
                   ),
                   ol: ({ children }) => (
-                    <ol className="space-y-2 my-4">
+                    <ol className="list-decimal">
                       {children}
                     </ol>
                   ),
-                  li: ({ children }) => {
-                    const text = String(children);
-                    // 列表项不带链接图标
-                    return (
-                      <li className="text-gray-600 leading-relaxed flex items-start">
-                        <span className="inline-block w-1.5 h-1.5 rounded-full bg-blue-400 mt-2 mr-3 shrink-0" />
-                        <span>{children}</span>
-                      </li>
-                    );
-                  },
+                  li: ({ children }) => <li>{children}</li>,
                   blockquote: ({ children }) => (
-                    <blockquote className="px-4 py-3 bg-gray-50 border-l-4 border-blue-500 rounded-r-lg my-6">
-                      <div className="text-gray-600 italic">{children}</div>
+                    <blockquote className="my-7 rounded-r-2xl border-l-4 border-accent bg-blue-50/60 px-5 py-4">
+                      <div className="text-secondary">{children}</div>
                     </blockquote>
                   ),
                   hr: () => (
                     <hr className="my-8 border-gray-200" />
                   ),
                   strong: ({ children }) => (
-                    <strong className="font-semibold text-gray-900">{children}</strong>
+                    <strong className="font-semibold text-primary">{children}</strong>
                   ),
                   img: ({ src, alt }) => {
                     if (typeof src !== "string" || !src) return null;
@@ -135,13 +122,13 @@ export default function DailyDetailPageClient({ item }: { item: DailyItem }) {
                       ? src
                       : `/daily-images/${item.frontmatter.date}/${localImagePath}`;
                     return (
-                      <figure className="my-6">
+                      <figure className="my-8 overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
                         <Image
                           src={imgSrc}
                           alt={alt || ""}
                           width={700}
                           height={400}
-                          className="rounded-lg w-full h-auto"
+                          className="h-auto w-full"
                           unoptimized
                         />
                       </figure>
@@ -157,9 +144,9 @@ export default function DailyDetailPageClient({ item }: { item: DailyItem }) {
                           href={href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center text-sm text-blue-600 hover:text-blue-700 hover:underline transition-colors"
+                          className="inline-flex items-center text-sm font-medium text-accent underline decoration-blue-200 underline-offset-4 transition-colors hover:text-primary"
                         >
-                          <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="mr-1.5 size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                           </svg>
                           {children}
@@ -171,7 +158,7 @@ export default function DailyDetailPageClient({ item }: { item: DailyItem }) {
                         href={href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-blue-600 hover:text-blue-700 hover:underline transition-colors"
+                        className="font-medium text-accent underline decoration-blue-200 underline-offset-4 transition-colors hover:text-primary"
                       >
                         {children}
                       </a>
@@ -183,9 +170,8 @@ export default function DailyDetailPageClient({ item }: { item: DailyItem }) {
               </ReactMarkdown>
             </div>
 
-            {/* Footer */}
-            <footer className="mt-12 pt-8 border-t border-gray-200">
-              <p className="text-sm text-gray-500 italic">
+            <footer className="mt-12 rounded-2xl border border-border bg-card/80 p-5">
+              <p className="text-sm text-secondary">
                 *以上内容由 AI 自动生成并整理，仅供参考。
               </p>
             </footer>

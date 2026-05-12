@@ -1,87 +1,120 @@
 @import "tailwindcss";
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   SWISS MODERNISM 2.0 - Minimal Blog Design System (Light Mode Only)
-════════════════════════════════════════════════════════════════════════════ */
-
 @theme inline {
-  --color-background: #FAFAFA;
+  --color-background: #F7F6F2;
   --color-foreground: #09090B;
   --color-primary: #18181B;
-  --color-secondary: #71717A;
-  --color-muted: #E4E4E7;
-  --color-border: #E4E4E7;
+  --color-secondary: #52525B;
+  --color-muted: #ECEAE3;
+  --color-border: #DDD8CB;
   --color-accent: #2563EB;
-  --color-card: #FFFFFF;
+  --color-card: #FFFDF8;
   --font-sans: 'Noto Sans SC', system-ui, sans-serif;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   BASE
-════════════════════════════════════════════════════════════════════════════ */
-
 body {
-  background: #FAFAFA;
+  background:
+    linear-gradient(90deg, rgba(24, 24, 27, 0.035) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(24, 24, 27, 0.03) 1px, transparent 1px),
+    #F7F6F2;
+  background-size: 40px 40px, 40px 40px, auto;
   color: #09090B;
   font-family: 'Noto Sans SC', system-ui, sans-serif;
   line-height: 1.6;
+  text-rendering: optimizeLegibility;
 }
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   FOCUS (Accessibility)
-════════════════════════════════════════════════════════════════════════════ */
 
 :focus-visible {
   outline: 2px solid #2563EB;
   outline-offset: 2px;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   REDUCED MOTION
-════════════════════════════════════════════════════════════════════════════ */
-
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
   }
 }
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   SELECTION
-════════════════════════════════════════════════════════════════════════════ */
 
 ::selection {
   background: #2563EB;
   color: white;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   ARTICLE CONTENT
-════════════════════════════════════════════════════════════════════════════ */
-
 .article-content {
-  font-size: 15px;
+  color: #3F3F46;
+  font-size: 16px;
+  line-height: 1.85;
+}
+
+.article-content :where(h2, h3, h4) {
+  color: #18181B;
+  letter-spacing: 0;
+  scroll-margin-top: 96px;
 }
 
 .article-content h2 {
-  font-size: 1.125rem;
+  border-top: 1px solid #DDD8CB;
+  font-size: 1.35rem;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
 }
 
 .article-content h3 {
-  font-size: 1rem;
+  font-size: 1.08rem;
+  margin-top: 2rem;
 }
 
 .article-content p {
-  max-width: 65ch;
-  margin-bottom: 1rem;
+  margin-bottom: 1.15rem;
+  max-width: 72ch;
 }
 
-.article-content ul {
-  list-style: none;
-  padding-left: 0;
+.article-content :where(ul, ol) {
+  margin: 1rem 0 1.4rem;
+  padding-left: 1.25rem;
+}
+
+.article-content li {
+  margin: 0.35rem 0;
+  padding-left: 0.15rem;
 }
 
 .article-content figure {
+  margin: 2rem 0;
+}
+
+.article-content :where(pre, table) {
+  max-width: 100%;
+}
+
+.article-content pre {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 18px 50px rgba(24, 24, 27, 0.18);
+}
+
+.article-content table {
+  border-collapse: collapse;
+  display: block;
   margin: 1.5rem 0;
+  overflow-x: auto;
+  width: 100%;
+}
+
+.article-content :where(th, td) {
+  border: 1px solid #DDD8CB;
+  padding: 0.7rem 0.85rem;
+  text-align: left;
+}
+
+.article-content th {
+  background: #ECEAE3;
+  color: #18181B;
+  font-weight: 700;
+}
+
+.article-content blockquote p {
+  margin-bottom: 0;
 }

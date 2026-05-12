@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getAllDailyItems, getDailyItemBySlug, formatDateChinese } from "@/lib/daily";
+import { getAllDailyItems, getDailyItemBySlug } from "@/lib/daily";
 import DailyDetailPageClient from "./DailyDetailPageClient";
 
 export const dynamicParams = false;

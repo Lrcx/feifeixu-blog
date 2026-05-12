@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { getAllDailyItems, formatDateChinese } from "@/lib/daily";
+import { getAllDailyItems } from "@/lib/daily";
 import DailyPageClient from "./DailyPageClient";
 
 export const metadata: Metadata = {
