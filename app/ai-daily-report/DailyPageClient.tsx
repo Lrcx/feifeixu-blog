@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Header, Footer, Container } from "@/components/layout/header";
@@ -10,7 +11,49 @@ function formatDateChinese(date: string): string {
   return `${d.getMonth() + 1}月${d.getDate()}日`;
 }
 
+function getDateParts(date: string) {
+  const d = new Date(date);
+  return {
+    year: String(d.getFullYear()),
+    month: String(d.getMonth() + 1).padStart(2, "0"),
+  };
+}
+
 export default function DailyPageClient({ items }: { items: DailyItem[] }) {
+  const latest = items[0] ? getDateParts(items[0].frontmatter.date) : null;
+  const [selectedYear, setSelectedYear] = useState(latest?.year ?? "");
+  const [selectedMonth, setSelectedMonth] = useState(latest?.month ?? "");
+
+  const years = Array.from(
+    new Set(items.map((item) => getDateParts(item.frontmatter.date).year))
+  );
+
+  const months = Array.from(
+    new Set(
+      items
+        .filter((item) => getDateParts(item.frontmatter.date).year === selectedYear)
+        .map((item) => getDateParts(item.frontmatter.date).month)
+    )
+  ).sort((a, b) => Number(b) - Number(a));
+
+  const filteredItems = items.filter((item) => {
+    const { year, month } = getDateParts(item.frontmatter.date);
+    return year === selectedYear && month === selectedMonth;
+  });
+
+  function handleYearChange(year: string) {
+    const nextMonths = Array.from(
+      new Set(
+        items
+          .filter((item) => getDateParts(item.frontmatter.date).year === year)
+          .map((item) => getDateParts(item.frontmatter.date).month)
+      )
+    ).sort((a, b) => Number(b) - Number(a));
+
+    setSelectedYear(year);
+    setSelectedMonth(nextMonths[0] ?? "");
+  }
+
   return (
     <div className="min-h-screen flex flex-col bg-[#FAFAFA]">
       <Header />
@@ -28,8 +71,55 @@ export default function DailyPageClient({ items }: { items: DailyItem[] }) {
             </p>
           </motion.div>
 
+          <div className="mb-8 flex flex-col gap-3 border-y border-gray-200 py-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="text-sm font-medium text-gray-900">
+                {selectedYear && selectedMonth
+                  ? `${selectedYear}年${Number(selectedMonth)}月`
+                  : "暂无可筛选日报"}
+              </p>
+              <p className="text-xs text-gray-500">
+                共 {filteredItems.length} 篇日报
+              </p>
+            </div>
+
+            <div className="flex gap-3">
+              <label className="sr-only" htmlFor="daily-year">
+                年份
+              </label>
+              <select
+                id="daily-year"
+                value={selectedYear}
+                onChange={(event) => handleYearChange(event.target.value)}
+                className="h-10 rounded-md border border-gray-200 bg-white px-3 text-sm text-gray-900 outline-none transition-colors hover:border-gray-300 focus:border-blue-500"
+              >
+                {years.map((year) => (
+                  <option key={year} value={year}>
+                    {year}年
+                  </option>
+                ))}
+              </select>
+
+              <label className="sr-only" htmlFor="daily-month">
+                月份
+              </label>
+              <select
+                id="daily-month"
+                value={selectedMonth}
+                onChange={(event) => setSelectedMonth(event.target.value)}
+                className="h-10 rounded-md border border-gray-200 bg-white px-3 text-sm text-gray-900 outline-none transition-colors hover:border-gray-300 focus:border-blue-500"
+              >
+                {months.map((month) => (
+                  <option key={month} value={month}>
+                    {Number(month)}月
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
           <div className="grid gap-4">
-            {items.map((item, i) => (
+            {filteredItems.map((item, i) => (
               <motion.article
                 key={item.slug}
                 initial={{ opacity: 0, y: 10 }}
@@ -61,7 +151,7 @@ export default function DailyPageClient({ items }: { items: DailyItem[] }) {
             ))}
           </div>
 
-          {items.length === 0 && (
+          {filteredItems.length === 0 && (
             <div className="text-center py-16">
               <p className="text-gray-500">暂无日报内容</p>
             </div>
