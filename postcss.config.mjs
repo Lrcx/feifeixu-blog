@@ -1,7 +1,7 @@
 const config = {
   plugins: {
     "@tailwindcss/postcss": {
-      base: "/Users/chaoxu.ren/PycharmProjects/feifeixu-blog",
+      base: process.cwd(),
     },
   },
 };
