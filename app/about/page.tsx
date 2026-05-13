@@ -7,8 +7,8 @@ import { Header, Footer, Container } from "@/components/layout/header";
 const skills = [
   { name: "LLM/Agent", level: 90 },
   { name: "Python", level: 85 },
-  { name: "TypeScript", level: 80 },
-  { name: "React/Next.js", level: 75 },
+  { name: "RAG/知识库", level: 82 },
+  { name: "工程实践", level: 78 },
 ];
 
 const timeline = [
@@ -33,7 +33,7 @@ export default function AboutPage() {
             <p className="mb-3 text-sm font-medium text-accent">About</p>
             <h1 className="text-4xl font-bold leading-tight text-primary md:text-5xl">关于我</h1>
             <p className="mt-4 max-w-2xl text-secondary leading-8">
-              AI/LLM 工程师，中国。关注智能系统如何真正落地，也关心技术写作如何帮助后来的人少踩坑。
+              AI/LLM 工程师，中国·上海。关注智能系统如何真正落地，也关心技术写作如何帮助后来的人少踩坑。
             </p>
           </motion.div>
 
@@ -45,8 +45,8 @@ export default function AboutPage() {
           >
             <p className="max-w-3xl text-secondary leading-8">
               我是一名专注于 AI/LLM 的工程师，热衷于探索智能技术的边界。
-              从传统软件开发到 AI 应用构建，我一直在追寻技术演进的脚步。
-              我相信 AI 将深刻改变我们与世界交互的方式，而我有幸站在这个变革的前沿。
+              平时更多做模型应用、Agent、RAG 和后端工程相关的实践，前端主要以能把想法清楚表达出来为目标。
+              我相信 AI 将深刻改变我们与世界交互的方式，也希望把摸索过程里的经验和坑认真记录下来。
             </p>
           </motion.section>
 
