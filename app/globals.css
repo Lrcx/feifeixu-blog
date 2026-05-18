@@ -95,6 +95,17 @@ body {
   box-shadow: 0 18px 50px rgba(24, 24, 27, 0.18);
 }
 
+.article-content pre code {
+  background: transparent;
+  border-radius: 0;
+  color: inherit;
+  display: block;
+  font-size: inherit;
+  line-height: inherit;
+  padding: 0;
+  white-space: pre;
+}
+
 .article-content table {
   border-collapse: collapse;
   display: block;

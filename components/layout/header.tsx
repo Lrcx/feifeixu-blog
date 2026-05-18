@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowUpRight, GitBranch, Search } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -25,9 +26,14 @@ export function Header() {
           className="group inline-flex min-w-0 items-center gap-2 rounded-full px-2 py-1.5 text-sm font-semibold text-primary transition-colors hover:text-accent"
           aria-label="返回首页"
         >
-          <span className="grid size-7 shrink-0 place-items-center rounded-full bg-primary text-xs font-bold text-white transition-colors group-hover:bg-accent">
-            旭
-          </span>
+          <Image
+            src="/logo.png"
+            alt=""
+            width={32}
+            height={32}
+            className="size-8 shrink-0 rounded-xl shadow-sm transition-transform duration-200 group-hover:-rotate-3"
+            priority
+          />
           <span className="hidden sm:inline">肥肥旭</span>
         </Link>
 
