@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>任超旭 - 简历</title>
+  <style>
+    :root {
+      --ink: #1c1917;
+      --muted: #6b625b;
+      --line: #d8d0c7;
+      --paper: #fffdf8;
+      --wash: #f2eee7;
+      --accent: #8f3f2b;
+      --accent-soft: #f4dfd5;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: var(--wash);
+      color: var(--ink);
+      font-family: "Songti SC", "STSong", "Noto Serif CJK SC", "Source Han Serif SC", serif;
+      font-size: 15px;
+      line-height: 1.48;
+    }
+
+    body {
+      margin: 0;
+      padding: 32px 16px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      padding: 18mm 18mm 16mm;
+      background:
+        linear-gradient(90deg, rgba(143, 63, 43, 0.08), transparent 18mm),
+        var(--paper);
+      border: 1px solid rgba(91, 76, 63, 0.16);
+      box-shadow: 0 22px 70px rgba(71, 56, 43, 0.18);
+      position: relative;
+    }
+
+    .page::before {
+      content: "";
+      position: absolute;
+      inset: 10mm;
+      border: 1px solid rgba(143, 63, 43, 0.11);
+      pointer-events: none;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .masthead {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: end;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .name {
+      margin: 0;
+      font-size: 36px;
+      line-height: 1;
+      letter-spacing: 0;
+      font-weight: 800;
+    }
+
+    .degree {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .contact {
+      display: inline-flex;
+      align-items: center;
+      justify-self: end;
+      gap: 7px;
+      padding: 7px 10px;
+      border: 1px solid rgba(143, 63, 43, 0.22);
+      border-radius: 999px;
+      background: rgba(244, 223, 213, 0.42);
+      color: var(--ink);
+      font-family: "Avenir Next", "Helvetica Neue", sans-serif;
+      font-size: 12.5px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .site-icon {
+      width: 14px;
+      height: 14px;
+      color: var(--accent);
+      flex: 0 0 auto;
+    }
+
+    .section {
+      display: grid;
+      grid-template-columns: 104px 1fr;
+      gap: 18px;
+      padding-top: 18px;
+    }
+
+    .section-title {
+      margin: 0;
+      color: var(--accent);
+      font-size: 16px;
+      line-height: 1.1;
+      font-weight: 800;
+      letter-spacing: 0;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      align-self: start;
+      padding-top: 2px;
+    }
+
+    .section-body {
+      min-width: 0;
+    }
+
+    .entry {
+      padding-bottom: 12px;
+      margin-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .entry:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .entry-head,
+    .entry-sub {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 16px;
+      align-items: baseline;
+    }
+
+    .entry-head {
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .entry-sub {
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .place,
+    .date {
+      white-space: nowrap;
+      text-align: right;
+    }
+
+    .project {
+      margin-top: 10px;
+    }
+
+    .project-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin: 0;
+      color: var(--ink);
+      font-size: 13.5px;
+      line-height: 1.25;
+      font-weight: 800;
+    }
+
+    .project-title::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    ul {
+      margin: 5px 0 0;
+      padding-left: 1.05em;
+    }
+
+    li {
+      margin: 2px 0;
+      padding-left: 2px;
+    }
+
+    li::marker {
+      color: var(--accent);
+      font-size: 0.8em;
+    }
+
+    strong {
+      font-weight: 800;
+    }
+
+    .skills,
+    .summary {
+      display: grid;
+      gap: 7px;
+    }
+
+    .pill-line {
+      padding: 8px 10px;
+      background: rgba(244, 223, 213, 0.52);
+      border-left: 3px solid var(--accent);
+    }
+
+    .print-hint {
+      width: 210mm;
+      margin: 14px auto 0;
+      color: var(--muted);
+      font-family: "Avenir Next", "Helvetica Neue", sans-serif;
+      font-size: 12px;
+      text-align: right;
+    }
+
+    @media (max-width: 860px) {
+      body {
+        padding: 0;
+      }
+
+      .page {
+        width: 100%;
+        min-height: auto;
+        padding: 22px 18px 28px;
+        border: 0;
+        box-shadow: none;
+      }
+
+      .page::before,
+      .print-hint {
+        display: none;
+      }
+
+      .masthead,
+      .section {
+        grid-template-columns: 1fr;
+      }
+
+      .contact {
+        justify-self: start;
+        white-space: normal;
+      }
+
+      .section-title {
+        writing-mode: horizontal-tb;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 6px;
+      }
+    }
+
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    @media print {
+      html,
+      body {
+        width: 210mm;
+        height: 297mm;
+        background: white;
+      }
+
+      body {
+        padding: 0;
+      }
+
+      .page {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 0;
+        padding: 18mm 18mm 16mm;
+        background: white;
+        border: 0;
+        box-shadow: none;
+      }
+
+      .page::before,
+      .print-hint {
+        display: none;
+      }
+
+      a {
+        color: black;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="content">
+      <header class="masthead">
+        <div>
+          <h1 class="name">任超旭</h1>
+          <p class="degree">南京信息工程大学 · 计算机技术 · 硕士</p>
+        </div>
+        <address class="contact">
+          <svg class="site-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"></circle>
+            <path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3C9.6 5.5 8.4 8.5 8.4 12S9.6 18.5 12 21" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+          </svg>
+          <a href="https://blog.feifeixu.me">blog.feifeixu.me</a>
+        </address>
+      </header>
+
+      <section class="section" aria-labelledby="education">
+        <h2 class="section-title" id="education">教育背景</h2>
+        <div class="section-body">
+          <article class="entry">
+            <div class="entry-head">
+              <span>南京信息工程大学</span>
+              <span class="place">南京</span>
+            </div>
+            <div class="entry-sub">
+              <span>计算机技术 · 硕士</span>
+              <span class="date">2020.09 -- 2023.06</span>
+            </div>
+          </article>
+          <article class="entry">
+            <div class="entry-head">
+              <span>江苏科技大学</span>
+              <span class="place">镇江</span>
+            </div>
+            <div class="entry-sub">
+              <span>计算机科学与技术 · 本科</span>
+              <span class="date">2016.09 -- 2020.06</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="experience">
+        <h2 class="section-title" id="experience">工作经历</h2>
+        <div class="section-body">
+          <article class="entry">
+            <div class="entry-head">
+              <span>上海天与智慧养老服务有限公司</span>
+              <span class="place">上海</span>
+            </div>
+            <div class="entry-sub">
+              <span>AI 应用工程师</span>
+              <span class="date">2025.07 -- 至今</span>
+            </div>
+            <div class="project">
+              <h3 class="project-title">算法基建与大模型运维</h3>
+              <ul>
+                <li>针对 AI 业务快速扩张下 GPU 资源分散、模型部署繁琐的问题，从零搭建 K3s 集群并完成新 GPU 服务器配置，推动算法部门算力资源容器化升级。</li>
+                <li>统一部署基础模型服务矩阵，覆盖通用大模型、多模态大模型与知识库 Embedding 模型，支撑常规推理生成、复杂视觉任务和向量化检索场景。</li>
+                <li>优化高并发请求队列与失败重试机制，将 AI 能力平台等核心服务迁移至容器化环境，实现 GPU 算力动态调度，提升高负载场景下的服务稳定性与生成成功率。</li>
+              </ul>
+            </div>
+            <div class="project">
+              <h3 class="project-title">情感陪伴聊天机器人</h3>
+              <ul>
+                <li>基于 Coze 搭建面向智慧养老场景的情感陪伴聊天机器人，支持日常寒暄、情绪安抚、兴趣陪聊与服务引导。</li>
+                <li>设计机器人角色设定、对话流程、提示词策略与 Coze 工作流，沉淀常见陪伴场景话术模板，优化多轮对话中的共情表达、上下文延续和安全边界。</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="entry">
+            <div class="entry-head">
+              <span>上海九方云智能科技有限公司</span>
+              <span class="place">上海</span>
+            </div>
+            <div class="entry-sub">
+              <span>算法科学部 · LLM / RAG / Agent</span>
+              <span class="date">2023.07 -- 至今</span>
+            </div>
+            <div class="project">
+              <h3 class="project-title">智能客服项目（金融领域）</h3>
+              <ul>
+                <li>面向金融行业高并发、高频次、复杂语义咨询场景，构建基于大模型的智能客服系统，缓解传统人工客服单人服务 700+ 客户、回复率低于 30% 的效率瓶颈。</li>
+                <li>构建多源知识支撑体系：从历史客服记录、产品文档中挖掘高频 QA 对，沉淀结构化静态知识库；利用大模型生成泛化问法并挖掘真实客户表达，按 1:20+ 比例扩充 FAQ 库。</li>
+                <li>接入联网检索、实时行情等动态接口，形成静态 FAQ + 动态知识的混合知识体系，提升复杂咨询场景下的答案覆盖率与时效性。</li>
+                <li>优化向量化召回链路：将 PDF 转 Markdown，用基于段落的切片策略替换标点切片；控制 doc 长度不超过 800、chunk 不超过 400，并设置 100 overlap，使用 Milvus 存储向量。</li>
+                <li>基于 ReaderLM-V2 构建联网解析能力，将 HTML 转 Markdown 后进行内存向量检索；结合 Query 重写与扩写，提升召回质量和复杂问法理解能力。</li>
+                <li>构建轻量级 Agent 模块，实现金融场景识别、实体提取、行情调用、联网检索等任务流程编排，并控制模型结构化输出以提升稳定性与可控性。</li>
+                <li>沉淀 5000+ 行 Prompt Engineering 体系，经过千余次迭代，重点场景意图识别准确率达 95%+，同时优化合规性控制与拟人化表达。</li>
+                <li>项目 FAQ 匹配准确率超过 70%，日均处理 5 万+ 次会话，有效降低人工客服压力，助力业务降本增效。</li>
+              </ul>
+            </div>
+            <div class="project">
+              <h3 class="project-title">办公问答助手（办公场景）</h3>
+              <ul>
+                <li>面向公司内部制度查询、流程咨询等办公场景，基于 Prompt 工程与大模型召回构建办公问答助手，替代低效人工支持与规则匹配问答。</li>
+                <li>将原有 BCE-Reranker 替换为基于大模型的排序方案，增强对“法定年假 / 福利年假”等高频易混淆问题的语义区分能力，测试集 Top1 准确率从 90.26% 提升至 95.83%。</li>
+                <li>在 RAG 检索阶段引入 Step-Back Prompting，引导模型从原理性逻辑出发逐步推理，新增覆盖约 10% 原本无法回答或回答不准确的问题场景。</li>
+                <li>结合 HyDE 技术生成超短答案，并与用户 Query 合并检索，提升复杂问题的召回质量与答案稳定性。</li>
+                <li>构建“先 FAQ，后 RAG”的两阶段召回机制，并引入大模型判断用户问题与 Top1 的相关程度：强相关直接返回 FAQ，弱相关提供“猜你想问”，不相关转向 RAG 检索知识库文档。</li>
+                <li>系统覆盖办公、财务、行政等 95%+ 常见问题，检索准确率超过 98%，日均为 20+ 用户提供有效支持，显著降低人工咨询负担。</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="skills">
+        <h2 class="section-title" id="skills">专业技能</h2>
+        <div class="section-body skills">
+          <div class="pill-line"><strong>开发能力：</strong>熟练使用 Python 异步编程，精通 Flask、Sanic、FastAPI 开发高性能 AI 服务。</div>
+          <div class="pill-line"><strong>深度学习与 Transformer：</strong>熟练使用 vLLM 部署大模型，掌握 LoRA 微调技术及 KV Cache、Paged Attention 等推理加速技术。</div>
+          <div class="pill-line"><strong>LLM 工程落地：</strong>精通 CoT、Prompt Engineering，擅长在 RAG、Agent 等复杂场景中优化大模型应用。</div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="summary">
+        <h2 class="section-title" id="summary">自我评价</h2>
+        <div class="section-body summary">
+          <div>具备扎实的计算机理论基础与丰富的 LLM 落地经验，能够独立负责从数据处理、模型优化到服务部署的全流程工作。</div>
+          <div>对新技术保持高度敏感，具备良好的问题解决能力与团队协作精神。</div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <p class="print-hint">浏览器打印时选择 A4，关闭页眉页脚，边距选择“无”。</p>
+</body>
+</html>
