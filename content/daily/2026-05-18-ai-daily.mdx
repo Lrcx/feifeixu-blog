@@ -1,0 +1,123 @@
+---
+title: "05.18 LeakyLM曝光Claude | AI 早报"
+date: "2026-05-18"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 05.18 LeakyLM曝光Claude | AI 早报
+
+> 2026年05月18日 周一 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- LeakyLM 揭露Claude、ChatGPT、Grok、Perplexity默认泄露对话URL与用户身份 —— 主流AI助手正在暗中泄露你的对话内容
+- Yum Brands联合Nvidia在500家餐厅部署AI语音点餐与后厨视觉监控 —— AI首次大规模落地快餐后厨运营
+- 300行代码实现ReAct代理，揭示AI代理的Action与上下文风险 —— 揭开AI代理黑箱，看清权限与上下文风险
+- 通用汽车裁撤600名IT员工，转向招聘AI原生开发人才 —— 传统车企正重构AI人才结构
+- mattpocock/skills 今日增长 3029 stars —— 直接获取顶尖开发者AI实战技能
+
+**今日共收录 9 条动态，涵盖 开源热门 5条、技术洞察 2条、行业动态 2条。**
+
+---
+
+## 🔥 开源热门
+
+### 1. mattpocock/skills AI编程技能库
+
+⭐ 78,700 stars · 今日增长 3,029 stars
+
+一个基于个人Claude配置的AI编程技能目录，汇集实用的代码模式与开发技巧，适合希望快速学习高效AI辅助编程的开发者参考使用。
+
+📎 [原文链接](https://github.com/mattpocock/skills)
+
+
+### 2. openhuman 个人AI超级智能
+
+⭐ 5,000 stars · 今日增长 2,531 stars
+
+openhuman 是一个私密、简洁且强大的个人AI助手，旨在为开发者提供本地化、无干扰的智能支持，适用于需要高隐私保护和高效交互的日常编程与任务处理场景。
+
+📎 [原文链接](https://github.com/tinyhumansai/openhuman)
+
+
+### 3. agentmemory AI编码代理持久化内存
+
+⭐ 7,300 stars · 今日增长 1,659 stars
+
+agentmemory 为AI编码代理提供基于真实世界基准的持久化内存能力，解决短期记忆丢失问题，适用于需要长期上下文学习和任务延续的自动化编程助手开发者。
+
+📎 [原文链接](https://github.com/rohitg00/agentmemory)
+
+
+### 4. Hmbown/DeepSeek-TUI 终端编码代理
+
+⭐ 27,700 stars · 今日增长 1,291 stars
+
+在终端中直接运行 DeepSeek 模型的编码代理，帮助开发者快速生成、调试和优化代码，无需离开命令行环境，适合习惯 CLI 工作流的程序员。
+
+📎 [原文链接](https://github.com/Hmbown/DeepSeek-TUI)
+
+
+### 5. yikart/AiToEarn 用AI赚钱的开源平台
+
+⭐ 12,800 stars · 今日增长 1,069 stars
+
+yikart/AiToEarn 提供一套开源工具链，帮助开发者通过自动化AI任务（如内容生成、数据标注、模型微调）实现收益，适合希望将AI技能变现的个人和小团队。
+
+📎 [原文链接](https://github.com/yikart/AiToEarn)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. LeakyLM 揭露AI助手隐私泄露
+
+LeakyLM 揭露AI助手隐私泄露：安全研究项目 LeakyLM 发现，Anthropic Claude、OpenAI ChatGPT、xAI Grok 和 Perplexity 四大AI平台默认将用户对话URL、聊天标题、邮箱哈希、设备ID等敏感数据通过Meta、Google、TikTok等第三方追踪器泄露，且部分对话可被任何人通过链接直接访问，无需登录
+
+其中Grok会生成公开可访问的对话截图并暴露逐字消息文本，Claude通过服务端转发将用户数据同步至11家广告分析平台，ChatGPT在免费账户中持续向Google Analytics发送对话主题，而Perplexity在2026年4月前已持续泄露原始邮箱地址，所有平台均未明确告知用户数据流向。
+
+这些行为违反数据最小化原则，且广告拦截器无法阻止服务端追踪，用户即使拒绝Cookie仍可能被追踪，构成系统性隐私风险。
+
+📎 [原文链接](https://leakylm.github.io/)
+
+
+### 2. 300行代码实现ReAct代理
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-05-18/49b5c93f26b7.png)
+
+300行代码实现ReAct代理：作者用300行代码实现了一个简化版ReAct AI代理，明确展示其核心循环：模型根据历史上下文选择动作（如shell.exec、API调用），动作执行后反馈给模型继续迭代，任何动作权限失控都可能导致生产事故，如删除文件或泄露密钥。
+
+📎 [原文链接](https://quantumentangled.dev/viewpost/11/whats-actually-inside-an-ai-agent-a-300-loc-react-loop)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. Yum Brands与Nvidia部署AI系统
+
+Yum Brands与Nvidia部署AI系统：Yum Brands（必胜客、塔可钟、肯德基母公司）与英伟达合作，在500家门店部署基于Nvidia Riva和NIM的AI系统，实现语音点餐、后厨员工行为监控和门店运营优化，技术整合至其专有平台Byte。
+
+📎 [原文链接](https://www.restaurantdive.com/news/yum-brands-nvidia-ai-taco-bell-pizza-hut-kfc-deal/742926/)
+
+
+### 2. 通用汽车裁撤600人转型AI
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-05-18/0ee5c8568e67.jpg)
+
+通用汽车裁撤600人转型AI：通用汽车已裁撤其IT部门约600名员工，明确将岗位空缺用于招聘能从零构建AI系统的工程师，包括模型训练、数据管道搭建和智能体开发，而非仅使用AI工具，标志着车企从效率工具向自主AI系统建设的战略转型。
+
+📎 [原文链接](https://techcrunch.com/2026/05/17/techcrunch-mobility-the-ai-skills-arms-race-is-coming-for-automotive/)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
