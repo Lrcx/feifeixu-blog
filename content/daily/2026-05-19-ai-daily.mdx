@@ -1,0 +1,250 @@
+---
+title: "05.19 Anthropic收购Stainless | AI 早报"
+date: "2026-05-19"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 05.19 Anthropic收购Stainless | AI 早报
+
+> 2026年05月19日 周二 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- Anthropic收购Stainless，停供OpenAI、Google等竞品SDK工具 —— AI巨头切断竞品基础设施
+- 百度AI业务收入136亿占核心业务52%，GPU云收入同比暴涨184% —— 百度AI正式成为核心增长引擎
+- 中国电信9.9元/月送1000万Tokens，中国移动1元兑40万Tokens，联通推个人版15元起 —— AI算力首次像流量一样按月计费
+- OpenAI Codex 将与戴尔AI工厂和AI数据平台集成，支持本地与混合云部署 —— Codex 首次实现企业本地化落地
+- Amazon Bedrock AgentCore 支持 Lambda 自定义代码评估器，支持工具契约、价格偏差、工作流合规与PII检测 —— 企业级AI代理质量监控新标准
+
+**今日共收录 24 条动态，涵盖 模型与产品 11条、开源热门 5条、技术洞察 3条、行业动态 5条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. OpenAI Codex 与戴尔合作落地
+
+OpenAI Codex 与戴尔合作落地：OpenAI 与戴尔科技达成合作，将企业级 Codex 模型部署至戴尔 AI 数据平台和 AI 工厂，使客户能在本地环境安全接入代码库、业务系统和运营知识，提升智能体在代码审查、测试、客户筛选和跨系统协作中的实用性。
+
+📎 [原文链接](https://openai.com/index/dell-codex-enterprise-partnership)
+
+
+### 2. Amazon Bedrock AgentCore 支持自定义代码评估器
+
+Amazon Bedrock AgentCore 支持自定义代码评估器：Amazon Bedrock AgentCore 推出自定义代码评估器功能，允许用户通过 AWS Lambda 注册确定性评分逻辑，用于验证金融代理的工具响应结构、价格偏差（±2%）、工作流顺序和PII泄露，替代高成本的LLM评判，降低令牌消耗并提升评估一致性。
+
+评估器支持TRACE、TOOL_CALL、SESSION三级粒度，可与内置评估器混合使用，适用于CI/CD门禁和在线生产监控，评分结果自动写入CloudWatch指标与日志，支持可视化仪表盘与告警。
+
+示例包含四个Lambda评估器：工具Schema校验、股票价格漂移检测、三步工作流合规检查、基于Comprehend的PII扫描，全部开源在agentcore-samples仓库，部署耗时约45分钟，单月成本低于5美元。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/build-custom-code-based-evaluators-in-amazon-bedrock-agentcore/)
+
+
+### 3. Amazon Alexa for Shopping 发布
+
+Amazon Alexa for Shopping 发布：亚马逊推出 Alexa for Shopping，将原购物助手 Rufus 整合进 Alexa+，可在 App、网站和 Echo Show 设备中回答产品问题、比较商品、追踪价格、设置购物提醒，并支持符合条件的自动下单。
+
+📎 [原文链接](https://www.artificialintelligence-news.com/news/amazon-alexa-for-shopping-rufus-ai-assistant/)
+
+
+### 4. JiuwenSwarm 开源发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-05-19/ad65bbb80e43.webp)
+
+JiuwenSwarm 开源发布：华为支持的开源AI Agent平台openJiuwen发布并开源了群体智能系统JiuwenSwarm，通过Agent Swarm、Swarm Skills、Swarm Skills Hub和自演进机制，实现多智能体自主分工、经验沉淀与协同进化，已在昇腾算子开发、医疗会诊等场景验证，综合性能达PinchBench 94.2%、
+
+📎 [原文链接](https://www.qbitai.com/2026/05/419515.html)
+
+
+### 5. AgentVoy v0.5.0 发布
+
+AgentVoy v0.5.0 发布：AgentVoy 是一个开源AI智能体开发框架，v0.5.0版本通过一条命令 `npx agentvoy create` 自动生成包含FastAPI服务、Streamlit聊天界面、实时开发仪表盘和多云部署配置的完整项目，支持OpenAI、Anthropic、CrewAI、AutoGen等7大框架，并内置`agent.g
+
+开发者可一键部署至Docker、Fly.io、Railway、GCP Cloud Run或AWS Lambda，无需手动编写Dockerfile或云配置，所有防护规则自动转化为基础设施设置，支持运行时切换模型且无需重启服务。
+
+📎 [原文链接](https://www.agentvoy.com/)
+
+
+### 6. needle-rs 开源浏览器AI代理
+
+needle-rs 开源浏览器AI代理：needle-rs 是由 Abdalrahman Ibrahim 开发的纯 Rust + WASM 推理引擎，可在浏览器中本地运行 Cactus Compute 的 2600 万参数 AI 模型，支持 OpenAI 兼容的工具调用，模型权重 22MB 仅首次下载，后续缓存，每次推理约 280ms，无需服务器或 API 
+
+📎 [原文链接](https://needle-rs.pages.dev)
+
+
+### 7. LangSmith Engine 公测上线
+
+LangSmith Engine 公测上线：LangChain 推出 LangSmith Engine 公测版，可自动监控生产环境中 AI 代理的错误行为，读取代码库定位根因，生成修复拉取请求并推荐定制评估器，仅需人工审批，显著缩短调试周期。
+
+📎 [原文链接](https://venturebeat.com/orchestration/langsmith-engine-closes-the-agent-debugging-loop-automatically-but-multi-model-enterprises-still-need-a-neutral-layer)
+
+
+### 8. SandboxAQ LQMs 接入 Claude
+
+SandboxAQ LQMs 接入 Claude：SandboxAQ 将其基于物理定律的药物发现模型 LQMs 集成到 Anthropic 的 Claude 中，用户无需编程或计算基础设施，仅用自然语言即可执行量子化学计算和分子动力学模拟，直接面向制药企业科研人员。
+
+📎 [原文链接](https://techcrunch.com/2026/05/18/sandboxaq-brings-its-drug-discovery-models-to-claude-no-phd-in-computing-required/)
+
+
+### 9. PaddleOCR 3.5 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-05-19/e35a9831b789.jpg)
+
+PaddleOCR 3.5 发布：PaddleOCR 3.5 是百度飞桨推出的开源OCR工具包，本次升级采用Transformers作为后端引擎，显著提升复杂文档布局解析与多语言文本识别准确率，支持PDF、扫描件等高难度场景。
+
+📎 [原文链接](https://huggingface.co/blog/PaddlePaddle/paddleocr-transformers)
+
+
+### 10. Amazon Alexa+ 推出播客生成功能
+
+Amazon Alexa+ 推出播客生成功能：亚马逊推出 Alexa+ 新功能 'Alexa Podcasts'，用户只需提出主题，AI 即可自动研究、生成结构化内容并配音成播客，支持自定义时长、语气和重点，节目保存于 Alexa 应用，已接入美联社、路透社、《华盛顿邮报》等200多家权威媒体确保信息准确性。
+
+📎 [原文链接](https://techcrunch.com/2026/05/18/amazons-new-alexa-powered-feature-can-generate-podcast-episodes/)
+
+
+### 11. Amazon Nova 2 Lite 内容审核提示技术
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-05-19/60e9eb13f0b1.png)
+
+Amazon Nova 2 Lite 内容审核提示技术：Amazon Nova 2 Lite 是 AWS 推出的低成本多模态模型，通过结构化提示（XML/JSON格式）可实现无需微调的内容审核，支持12类危险内容识别，如暴力、仇恨、隐私泄露等，输出可直接接入自动化系统，降低部署成本。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/prompting-amazon-nova-2-for-content-moderation/)
+
+
+---
+
+## 🔥 开源热门
+
+### 1. mattpocock/skills AI编程技能库
+
+⭐ 78,700 stars · 今日增长 3,029 stars
+
+一个基于个人Claude配置的AI编程技能目录，汇集实用的代码模式与开发技巧，适合希望快速提升AI辅助编码效率的开发者参考与复用。
+
+📎 [原文链接](https://github.com/mattpocock/skills)
+
+
+### 2. openhuman 个人AI超级智能
+
+⭐ 5,000 stars · 今日增长 2,531 stars
+
+openhuman 是一款私密、简洁且强大的个人AI助手，帮助用户在本地高效处理日常任务、知识管理和自动化工作，适合注重隐私的开发者和高级用户。
+
+📎 [原文链接](https://github.com/tinyhumansai/openhuman)
+
+
+### 3. agentmemory AI编码代理持久化内存
+
+⭐ 7,300 stars · 今日增长 1,659 stars
+
+agentmemory 为AI编码代理提供基于真实世界基准的持久化内存能力，解决短期记忆缺失问题，适用于需要长期上下文记忆的自动化编程助手和智能代理开发者。
+
+📎 [原文链接](https://github.com/rohitg00/agentmemory)
+
+
+### 4. Hmbown/DeepSeek-TUI 终端编码代理
+
+⭐ 27,700 stars · 今日增长 1,291 stars
+
+在终端中直接调用 DeepSeek 模型进行代码生成与调试，为开发者提供无浏览器干扰的高效编程体验，适合偏好命令行工具的程序员和AI编码爱好者。
+
+📎 [原文链接](https://github.com/Hmbown/DeepSeek-TUI)
+
+
+### 5. yikart/AiToEarn 用AI赚钱的开源平台
+
+⭐ 12,800 stars · 今日增长 1,069 stars
+
+yikart/AiToEarn 提供一套开源工具链，帮助开发者通过自动化AI任务（如内容生成、数据标注、模型微调）实现收益，适合希望将AI技能变现的个人和小团队。
+
+📎 [原文链接](https://github.com/yikart/AiToEarn)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. AI供应链攻击暴露发布流水线漏洞
+
+AI供应链攻击暴露发布流水线漏洞：OpenAI、Anthropic和Meta在50天内遭遇四起AI供应链攻击，攻击目标均非模型本身，而是CI/CD流水线、GitHub Actions配置、npm依赖钩子和发布打包环节，其中TanStack蠕虫利用合法SLSA Build Level 3认证发布84个恶意包，Anthropic因缺失一行.npmignore泄露
+
+攻击者通过pull_request_target配置错误、OIDC令牌窃取、生命周期钩子投毒和源码映射误发布等手法，绕过所有传统安全检测，证明SLSA可追溯性无法保证构建意图安全，且开发者设备凭证、云密钥、AI API令牌均被Mini Shai-Hulud蠕虫自动收集。
+
+安全团队必须立即审计CI流水线、禁用非必要生命周期脚本、绑定可信发布者至分支而非仅仓库、在发布前加入人工闸门，并在供应商合同中强制要求发布面红队演练记录。
+
+📎 [原文链接](https://venturebeat.com/security/supply-chain-incidents-openai-anthropic-meta-release-surface-vendor-questionnaire-matrix)
+
+
+### 2. NVIDIA NVFP4 4位预训练发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-05-19/01471c909bd2.webp)
+
+NVIDIA NVFP4 4位预训练发布：NVIDIA 推出基于 Blackwell 架构的 NVFP4 4 位浮点预训练方法，在 120 亿参数混合 Mamba-Transformer 上完成 10 万亿 token 训练，MMLU-Pro 准确率 62.58%，与 FP8 基线几乎持平，算力吞吐在 GB300 上达 FP8 的 3 倍，内存占用减半。
+
+该方法通过 16 元素块、E4M3 缩放因子、FP32 张量缩放、选择性 BF16 层、随机 Hadamard 变换和 2D 权重缩放等四项关键技术稳定训练，仅量化线性层 GEMM，其余组件保持 BF16/FP32，已集成至 NVIDIA Transformer Engine。
+
+📎 [原文链接](https://www.marktechpost.com/2026/05/18/nvidia-introduces-a-4-bit-pretraining-methodology-using-nvfp4-validated-on-a-12b-hybrid-mamba-transformer-at-10t-token-horizon/)
+
+
+### 3. Redis Iris 发布
+
+Redis Iris 发布：Redis 发布 Iris，一个专为AI智能体设计的上下文与记忆平台，通过重写存储引擎Flex将99%数据放在SSD上、仅1%驻留内存，实现亚毫秒延迟的PB级检索，成本仅为纯内存方案的十分之一，直接替代传统RAG架构。
+
+📎 [原文链接](https://venturebeat.com/data/context-architecture-is-replacing-rag-as-agentic-ai-pushes-enterprise-retrieval-to-its-limits)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. Anthropic收购Stainless
+
+Anthropic收购Stainless：Anthropic收购了开发者工具初创公司Stainless，该工具曾为OpenAI、Google、Cloudflare等公司自动生成和维护AI API的SDK，收购后将停止向竞争对手提供服务，仅保留Anthropic自身使用。
+
+📎 [原文链接](https://techcrunch.com/2026/05/18/anthropic-has-acquired-the-dev-tools-startup-used-by-openai-google-and-cloudflare/)
+
+
+### 2. 百度Q1 AI收入占比首超50%
+
+百度Q1 AI收入占比首超50%：百度发布2026年Q1财报，核心AI业务收入达136亿元，占核心业务总收入52%，首次过半，其中AI云收入88亿同比增长79%，GPU云收入同比暴涨184%，昆仑芯P800已支撑文心大模型5.1训练并部署超3万张AI加速卡。
+
+AI应用收入25亿，智能体产品DuMate、秒哒3.0、伐谋2.0等加速落地，文心5.1在LMArena中文本能力榜居中国第一，传统在线营销收入下滑22%至126亿。
+
+📎 [原文链接](https://zhidx.com/p/558475.html)
+
+
+### 3. 三大运营商推Token套餐
+
+三大运营商推Token套餐：中国电信、中国移动、中国联通正式推出AI Token套餐，中国电信个人版9.9元/月享1000万Tokens，中国移动上海分公司1元可兑40万Tokens并支持话费支付，联通云个人版15元/月起含600万Tokens，均整合DeepSeek、GLM等国产大模型，面向个人、家庭和中小企业提供标准化AI算力服务。
+
+📎 [原文链接](https://zhidx.com/p/558355.html)
+
+
+### 4. Palantir AIP发布
+
+Palantir AIP发布：Palantir发布AIP平台，将生成式AI嵌入其Gotham和Foundry企业数据系统，2026年Q1营收达16.3亿美元、净利润暴涨307%，但高管公开称主流大模型是“slop”（泔水），强调其底层数据语义与工程整合能力不可替代。
+
+Palantir依赖美国国防部与CIA长期合同，通过Apollo运维底座和Ontology语义框架构建高壁垒企业AI基础设施，客户无法仅靠调用API完成关键任务，但面临OpenAI等厂商向企业端渗透的威胁。
+
+📎 [原文链接](https://zhidx.com/p/557252.html)
+
+
+### 5. 华为系具身智能创业潮
+
+华为系具身智能创业潮：华为前员工密集创业，催生至少10家具身智能公司，包括智元机器人和它石智航两家百亿估值独角兽，核心团队来自华为车BU、诺亚方舟实验室和昇腾，技术路径延续自动驾驶的感知-决策-执行全栈能力。
+
+多位华为‘天才少年’如彭志辉、丁文超离职创业，依托华为积累的AI大模型、工程化能力和供应链资源，快速获得高瓴、五源等顶级资本注资，形成具身智能领域最成体系的创业派系。
+
+📎 [原文链接](https://www.qbitai.com/2026/05/419414.html)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
