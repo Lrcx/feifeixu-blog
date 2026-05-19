@@ -4,7 +4,9 @@ import { motion } from "framer-motion";
 import { ArrowLeft, CalendarDays } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { Children, isValidElement } from "react";
 import ReactMarkdown from "react-markdown";
+import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 import { Header, Footer, Container } from "@/components/layout/header";
 import type { Post } from "@/lib/mdx";
@@ -14,7 +16,28 @@ function formatDateChinese(date: string): string {
   return `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`;
 }
 
+const blockElements = new Set([
+  "aside",
+  "div",
+  "figure",
+  "section",
+  "table",
+  "ul",
+  "ol",
+  "pre",
+  "blockquote",
+]);
+
+function hasBlockChild(children: React.ReactNode): boolean {
+  return Children.toArray(children).some((child) => {
+    if (!isValidElement(child)) return false;
+    return typeof child.type === "string" && blockElements.has(child.type);
+  });
+}
+
 export default function BlogPostPageClient({ post }: { post: Post }) {
+  const content = post.content.replaceAll("className=", "class=");
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -58,6 +81,7 @@ export default function BlogPostPageClient({ post }: { post: Post }) {
             <div className="article-content space-y-6">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
+                rehypePlugins={[rehypeRaw]}
                 components={{
                   h1: () => null,
                   h2: ({ children }) => (
@@ -70,9 +94,12 @@ export default function BlogPostPageClient({ post }: { post: Post }) {
                       {children}
                     </h3>
                   ),
-                  p: ({ children }) => (
-                    <p>{children}</p>
-                  ),
+                  p: ({ children }) =>
+                    hasBlockChild(children) ? (
+                      <>{children}</>
+                    ) : (
+                      <p>{children}</p>
+                    ),
                   ul: ({ children }) => (
                     <ul className="list-disc">{children}</ul>
                   ),
@@ -117,26 +144,19 @@ export default function BlogPostPageClient({ post }: { post: Post }) {
                     if (typeof src !== "string" || !src) return null;
 
                     return (
-                      <figure className="my-8 overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
-                        <Image
-                          src={src}
-                          alt={alt || ""}
-                          width={960}
-                          height={540}
-                          className="h-auto w-full"
-                          unoptimized
-                        />
-                        {alt && (
-                          <figcaption className="border-t border-border px-4 py-3 text-center text-xs text-secondary">
-                            {alt}
-                          </figcaption>
-                        )}
-                      </figure>
+                      <Image
+                        src={src}
+                        alt={alt || ""}
+                        width={960}
+                        height={540}
+                        className="my-8 h-auto w-full overflow-hidden rounded-2xl border border-border bg-card shadow-sm"
+                        unoptimized
+                      />
                     );
                   },
                 }}
               >
-                {post.content}
+                {content}
               </ReactMarkdown>
             </div>
           </motion.article>

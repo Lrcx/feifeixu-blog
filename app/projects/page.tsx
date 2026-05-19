@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
+import { notFound } from "next/navigation";
 import { Header, Footer, Container } from "@/components/layout/header";
 
 const projects = [
@@ -26,6 +27,8 @@ const projects = [
 ];
 
 export default function ProjectsPage() {
+  notFound();
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />

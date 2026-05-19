@@ -5,11 +5,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+const showProjects = false;
+
 const navLinks = [
   { href: "/", label: "首页" },
   { href: "/blog", label: "博客" },
   { href: "/ai-daily-report", label: "AI日报" },
-  { href: "/projects", label: "作品" },
+  ...(showProjects ? [{ href: "/projects", label: "作品" }] : []),
   { href: "/about", label: "关于我" },
 ];
 
