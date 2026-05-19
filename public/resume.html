@@ -64,10 +64,9 @@
     }
 
     .masthead {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 24px;
-      align-items: end;
+      position: relative;
+      min-height: 120px;
+      padding-right: 118px;
       padding-bottom: 14px;
       border-bottom: 2px solid var(--ink);
     }
@@ -85,6 +84,26 @@
       color: var(--muted);
       font-size: 14px;
       font-weight: 600;
+    }
+
+    .masthead-side {
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: grid;
+      gap: 9px;
+      justify-items: end;
+    }
+
+    .avatar {
+      width: 82px;
+      height: 96px;
+      border-radius: 14px;
+      border: 2px solid rgba(143, 63, 43, 0.25);
+      box-shadow: 0 10px 24px rgba(71, 56, 43, 0.16);
+      object-fit: cover;
+      object-position: 50% 32%;
+      background: var(--paper);
     }
 
     .contact {
@@ -260,9 +279,20 @@
         grid-template-columns: 1fr;
       }
 
+      .masthead {
+        min-height: auto;
+        padding-right: 0;
+      }
+
       .contact {
         justify-self: start;
         white-space: normal;
+      }
+
+      .masthead-side {
+        position: static;
+        margin-top: 14px;
+        justify-items: start;
       }
 
       .section-title {
@@ -318,13 +348,16 @@
           <h1 class="name">任超旭</h1>
           <p class="degree">南京信息工程大学 · 计算机技术 · 硕士</p>
         </div>
-        <address class="contact">
-          <svg class="site-icon" viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"></circle>
-            <path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3C9.6 5.5 8.4 8.5 8.4 12S9.6 18.5 12 21" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
-          </svg>
-          <a href="https://blog.feifeixu.me">blog.feifeixu.me</a>
-        </address>
+        <div class="masthead-side">
+          <img class="avatar" src="resume-avatar.jpg" alt="任超旭头像">
+          <address class="contact">
+            <svg class="site-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"></circle>
+              <path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3C9.6 5.5 8.4 8.5 8.4 12S9.6 18.5 12 21" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+            </svg>
+            <a href="https://blog.feifeixu.me">blog.feifeixu.me</a>
+          </address>
+        </div>
       </header>
 
       <section class="section" aria-labelledby="education">
