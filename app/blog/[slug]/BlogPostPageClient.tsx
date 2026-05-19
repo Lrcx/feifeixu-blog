@@ -9,6 +9,7 @@ import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 import { Header, Footer, Container } from "@/components/layout/header";
+import { RewardCard } from "@/components/support/reward-card";
 import type { Post } from "@/lib/mdx";
 
 function formatDateChinese(date: string): string {
@@ -159,6 +160,8 @@ export default function BlogPostPageClient({ post }: { post: Post }) {
                 {content}
               </ReactMarkdown>
             </div>
+
+            <RewardCard />
           </motion.article>
         </Container>
       </main>

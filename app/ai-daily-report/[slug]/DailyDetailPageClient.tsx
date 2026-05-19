@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowLeft, CalendarDays } from "lucide-react";
+import { Children, isValidElement } from "react";
 import Link from "next/link";
 import { Header, Footer, Container } from "@/components/layout/header";
 import type { DailyItem } from "@/lib/daily";
@@ -12,6 +13,25 @@ import Image from "next/image";
 function formatDateChinese(date: string): string {
   const d = new Date(date);
   return `${d.getMonth() + 1}月${d.getDate()}日`;
+}
+
+const blockElements = new Set([
+  "aside",
+  "div",
+  "figure",
+  "section",
+  "table",
+  "ul",
+  "ol",
+  "pre",
+  "blockquote",
+]);
+
+function hasBlockChild(children: React.ReactNode): boolean {
+  return Children.toArray(children).some((child) => {
+    if (!isValidElement(child)) return false;
+    return typeof child.type === "string" && blockElements.has(child.type);
+  });
 }
 
 export default function DailyDetailPageClient({ item }: { item: DailyItem }) {
@@ -87,11 +107,12 @@ export default function DailyDetailPageClient({ item }: { item: DailyItem }) {
                       {children}
                     </h3>
                   ),
-                  p: ({ children }) => (
-                    <p>
-                      {children}
-                    </p>
-                  ),
+                  p: ({ children }) =>
+                    hasBlockChild(children) ? (
+                      <>{children}</>
+                    ) : (
+                      <p>{children}</p>
+                    ),
                   ul: ({ children }) => (
                     <ul className="list-disc">
                       {children}
@@ -122,16 +143,14 @@ export default function DailyDetailPageClient({ item }: { item: DailyItem }) {
                       ? src
                       : `/daily-images/${item.frontmatter.date}/${localImagePath}`;
                     return (
-                      <figure className="my-8 overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
-                        <Image
-                          src={imgSrc}
-                          alt={alt || ""}
-                          width={700}
-                          height={400}
-                          className="h-auto w-full"
-                          unoptimized
-                        />
-                      </figure>
+                      <Image
+                        src={imgSrc}
+                        alt={alt || ""}
+                        width={700}
+                        height={400}
+                        className="my-8 h-auto w-full overflow-hidden rounded-2xl border border-border bg-card shadow-sm"
+                        unoptimized
+                      />
                     );
                   },
                   a: ({ href, children }) => {
