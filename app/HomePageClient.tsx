@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, BookOpen, Newspaper, Sparkles } from "lucide-react";
+import { Archive, ArrowRight, BookOpen, Newspaper, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { Header, Footer, Container } from "@/components/layout/header";
 import type { Post } from "@/lib/mdx";
@@ -11,7 +11,13 @@ function formatDateChinese(date: string): string {
   return `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`;
 }
 
-export default function HomePageClient({ posts }: { posts: Post[] }) {
+export default function HomePageClient({
+  posts,
+  resourceCount,
+}: {
+  posts: Post[];
+  resourceCount: number;
+}) {
   const featured = posts.slice(0, 6);
 
   return (
@@ -69,6 +75,14 @@ export default function HomePageClient({ posts }: { posts: Post[] }) {
                 <Newspaper className="mb-5 size-5 text-accent" aria-hidden="true" />
                 <p className="text-lg font-semibold text-primary">AI Daily</p>
                 <p className="mt-1 text-sm leading-6 text-secondary">每天筛一遍新工具、新模型和工程动态。</p>
+              </Link>
+              <Link
+                href="/resources"
+                className="group rounded-2xl border border-border bg-card/90 p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-md sm:col-span-2 md:col-span-1"
+              >
+                <Archive className="mb-5 size-5 text-accent" aria-hidden="true" />
+                <p className="text-3xl font-bold text-primary">{resourceCount}</p>
+                <p className="mt-1 text-sm leading-6 text-secondary">个 Agent 学习资源入口</p>
               </Link>
             </div>
           </motion.section>

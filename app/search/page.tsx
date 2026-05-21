@@ -1,5 +1,6 @@
 import { getAllDailyItems } from "@/lib/daily";
 import { getAllPosts } from "@/lib/mdx";
+import { getAllResources } from "@/data/resources";
 import SearchPageClient, { type SearchItem } from "./SearchPageClient";
 
 function stripContent(content: string): string {
@@ -39,5 +40,24 @@ export default function SearchPage() {
     content: stripContent(item.content).slice(0, 12000),
   }));
 
-  return <SearchPageClient items={[...posts, ...dailyItems]} />;
+  const resources: SearchItem[] = getAllResources().map((resource) => ({
+    id: `resource-${resource.title}`,
+    type: "resource",
+    title: resource.title,
+    href: resource.url,
+    date: resource.addedAt,
+    category: resource.category,
+    tags: [...resource.tags, resource.level, resource.featured ? "精选" : ""].filter(Boolean),
+    excerpt: resource.description,
+    content: [
+      resource.title,
+      resource.description,
+      resource.category,
+      resource.level,
+      resource.tags.join(" "),
+      resource.featured ? "精选推荐" : "",
+    ].join(" "),
+  }));
+
+  return <SearchPageClient items={[...posts, ...dailyItems, ...resources]} />;
 }

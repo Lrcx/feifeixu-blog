@@ -2,13 +2,13 @@
 
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, BookOpen, FileSearch, Newspaper, Search } from "lucide-react";
+import { ArrowRight, BookOpen, FileSearch, Library, Newspaper, Search } from "lucide-react";
 import Link from "next/link";
 import { Header, Footer, Container } from "@/components/layout/header";
 
 export interface SearchItem {
   id: string;
-  type: "blog" | "daily";
+  type: "blog" | "daily" | "resource";
   title: string;
   href: string;
   date: string;
@@ -24,7 +24,7 @@ interface SearchResult extends SearchItem {
   matchedTerms: string[];
 }
 
-const suggestions = ["Mem0 记忆检索", "RAG 技术原理", "Agent 工作流", "AI 日报 模型发布"];
+const suggestions = ["Mem0 记忆检索", "RAG 技术原理", "Agent 工作流", "Agent 框架资源"];
 
 function formatDateChinese(date: string): string {
   const d = new Date(date);
@@ -123,7 +123,13 @@ export default function SearchPageClient({ items }: { items: SearchItem[] }) {
     ? results.length > 0
       ? `找到 ${results.length} 条相关内容，优先展示标题、标签和正文都更匹配的结果。`
       : "暂时没找到明显匹配的内容，可以换一个关键词试试。"
-    : `已索引 ${items.length} 篇博客和 AI 日报。`;
+    : `已索引 ${items.length} 条博客、AI 日报和资源库内容。`;
+
+  function getTypeMeta(type: SearchItem["type"]) {
+    if (type === "blog") return { label: "博客", icon: BookOpen };
+    if (type === "daily") return { label: "AI日报", icon: Newspaper };
+    return { label: "资源库", icon: Library };
+  }
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -141,7 +147,7 @@ export default function SearchPageClient({ items }: { items: SearchItem[] }) {
               </div>
               <h1 className="text-4xl font-bold leading-tight text-primary md:text-5xl">AI 搜索</h1>
               <p className="mx-auto mt-4 max-w-xl text-secondary leading-8">
-                用自然语言检索站内博客、源码笔记和 AI 日报。当前版本在浏览器本地完成匹配，不依赖运行时 API。
+                用自然语言检索站内博客、源码笔记、AI 日报和资源库。当前版本在浏览器本地完成匹配，不依赖运行时 API。
               </p>
             </div>
 
@@ -192,18 +198,15 @@ export default function SearchPageClient({ items }: { items: SearchItem[] }) {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: Math.min(index, 6) * 0.04 }}
                   >
-                    <Link
-                      href={result.href}
-                      className="group block rounded-2xl border border-border bg-card/90 p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-md"
-                    >
+                    {(() => {
+                      const typeMeta = getTypeMeta(result.type);
+                      const TypeIcon = typeMeta.icon;
+                      const content = (
+                        <>
                       <div className="mb-3 flex flex-wrap items-center gap-2">
                         <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-50 px-2.5 py-1 text-xs font-medium text-blue-700">
-                          {result.type === "blog" ? (
-                            <BookOpen className="size-3.5" aria-hidden="true" />
-                          ) : (
-                            <Newspaper className="size-3.5" aria-hidden="true" />
-                          )}
-                          {result.type === "blog" ? "博客" : "AI日报"}
+                          <TypeIcon className="size-3.5" aria-hidden="true" />
+                          {typeMeta.label}
                         </span>
                         <span className="rounded-full bg-muted px-2.5 py-1 text-xs font-medium text-secondary">
                           {result.category}
@@ -230,10 +233,34 @@ export default function SearchPageClient({ items }: { items: SearchItem[] }) {
                       )}
 
                       <span className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-accent">
-                        打开内容
+                        {result.type === "resource" ? "打开资源" : "打开内容"}
                         <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
                       </span>
-                    </Link>
+                        </>
+                      );
+
+                      if (result.type === "resource") {
+                        return (
+                          <a
+                            href={result.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group block rounded-2xl border border-border bg-card/90 p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-md"
+                          >
+                            {content}
+                          </a>
+                        );
+                      }
+
+                      return (
+                        <Link
+                          href={result.href}
+                          className="group block rounded-2xl border border-border bg-card/90 p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-md"
+                        >
+                          {content}
+                        </Link>
+                      );
+                    })()}
                   </motion.article>
                 ))}
               </div>
