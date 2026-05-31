@@ -1,0 +1,155 @@
+---
+title: "05.31 DeepSeek融资73亿迁昇腾，Meta拟出租AI算力 | AI 早报"
+date: "2026-05-31"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 05.31 DeepSeek融资73亿迁昇腾，Meta拟出租AI算力 | AI 早报
+
+> 2026年05月31日 周日 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- DeepSeek估值515亿美元，完成73亿美元融资并全栈迁移至昇腾 —— 中国AI估值泡沫下的真实技术突破
+- Anthropic 揭露 Claude.ai 使用 gVisor，Claude Code 用 Seatbelt/Bubblewrap，Cowork 用虚拟机隔离 —— 首个大模型厂商完整安全架构披露
+- Meta拟将富余AI算力对外出租，直击CoreWeave生存根基 —— AI算力市场格局或将剧变
+- GitHub Copilot 改用令牌计费，部分用户月费暴涨50倍 —— AI工具收费模式剧变影响百万开发者
+- 软银拟投750亿欧元在法建设5GW数据中心，为AI算力布局 —— 全球AI算力布局转向欧洲
+
+**今日共收录 13 条动态，涵盖 模型与产品 1条、开源热门 5条、技术洞察 3条、行业动态 4条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. Genesis AI 发布 Genesis World 1.0
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-05-31/f07f6d5e56df.png)
+
+Genesis AI 发布 Genesis World 1.0 物理仿真平台，包含 Nyx 渲染器、Quadrants GPU 编译器和开源物理引擎，可在 0.5 小时内完成原本需 200 小时的真实机器人评估，且仿真与实机性能相关系数达 0.8996，策略训练完全使用真实数据，不掺入仿真数据。
+
+📎 [原文链接](https://www.marktechpost.com/2026/05/30/genesis-ai-releases-nyx-quadrants-and-genesis-world-1-0-physics-platform-for-scalable-robotics-foundation-model-evaluation/)
+
+
+---
+
+## 🔥 开源热门
+
+### 1. MoneyPrinterTurbo 一键生成高清短视频
+
+⭐ 69,300 stars · 今日增长 3,387 stars
+
+MoneyPrinterTurbo 利用AI大模型自动将文本内容转化为高清短视频，适合内容创作者、自媒体运营者快速生产爆款视频，降低制作门槛与成本。
+
+📎 [原文链接](https://github.com/harry0703/MoneyPrinterTurbo)
+
+
+### 2. Lum1104/Understand-Anything 代码知识图谱生成
+
+⭐ 44,300 stars · 今日增长 1,779 stars
+
+将任意代码库转化为可交互、可搜索、可提问的知识图谱，帮助开发者快速理解复杂项目，适配Claude Code、Copilot等主流AI工具，提升代码阅读与调试效率。
+
+📎 [原文链接](https://github.com/Lum1104/Understand-Anything)
+
+
+### 3. codegraph 为 Claude Code 预构建代码知识图谱
+
+⭐ 33,100 stars · 今日增长 1,563 stars
+
+codegraph 为 Claude Code 提供预构建的本地化代码知识图谱，显著减少令牌消耗和工具调用次数，帮助开发者在离线环境中实现高效智能代码补全与理解。
+
+📎 [原文链接](https://github.com/colbymchenry/codegraph)
+
+
+### 4. ai-engineering-from-scratch AI工程从零构建
+
+⭐ 24,500 stars · 今日增长 833 stars
+
+帮助开发者系统掌握AI工程实践，从零构建生产级AI系统，涵盖数据、训练、部署全流程，适合希望深入AI工程落地的工程师和研究者。
+
+📎 [原文链接](https://github.com/rohitg00/ai-engineering-from-scratch)
+
+
+### 5. Imbad0202/academic-research-skills 学术研究技能库
+
+⭐ 23,800 stars · 今日增长 507 stars
+
+该工具集帮助研究人员高效完成从文献调研、论文撰写到审阅修订的全流程，结合AI辅助提升学术写作质量，适合科研人员与研究生使用。
+
+📎 [原文链接](https://github.com/Imbad0202/academic-research-skills)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. Anthropic 公开 Claude 沙盒技术细节
+
+Anthropic 公开 Claude 沙盒技术细节：Anthropic 公开其在 Claude.ai、Claude Code 和 Claude Cowork 中使用的多层沙盒技术：Claude.ai 基于 gVisor，Claude Code 在 macOS 用 Seatbelt、Linux 用 Bubblewrap，Claude Cowork 则运行完整
+
+📎 [原文链接](https://simonwillison.net/2026/May/30/how-we-contain-claude/#atom-everything)
+
+
+### 2. Thaw 开源：LLM 分支快照工具
+
+Thaw 开源：LLM 分支快照工具：独立开发者开源 Thaw，一款基于 vLLM 和 SGLang 的 LLM 分支快照工具，可在运行中对包含 KV 缓存的推理会话做快照并生成多个子进程，避免重复 prefill，实测 H100 上 4 分支 64 token 操作仅耗时 0.88 秒，相比冷启动加速近 400 倍。
+
+与 NVIDIA Dynamo 有意丢弃 KV 缓存不同，Thaw 保留完整状态，实现位级一致的高效 fork，已开源并支持 pip 安装。
+
+📎 [原文链接](https://github.com/thaw-ai/thaw)
+
+
+### 3. ProReview 发布
+
+ProReview 发布：ProReview 是一个面向工程师的AI代码审查训练工具，提供50多个真实AI生成的bash、kubectl、SQL、YAML和Python代码片段挑战，用户需在无提示情况下判断是否安全并标记高风险行，训练内容涵盖Kubernetes、数据库、CI/CD、基础设施和后端API五大生产高危场景。
+
+📎 [原文链接](https://www.proreview.dev/)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. DeepSeek估值515亿美元
+
+DeepSeek估值515亿美元：DeepSeek在2026年5月完成73亿美元融资，估值达515亿美元，成为当时中国AI史上最大单笔融资，其核心突破是全球首个完成从Nvidia CUDA全栈迁移至华为昇腾CANN的前沿大模型，且定价低至每百万token 0.003美元，成为行业成本基准。
+
+📎 [原文链接](https://crossingriver.substack.com/p/who-has-the-hardest-fist-in-chinas)
+
+
+### 2. Meta拟外售AI算力
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-05-31/a77f4a6ba715.webp)
+
+Meta拟外售AI算力：Meta计划将自建数据中心富余的AI算力对外出租，面向大客户提供专用AI基础设施服务，而非打造通用公有云，此举将直接冲击依赖GPU稀缺性生存的Neocloud厂商CoreWeave。
+
+📎 [原文链接](https://www.tmtpost.com/8008627.html)
+
+
+### 3. GitHub Copilot 计费模式变更
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-05-31/fe8d26026a65.png)
+
+GitHub Copilot 计费模式变更：GitHub Copilot 将于6月1日从固定订阅制改为基于令牌消耗的计费模式，导致部分开发者月费从29美元飙升至750美元甚至3000美元，引发广泛不满，用户指责微软此前鼓励滥用后突然涨价。
+
+📎 [原文链接](https://techcrunch.com/2026/05/30/what-a-joke-github-copilots-new-token-based-billing-spurs-consternation-among-devs/)
+
+
+### 4. 软银拟投750亿欧元建法国数据中心
+
+软银拟投750亿欧元建法国数据中心：软银宣布将投资高达750亿欧元（约870亿美元）在法国建设总容量达5吉瓦的数据中心，首期在敦刻尔克、博斯凯尔和布尚落地，目标2031年前提供3.1吉瓦算力，支撑其作为OpenAI投资方与客户的AI基础设施需求。
+
+📎 [原文链接](https://techcrunch.com/2026/05/30/softbank-says-it-will-invest-up-to-e75-billion-to-build-french-data-centers/)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
