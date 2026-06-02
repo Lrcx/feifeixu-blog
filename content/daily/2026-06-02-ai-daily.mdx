@@ -1,0 +1,357 @@
+---
+title: "06.02 OpenAI模型上AWS，Qwen3.7视觉升级 | AI 早报"
+date: "2026-06-02"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 06.02 OpenAI模型上AWS，Qwen3.7视觉升级 | AI 早报
+
+> 2026年06月02日 周二 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- OpenAI 前沿模型与 Codex 通过 Amazon Bedrock 在 AWS 开放 —— 企业级 AI 部署门槛大幅降低
+- Qwen3.7-Plus 全面升级视觉-语言能力，保留编码与工具使用智能体功能 —— 阿里多模态智能体模型正式落地
+- Anthropic 提交 IPO 申请，估值近万亿美元，年化收入超470亿美元 —— AI 巨头上市倒计时，资本市场风向标
+- Alphabet计划筹资800亿美元用于AI算力基建 —— 全球AI算力军备竞赛进入新阶段
+- 智谱拟募资150亿元，120亿用于GLM基座模型研发 —— 国产大模型龙头加速资本化布局
+
+**今日共收录 37 条动态，涵盖 模型与产品 13条、开源热门 5条、技术洞察 8条、行业动态 11条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. OpenAI 模型与 Codex 上线 AWS
+
+OpenAI 模型与 Codex 上线 AWS：OpenAI 将其前沿模型和 Codex 编程智能体通过 Amazon Bedrock 推出至 AWS，企业可直接在 AWS 安全环境中调用这些模型，无需迁移数据或绕过现有合规流程，支持 GPT-5.5 等模型与每周超500万开发者使用的 Codex。
+
+📎 [原文链接](https://openai.com/index/openai-frontier-models-and-codex-are-now-available-on-aws)
+
+
+### 2. Qwen3.7-Plus 发布
+
+Qwen3.7-Plus 发布：阿里通义千问团队发布Qwen3.7-Plus多模态智能体模型，在Qwen3.7文本能力基础上增强视觉与语言理解，支持图像推理、多模态交互，并完整保留编码、API调用和工作流自动化能力，适用于智能客服、工业质检和AI助手场景。
+
+📎 [原文链接](https://36kr.com/newsflashes/3835230281856390?f=rss)
+
+
+### 3. Amazon Bedrock AgentCore 支持引用 Secrets Manager 密钥
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-02/cd9dd0761506.png)
+
+Amazon Bedrock AgentCore 支持引用 Secrets Manager 密钥：Amazon Bedrock AgentCore Identity 现支持直接引用用户在 AWS Secrets Manager 中已创建的密钥，用于 AI 代理的出站身份验证，用户可完全掌控密钥的加密方式（使用客户管理 KMS 密钥）、轮换策略、标签和访问权限
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/reference-your-own-aws-secrets-manager-secrets-in-amazon-bedrock-agentcore-identity/)
+
+
+### 4. 豆包6月下旬正式付费
+
+豆包6月下旬正式付费：字节跳动旗下AI产品豆包将于6月下旬正式推出付费订阅服务，月费档位为68元、200元、500元，同步上线抖音电商导购功能，用户可直接在对话中点击商品卡完成转化，当前点击后详情页浏览转化率达3%以上。
+
+📎 [原文链接](https://36kr.com/p/3834544830721671?f=rss)
+
+
+### 5. 阶跃 Step 3.7 Flash 发布
+
+阶跃 Step 3.7 Flash 发布：阶跃星辰发布开源模型 Step 3.7 Flash，采用稀疏MoE架构，激活参数11B，生成速度达400 Tokens/s，编程能力达Claude Opus 4.6的97%，单任务成本仅为后者的1/9，专为高频Agent任务优化，支持原生多模态理解、联网搜索与稳定工具调用。
+
+📎 [原文链接](https://www.ifanr.com/1667680?utm_source=rss&utm_medium=rss&utm_campaign=)
+
+
+### 6. VAST Project Eden 发布
+
+VAST Project Eden 发布：VAST 推出世界模型 Project Eden，首次将世界状态与画面渲染彻底解耦，底层维护独立、持久、可被多用户并发查询的结构化状态，上层仅负责按视角渲染，实现如游戏引擎般的多人共享世界，支持推箱子、打靶、划船等可持久化交互。
+
+该架构突破传统视频生成式世界模型（如 Google Genie）的帧预测局限，避免场景消失与状态不一致问题，训练数据来自 Tripo 3D 模型对互联网视频的反向重建与游戏引擎合成数据，已跑通双人协同操作 Demo。
+
+VAST 计划以基础设施模式提供服务，未来或替代传统 DCC 工具，降低 AI 原生互动内容创作门槛，目标是让生成可交互世界像拍照一样简单。
+
+📎 [原文链接](https://www.ifanr.com/1667604?utm_source=rss&utm_medium=rss&utm_campaign=)
+
+
+### 7. Amazon Bedrock AgentCore 支付预览发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-02/fa03384aa2e7.png)
+
+Amazon Bedrock AgentCore 支付预览发布：Amazon Bedrock AgentCore 推出支付功能预览版，允许AI代理在限定预算和时间范围内代表用户自动完成付费操作，通过支付会话、IAM四角色隔离、短期令牌和嵌入式钱包（Coinbase/Stripe）实现安全支付，开发者无需接触用户卡信息或密钥。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/enable-safe-agentic-payments-with-built-in-guardrails-using-amazon-bedrock-agentcore-payments/)
+
+
+### 8. Google I/O 2026 用 Gemini 全栈构建
+
+Google I/O 2026 用 Gemini 全栈构建：Google 在 I/O 2026 大会上全程使用自家 AI 工具（Gemini Omni、Nano Banana、Lyria 3、Antigravity 等）生成视觉品牌、预热短片、互动游戏、定制贴纸和演讲标题卡，实现从创意到落地的全链路 AI 生产。
+
+例如，用 Nano Banana 生成水母音乐控制信号、Gemini API 实时构建游戏关卡、AI 自动生成个性化贴纸并现场打印，所有内容均由 AI 协同人类完成，无传统设计流程。
+
+开发者可通过 Google AI Studio、Gemini API 和 Flutter 快速复现类似应用，标志着生成式 AI 已从辅助工具变为核心创作引擎。
+
+📎 [原文链接](https://blog.google/innovation-and-ai/technology/ai/io-2026-google-ai/)
+
+
+### 9. WindBorne WeatherMesh-6 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-02/7eaf6b533064.jpg)
+
+WindBorne WeatherMesh-6 发布：WindBorne Systems发布AI气象模型WeatherMesh-6，每小时生成一次预报，空间分辨率达3公里，在地表温度等关键变量上预测精度超越欧洲中期天气预报中心（ECMWF）传统模型，核心突破在于直接用自研气象气球采集的原始数据训练模型，而非依赖ECMWF或NOAA的再分析数据。
+
+📎 [原文链接](https://techcrunch.com/2026/06/01/this-ai-weather-startup-is-out-forecasting-government-agencies/)
+
+
+### 10. MiniMax M3 发布
+
+MiniMax M3 发布：MiniMax 发布大模型 M3，采用自研 MSA 稀疏注意力架构，支持 100 万 token 上下文窗口，SWE-Bench Pro 编程能力达 59.0%，超越 GPT-5.5 和 Gemini 3.1 Pro，并原生支持图像、视频输入与桌面操作系统级操作。
+
+📎 [原文链接](https://www.marktechpost.com/2026/06/01/minimax-releases-minimax-m3-with-msa-architecture-supporting-1m-token-context-native-multimodality-and-agentic-coding/)
+
+
+### 11. Figure 发布桌面版STL生成工具
+
+Figure 发布桌面版STL生成工具：Figure 是一款桌面应用，用户用英文描述损坏零件（或上传照片/STL），系统通过本地OpenSCAD生成可直接3D打印的STL文件，全程无云端传输，密钥和数据完全保留在本地设备上。
+
+📎 [原文链接](https://figure.codes/)
+
+
+### 12. 浙江拟实施星火计划
+
+浙江拟实施星火计划：浙江省拟推出‘星火计划’，重点培育量子科技、具身智能等10个未来产业，明确推动量子芯片、核心器件、软件算法与应用场景协同发展，加速量子技术产品规模化落地，目标打造全国量子产业创新高地。
+
+📎 [原文链接](https://36kr.com/p/3834354415347337?f=rss)
+
+
+### 13. JetBrains Mellum2 发布
+
+JetBrains Mellum2 发布：JetBrains 发布开源专家混合模型 Mellum2，参数量120亿但每词元仅激活25亿，专为代码与文本任务优化，在推理速度上比同规模模型快2倍以上，支持路由、RAG、子代理和私有化部署，采用Apache 2.0许可证，已上线Hugging Face。
+
+📎 [原文链接](https://huggingface.co/blog/JetBrains/mellum2-launch)
+
+
+---
+
+## 🔥 开源热门
+
+### 1. MoneyPrinterTurbo 一键生成高清短视频
+
+⭐ 73,900 stars · 今日增长 2,120 stars
+
+MoneyPrinterTurbo 利用AI大模型自动将文本内容转化为高清短视频，适合内容创作者、自媒体运营者快速生产爆款视频，降低制作门槛与成本。
+
+📎 [原文链接](https://github.com/harry0703/MoneyPrinterTurbo)
+
+
+### 2. Lum1104/Understand-Anything 交互式代码知识图谱
+
+⭐ 45,800 stars · 今日增长 1,476 stars
+
+将任意代码库转化为可探索、可搜索、可提问的交互式知识图谱，帮助开发者快速理解复杂项目，适配Claude Code、Copilot等主流AI工具，提升代码阅读与调试效率。
+
+📎 [原文链接](https://github.com/Lum1104/Understand-Anything)
+
+
+### 3. codegraph 为 Claude Code 预索引代码知识图谱
+
+⭐ 35,200 stars · 今日增长 978 stars
+
+codegraph 为 Claude Code 提供本地化预索引代码知识图谱，显著减少令牌消耗与工具调用次数，帮助开发者在离线环境中高效实现智能代码理解与补全。
+
+📎 [原文链接](https://github.com/colbymchenry/codegraph)
+
+
+### 4. Imbad0202/academic-research-skills 学术研究自动化流程
+
+⭐ 25,000 stars · 今日增长 571 stars
+
+该工具链帮助研究人员自动化完成从文献调研、论文撰写、同行审阅到最终定稿的全流程，适用于学术写作者与科研团队提升效率与质量。
+
+📎 [原文链接](https://github.com/Imbad0202/academic-research-skills)
+
+
+### 5. ai-engineering-from-scratch AI工程从零构建
+
+⭐ 25,100 stars · 今日增长 567 stars
+
+帮助开发者系统掌握AI工程全流程，从零构建生产级AI系统，涵盖数据、训练、部署与监控，适合希望深入AI工程实践的工程师和研究者。
+
+📎 [原文链接](https://github.com/rohitg00/ai-engineering-from-scratch)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. agentgateway 开源发布
+
+agentgateway 开源发布：agentgateway 是由 Solo.io 发起、Linux Foundation 托管的开源网关项目，可在一个二进制文件中统一路由和治理传统 HTTP/gRPC 服务、LLM 接口（如 OpenAI、Claude）、MCP 工具调用和智能体间通信（A2A），内置 RBAC、mTLS、OpenTelemetry 和 O
+
+📎 [原文链接](https://agentgateway.dev/)
+
+
+### 2. Amazon Bedrock AgentCore 发布策略与拦截器
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-02/9ae0d974a9d4.png)
+
+Amazon Bedrock AgentCore 发布策略与拦截器：Amazon Bedrock AgentCore 推出策略引擎和Lambda拦截器，允许企业使用Cedar语言定义确定性访问规则（如禁止保单持有人调用汇总工具），并通过Lambda函数动态交换JWT为最小权限IAM凭证，实现租户隔离的工具调用，解决AI代理运行时权限失控问题。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/secure-ai-agents-with-policy-and-lambda-interceptors-in-amazon-bedrock-agentcore-gateway/)
+
+
+### 3. 秋水半导体获近2亿元融资
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-02/8c33d3e7b226.jpg)
+
+秋水半导体获近2亿元融资：秋水半导体完成近2亿元融资，自研无损混合键合工艺突破Micro-LED量产瓶颈，芯片良率提升至6N以上，出光角度从±60°收窄至±10°，预计2026年底实现彩色化技术突破，解决AR眼镜全彩显示核心障碍。
+
+📎 [原文链接](https://36kr.com/p/3834427736024965?f=rss)
+
+
+### 4. AWS GPUDirect 加速 LLM 加载
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-02/c3ce97fe21de.png)
+
+AWS GPUDirect 加速 LLM 加载：AWS 在 P5en 实例上结合 GPUDirect Storage 与 FSx for Lustre，实现模型权重从存储直写 GPU HBM，Llama 3.1 405B 模型（FP8 量化后 400GB）加载时间从传统方式的 10–20 分钟降至 8 秒，彻底绕开 CPU 和 PCIe 瓶颈。
+
+该方案通过张量并行分片、EFA 网络直连、cuFile API 读取 safetensors，支持 vLLM 等主流推理框架，适用于千亿级模型冷启动、自动扩缩容和故障恢复场景，显著降低推理服务延迟与成本。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/accelerate-llm-model-loading-and-increase-context-windows-with-gpudirect-on-amazon-fsx-for-lustre-and-turboquant/)
+
+
+### 5. Anthropic Opus 4.8 浏览器代理被劫持率31.5%
+
+Anthropic Opus 4.8 浏览器代理被劫持率31.5%：Anthropic 发布的 Opus 4.8 模型在浏览器交互场景中，未启用安全防护时被红队成功劫持的概率达 31.5%，启用防护后降至 0.5%，并公开了 129 个真实网页环境的测试数据，成为目前唯一提供多交互面、自适应攻击实测结果的厂商。
+
+📎 [原文链接](https://venturebeat.com/security/anthropic-browser-agent-hijacked-31-percent-before-safeguards-engaged)
+
+
+### 6. Prasad Khake 测评MacBook Air M3本地LLM
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-02/ea8a92454b90.png)
+
+Prasad Khake 测评MacBook Air M3本地LLM：开发者Prasad Khake在16GB MacBook Air M3上实测多款本地LLM，发现4B模型（如Qwen3-4B、Phi-3.5-mini）可达10 token/s且内存占用仅2.5GB，8B模型（如Llama-3.1-8B）勉强运行（5.1 token/s），9B模型因触发内
+
+测试使用MLX框架，强调峰值内存占用比生成速度更重要，因macOS后台占用4–8GB，留给模型的内存仅4–6GB，9B模型即使量化后权重仅5–6GB也会因分页导致响应停滞。
+
+他开源了测试工具ondevice-bench，并指出量化方法比模型规模更重要：3-bit的12B模型性能优于3-bit的14B模型，强调工程优化胜于盲目追求大参数。
+
+📎 [原文链接](https://prasadkhake.com/blog/16gb-mac-llm)
+
+
+### 7. Memory OS 开源发布
+
+Memory OS 开源发布：Memory OS 是由开发者 Claudio Drews 开源的六层记忆系统，专为 Hermes Agent 设计，通过 Docker + Qdrant + Redis 实现本地化记忆存储，包含结构化事实库、混合向量检索（4096维余弦+BM25）和自动更新的 LLM 维基，所有数据不上传云端，适用于有数据驻留要求的企业场景。
+
+📎 [原文链接](https://www.marktechpost.com/2026/06/01/meet-memory-os-a-6-layer-open-source-memory-stack-built-on-top-of-hermes-agent/)
+
+
+### 8. glq 开源 E8 量化库
+
+glq 开源 E8 量化库：开发者 cnygaard 开源了基于 E8 格点的 LLM 量化库 glq，支持 2-4 位每权重量化，在相同精度下显存占用比 INT8 降低约 50%，并支持混合精度层间自适应压缩，已提供 Gemma-4 和 SmolLM3 的量化模型供直接使用。
+
+📎 [原文链接](https://github.com/cnygaard/glq)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. Anthropic 提交 IPO 申请
+
+Anthropic 提交 IPO 申请：Anthropic 已向美国 SEC 提交保密 IPO 申请，估值接近 1 万亿美元，年化收入突破 470 亿美元，较 2025 年底的 90 亿美元增长超 4 倍，成为全球最值钱的 AI 公司之一。
+
+📎 [原文链接](https://techcrunch.com/2026/06/01/anthropic-files-to-go-public/)
+
+
+### 2. Alphabet计划筹资800亿美元
+
+Alphabet计划筹资800亿美元：谷歌母公司Alphabet宣布计划通过股票发售和私募融资筹集800亿美元，用于扩大AI计算基础设施，以应对Gemini等模型带来的超预期需求，其中伯克希尔·哈撒韦将直接投资100亿美元。
+
+📎 [原文链接](https://www.cnbc.com/2026/06/01/alphabet-to-raise-80-billion-from-stock-sales-to-fund-ai-buildout.html)
+
+
+### 3. 智谱拟A股募资150亿
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-02/497033160407.png)
+
+智谱拟A股募资150亿：智谱AI宣布拟在科创板IPO并募资150亿元，其中120亿元将用于研发GLM系列通用基座大模型，20亿元用于MaaS平台建设，其开源模型GLM-5.1在SWE-Bench Pro等三大代码基准中位列国产第一、全球第三。
+
+📎 [原文链接](https://zhidx.com/p/562283.html)
+
+
+### 4. 2030年硬盘容量或三倍增长
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-02/b3aa45e711a7.png)
+
+2030年硬盘容量或三倍增长：存储分析师Thomas Coughlin预测，2030年全球硬盘出货总容量将达2025年的3倍，其中58%由AI训练与推理产生的海量冷数据驱动，单盘平均容量将提升2.7倍，而出货数量反而比2022年低19%。
+
+AI主要依赖HDD存储历史训练数据和日志，当前85%数据中心数据仍存于HDD，希捷等厂商正通过HAMR技术提升单碟密度，而非扩产，以应对这一结构性需求变化。
+
+📎 [原文链接](https://zhidx.com/p/561952.html)
+
+
+### 5. 快手分拆可灵AI独立融资
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-02/f0f875d7c353.png)
+
+快手分拆可灵AI独立融资：快手将AI视频生成业务可灵AI分拆独立，拟以200亿美元估值融资，其2026年Q1 ARR达5亿美元，70%收入来自北美等海外市场，主要服务广告、影视、游戏等B端客户，单视频生成成本较上代下降30%，毛利率接近打平。
+
+可灵AI在海外艺术设计类App下载榜登顶，日均AI漫剧营销消耗峰值突破2000万元，但核心团队核心人物张迪已离职加入阿里并推出竞品HappyHorse-1.0，暴露人才稳定性风险。
+
+📎 [原文链接](https://www.tmtpost.com/8006940.html)
+
+
+### 6. 中国电信推出Token套餐
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-02/90639802b9b6.jpg)
+
+中国电信推出Token套餐：中国电信在全国试商用AI Token套餐，个人版9.9元/月含1000万词元，开发者档位最高1.5亿词元/月，将Token作为继流量、语音、短信后的第四大计费单位，整合天翼云、AI云电脑和多模型接入能力。
+
+📎 [原文链接](https://www.tmtpost.com/8010255.html)
+
+
+### 7. OpenAI Stargate 密歇根数据中心动工
+
+OpenAI Stargate 密歇根数据中心动工：OpenAI 在密歇根州萨林启动1吉瓦数据中心项目“The Barn”，作为Stargate计划的一部分，承诺不转嫁电费、采用闭环冷却节水，并创造4000+个本地就业岗位，同时向密歇根州40万大学生提供最高4500万美元的Codex使用额度。
+
+📎 [原文链接](https://openai.com/index/stargate-michigan-data-center)
+
+
+### 8. 伯克希尔追加100亿投资Alphabet
+
+伯克希尔追加100亿投资Alphabet：伯克希尔·哈撒韦通过私募方式向Alphabet追加100亿美元投资，以每股约348-352美元价格购入A类和C类股票，使其成为Alphabet最大股东之一，资金将用于支持Alphabet的人工智能算力基础设施扩张。
+
+📎 [原文链接](https://www.cnbc.com/2026/06/01/berkshire-hathaway-alphabet-investment.html)
+
+
+### 9. Aippy 完成数千万美元融资
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-02/e3883a558bb6.jpg)
+
+Aippy 完成数千万美元融资：Aippy是NADA AI团队推出的AI游戏社区，用户通过自然语言或语音描述创意，AI数分钟内生成可交互游戏，支持一键二创（Remix），目前全球月活近200万，UGC作品超200万，日均使用时长提升25%，DAU互动率达50%。
+
+📎 [原文链接](https://36kr.com/p/3834400181741440?f=rss)
+
+
+### 10. 宇树科技过会
+
+宇树科技过会：宇树科技于2026年6月1日获科创板过会，估值达420亿元，成为A股‘人形机器人第一股’，2025年人形机器人出货量超5500台、销售额8.68亿元，占总收入51.78%，全球第一。
+
+📎 [原文链接](https://www.tmtpost.com/8010316.html)
+
+
+### 11. 风投转向机器人与物理AI
+
+风投转向机器人与物理AI：全球风投机构正将巨额资金从AI软件转向机器人和物理AI领域，2025年融资额达260亿美元（约1763亿元人民币），六年增长五倍，主要驱动力是AI复制软件导致SaaS投资价值坍塌，而实体设备如机器人、芯片和制造系统成为新焦点。
+
+📎 [原文链接](https://zhidx.com/p/562041.html)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
