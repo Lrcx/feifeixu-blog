@@ -1,0 +1,313 @@
+---
+title: "06.09 ChatGPT集成多平台转型AI入口 | AI 早报"
+date: "2026-06-09"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 06.09 ChatGPT集成多平台转型AI入口 | AI 早报
+
+> 2026年06月09日 周二 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- ChatGPT集成Codex、Canva、Booking.com，转型为AI智能体入口 —— ChatGPT正式转向高毛利AI智能体模式
+- OpenAI秘密提交IPO申请，估值8520亿美元，预计2028年AI算力支出达1220亿美元 —— 全球最贵AI公司启动上市进程
+- Apple Foundation Models 免费开放给下载量低于200万次的开发者 —— 苹果用免费AI抢夺独立开发者生态
+- 小米 MiMo-V2.5-Pro-UltraSpeed 在8卡商用GPU上实现1000+ TPS推理速度 —— 千亿模型在商用硬件上突破千令牌/秒瓶颈
+- 微信AI开放开发者接入内测，小程序可被AI调用并支持自动与开发两种模式 —— 微信AI生态入口正式开放
+
+**今日共收录 33 条动态，涵盖 模型与产品 19条、开源热门 4条、技术洞察 1条、行业动态 9条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. ChatGPT迎来最大规模改版
+
+ChatGPT迎来最大规模改版：OpenAI计划将ChatGPT从聊天机器人升级为统一AI智能体入口，网页端和移动端将直接集成代码生成、图像生成、Canva设计、Booking出行预订等功能，并取消人工引导，由模型自主识别与执行任务，目标是打造跨设备的个人AI助手。
+
+📎 [原文链接](https://zhidx.com/p/564016.html)
+
+
+### 2. Apple Foundation Models 免费开放
+
+Apple Foundation Models 免费开放：苹果在WWDC 2026宣布，为App Store下载量低于200万次的开发者免费提供基于Private Cloud Compute的Foundation Models服务，免除所有云API费用，并扩展支持图像输入与第三方云端模型接入，降低小型开发者使用AI的门槛。
+
+📎 [原文链接](https://techcrunch.com/2026/06/08/apple-bets-cheaper-ai-will-woo-small-developers/)
+
+
+### 3. 小米 MiMo-V2.5-Pro-UltraSpeed 发布
+
+小米 MiMo-V2.5-Pro-UltraSpeed 发布：小米 MiMo 与 TileRT 联合发布 MiMo-V2.5-Pro-UltraSpeed，通过 FP4 量化（仅作用于 MoE 专家模块）、DFlash 块级猜测解码和 TileRT 持久化推理引擎，在单个 8-GPU 商用节点上实现千亿参数模型每秒超 1000 令牌的解码速度，峰值达 120
+
+📎 [原文链接](https://www.marktechpost.com/2026/06/08/xiaomi-mimo-and-tilert-push-a-1-trillion-parameter-model-past-1000-tokens-per-second-on-commodity-gpus/)
+
+
+### 4. 微信AI开放开发者内测
+
+微信AI开放开发者内测：微信AI正式开放开发者内测，小程序可通过自动模式（无需编码）或开发模式（自主定制）接入AI生态，接入后可被微信AI推荐和调用，未接入则无法被AI使用，但不影响现有功能。
+
+📎 [原文链接](https://zhidx.com/p/564081.html)
+
+
+### 5. 云知声U2发布
+
+云知声U2发布：云知声发布自研原生Agent大模型U2，采用MoE稀疏架构，激活参数仅为总参数的1/10，在AA-LCR长上下文评测中以70分排名第一，SWE-Bench Verified得75分，GDPval得72.5分，可自主完成编程、金融报告生成、周报撰写等复杂任务。
+
+📎 [原文链接](https://zhidx.com/p/563348.html)
+
+
+### 6. AWS Bedrock 推出跨区域推理
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-09/9cf332c004f2.png)
+
+AWS Bedrock 推出跨区域推理：AWS在Amazon Bedrock上线跨区域推理（CRIS）功能，推出欧盟专用配置文件（EU CRIS），确保来自欧盟的AI请求只能路由至欧盟境内AWS区域，满足GDPR数据本地化要求，同时支持全球配置文件用于非敏感场景。
+
+客户可通过Boto3 SDK或控制台显式调用eu.amazon.nova-2-lite-v1:0等CRIS配置文件ID，所有区域间数据传输加密且不经过公网，日志仅在源区域记录，便于合规审计。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/unlocking-ai-flexibility-in-europe-a-guide-to-cross-region-inference-for-eu-data-processing-and-model-access/)
+
+
+### 7. Amazon Bedrock AgentCore 发布
+
+Amazon Bedrock AgentCore 发布：Amazon Bedrock AgentCore 是 AWS 推出的编码代理托管平台，为 Claude Code、Codex、Kiro 等 AI 编程代理提供独立的 Linux 微虚拟机环境，支持持久化工作区、交互式 shell、确定性命令执行和安全工具网关，开发者可合上笔记本而不丢失任务状态。
+
+每个会话拥有独立文件系统、网络和凭证隔离，通过 MCP 协议统一接入 GitHub、Jira 等工具，凭证由 AWS Secrets Manager 和 Token Vault 管理，避免敏感信息暴露在 LLM 环境中。
+
+支持挂载 S3 和 EFS 作为共享技能库与缓存，会话可中断后恢复，启动时间数秒内，已集成 CloudWatch 监控与 IAM 身份认证，适用于企业级安全开发场景。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/its-safe-to-close-your-laptop-now-hosting-coding-agents-on-amazon-bedrock-agentcore/)
+
+
+### 8. Amazon Nova Sonic Test Harness 开源
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-09/ca65f34b76ce.png)
+
+Amazon Nova Sonic Test Harness 开源：亚马逊推出开源测试框架 Nova Sonic Test Harness，可自动化评估其语音代理 Nova Sonic 的多轮对话能力，无需真实音频输入，通过LLM模拟用户、裁判评估和音频转录比对，实现提示词迭代、工具调用验证和文本-音频幻觉检测，支持批量并行测试与CI/CD集成。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/evaluate-your-amazon-nova-sonic-voice-agent-at-scale-no-microphone-required/)
+
+
+### 9. 苹果快捷指令AI功能上线
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-09/0691116a4e04.jpg)
+
+苹果快捷指令AI功能上线：苹果在WWDC 2026上宣布，iOS 27的快捷指令应用将集成Apple Intelligence，用户可通过自然语言描述自动创建跨应用自动化流程，如‘下班时发ETA给家人’，系统将自动调用地图、iMessage等服务，无需手动配置触发器和操作。
+
+📎 [原文链接](https://techcrunch.com/2026/06/08/apple-will-let-you-build-workflows-using-ai-in-its-new-shortcuts-app/)
+
+
+### 10. 苹果照片应用AI功能上线
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-09/52b320b68365.jpg)
+
+苹果照片应用AI功能上线：苹果在WWDC 2026上为照片应用推出基于Apple Intelligence的三大AI编辑功能：Reframe可AI重构画面视角并填充边缘空白，Extend能扩展图像边界校正构图，Cleanup升级为更逼真的内容移除工具，均支持实时预览。
+
+📎 [原文链接](https://techcrunch.com/2026/06/08/apples-photos-app-is-getting-new-ai-editing-features/)
+
+
+### 11. 苹果推出独立Siri应用
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-09/5d814b4a3590.png)
+
+苹果推出独立Siri应用：苹果在WWDC 2026上发布独立Siri应用，整合iOS、macOS和iPadOS端的AI助手功能，支持历史对话归档、摘要回顾、文本/图片上传和语音交互，所有数据通过iCloud端到端加密同步。
+
+📎 [原文链接](https://techcrunch.com/2026/06/08/apple-gives-siri-its-own-dedicated-app/)
+
+
+### 12. 微软 MAI-Transcribe-1.5 发布
+
+微软 MAI-Transcribe-1.5 发布：微软发布语音识别模型 MAI-Transcribe-1.5，支持43种语言，词错误率（WER）低至2.4%，在FLEURS基准中准确率业界领先，长音频转录速度比前代提升5.7倍，一小时音频可在15秒内完成，已集成至Copilot、Teams和Azure AI Foundry。
+
+📎 [原文链接](https://www.marktechpost.com/2026/06/08/microsoft-ai-introduces-mai-transcribe-1-5-2-4-wer-on-artificial-analysis-best-in-class-fleurs-accuracy-and-up-to-5x-faster-long-audio-transcription/)
+
+
+### 13. 豆包与ChatGPT高考数学PK
+
+豆包与ChatGPT高考数学PK：字节跳动的豆包思考模式与OpenAI的ChatGPT在真实高考数学卷测试中，选择题和填空题全部答对，解答题能完整展开多步推理，包括解析几何、概率建模和函数证明，表现接近人类解题路径。
+
+📎 [原文链接](https://www.qbitai.com/2026/06/432425.html)
+
+
+### 14. Google Gemini 企业版引入代理RAG
+
+Google Gemini 企业版引入代理RAG：谷歌在Gemini企业智能代理平台中上线基于代理的RAG框架，通过‘充分上下文代理’实现多轮迭代检索，解决跨数据源多跳查询问题，在FramesQA测试中跨语料库准确率达90.1%，相比传统RAG事实准确率提升34%，延迟仅增加3%。
+
+📎 [原文链接](https://www.marktechpost.com/2026/06/08/google-research-adds-agentic-rag-to-gemini-enterprise-agent-platform-with-a-sufficient-context-agent-for-multi-hop-queries/)
+
+
+### 15. 高德 ABot-Earth0.5 发布
+
+高德 ABot-Earth0.5 发布：高德发布ABot-Earth0.5，全球首个完全基于3D原生数据训练的城市生成模型，支持输入卫星图或文字，单卡即可端到端生成3DGS格式城市场景，效率较传统方式提升1000倍，直接输出可导入Unity/Unreal的可渲染内容。
+
+📎 [原文链接](https://www.qbitai.com/2026/06/432489.html)
+
+
+### 16. Kimi Work 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-09/d9f005443fa0.jpg)
+
+Kimi Work 发布：Kimi Work 是月之暗面推出的本地化AI工作流平台，支持调用多达300个专业子代理（Subagent）并行处理复杂任务，可自动读取本地文件、操作浏览器、调用金融数据源，一次性生成报告、PPT、Excel、PDF等12类交付物，覆盖研究、分析、合规、财务等全流程。
+
+该平台通过WebBridge实现浏览器自动化，支持Gmail邮件自动总结与发送，并内置A股、港股、美股等金融数据接口，无需配置API即可完成企业级分析，已从聊天机器人升级为可独立执行完整知识工作的AI团队。
+
+用户可将本地文件夹设为项目，Kimi Work自动拆解任务、分配角色（如研究员、设计师、审查员）、交叉校验，最终输出符合商业交付标准的完整成果，真正实现‘一个人调度一群AI’的工作模式。
+
+📎 [原文链接](https://www.ifanr.com/1668274?utm_source=rss&utm_medium=rss&utm_campaign=)
+
+
+### 17. Apple Image Playground 升级
+
+Apple Image Playground 升级：苹果在WWDC 2026上升级了Image Playground，借助Apple Intelligence显著提升AI图像生成质量，支持通过自然语言提示生成个性化图像，并实现锁屏壁纸、iMessage背景等深度集成，所有处理均在私有云端完成，用户照片不被存储或用于训练。
+
+📎 [原文链接](https://techcrunch.com/2026/06/08/apples-image-playground-doesnt-suck-anymore/)
+
+
+### 18. Kimi 发布 Agent 集群世界杯预测
+
+Kimi 发布 Agent 集群世界杯预测：Kimi 通过300个专业Agent集群对2026年世界杯104场比赛进行模拟推演，累计执行超10万次预测，得出德国队18%夺冠概率、阿根廷15%淘汰风险等反直觉结论，并引入反方Agent机制交叉验证，核心能力已落地至Kimi Work桌面客户端，支持用户自主创建多Agent并行处理行业研究、财报分析等复杂任务。
+
+📎 [原文链接](https://zhidx.com/p/564122.html)
+
+
+### 19. 亚马逊AI定制商品功能上线
+
+亚马逊AI定制商品功能上线：亚马逊在购物App中上线AI设计功能，用户可通过Alexa输入文字提示生成T恤、保温杯等商品设计，并直接通过其'Merch on Demand'按需印刷服务下单生产，仅需支付商品成本，无需设计技能。
+
+📎 [原文链接](https://techcrunch.com/2026/06/08/amazon-now-lets-you-design-custom-merch-using-ai/)
+
+
+---
+
+## 🔥 开源热门
+
+### 1. last30days-skill AI代理技能库
+
+⭐ 30,400 stars · 今日增长 1,760 stars
+
+last30days-skill 是一个AI代理技能，可自动跨Reddit、X、YouTube、HN、Polymarket等平台检索并综合全网信息，生成基于事实的深度摘要，适合研究人员、分析师和AI开发者快速掌握复杂话题。
+
+📎 [原文链接](https://github.com/mvanhorn/last30days-skill)
+
+
+### 2. headroom 数据压缩工具
+
+⭐ 15,600 stars · 今日增长 1,310 stars
+
+headroom 在数据输入LLM前压缩日志、文件和RAG分块，减少60-95% token消耗且不损失答案质量，适用于需要降低推理成本的开发者和AI代理系统。
+
+📎 [原文链接](https://github.com/chopratejas/headroom)
+
+
+### 3. Leonxlnx/taste-skill 赋予AI审美能力
+
+⭐ 35,100 stars · 今日增长 1,300 stars
+
+Leonxlnx/taste-skill 通过训练AI识别并避免生成平庸内容，提升生成文本、图像等的审美质量，适合内容创作者、AI产品经理和追求高质量输出的开发者使用。
+
+📎 [原文链接](https://github.com/Leonxlnx/taste-skill)
+
+
+### 4. Lum1104/Understand-Anything 代码知识图谱生成
+
+⭐ 53,500 stars · 今日增长 675 stars
+
+将任意代码库转化为可交互、可搜索、可提问的知识图谱，帮助开发者快速理解复杂项目结构，适配Claude Code、Copilot等主流AI工具，提升代码阅读与调试效率。
+
+📎 [原文链接](https://github.com/Lum1104/Understand-Anything)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. Modular 推出LLM推理新型路由架构
+
+Modular 推出LLM推理新型路由架构：Modular 发布了一套专为LLM推理设计的新型路由架构，突破传统HTTP负载均衡的无状态假设，首次将KV缓存状态、预填充/解码硬件解耦、对话连续性与多步执行作为一级原语，通过数据层、决策层、执行层三层设计实现缓存感知调度与跨节点协同，显著降低对话延迟并提升GPU利用率。
+
+📎 [原文链接](https://www.modular.com/blog/why-llm-inference-needs-a-new-kind-of-router-part-1)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. OpenAI秘密提交IPO申请
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-09/b20b45a3f894.jpg)
+
+OpenAI秘密提交IPO申请：OpenAI向美国SEC秘密提交IPO申请，当前投后估值8520亿美元，尽管2028年预计AI算力支出将高达1220亿美元，远超营收预期，仍寻求公开市场融资以支撑持续亏损的算力投入。
+
+📎 [原文链接](https://techcrunch.com/2026/06/08/following-anthropic-openai-files-confidentially-for-ipo/)
+
+
+### 2. 特锐德算电岛全球首发
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-09/88272266bbc7.jpg)
+
+特锐德算电岛全球首发：特锐德推出全球首个预制算力中心底座‘算电岛’，通过模块化供电系统与算电协同技术，实现每Token用电成本降低30%、建设周期从18个月缩短至5个月，土建成本下降80%，已接入国家级算力集群。
+
+📎 [原文链接](https://zhidx.com/p/564078.html)
+
+
+### 3. 阿里成立Token Foundry事业部
+
+阿里成立Token Foundry事业部：阿里巴巴宣布合并通义大模型事业部与未来生活实验室，成立Token Foundry事业部，由CEO吴泳铭直接领导，聚焦AI模型的Token经济运营与商业化，郑波团队加入该部门，推动AI在ToB场景的生产力落地。
+
+📎 [原文链接](https://www.tmtpost.com/8019490.html)
+
+
+### 4. 英伟达RTX Spark芯片发布
+
+英伟达RTX Spark芯片发布：英伟达在GTC大会发布全新AI PC芯片RTX Spark，采用3nm制程，集成Grace CPU与Blackwell GPU，拥有128GB统一内存和1 Petaflops AI算力，首次在消费级终端实现全功能统一内存架构，支持离线运行数百亿参数大模型，戴尔、联想、惠普等厂商将在今年秋季推出搭载该芯片的设备。
+
+📎 [原文链接](https://www.tmtpost.com/8019149.html)
+
+
+### 5. DeepSeek V4-Pro 降价
+
+DeepSeek V4-Pro 降价：DeepSeek发布V4-Pro模型，通过自研算法适配华为昇腾950PR芯片，将百万Tokens推理成本降至0.025元，仅为GPT-5.5长上下文版本的1/14960，持续维持行业最低调用价格，吸引开发者构建AI Agent与工作流生态。
+
+📎 [原文链接](https://www.tmtpost.com/8019143.html)
+
+
+### 6. 智能体第一案裁定
+
+智能体第一案裁定：广州互联网法院对一款开源智能体软件作出国内首份行为保全裁定，要求其立即停止调用操作系统无障碍权限绕过平台技术保护措施、删除相关教程与数据，明确智能体不得在未经平台授权下自动化操作第三方App。
+
+📎 [原文链接](https://www.tmtpost.com/8018931.html)
+
+
+### 7. 腾讯混元3 Preview发布
+
+腾讯混元3 Preview发布：腾讯混元3 Preview由首席AI科学家姚顺雨主导优化，砍除低质训练数据、聚焦模型效率，参数规模虽小但性能显著提升，上线后token调用量较混元2.0翻倍，支撑元宝、CodeBuddy等产品实现语音识别、方言理解等能力升级。
+
+📎 [原文链接](https://36kr.com/p/3844018911889924?f=rss)
+
+
+### 8. 苹果 Siri AI 正式升级
+
+苹果 Siri AI 正式升级：苹果在 WWDC26 发布全新 Siri AI，支持多轮对话、屏幕内容理解、跨 App 任务执行，并新增自定义语音与系统级听写，仅限英语地区首发，国行因监管要求暂不支持。
+
+Siri 首次独立成 App，与灵动岛深度整合，支持通过文本输入交互，且仅在 iPhone 17 Pro、iPhone Air 等搭载 Apple Silicon 的设备上运行端侧大模型，iCloud+ 订阅将限制 AI 编辑使用额度。
+
+📎 [原文链接](https://www.ifanr.com/1668385?utm_source=rss&utm_medium=rss&utm_campaign=)
+
+
+### 9. Tools for Humanity 裁员
+
+Tools for Humanity 裁员：Sam Altman旗下的生物识别公司Tools for Humanity因Worldcoin业务难以盈利，正进行裁员，其虹膜扫描设备和加密货币验证模式在多国遭遇监管禁令与伦理争议，包括肯尼亚封禁和韩国83万美元罚款。
+
+📎 [原文链接](https://techcrunch.com/2026/06/08/as-openai-files-for-ipo-sam-altmans-eye-scanning-company-is-doing-layoffs-report-says/)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
