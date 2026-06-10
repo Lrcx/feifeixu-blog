@@ -1,0 +1,229 @@
+---
+title: "06.10 Claude Fable 5 开放访问 | AI 早报"
+date: "2026-06-10"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 06.10 Claude Fable 5 开放访问 | AI 早报
+
+> 2026年06月10日 周三 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- Anthropic Claude Fable 5 开放公众访问，输入10美元/百万令牌，输出50美元/百万令牌 —— 全球最强AI模型首次公开，成本与安全机制引行业关注
+- Cohere North Mini Code 300亿参数MoE模型，单张H100运行，输出吞吐提升2.8倍 —— 首个可本地部署的高性能编码代理开源
+- OpenAI Codex 让 Notion 工程师单人3小时完成原需两周的Web语音输入功能 —— AI编程代理已能独立交付生产级功能
+- Apple Siri AI 通过App Intents和View Annotations支持语音操作企业应用 —— 苹果AI从消费助手转向企业操作系统底层
+- GitHub Copilot CLI 支持通过 .agent.md 文件定义自定义代理，实现团队标准化工作流 —— AI 工具从单点辅助迈向团队流程自动化
+
+**今日共收录 23 条动态，涵盖 模型与产品 10条、开源热门 4条、技术洞察 3条、行业动态 6条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. Anthropic Claude Fable 5 发布
+
+Anthropic Claude Fable 5 发布：Anthropic 正式向公众开放 Claude Fable 5，这是其最强模型 Mythos 的首个公开版本，支持软件工程、知识工作和视觉理解，定价为输入10美元/百万令牌、输出50美元/百万令牌，是 Opus 4.8 的两倍，且在 Hex 基准测试中首次达到90分。
+
+📎 [原文链接](https://techcrunch.com/2026/06/09/anthropics-claude-fable-5-is-a-version-of-mythos-the-public-can-access-today/)
+
+
+### 2. Cohere North Mini Code 开源
+
+Cohere North Mini Code 开源：Cohere 开源了专为代理式编码设计的 North Mini Code 模型，300亿参数稀疏MoE架构，单张H100即可部署，支持25.6万token上下文和6.4万token生成，推理时仅激活30亿参数，在内部测试中输出吞吐比Mistral Devstral Small 2高2.8倍，延迟降低30%，
+
+📎 [原文链接](https://venturebeat.com/technology/cohere-open-sources-a-coding-agent-that-runs-on-a-single-h100)
+
+
+### 3. OpenAI Codex 助力 Notion 开发提效
+
+OpenAI Codex 助力 Notion 开发提效：OpenAI Codex 被 Notion 工程师用于将移动端AI语音输入功能移植到Web端，仅用3-4小时独立完成，代码风格与项目规范一致，次日即上线，而过去需两名工程师耗时两周。
+
+Notion 工程师现在主要撰写任务规格，由 Codex 自主执行开发、调试与部署，管理者也能重新参与编码，实现24小时并行任务处理，相当于拥有一个全天候AI实习生。
+
+📎 [原文链接](https://openai.com/index/notion)
+
+
+### 4. Apple Siri AI 成为企业应用层
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-10/c7debb766b48.png)
+
+Apple Siri AI 成为企业应用层：苹果在WWDC 2026将Siri升级为系统级AI操作层，开发者可通过App Intents、App Schemas和View Annotations API暴露应用数据与操作，使用户能用自然语言直接命令Siri执行CRM、工单、发票、日历等任务，无需打开应用界面。
+
+企业可使用Core AI在Apple Silicon本地部署自定义模型，通过Private Cloud Compute处理敏感请求，结合Evaluations框架和设备管理策略实现AI可靠性与合规控制，但功能仅限支持Apple Intelligence的设备，且暂不支持欧盟和中国市场。
+
+📎 [原文链接](https://venturebeat.com/technology/apples-new-siri-ai-is-more-than-just-a-smarter-assistant-its-a-new-enterprise-app-layer)
+
+
+### 5. GitHub Copilot CLI 支持自定义代理
+
+GitHub Copilot CLI 支持自定义代理：GitHub 推出 Copilot CLI 自定义代理功能，开发者可通过在仓库 .github/agents/ 目录下创建 .agent.md 文件，定义专属代理的角色、工具和约束，将重复性终端任务（如安全审计、无障碍检查）转化为可版本控制、可共享的标准化流程。
+
+📎 [原文链接](https://github.blog/ai-and-ml/github-copilot/from-one-off-prompts-to-workflows-how-to-use-custom-agents-in-github-copilot-cli/)
+
+
+### 6. 苹果 AFM 3 Core Advanced 发布
+
+苹果 AFM 3 Core Advanced 发布：苹果发布AFM 3 Core Advanced，全球首个在设备端运行的200亿参数AI模型，通过将全部权重存储于NAND闪存而非DRAM，并在每次提示输入时一次性路由加载10亿至40亿参数专家模块，突破设备端内存瓶颈，支持本地智能体推理。
+
+📎 [原文链接](https://venturebeat.com/technology/on-device-ai-agents-hit-a-hard-memory-limit-apples-new-architecture-routes-around-it)
+
+
+### 7. Google Gemini 3.5 Live Translate 发布
+
+Google Gemini 3.5 Live Translate 发布：谷歌发布Gemini 3.5 Live Translate，一款专用于实时语音到语音翻译的音频模型，支持70多种语言，采用连续流式处理，输入音频后数秒内输出翻译语音，无需等待语句结束，已集成至Google Meet、Translate应用和Live API。
+
+📎 [原文链接](https://www.marktechpost.com/2026/06/09/google-releases-gemini-3-5-live-translate-a-streaming-speech-to-speech-audio-model-covering-70-languages-across-meet-translate-and-the-live-api/)
+
+
+### 8. Tabbit V1.0 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-10/be557cc67713.jpg)
+
+Tabbit V1.0 发布：美团GN06团队发布AI浏览器Tabbit V1.0，支持同时调用DeepSeek、Qwen、Kimi等10余款国内大模型，并可让5个模型同页面对比回答，核心功能永久免费，免费用户每周可享1000次对话、50张图生成和10个Agent任务。
+
+Tabbit内置300+现成Agent技能，能直接在网页划词提问、生成PPT/PDF、分析文献、核实信息，且自动记忆用户偏好，任务成功率从61%提升至70%，专业版定价9.9元/周。
+
+📎 [原文链接](https://zhidx.com/p/564393.html)
+
+
+### 9. Gemma 4 12B 发布
+
+Gemma 4 12B 发布：Google DeepMind 发布 Gemma 4 12B，一款无编码器的多模态模型，直接将视觉和音频信号投影到语言模型主干，无需独立编码器，仅需16GB显存即可在笔记本电脑本地运行，并原生支持音频输入和多步推理。
+
+📎 [原文链接](https://deepmind.google/blog/introducing-gemma-4-12b-a-unified-encoder-free-multimodal-model/)
+
+
+### 10. Lovable 年化收入达5亿美元
+
+Lovable 年化收入达5亿美元：Lovable 是一家AI情绪编码平台，宣布年化收入突破5亿美元，每周新增项目达100万个，累计构建超5000万个项目，主要用户为非技术人员，用于搭建网站、电商和内部工具如CRM、HR系统。
+
+📎 [原文链接](https://techcrunch.com/2026/06/09/lovable-says-it-has-hit-500m-in-annualized-revenue-with-1-million-new-projects-a-week/)
+
+
+---
+
+## 🔥 开源热门
+
+### 1. last30days-skill AI代理技能库
+
+⭐ 34,100 stars · 今日增长 3,658 stars
+
+last30days-skill 是一个AI代理技能，可自动跨Reddit、X、YouTube、HN、Polymarket等平台研究任意主题，整合全网信息生成精准、基于事实的摘要，适合研究人员、分析师和AI开发者快速获取深度洞察。
+
+📎 [原文链接](https://github.com/mvanhorn/last30days-skill)
+
+
+### 2. Leonxlnx/taste-skill 赋予AI良好品味
+
+⭐ 38,300 stars · 今日增长 3,203 stars
+
+Leonxlnx/taste-skill 通过优化提示词与内容风格引导，帮助AI生成更具创意、个性和审美价值的文本，适合内容创作者、AI产品经理和开发者提升生成质量。
+
+📎 [原文链接](https://github.com/Leonxlnx/taste-skill)
+
+
+### 3. headroom 数据压缩工具
+
+⭐ 18,500 stars · 今日增长 2,890 stars
+
+headroom 是一种在数据进入LLM前压缩输出、日志、文件和RAG分块的工具，可减少60-95%的token消耗而不影响答案质量，适用于需要降低推理成本的开发者和AI代理系统。
+
+📎 [原文链接](https://github.com/chopratejas/headroom)
+
+
+### 4. Lum1104/Understand-Anything 交互式代码知识图谱
+
+⭐ 55,100 stars · 今日增长 1,648 stars
+
+将任意代码库转化为可探索、可搜索、可提问的交互式知识图谱，帮助开发者快速理解复杂项目，适配Claude Code、Copilot等主流AI工具，提升代码阅读与调试效率。
+
+📎 [原文链接](https://github.com/Lum1104/Understand-Anything)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. NVIDIA Isaac Lab 上线 SageMaker
+
+NVIDIA Isaac Lab 上线 SageMaker：NVIDIA 与 AWS 联合发布 Isaac Lab 在 Amazon SageMaker 上的部署方案，支持在 SageMaker HyperPod 和 Training Jobs 中训练 Unitree H1 类人机器人，通过多 GPU 并行仿真将数月训练压缩至数小时，使用 ml.g6.12x
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/scale-robot-reinforcement-learning-with-nvidia-isaac-lab-on-amazon-sagemaker-ai/)
+
+
+### 2. Amazon Q 构建事件分级助手
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-10/2e39a406205b.png)
+
+Amazon Q 构建事件分级助手：Amazon Q 通过原生集成 New Relic MCP 服务器和 Asana，构建出可自动调查生产事件的智能代理：仅需一条自然语言提示，即可调用 generate_alert_insights_report、generate_user_impact_report 等五个 New Relic 工具，生成结构化根因分析（R
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/build-an-agentic-incident-triage-assistant-with-amazon-quick-and-new-relic/)
+
+
+### 3. NVIDIA cuTile Python 教程发布
+
+NVIDIA cuTile Python 教程发布：NVIDIA 发布 cuTile Python 教程，允许开发者在 Colab 中直接用 Python 编写分块 GPU 内核，实现向量加法、矩阵加法和矩阵乘法，并提供与 PyTorch 的性能对比方案，支持 TILE 加载、存储和 MMA 指令优化。
+
+📎 [原文链接](https://www.marktechpost.com/2026/06/09/nvidia-cutile-python-tutorial-building-tiled-gpu-kernels-for-vector-addition-matrix-addition-and-matrix-multiplication-in-colab/)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. 毕马威全面部署Copilot
+
+毕马威全面部署Copilot：毕马威与微软扩大合作，将在全球范围内向27.6万名员工全面推广微软365 Copilot，并采用Agent 365平台统一管理AI智能体的使用、监控与安全治理，覆盖内部运营及客户项目。
+
+📎 [原文链接](https://36kr.com/newsflashes/3846114893154560?f=rss)
+
+
+### 2. 月之暗面再启20亿美元融资
+
+月之暗面再启20亿美元融资：月之暗面（Kimi母公司）启动新一轮20亿美元融资，投前估值达300亿美元，半年内估值增长近7倍，已累计融资超60亿美元，Kimi模型K2.6在OpenRouter全球榜单位列第九，支持API调用与Kimi Work本地智能体落地。
+
+📎 [原文链接](https://www.tmtpost.com/8021100.html)
+
+
+### 3. 宇树G1人形机器人降价至2万美元
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-10/cb17361debe5.jpg)
+
+宇树G1人形机器人降价至2万美元：宇树科技将G1人形机器人售价从5万美元骤降至2万美元（约13.5万元人民币），同时保持67%的毛利率，依靠自研执行器和本土供应链实现成本碾压，已接近交付第1万台，并计划投入20.22亿元研发具身智能模型。
+
+📎 [原文链接](https://zhidx.com/p/564434.html)
+
+
+### 4. OpenAI Codex 在 Nextdoor 落地
+
+OpenAI Codex 在 Nextdoor 落地：OpenAI Codex 被 Nextdoor 工程团队用于端到端产品开发，一名工程师仅用该工具独立完成‘机会提醒’功能的全栈实现，过去需三个团队协作，显著提升开发效率并推动工程师向产品决策上游迁移。
+
+📎 [原文链接](https://openai.com/index/nextdoor)
+
+
+### 5. 超微电脑拟融资70亿美元
+
+超微电脑拟融资70亿美元：超微电脑（Super Micro Computer）计划通过股权融资70亿美元，其中50亿美元为承销发售，20亿美元为后续公开市场增发，资金将全部用于采购AI服务器关键组件以交付客户订单，消息公布后盘后股价下跌超10%。
+
+📎 [原文链接](https://36kr.com/newsflashes/3846572673255684?f=rss)
+
+
+### 6. 阶梯医疗获腾讯阿里投资
+
+阶梯医疗获腾讯阿里投资：上海阶梯医疗是一家专注植入式脑机接口的科技企业，近日完成C轮工商变更，腾讯旗下上海启善投资、阿里旗下杭州灏月企业管理有限公司新增为股东，注册资本从100万人民币增至约300.6万人民币。
+
+📎 [原文链接](https://36kr.com/p/3845899768760580?f=rss)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
