@@ -1,0 +1,292 @@
+---
+title: "06.11 千问免费服务1290万考生，HiDream登顶中国文生图第一 | AI 早报"
+date: "2026-06-11"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 06.11 千问免费服务1290万考生，HiDream登顶中国文生图第一 | AI 早报
+
+> 2026年06月11日 周四 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- 阿里千问高考志愿专家免费服务1290万考生，支持全周期主动规划 —— 国内首个免费全周期AI高考志愿系统上线
+- 英伟达AI服务器单机柜MLCC用量达60万颗，陶瓷基板需求暴增182% —— AI算力爆发正重塑陶瓷产业链
+- HiDream-O1-Image-1.5 ELO得分1265，登顶中国第一、全球第二文生图模型 —— 中国模型首次在文生图领域超越谷歌英伟达
+- PPIO 派想未来日均token消耗1.028万亿，中国最大独立AI云服务商 —— 中国最大独立AI云平台首次公开财务全貌
+- SpaceX计划2025年底实现1吉瓦太空算力，AI-1卫星峰值150kW —— 全球首个太空AI算力落地路线图
+
+**今日共收录 30 条动态，涵盖 模型与产品 11条、开源热门 4条、技术洞察 5条、行业动态 10条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. 阿里千问高考志愿专家发布
+
+阿里千问高考志愿专家发布：阿里通义千问发布高考志愿填报Agent，面向全国1290万考生免费提供志愿报告、志愿日历和志愿问答三大功能，基于22亿高考数据和300名专家方法论训练，能主动规划从估分到填报的20天全流程，并动态适配考生分数、选科、地域和家庭偏好。
+
+📎 [原文链接](https://zhidx.com/p/564729.html)
+
+
+### 2. HiDream-O1-Image-1.5 登顶文生图榜单
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-11/12c51bd65257.png)
+
+HiDream-O1-Image-1.5 登顶文生图榜单：智象未来发布的商用图像生成模型 HiDream-O1-Image-1.5 在 Artificial Analysis 文生图榜单以 1265 ELO 分数位列全球第二、中国第一，超越 Google Gemini 3.1 Flash Image、NVIDIA Cosmos3 和字节 Seedream 4
+
+该模型采用原生全模态 Unified Transformer 架构，直接融合像素、文本、空间等原始信号，无需 VAE 或独立编码器，在电商海报、IP 设计、中英文混排、影视分镜等复杂场景中实现高保真输出，并已开源至 GitHub 和 Hugging Face。
+
+其技术路径验证了统一表征架构在商业级视觉生成中的可行性，标志着中国团队在多模态底层架构创新上进入全球第一梯队。
+
+📎 [原文链接](https://www.qbitai.com/2026/06/434196.html)
+
+
+### 3. Google DiffusionGemma 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-11/865f5262d9df.png)
+
+Google DiffusionGemma 发布：谷歌AI发布开源文本扩散模型DiffusionGemma，基于Gemma 4架构，采用并行扩散机制替代自回归解码，在H100上可达1000+ tokens/秒，RTX 5090上达700+ tokens/秒，速度提升最高4倍，适用于本地交互式场景如代码补全与行内编辑。
+
+📎 [原文链接](https://www.marktechpost.com/2026/06/10/google-ai-releases-diffusiongemma-a-26b-moe-open-model-using-text-diffusion-for-up-to-4x-faster-generation/)
+
+
+### 4. Claude Fable 5 和 Mythos 5 发布
+
+Claude Fable 5 和 Mythos 5 发布：Anthropic 发布 Claude Fable 5 和 Mythos 5，二者共享同一底层模型，Fable 5 面向公众开放，内置安全分类器，支持 100 万 token 上下文和 128k 输出，输入定价每百万 token 10 美元，输出 50 美元；在 Stripe 5000 万行 Ruby
+
+Mythos 5 移除部分安全限制，仅限美国政府 Project Glasswing 项目使用，在蛋白质设计和基因组学研究中将实验周期加速约十倍，并自主完成全新基因组模型训练，参数量仅为同类模型的 1% 但性能更优。
+
+📎 [原文链接](https://www.marktechpost.com/2026/06/10/anthropic-releases-claude-fable-5-and-claude-mythos-5-same-underlying-model-different-safeguards-new-mythos-class-tier/)
+
+
+### 5. OpenAI与甲骨文合作
+
+OpenAI与甲骨文合作：OpenAI与甲骨文达成合作，甲骨文云基础设施（OCI）客户可直接使用现有云承诺额度（UCM）调用OpenAI的GPT系列模型和Codex，无需额外采购，预计数周内上线，降低企业AI接入门槛。
+
+📎 [原文链接](https://36kr.com/newsflashes/3847975275107586?f=rss)
+
+
+### 6. GitHub Copilot CLI 支持 LSP
+
+GitHub Copilot CLI 支持 LSP：GitHub 发布 LSP Setup 技能，让 Copilot CLI 能对接 Java、Python、TypeScript 等 14 种语言的语言服务器，取代原先依赖 grep JAR 和遍历 node_modules 的低效文本搜索，实现精准的跳转到定义、查找引用和悬停文档功能。
+
+开发者只需下载技能包并执行一次配置，CLI 即可自动安装 jdtls、rust-analyzer 等服务器，支持用户级或项目级配置，生成结构化 JSON 配置文件，显著提升复杂代码任务的准确性和响应速度。
+
+📎 [原文链接](https://github.blog/ai-and-ml/github-copilot/give-github-copilot-cli-real-code-intelligence-with-language-servers/)
+
+
+### 7. 讯飞 SpaceMind 发布
+
+讯飞 SpaceMind 发布：科大讯飞发布全球首个智慧空间Agent平台SpaceMind，采用双路由架构：一级路由处理设备控制指令，端到端响应仅700毫秒，速度提升100%；二级路由调用大模型处理复杂任务，支持多智能体协作、长期记忆与主动提醒，如自动检测日程冲突并提示用户。
+
+📎 [原文链接](https://zhidx.com/p/564800.html)
+
+
+### 8. DiffusionGemma 开源发布
+
+DiffusionGemma 开源发布：谷歌开源 DiffusionGemma-26B-A4B-it 图像生成模型，采用 Apache 2 许可，NVIDIA 在 NIM 云 API 上免费提供服务，实测生成一张图片耗时 4.4 秒，输出 2409 个 token，速度超每秒 500 token。
+
+📎 [原文链接](https://simonwillison.net/2026/Jun/10/diffusiongemma/#atom-everything)
+
+
+### 9. Decart Oasis 3 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-11/87a758229cc7.png)
+
+Decart Oasis 3 发布：Decart 推出世界模型 Oasis 3，可通过 API 以每秒 0.02 美元的价格实时生成高保真驾驶环境，支持多摄像头视角和无限场景生成，目标客户为自动驾驶公司和物理 AI 开发者。
+
+📎 [原文链接](https://techcrunch.com/2026/06/10/decarts-new-world-model-can-simulate-hours-of-photorealistic-driving-with-some-caveats/)
+
+
+### 10. Anthropic Fable 防护机制引发争议
+
+Anthropic Fable 防护机制引发争议：Anthropic 发布的网络安全模型 Fable 在触发关键词（如‘cybersecurity’）时会拒绝任何相关请求，包括代码审查和阅读安全博客，并自动回退到 Claude Opus 4.8，导致安全研究人员无法正常使用。
+
+📎 [原文链接](https://techcrunch.com/2026/06/10/cybersecurity-researchers-arent-happy-about-the-guardrails-on-anthropics-fable/)
+
+
+### 11. KRLabsOrg verbatim-rag-modern-bert-v2 发布
+
+KRLabsOrg verbatim-rag-modern-bert-v2 发布：KRLabsOrg 发布开源模型 verbatim-rag-modern-bert-v2，一个仅1.5亿参数的轻量级词元分类器，可直接在本地替代LLM调用，从长文本中精准抽取逐字证据片段，支持8192词元上下文，在ACL、RAGBench、Squeez、QASPER四大基准上W
+
+📎 [原文链接](https://huggingface.co/KRLabsOrg/verbatim-rag-modern-bert-v2)
+
+
+---
+
+## 🔥 开源热门
+
+### 1. last30days-skill 全网智能摘要代理
+
+⭐ 37,000 stars · 今日增长 2,875 stars
+
+last30days-skill 能自动跨Reddit、X、YouTube等平台研究任意主题，整合全网信息生成精准事实摘要，适合研究人员、分析师和AI开发者快速获取深度洞察。
+
+📎 [原文链接](https://github.com/mvanhorn/last30days-skill)
+
+
+### 2. headroom 数据压缩工具
+
+⭐ 20,300 stars · 今日增长 1,771 stars
+
+headroom 是一种在数据输入LLM前压缩文本、日志和RAG分块的工具，可减少60%-95%的token消耗而不影响答案质量，适用于需要降低推理成本的开发者和AI代理系统。
+
+📎 [原文链接](https://github.com/chopratejas/headroom)
+
+
+### 3. MoneyPrinterTurbo 一键生成高清短视频
+
+⭐ 83,500 stars · 今日增长 1,510 stars
+
+MoneyPrinterTurbo 利用AI大模型自动从文本生成高清短视频，适合内容创作者快速制作抖音、YouTube等平台的爆款视频，无需剪辑经验。
+
+📎 [原文链接](https://github.com/harry0703/MoneyPrinterTurbo)
+
+
+### 4. turbovec 向量索引引擎
+
+⭐ 10,000 stars · 今日增长 1,453 stars
+
+turbovec 是基于 Rust 构建的高性能向量索引引擎，提供 Python 绑定，专为量化金融场景优化，支持海量向量实时相似性搜索，适合需要低延迟向量检索的 AI 和量化开发者。
+
+📎 [原文链接](https://github.com/RyanCodrai/turbovec)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. AWS Neuron Agentic Development 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-11/708363722840.png)
+
+AWS Neuron Agentic Development 发布：AWS 推出 Neuron Agentic Development，一套面向 Trainium 和 Inferentia 硬件的 AI 代理工具链，能将 PyTorch 或自然语言描述自动转换为 NKI 内核代码，支持自动调试编译错误、性能剖析与瓶颈定位，开发者无需芯片级经验即可优化 AI 
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/stop-hand-tuning-kernels-how-neuron-agentic-development-accelerates-aws-trainium-optimizations/)
+
+
+### 2. Jedify 融资2400万美元
+
+Jedify 融资2400万美元：Jedify 是一家美国AI初创公司，刚完成2400万美元A轮融资，其平台通过API连接企业数据库、SaaS、Slack等数据源，构建实时更新的业务上下文图谱，帮助AI代理精准访问权限内数据，解决企业AI代理‘不懂业务’的问题。
+
+📎 [原文链接](https://techcrunch.com/2026/06/10/jedify-raises-24m-to-help-companies-arm-ai-agents-with-context-on-their-business/)
+
+
+### 3. Amazon Bedrock AgentCore 设备维修助手
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-11/6f7e3b9e33d8.png)
+
+Amazon Bedrock AgentCore 设备维修助手：AWS 发布基于 Amazon Bedrock AgentCore 的设备维修助手解决方案，使用 Amazon Nova 2 Lite 模型和知识库 RAG 技术，支持农民通过自然语言提问诊断农机故障、推荐零部件并调取官方维修流程，集成 Cognito 身份验证和 DynamoDB 工单管理。
+
+该方案通过 Strands Agents SDK 构建代理，调用 Bedrock 知识库检索 John Deere 等设备手册，单次模型调用成本为输入 $0.30/百万 token、输出 $2.50/百万 token，适用于农业、工程等现场维修场景。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/build-an-ai-powered-equipment-repair-assistant-using-amazon-bedrock-agentcore/)
+
+
+### 4. GGUF/GPTQ/AWQ量化指南
+
+GGUF/GPTQ/AWQ量化指南：这篇技术指南对比了GGUF、GPTQ和AWQ三种主流LLM量化格式：GGUF适合Mac和显存不足设备，支持CPU/GPU混合推理，推荐Q4_K_M；GPTQ和AWQ专为GPU优化，AWQ在4位下精度更高，适合vLLM等高吞吐部署，GPTQ生态更成熟。
+
+📎 [原文链接](https://vettedconsumer.com/gguf-vs-gptq-vs-awq-the-plain-english-guide-to-llm-quantization-and-which-one-to-pick/)
+
+
+### 5. 垂直Agent创业方法论
+
+垂直Agent创业方法论：独立开发者应避开通用AI助手赛道，转而聚焦如‘外贸卖家催单邮件自动回复’这类高频、琐碎、易出错的垂直场景，通过绑定订单状态、物流数据和店铺规则生成精准回复，帮助用户减少人工处理时间与丢单风险。
+
+📎 [原文链接](https://www.tmtpost.com/8021692.html)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. 英伟达带火陶瓷供应链
+
+英伟达带火陶瓷供应链：英伟达AI服务器（如Rubin平台NVL72）因功耗飙升至2000W，单机柜MLCC用量达60万颗，是传统服务器的20倍，单机MLCC成本从1530美元暴涨至4320美元，带动陶瓷材料需求激增，高端MLCC、氮化铝基板和半导体陶瓷部件成为关键瓶颈。
+
+📎 [原文链接](https://www.tmtpost.com/8022661.html)
+
+
+### 2. PPIO 派想未来冲刺IPO
+
+PPIO 派想未来冲刺IPO：PPIO 派想未来向港交所提交IPO申请，其AI云计算平台聚合全球闲置算力，2026年4月日均token消耗达1.028万亿次，稳居中国独立AI云服务商第一，服务超57万开发者，AI收入2025年同比增长超10倍至1.19亿元。
+
+公司运营4600+边缘计算节点，覆盖1340+县市，核心产品包括GPU云服务、开源模型API和智能体运行环境，2025年AI服务收入占总营收15.5%，但净亏损仍达2.23亿元，资产负债率近247%。
+
+📎 [原文链接](https://zhidx.com/p/564867.html)
+
+
+### 3. SpaceX公布太空算力蓝图
+
+SpaceX公布太空算力蓝图：SpaceX在IPO前夜公开太空算力计划，将部署AI-1轨道计算卫星，单星峰值功率150kW、持续120kW，由太阳能供电并通过太比特激光互联，目标2025年底达成1吉瓦算力，2028年达1太瓦，支撑xAI大模型训练。
+
+为实现该目标，SpaceX将依托星舰将年入轨质量从2500吨提升至百万吨级，并建设占地超1000英亩的TerraFab芯片工厂，同步生产AI芯片与太阳能组件，彻底重构算力基础设施的物理边界。
+
+📎 [原文链接](https://zhidx.com/p/564636.html)
+
+
+### 4. 微信开放AI生态接入
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-11/832ad4b52101.jpg)
+
+微信开放AI生态接入：微信于2026年6月8日向开发者开放AI生态接入能力，用户可通过微信右滑调出AI智能体，用自然语言指令直接调用小程序完成打车、点外卖、订票、购物等高频生活服务，形成与千问类似的Agent交易闭环。
+
+📎 [原文链接](https://www.tmtpost.com/8022217.html)
+
+
+### 5. 亚马逊借款175亿美元押注AI
+
+亚马逊借款175亿美元押注AI：亚马逊在完成140亿美元债券发行后两天内，再从花旗、摩根大通等五大银行获得175亿美元延迟提款贷款，用于AI数据中心和芯片等基础设施投入，近期总融资额达315亿美元。
+
+📎 [原文链接](https://techcrunch.com/2026/06/10/fresh-off-bond-sale-amazon-borrows-17-5-billion-from-banks-as-ai-spending-continues/)
+
+
+### 6. Visa接入ChatGPT支付网络
+
+Visa接入ChatGPT支付网络：Visa将其全球支付网络接入ChatGPT，允许AI代理在支持Visa的商户处代表用户完成购物和支付，用户可绑定自有Visa卡，系统内置消费限额、审批流程和商户白名单以保障安全。
+
+此前OpenAI的Instant Checkout因4%高费率和高错误率被停用，此次合作由Visa提供支付基础设施与反欺诈能力，OpenAI负责AI决策，不向商户收取额外交易费。
+
+📎 [原文链接](https://finance.yahoo.com/sectors/technology/articles/visa-plugs-payment-network-chatgpt-180150542.html)
+
+
+### 7. 抖音AI创作大赛启动
+
+抖音AI创作大赛启动：抖音联合即梦AI启动「AI创作大赛」，总奖池达600万元（400万现金+2000万即梦积分），面向全球创作者征集时长不低于2分钟的原创AI视频作品，评审标准聚焦故事性、视听表达与创新能力，而非单纯技术炫技。
+
+📎 [原文链接](https://www.qbitai.com/2026/06/433832.html)
+
+
+### 8. OpenAI计划一年内上市
+
+OpenAI计划一年内上市：OpenAI已向美国证监会秘密提交IPO的S-1草案，CEO山姆·奥特曼告知员工公司预计在未来一年内上市，此举旨在为上市时间提供更大灵活性。
+
+📎 [原文链接](https://36kr.com/newsflashes/3848001589957895?f=rss)
+
+
+### 9. Ramp AI Index发布AI支出数据
+
+Ramp AI Index发布AI支出数据：Ramp AI Index追踪美国企业AI支出，发现前1%的‘AI上瘾’企业每月人均AI花费达7500美元，主要来自多模型token消耗和云算力，但仍未超过软件工程师平均16000美元的月薪。
+
+📎 [原文链接](https://techcrunch.com/2026/06/10/ai-pilled-firms-spend-7500-per-employee-each-month-on-ai/)
+
+
+### 10. MassMutual AI战略公布
+
+MassMutual AI战略公布：美国保险公司MassMutual推出AI战略，采用12个月短期合同和零锁定架构，避免模型绑定，开发者生产力提升30%，客服响应时间从10分钟降至1分钟，成本从美元级降至美分级，并通过‘信任评分’机制优先选择用户认可的高质量模型，即使成本更高。
+
+📎 [原文链接](https://venturebeat.com/orchestration/massmutuals-ai-strategy-12-month-contracts-30-productivity-gains-zero-lock-in)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
