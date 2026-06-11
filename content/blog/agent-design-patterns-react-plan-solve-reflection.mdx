@@ -1,0 +1,338 @@
+---
+title: "最具代表性的三种 Agent 设计模式：ReAct、Plan-and-Solve、Reflection"
+date: "2026-06-11"
+excerpt: "介绍三种最常用的 Agent 设计模式：将思考与行动结合的 ReAct、先规划后执行的 Plan-and-Solve，以及通过反思修正结果的 Reflection。"
+tags: ["Agent", "ReAct", "Plan-and-Solve", "Reflection"]
+category: "agent"
+author: "肥肥旭"
+coverImage: "https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/blogs/20260611175713368.png"
+---
+
+这篇文章介绍三种最常用的Agent设计模式ReAct、Plan-and-Solve与Reflection
+
+- ReAct: 一种将思考和行动紧密结合的范式
+- Plan-and-Solve: 一种先规划后执行的范式
+- Reflection: 一种通过反思和修正优化结果的范式
+
+![三种 Agent 设计模式的核心差异](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/blogs/20260611175713368.png)
+
+# 设计模式之ReAct
+
+![ReAct 的 Thought Action Observation 闭环](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/blogs/20260611175757028.png)
+
+ReAct可以说是最经典的Agent设计模型，于2022年提出，与纯思考方式的思维链（Chain of Thought, CoT）不同，ReAct巧妙的认识到了思考（Thought）与行动（Action）是相辅相成的。
+
+- Thought: 这个是大模型的“内心独白”，它会分析当前情况，制定行动计划。如我是应该调用工具还是已经观察到工具的返回结果可以回答用户了，还是或者不调用任何工具直接回答用户。
+- Action: 这是智能体决定要执行的操作，通常是去执行一个外部工具调用，如web_search("上海老博会举办日期")、get_weather("shanghai")。
+- Observation: 这是智能体观察到的工具返回的结果，用于指导下一步的Thought。
+
+就这样，智能体一直重复这个Thought-Action-Observation的循环，不断的将Observation的结果加入到模型上下文中，直到超过了最大循环次数或者已经找到了答案。
+
+提示词：
+```text
+REACT_PROMPT_TEMPLATE = """
+请注意，你是一个有能力调用外部工具的智能助手。
+
+可用工具如下：
+{tools}
+
+请严格按照以下格式进行回应：
+
+Thought: 你的思考过程，用于分析问题、拆解任务和规划下一步行动。
+Action: 你决定采取的行动，必须是以下格式之一：
+- `{{tool_name}}[{{tool_input}}]`：调用一个可用工具。
+- `Finish[最终答案]`：当你认为已经获得最终答案时。
+- 当你收集到足够的信息，能够回答用户的最终问题时，你必须在`Action:`字段后使用 `Finish[最终答案]` 来输出最终答案。
+
+
+现在，请开始解决以下问题：
+当前时间: {current_time}
+Question: {question}
+History: {history}
+"""
+```
+
+
+```text
+question = "华为最新的手机是哪一款？它的主要卖点是什么？"
+
+--- 第 1 步 ---
+🧠 正在调用 llm 模型...
+✅ 大语言模型响应成功:
+Thought: 我需要确认华为最新的手机型号及其主要卖点。由于我的知识库可能未包含2026年最新的产品信息，我需要通过搜索获取最新数据。
+Action: Search[华为2026年最新手机型号及主要卖点]
+🤔 思考: 我需要确认华为最新的手机型号及其主要卖点。由于我的知识库可能未包含2026年最新的产品信息，我需要通过搜索获取最新数据。
+🎬 行动: Search[华为2026年最新手机型号及主要卖点]
+🔍 正在执行 [SerpApi] 网页搜索: 华为2026年最新手机型号及主要卖点
+👀 观察: [1] 2026年618华为手机各系列介绍及选购指南（618更新）华为 ...
+华为今年新机都只有纯血鸿蒙系统版本可选，介意者可以考虑荣耀等其他品牌。 近期更新：6月1日发布华为nova16系列。已更新4月20日发布的华为Pura90系列。已 ...
+
+[2] 华为手机- 华为官网
+探索并选购华为最新手机，了解Mate 系列、Pura 系列、Pocket 系列、nova 系列、畅享系列及相关配件，体验鸿蒙AI 、影像、通信等功能。
+
+[3] 2026年华为手机哪一款性价比高？华为手机推荐与市场分析
+在硬件方面，华为在缺失5G芯片之后，其手机业务线被迫停滞，较友商的新手机而言大失优势。现在华为手机最大的卖点只剩下鸿蒙HarmonyOS系统，以及饱受争议的品牌信仰。 这里推荐 ...
+
+--- 第 2 步 ---
+🧠 正在调用 llm 模型...
+✅ 大语言模型响应成功:
+Thought: 根据搜索结果，华为在2026年最新发布的手机是nova 16系列（6月1日发布）和Pura 90系列（4月20日发布）。其中Pura 90系列发布时间更早，但nova 16系列为最新发布。因此，华为最新的手机应为nova 16系列。其主要卖点包括纯血鸿蒙系统、AI影像功能和通信能力，符合华为当前产品策略。需要确认nova 16是否为最新款，但根据[1]中“近期更新：6月1日发布华为nova16系列”且无更新型号，可判断其为当前最新。
+
+Action: Finish[华为最新的手机是nova 16系列，其主要卖点包括纯血鸿蒙系统（HarmonyOS 4.0）、AI影像增强技术、以及卓越的通信能力，同时延续了华为在设计与用户体验上的优势。]
+🤔 思考: 根据搜索结果，华为在2026年最新发布的手机是nova 16系列（6月1日发布）和Pura 90系列（4月20日发布）。其中Pura 90系列发布时间更早，但nova 16系列为最新发布。因此，华为最新的手机应为nova 16系列。其主要卖点包括纯血鸿蒙系统、AI影像功能和通信能力，符合华为当前产品策略。需要确认nova 16是否为最新款，但根据[1]中“近期更新：6月1日发布华为nova16系列”且无更新型号，可判断其为当前最新。
+🎉 最终答案: 华为最新的手机是nova 16系列，其主要卖点包括纯血鸿蒙系统（HarmonyOS 4.0）、AI影像增强技术、以及卓越的通信能力，同时延续了华为在设计与用户体验上的优势。
+```
+
+## 优缺点
+优点：可解释性高，能看到agent解决问题的心历路程，有利于调试和优化
+缺点：高度依赖LLM自身能力，有可能陷入死循环，Token消耗大
+
+# 设计模式之Plan-and-Solve
+
+![Plan-and-Solve 的先规划后执行流程](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/blogs/20260611175845871.png)
+
+与ReAct走一步看一步的思想不同，Plan阶段是先规划出一个蓝图，将问题拆解成清晰的行动计划，而Solve阶段就是严格按照计划中的步骤执行。
+
+问题：
+```text
+一个水果店周一卖出了15个苹果。周二卖出的苹果数量是周一的两倍。周三卖出的数量比周二少了5个。请问这三天总共卖出了多少个苹果？
+```
+
+## planner规划阶段
+planner根据提示词先给出具体的计划列表，提示词：
+````text
+你是一个顶级的AI规划专家。你的任务是将用户提出的复杂问题分解成一个由多个简单步骤组成的行动计划。
+请确保计划中的每个步骤都是一个独立的、可执行的子任务，并且严格按照逻辑顺序排列。
+你的输出必须是一个Python列表，其中每个元素都是一个描述子任务的字符串。
+
+问题: {question}
+
+请严格按照以下格式输出你的计划，```python与```作为前后缀是必要的:
+```python
+["步骤1", "步骤2", "步骤3", ...]
+```
+````
+计划列表：
+```text
+['确定周一卖出的苹果数量为15个', '计算周二卖出的苹果数量：15乘以2', '计算周三卖出的苹果数量：周二数量减去5', '将周一、周二、周三卖出的苹果数量相加', '得出三天总共卖出的苹果数量']
+```
+
+## executor执行阶段
+planner给出计划后，executor开始执行计划中的具体任务，循环遍历计划列表中的每个任务，并执行相应的操作
+executor提示词：
+```text
+你是一位顶级的AI执行专家。你的任务是严格按照给定的计划，一步步地解决问题。
+你将收到原始问题、完整的计划、以及到目前为止已经完成的步骤和结果。
+请你专注于解决“当前步骤”，并仅输出该步骤的最终答案，不要输出任何额外的解释或对话。
+
+# 原始问题:
+{question}
+
+# 完整计划:
+{plan}
+
+# 历史步骤与结果:
+{history}
+
+# 当前步骤:
+{current_step}
+
+请仅输出针对“当前步骤”的回答:
+```
+执行过程：
+```text
+步骤 1: 确定周一卖出的苹果数量为15个
+结果: 周一卖出的苹果数量为15个。
+
+步骤 2: 计算周二卖出的苹果数量：15乘以2
+结果: 周二卖出的苹果数量为30个。
+
+步骤 3: 计算周三卖出的苹果数量：周二数量减去5
+结果: 周三卖出的苹果数量为25个。
+
+步骤 4: 将周一、周二、周三卖出的苹果数量相加
+结果: 15 + 30 + 25 = 70个苹果
+
+步骤 5: 得出三天总共卖出的苹果数量
+结果: 三天总共卖出了70个苹果。
+```
+## 优缺点
+优点：计划清晰，执行效率高，Token消耗相对较少
+缺点：需要先规划好计划，如果计划不周全，可能无法解决问题
+
+
+# 设计模式之Reflection
+
+![Reflection 的生成反思优化流程](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/blogs/20260611175954915.png)
+
+Reflection引入了一种事后校验的机制，其核心流程包含三个步骤，分别是执行、反思和优化。
+
+执行：（初稿）智能体首先通过React或者Plan-and-Solve模式执行任务，生成初始结果。
+反思：（反思稿）智能体对执行结果进行反思，评估结果的准确性和完整性，识别出不足之处和改进空间。
+优化：（最终稿）再调用一次llm，根据初稿和反思稿形成最终结果。
+
+问题：
+```text
+编写一个Python函数，找出1到n之间所有的素数 (prime numbers)。
+```
+
+生成初始代码（初稿）的提示词：
+```text
+你是一位资深的Python程序员。请根据以下要求，编写一个Python函数。
+你的代码必须包含完整的函数签名、文档字符串，并遵循PEP 8编码规范。
+
+要求: {task}
+
+请直接输出代码，不要包含任何额外的解释。
+```
+生成的初试代码：
+```python
+def find_primes(n: int) -> list[int]:
+    """
+    Find all prime numbers between 1 and n, inclusive.
+    Args:
+        n: The upper bound of the range to search.
+    Returns:
+        A list of prime numbers from 1 to n.
+    """
+    if n < 2:
+        return []
+    primes = []
+    for number in range(2, n + 1):
+        is_prime = True
+        for divisor in range(2, int(number ** 0.5) + 1):
+            if number % divisor == 0:
+                is_prime = False
+                break
+        if is_prime:
+            primes.append(number)
+    return primes
+```
+
+
+反思提示词：
+```text
+你是一位极其严格的代码评审专家和资深算法工程师，对代码的性能有极致的要求。
+你的任务是审查以下Python代码，并专注于找出其在**算法效率**上的主要瓶颈。
+
+# 原始任务:
+{task}
+
+# 待审查的代码:
+{code}
+
+请分析该代码的时间复杂度，并思考是否存在一种**算法上更优**的解决方案来显著提升性能。
+如果存在，请清晰地指出当前算法的不足，并提出具体的、可行的改进算法建议（例如，使用筛法替代试除法）。
+如果代码在算法层面已经达到最优，才能回答“无需改进”。
+
+请直接输出你的反馈，不要包含任何额外的解释。
+```
+得到的反馈：
+```text
+当前算法需要改进。
+
+主要瓶颈：
+
+- 当前实现使用逐个数字试除法。
+- 对每个 `number`，最多检查到 `sqrt(number)`。
+- 总时间复杂度约为：
+O(√2 + √3 + ... + √n) = O(n√n)
+- 空间复杂度为：
+O(π(n)) ≈ O(n / log n)
+
+
+当前算法的不足：
+
+- 对每个候选数都重复做除法判断，存在大量重复计算。
+- `%` 取模操作成本较高，且在大规模 `n` 下会成为明显性能瓶颈。
+- 即使只检查到平方根，整体复杂度仍然是 `O(n√n)`，不适合较大的 `n`。
+
+更优方案：
+
+使用埃拉托斯特尼筛法。
+
+改进后复杂度：
+
+时间复杂度: O(n log log n)
+空间复杂度: O(n)
+
+
+推荐实现：
+
+def find_primes(n: int) -> list[int]:
+    if n < 2:
+        return []
+
+    is_prime = [True] * (n + 1)
+    is_prime[0] = is_prime[1] = False
+
+    for p in range(2, int(n ** 0.5) + 1):
+        if is_prime[p]:
+            for multiple in range(p * p, n + 1, p):
+                is_prime[multiple] = False
+
+    return [i for i in range(2, n + 1) if is_prime[i]]
+
+
+结论：
+
+当前代码在算法层面不是最优。应使用筛法替代试除法，性能可从 `O(n√n)` 显著提升到 `O(n log log n)`。
+```
+
+优化提示词：
+```text
+你是一位资深的Python程序员。你正在根据一位代码评审专家的反馈来优化你的代码。
+
+# 原始任务:
+{task}
+
+# 你上一轮尝试的代码:
+{last_code_attempt}
+
+# 评审员的反馈:
+{feedback}
+
+请根据评审员的反馈，生成一个优化后的新版本代码。
+你的代码必须包含完整的函数签名、文档字符串，并遵循PEP 8编码规范。
+请直接输出优化后的代码，不要包含任何额外的解释。
+```
+
+生成优化后的代码：
+```python
+def find_primes(n: int) -> list[int]:
+    """
+    Find all prime numbers between 1 and n, inclusive.
+
+    Uses the Sieve of Eratosthenes algorithm.
+
+    Args:
+        n: The upper bound of the range to search.
+
+    Returns:
+        A list of prime numbers from 1 to n.
+    """
+    if n < 2:
+        return []
+
+    is_prime = [True] * (n + 1)
+    is_prime[0] = False
+    is_prime[1] = False
+
+    for prime in range(2, int(n ** 0.5) + 1):
+        if is_prime[prime]:
+            for multiple in range(prime * prime, n + 1, prime):
+                is_prime[multiple] = False
+
+    return [number for number in range(2, n + 1) if is_prime[number]]
+```
+
+优化后的代码继续交给反思提示词，直到输出“无需改进”或者达到最大迭代次数之后，最终得到的代码即为最终结果。
+
+
+
+## 优缺点
+优点：通过反思和修正，不断提高Agent的性能和效果
+缺点：需要不断迭代和优化，可能消耗较多时间
+
+# 总结
+实际工程中，这三种模型不是互斥的，有可能先用Plan-and-Solve指定计划，每个计划的执行过程中使用ReAct调用工具，最后再通过Reflection对结果进行质量检查。
