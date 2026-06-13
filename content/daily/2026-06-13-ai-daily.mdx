@@ -1,0 +1,246 @@
+---
+title: "06.13 Kimi K2.7代码降耗30% | AI 早报"
+date: "2026-06-13"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 06.13 Kimi K2.7代码降耗30% | AI 早报
+
+> 2026年06月13日 周六 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- Kimi K2.7 Code Token消耗降30%，编程性能提升31.5% —— 国产编程大模型效率突破
+- Gemini-SQL2 在BIRD单模型榜达80.04%执行准确率，登顶文本转SQL榜首 —— 谷歌文本转SQL技术首次超越所有竞品
+- Kimi Work 支持300子代理本地运行，可操控真实浏览器与文件 —— 国产AI代理首次实现完整本地化操作
+- 面壁 MiniCPM-5 1B 在Artificial Analysis榜单得分17.6，逼近GPT-4o —— 国产端侧模型性能首次逼近GPT-4o
+- Prometheus获120亿美元融资，估值410亿美元，聚焦实体AI工程工具 —— 全球最高估值AI初创诞生，实体AI进入资本狂潮
+
+**今日共收录 24 条动态，涵盖 模型与产品 8条、开源热门 5条、技术洞察 3条、行业动态 8条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. Kimi K2.7 Code 发布
+
+Kimi K2.7 Code 发布：月之暗面发布并开源Kimi K2.7 Code编程模型，参数规模1.1万亿，支持256K上下文，长任务Token消耗降低30%，编程基准性能较K2.6提升10%-31.5%，并强制启用思考模式以发挥最佳效果。
+
+该模型已上线Kimi API平台，输入/输出定价为6.5元/27元每百万token，下周一将推出速度提升5-6倍的高速版，输出达180-260 Token/s，但用量消耗为普通版3倍。
+
+实测显示其在前端开发和智能体小镇项目中能高效生成结构清晰、可运行的代码，显著减少过度思考，提升迭代效率。
+
+📎 [原文链接](https://zhidx.com/p/565655.html)
+
+
+### 2. Gemini-SQL2 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-13/8e473762d72b.jpg)
+
+Gemini-SQL2 发布：谷歌发布基于Gemini 3.1 Pro的Gemini-SQL2，文本转SQL在BIRD基准测试中以80.04%执行准确率登顶，超越此前自家76.13%的记录，显著领先腾讯、阿里、Databricks等竞品模型。
+
+📎 [原文链接](https://www.marktechpost.com/2026/06/12/google-releases-gemini-sql2-gemini-3-1-pro-text-to-sql-scores-80-04-on-bird-single-model-leaderboard/)
+
+
+### 3. Kimi Work 发布
+
+Kimi Work 发布：Moonshot AI 发布本地桌面 AI 代理 Kimi Work，基于 Kimi K2.6 模型，可在 macOS 和 Windows 上运行，支持并行调度最多 300 个子代理，直接访问本地文件、使用用户真实浏览器会话，并通过内置 Cron 引擎执行定时任务，无需上传数据到云端。
+
+📎 [原文链接](https://www.marktechpost.com/2026/06/12/moonshot-ai-launches-kimi-work-a-local-desktop-agent-reportedly-running-on-kimi-k2-6-with-a-300-sub-agent-agent-swarm/)
+
+
+### 4. 面壁 MiniCPM-5 1B 端侧模型突破
+
+面壁 MiniCPM-5 1B 端侧模型突破：面壁智能发布1B参数的端侧模型MiniCPM-5，在Artificial Analysis榜单得分17.6，接近200B参数的GPT-4o（仅高零点几分），证明其“知识密度定律”有效，已提前实现2026年端侧模型智能水平目标。
+
+该模型已用于吉利银河M9等汽车量产场景，并适配昇腾等国产芯片，训练效率达95%，同时开源策略降低客户验证成本，推动手机、无人机、法律AI等多终端落地。
+
+📎 [原文链接](https://zhidx.com/p/565540.html)
+
+
+### 5. AWS Bedrock Data Automation 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-13/64cfa66c0bfc.png)
+
+AWS Bedrock Data Automation 发布：AWS推出Bedrock Data Automation（BDA），通过单一API自动处理最多3000页的PDF、图像等多模态文档，提取文本、表格、图表描述、边界框坐标和置信度评分，并支持自定义模板匹配发票、合同等类型，无需人工分类或拼接多个模型。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/from-pdfs-to-insights-architecting-an-intelligent-document-processing-pipeline-with-aws-generative-ai-services/)
+
+
+### 6. GitHub Copilot CLI 1.0.42 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-13/6c645b135c47.png)
+
+GitHub Copilot CLI 1.0.42 发布：GitHub Copilot CLI 在 1.0.42 版本中优化了智能体委派策略，减少不必要的子智能体调用，使每会话工具失败率下降 23%（搜索失败降 27%），P95 用户等待时间缩短 5%，且无质量下降，无需用户配置。
+
+📎 [原文链接](https://github.blog/ai-and-ml/how-we-made-github-copilot-cli-more-selective-about-delegation/)
+
+
+### 7. 通义千问世界杯预测上线
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-13/dc28d077d0ac.jpg)
+
+通义千问世界杯预测上线：阿里通义千问推出足球预测AI助手，在2026世界杯揭幕战中精准预测墨西哥2:0南非、韩国2:1捷克两场比分，并提前指出南非因防守动作过大将吃红牌，最终比赛出现三张红牌，且关键进球者希门尼斯也被准确点出。
+
+📎 [原文链接](https://www.qbitai.com/2026/06/435321.html)
+
+
+### 8. Zyphra Zamba2-VL 开源发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-13/96b1f8ad8623.png)
+
+Zyphra Zamba2-VL 开源发布：Zyphra 发布开源视觉语言模型 Zamba2-VL 系列，包含 1.2B、2.7B 和 7B 三种参数规模，采用 Mamba2 状态空间与 Transformer 混合架构，在 32k token 长视觉输入下首令牌延迟比同类 Transformer 模型降低约 10 倍，适合文档解析、图像计数和边缘设备部署。
+
+📎 [原文链接](https://www.marktechpost.com/2026/06/12/zyphra-release-zamba2-vl-hybrid-mamba2-transformer-vision-language-models-that-cut-time-to-first-token-by-about-an-order-of-magnitude/)
+
+
+---
+
+## 🔥 开源热门
+
+### 1. addyosmani/agent-skills AI编码代理技能库
+
+⭐ 54,300 stars · 今日增长 3,027 stars
+
+为AI编码代理提供生产级工程技能集合，帮助自动化完成代码生成、调试和重构任务，适用于开发者和AI工程团队提升自动化开发效率。
+
+📎 [原文链接](https://github.com/addyosmani/agent-skills)
+
+
+### 2. phuryn/pm-skills PM智能技能市场
+
+⭐ 16,100 stars · 今日增长 1,495 stars
+
+phuryn/pm-skills 提供100多种AI驱动的PM技能与插件，覆盖产品从发现到增长的全流程，帮助产品经理自动化任务、优化决策并提升协作效率。
+
+📎 [原文链接](https://github.com/phuryn/pm-skills)
+
+
+### 3. headroom 数据压缩工具
+
+⭐ 23,000 stars · 今日增长 1,395 stars
+
+headroom 是一种在数据进入LLM前压缩输出、日志、文件和RAG分块的工具，可减少60%-95%的token消耗而不影响答案质量，适用于需要降低推理成本的开发者和AI代理系统。
+
+📎 [原文链接](https://github.com/chopratejas/headroom)
+
+
+### 4. MoneyPrinterTurbo 一键生成高清短视频
+
+⭐ 86,000 stars · 今日增长 1,174 stars
+
+MoneyPrinterTurbo 利用AI大模型自动从文本生成高清短视频，适合内容创作者快速制作抖音、YouTube等平台的爆款视频，无需剪辑经验。
+
+📎 [原文链接](https://github.com/harry0703/MoneyPrinterTurbo)
+
+
+### 5. Lum1104/Understand-Anything 代码知识图谱生成
+
+⭐ 57,300 stars · 今日增长 773 stars
+
+将任意代码库转化为可交互、可搜索、可提问的知识图谱，帮助开发者快速理解复杂项目，适配Claude Code、Copilot等主流AI工具，提升代码阅读与调试效率。
+
+📎 [原文链接](https://github.com/Lum1104/Understand-Anything)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. PixelRAG 发布
+
+PixelRAG 发布：PixelRAG 是由加州大学伯克利分校、普林斯顿大学等团队推出的新型RAG系统，直接用网页截图替代文本解析，通过视觉-语言模型（VLM）检索图像块，在六个基准测试中准确率最高提升18.1%，并使AI代理的提示令牌消耗降低90%。
+
+📎 [原文链接](https://venturebeat.com/data/pixelrag-beats-text-parsers-on-accuracy-and-cuts-ai-agent-token-costs-10x)
+
+
+### 2. AllenAI 开源 olmo-eval 评估工作台
+
+AllenAI 开源 olmo-eval 评估工作台：AllenAI 开源 olmo-eval，一个面向大模型开发循环的评估工作台，支持任务与运行策略解耦、可插拔工具与沙箱、并提供逐条响应对比功能，帮助开发者识别微小性能变化，而非依赖单一分数。
+
+📎 [原文链接](https://huggingface.co/blog/allenai/olmo-eval)
+
+
+### 3. NanoClaw + JFrog 推出免疫系统
+
+NanoClaw + JFrog 推出免疫系统：NanoClaw 与 JFrog 联合推出安全集成系统，强制 AI 代理仅从经过扫描的 JFrog 注册表下载依赖包，阻断恶意代码注入，并自动引导代理替换被污染的组件，解决自主代理无感知安装风险。
+
+📎 [原文链接](https://venturebeat.com/security/nanoclaw-and-jfrog-launch-immune-system-to-block-ai-agents-from-downloading-malicious-code)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. Prometheus完成120亿美元融资
+
+贝索斯联合创办的AI公司Prometheus完成120亿美元融资，估值达410亿美元，资金将主要用于采购算力和生成训练数据，目标是打造能辅助工程设计、制造和药物研发的‘人工通用工程师’系统，目前已组建约150人团队，并从OpenAI、谷歌DeepMind、英伟达等公司挖角人才。
+
+公司明确不开发机器人，而是构建面向物理世界的AI工具，未来可能成为AWS客户，但与亚马逊保持独立运营，其技术方向聚焦高门槛的实体工程场景，区别于通用聊天机器人。
+
+📎 [原文链接](https://zhidx.com/p/565446.html)
+
+
+### 2. 中央网信办开设AI乱象举报专区
+
+中央网信办开设AI乱象举报专区：中央网信办举报中心自2026年6月起正式开设“涉AI应用乱象举报专区”，专项受理生成合成内容未标识、发布虚假信息、暴力低俗内容等14类AI应用违规行为，旨在配合“清朗·整治AI应用乱象”专项行动，规范国内AI服务生态。
+
+📎 [原文链接](https://36kr.com/p/3849942472512769?f=rss)
+
+
+### 3. 谷歌起诉Outsider Enterprise
+
+谷歌起诉Outsider Enterprise：谷歌起诉中国网络犯罪团伙Outsider Enterprise，该团伙利用AI生成290+个仿冒网站模板，冒充谷歌、银行等品牌，两周内部署9000个钓鱼网站、发送250万条诈骗短信，窃取超387万张信用卡，造成19亿美元损失。
+
+📎 [原文链接](https://techcrunch.com/2026/06/12/chinese-cybercrime-operation-that-used-ai-to-scam-hundreds-of-thousands-of-victims-sued-by-google/)
+
+
+### 4. 千里收购融感科技
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-13/d3a428d0c4ef.png)
+
+千里收购融感科技：千里科技全资收购毫米波雷达公司宁波融感科技，交易金额2590.8万元，获得其车规级融合雷达研发与量产能力，补足智驾系统感知硬件短板，实现算法与硬件联合标定与降本。
+
+📎 [原文链接](https://www.qbitai.com/2026/06/435196.html)
+
+
+### 5. DeepSeek V4 成本降95%
+
+DeepSeek V4 成本降95%：DeepSeek V4 是中国开源大模型，被美国初创公司广泛采用，在邮件草拟、会议转录等任务中性能接近Anthropic的Sonnet，但成本仅为闭源模型的10%，部分场景综合成本降低95%，推动企业转向混合模型架构。
+
+📎 [原文链接](https://zhidx.com/p/565523.html)
+
+
+### 6. OpenAI 学院三门新课上线
+
+OpenAI 学院三门新课上线：OpenAI 正式推出三门企业培训课程：AI基础、应用型AI基础和智能体与工作流程，面向员工从提示词设计到构建可复用AI工作流的完整能力培养，课程由OpenAI产品与安全团队直接设计，与BCG、埃森哲、BBVA等企业合作开发。
+
+📎 [原文链接](https://openai.com/index/academy-courses-applying-ai-at-work)
+
+
+### 7. 壁仞科技年报发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-13/a5294a7d1037.jpg)
+
+壁仞科技年报发布：壁仞科技发布2025年年报，营收10.35亿元同比增长207%，但研发开支达14.76亿元，经调整亏损8.74亿元，主要因下一代BR20X芯片研发投入，硬件销售占比99.4%，软件生态和持续收入模式尚未建立。
+
+📎 [原文链接](https://www.tmtpost.com/8025679.html)
+
+
+### 8. Mistral AI拟融资30亿欧元
+
+Mistral AI拟融资30亿欧元：法国AI公司Mistral AI正洽谈融资30亿欧元（约35亿美元），估值达200亿欧元，较去年9月C轮估值翻倍，其开源大模型策略和欧洲本土化部署正吸引政府与企业合作。
+
+📎 [原文链接](https://techcrunch.com/2026/06/12/mistral-is-rumored-to-be-raising-e3b-at-e20-valuation/)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
