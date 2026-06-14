@@ -1,0 +1,158 @@
+---
+title: "06.14 Llama.cpp、Anthropic 等重点更新 | AI 早报"
+date: "2026-06-14"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 06.14 Llama.cpp、Anthropic 等重点更新 | AI 早报
+
+> 2026年06月14日 周日 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- Llama.cpp 支持Qwen/Mistral/Gemma，4-bit量化仅需4GB内存 —— 本地部署大模型的轻量级黄金标准
+- Anthropic Claude Fable 5 和 Mythos 5 被美国政府强制下架，所有用户访问禁用 —— 全球首个AI模型被政府强制下架事件
+- HRM-Text 1B参数模型在MATH上达56.2，训练成本仅1500美元 —— AI推理架构迎来新范式突破
+- OpenAI被要求提供广告策略、儿童保护、模型谄媚等文件 —— AI巨头面临监管风暴升级
+- 智源黄铁军：世界模型将实现细胞级心脏AI，穿戴与脑机数据成核心训练源 —— 中国具身智能核心路径首次系统披露
+
+**今日共收录 14 条动态，涵盖 模型与产品 3条、开源热门 5条、技术洞察 2条、行业动态 4条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. Llama.cpp 开源推理引擎更新
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-14/36f74c8974a9.png)
+
+Llama.cpp 开源推理引擎更新：Llama.cpp 是由 Georgi Gerganov 开发的纯 C/C++ 本地 LLM 推理引擎，支持 LLaMA、Qwen、Mistral、Gemma、Phi 等主流模型，通过 4-bit 量化可在 4GB 内存运行 7B 模型，内置 OpenAI 兼容 API，无需 Python 依赖，支持 CPU/GPU 多
+
+📎 [原文链接](https://llama-cpp.com/)
+
+
+### 2. HRM-Text 发布
+
+HRM-Text 发布：Sapient Intelligence发布的HRM-Text是一个仅1B参数的从零预训练语言模型，通过分层递归架构（H/L双时间尺度潜空间推理）在MATH、GSM8K、ARC-Challenge等推理基准上超越多数2B-7B模型，训练成本仅1500美元，且无RLHF、无显式思维链数据，开源了模型权重与训练代码。
+
+📎 [原文链接](https://www.qbitai.com/2026/06/435483.html)
+
+
+### 3. 科大讯飞发布星火多模态大模型X2-VL
+
+科大讯飞发布星火多模态大模型X2-VL：科大讯飞在2026年6月11日的无锡具身智能机器人大会上发布星火多模态大模型X2-VL，该模型支持视觉、语音、文本的跨模态联合理解，专为机器人感知与交互场景优化，将应用于无锡本地具身智能产业链。
+
+📎 [原文链接](https://36kr.com/newsflashes/3851320295166976?f=rss)
+
+
+---
+
+## 🔥 开源热门
+
+### 1. addyosmani/agent-skills AI编码代理技能库
+
+⭐ 56,600 stars · 今日增长 2,279 stars
+
+为AI编码代理提供生产级工程技能集合，帮助自动化完成代码生成、调试与重构任务，适用于开发者和AI工程团队提升自动化开发效率。
+
+📎 [原文链接](https://github.com/addyosmani/agent-skills)
+
+
+### 2. Headroom 数据压缩工具
+
+⭐ 24,400 stars · 今日增长 1,446 stars
+
+Headroom 在数据输入LLM前压缩日志、文件和RAG分块，减少60-95% token消耗且不损失答案质量，适用于需要降低推理成本的开发者和AI代理系统。
+
+📎 [原文链接](https://github.com/chopratejas/headroom)
+
+
+### 3. Leonxlnx/taste-skill 赋予AI审美能力
+
+⭐ 42,300 stars · 今日增长 795 stars
+
+Leonxlnx/taste-skill 通过训练AI识别并生成富有美感的内容，解决AI输出枯燥平庸的问题，适合内容创作者、AI产品经理和提示工程开发者提升生成质量。
+
+📎 [原文链接](https://github.com/Leonxlnx/taste-skill)
+
+
+### 4. Lum1104/Understand-Anything 交互式代码知识图谱
+
+⭐ 58,100 stars · 今日增长 779 stars
+
+将任意代码库转化为可探索、可搜索、可提问的交互式知识图谱，帮助开发者快速理解复杂项目，适配Claude Code、Copilot等主流AI工具，提升代码阅读与调试效率。
+
+📎 [原文链接](https://github.com/Lum1104/Understand-Anything)
+
+
+### 5. phuryn/pm-skills PM代理技能市场
+
+⭐ 16,900 stars · 今日增长 763 stars
+
+phuryn/pm-skills 提供100多种代理型技能与插件，帮助产品经理高效完成从市场发现、战略规划到产品发布与增长的全流程自动化任务，适合AI驱动的PM团队提升效率。
+
+📎 [原文链接](https://github.com/phuryn/pm-skills)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. 智源黄铁军谈世界模型与具身智能
+
+智源黄铁军谈世界模型与具身智能：智源研究院理事长黄铁军在2026智源大会透露，智源正在研发一体化世界模型而非拼接式VLA，其心脏AI系统已实现细胞级精度并用于安贞医院手术，未来1-3年将覆盖全科室；未来训练数据将转向实时穿戴设备与脑机接口采集，取代静态数据集。
+
+他预测未来2-3年机器人将达成人类日常工作水平，关键突破在于物理常识理解与能耗控制，并强调AI行为必须全程可控，反对过度渲染意识风险。
+
+📎 [原文链接](https://zhidx.com/p/565829.html)
+
+
+### 2. QwenPaw Agent 工作区教程
+
+QwenPaw Agent 工作区教程：QwenPaw 是一个开源 AI 代理框架，该教程详细指导用户在 Colab 中搭建支持自定义技能、OpenAI/DashScope/DeepSeek 等多模型提供商接入、身份认证、流式 API 测试和 Cloudflare 隧道公开访问的完整工作区，适用于开发者构建和调试智能体应用。
+
+📎 [原文链接](https://www.marktechpost.com/2026/06/13/how-to-build-a-qwenpaw-agent-workspace-with-custom-skills-model-providers-console-access-and-streaming-api-testing/)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. Anthropic 暂停 Claude Fable 5 和 Mythos 5
+
+Anthropic 暂停 Claude Fable 5 和 Mythos 5：Anthropic 根据美国政府2026年6月12日发布的出口管制指令，全面停用刚发布三天的 Claude Fable 5 和 Mythos 5 模型，禁止任何外国公民（含员工）访问，因无法实时识别用户国籍，公司选择全网下架，其他模型如 Opus 4.8 仍正常运行。
+
+📎 [原文链接](https://www.marktechpost.com/2026/06/13/anthropic-disables-claude-fable-5-and-mythos-5-after-us-government-order/)
+
+
+### 2. OpenAI遭多州总检察长调查
+
+OpenAI遭多州总检察长调查：OpenAI因涉嫌不当处理未成年人数据、模型谄媚行为及广告策略，遭纽约州等多州总检察长发起调查，被要求提交内部安全机制、用户留存数据和儿童防护措施等文件，此前佛罗里达州已起诉其放任儿童风险。
+
+📎 [原文链接](https://techcrunch.com/2026/06/13/openai-faces-investigation-from-state-attorneys-general/)
+
+
+### 3. 比亚迪布局人形机器人
+
+比亚迪布局人形机器人：比亚迪确认正在研发人形机器人，依托汽车业务积累的电机、电池、芯片自研能力降低硬件成本，并计划通过全国数千家4S店网络直接销售与售后，成为机器人产业基础供应商。
+
+📎 [原文链接](https://www.tmtpost.com/8023153.html)
+
+
+### 4. KPMG撤回AI生成报告
+
+KPMG撤回AI生成报告：KPMG因使用AI生成的报告《在代理式AI时代重新定义卓越》包含大量虚假内容，被GPTZero和多家机构（如瑞银、NHS、伦敦交通局）指出其引用的AI使用情况完全不实，已主动撤下该报告并启动内部调查。
+
+📎 [原文链接](https://techcrunch.com/2026/06/13/kpmg-pulls-report-on-ai-usage-due-to-apparent-hallucinations/)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
