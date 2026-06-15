@@ -1,0 +1,143 @@
+---
+title: "06.15 mlx-optiq、MiniMax 等重点更新 | AI 早报"
+date: "2026-06-15"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 06.15 mlx-optiq、MiniMax 等重点更新 | AI 早报
+
+> 2026年06月15日 周一 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- mlx-optiq 实现逐层混合精度量化，Qwen3.6-27B 仅17.5GB达83.0能力评分 —— Mac 用户可本地运行高性能大模型
+- MiniMax M3 按Token计费，价格涨257%，用户月费从29元跳至49元 —— 国产大模型商业化生死考
+- 腾讯云下调MiniMax-M3推理价格50%，Hy-MT2-Pro输入价降66.67% —— 大厂降价推动AI推理成本下行
+- 鸿蒙智能体框架2.0让小艺调用2100+系统能力，支持A2A协同与自动生成工具 —— 中国首个系统级AI Agent落地实践
+- 优必选U1上线10天预售超3800台，仅限成人购买 —— 国内情感机器人商业化新尝试
+
+**今日共收录 11 条动态，涵盖 模型与产品 3条、开源热门 5条、行业动态 3条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. mlx-optiq 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-15/770d6cc15fa4.png)
+
+mlx-optiq 发布：mlx-optiq 是专为 Apple Silicon 设计的开源 LLM 量化工具包，通过逐层敏感性分析实现混合精度量化，使 Qwen3.6-27B 模型仅占 17.5GB 存储、能力评分达 83.0，解码速度提升 1.4×，并支持本地运行 OpenAI/Anthropic 兼容 API 服务，无需云端或 GPU。
+
+它提供 16 个预量化模型（含 Gemma-4、Qwen3.5/3.6），支持图像输入、LoRA 微调和 OptIQ Lab 图形界面，仅需 pip install 即可在 Mac 上离线部署，内存占用比均匀 4 位量化更低且质量更高。
+
+📎 [原文链接](https://mlx-optiq.com/)
+
+
+### 2. 腾讯云下调MiniMax与Hy-MT2-Pro模型价格
+
+腾讯云下调MiniMax与Hy-MT2-Pro模型价格：腾讯云于2026年6月12日起下调Hy-MT2-Pro模型输入价格66.67%、输出价格55.56%，6月15日起下调MiniMax-M3模型推理输入、输出及缓存命中费用各50%，降低开发者使用大模型的算力成本。
+
+📎 [原文链接](https://www.tmtpost.com/8027379.html)
+
+
+### 3. 优必选U1人形机器人预售
+
+优必选U1人形机器人预售：优必选推出的情感陪伴人形机器人U1上线10天收获超3800台预售订单，定金超千万元，男款高183cm重42kg，女款高168cm重35.2kg，搭载‘养成系’情感大模型，支持多维度外观定制，但无3C认证且仅限成人购买。
+
+📎 [原文链接](https://36kr.com/p/3853670570743040?f=rss)
+
+
+---
+
+## 🔥 开源热门
+
+### 1. headroom 数据压缩工具
+
+⭐ 26,000 stars · 今日增长 1,529 stars
+
+headroom 在数据输入LLM前压缩日志、文件和RAG分块，减少60%-95% token消耗且不损失答案质量，适用于需要降低推理成本的开发者和AI代理系统。
+
+📎 [原文链接](https://github.com/chopratejas/headroom)
+
+
+### 2. addyosmani/agent-skills AI编码代理技能库
+
+⭐ 58,100 stars · 今日增长 1,508 stars
+
+为AI编码代理提供生产级工程技能集合，帮助自动化完成代码生成、调试与重构任务，适用于开发者和AI工程团队提升自动化开发效率。
+
+📎 [原文链接](https://github.com/addyosmani/agent-skills)
+
+
+### 3. NVIDIA/SkillSpector AI代理技能安全扫描器
+
+⭐ 4,300 stars · 今日增长 955 stars
+
+NVIDIA/SkillSpector 是一款用于检测AI代理技能中安全漏洞、恶意模式和风险行为的工具，帮助开发者在部署前识别潜在威胁，适用于AI安全工程师和智能体开发者。
+
+📎 [原文链接](https://github.com/NVIDIA/SkillSpector)
+
+
+### 4. last30days-skill 跨平台AI研究代理
+
+⭐ 41,100 stars · 今日增长 870 stars
+
+last30days-skill 是一个AI代理，能自动跨Reddit、X、YouTube、HN等平台搜集信息，整合出基于事实的深度摘要，适合研究人员、分析师和开发者快速掌握复杂话题的全貌。
+
+📎 [原文链接](https://github.com/mvanhorn/last30days-skill)
+
+
+### 5. Leonxlnx/taste-skill 赋予AI审美能力
+
+⭐ 43,000 stars · 今日增长 713 stars
+
+Leonxlnx/taste-skill 通过训练AI识别并生成富有美感的内容，解决AI输出枯燥平庸的问题，适合内容创作者、AI产品经理和提示工程开发者提升生成质量。
+
+📎 [原文链接](https://github.com/Leonxlnx/taste-skill)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. MiniMax M3 发布并涨价
+
+MiniMax M3 发布并涨价：MiniMax发布新一代模型M3并突然将计费模式从按次改为按Token，月费从29元涨至49元，实际使用成本飙升257%，引发开发者大规模抗议，公司事后道歉并补偿老用户。
+
+M3在SWE-Bench Pro上得分59.0%超越GPT-5.5，支持1M上下文与多模态并开源，但国内定价远高于DeepSeek-V4-Flash（0.14美元/百万token）和小米MiMo-V2.5，性价比优势丧失，导致股价单日下跌15.71%。
+
+公司7月9日将面临63%限售股解禁，现金流持续承压，2025年净亏损2.51亿美元，正启动科创板IPO以缓解资金压力，但B端收入能否支撑高估值仍存疑。
+
+📎 [原文链接](https://www.tmtpost.com/8027254.html)
+
+
+### 2. 鸿蒙智能体框架2.0发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-15/649680630c78.jpg)
+
+鸿蒙智能体框架2.0发布：华为在HDC 2026发布鸿蒙智能体框架2.0，小艺深度集成系统底层，可调用2100多项系统能力与200多项数据，实现跨应用任务调度，如自动规划跑步恢复计划、跨设备传文件，并能通过自然语言生成可交互的英语学习工具，无需编码。
+
+小艺支持A2A协议协同多个智能体，开发者可通过MCP、Skill等多方式接入，已有500+精选Skill和2000+智能体上架，日调用AI能力达36.8亿次；同时引入多模型动态路由，根据任务自动切换Pangu、DeepSeek等模型，提升响应质量。
+
+鸿蒙记忆体系融合日历、健康、消费等系统数据，构建全时用户画像，实现主动预判服务，如回溯三年体检趋势并提供健康建议，所有数据处理遵循HPIC架构，本地优先、端侧加密，通过信通院国家级认证。
+
+📎 [原文链接](https://www.ifanr.com/1668931?utm_source=rss&utm_medium=rss&utm_campaign=)
+
+
+### 3. 蓝标AI业务披露
+
+蓝标AI业务披露：蓝标披露2025年AI相关收入达37.25亿元，毛利率数倍于传统营销业务，2026年一季度AI Token调用量为2025年全年三倍，员工AI费用无上限报销，工程师在晋升评审中拥有一票否决权。
+
+📎 [原文链接](https://www.tmtpost.com/8027228.html)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
