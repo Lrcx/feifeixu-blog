@@ -1,0 +1,304 @@
+---
+title: "06.17 Qwen-RobotSuite超SOTA 3.2倍 | AI 早报"
+date: "2026-06-17"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 06.17 Qwen-RobotSuite超SOTA 3.2倍 | AI 早报
+
+> 2026年06月17日 周三 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- Qwen-RobotSuite 推出三大具身AI模型，RobotManip在OOD基准超SOTA 3.2倍 —— 国产具身AI三大核心能力首次系统开源
+- 红帽 Red Hat AI 3.4 支持vLLM推理引擎，新增AgentOps治理与提示词管理 —— 企业AI落地的关键安全与治理方案
+- Wattfare 让用户自付AI推理费，开发者零成本 —— AI应用成本模式革命性突破
+- 支付宝AI版界面瘦身至仅‘阿宝’‘资产’两页，对话框直达服务 —— 支付巨头首次彻底重构App交互逻辑
+- 百度提出DAA日活智能体数，取代Token作为AI价值新度量 —— AI行业度量标准迎来根本性变革
+
+**今日共收录 32 条动态，涵盖 模型与产品 14条、开源热门 5条、技术洞察 10条、行业动态 3条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. Qwen-RobotSuite 发布
+
+Qwen-RobotSuite 发布：阿里通义千问团队发布Qwen-RobotSuite，包含Qwen-RobotManip（操控）、Qwen-RobotWorld（视频建模）和Qwen-RobotNav（导航）三个独立模型，均基于Qwen-VL系列骨干，其中RobotManip在LIBERO-Plus等分布外基准上超越SOTA最高达3.2倍，已开源代码并支
+
+📎 [原文链接](https://www.marktechpost.com/2026/06/16/meet-qwen-robotsuite-three-embodied-ai-models-for-vla-manipulation-video-world-modeling-and-navigation/)
+
+
+### 2. 红帽发布AI平台Red Hat AI 3.4
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-17/eef4bcce846c.png)
+
+红帽发布AI平台Red Hat AI 3.4：红帽发布企业级AI平台Red Hat AI 3.4，集成vLLM作为核心推理引擎，新增提示词管理、评估中心和AgentOps治理功能，支持智能体身份管理、生命周期控制与生产环境安全落地。
+
+同时推出RHEL安全加固镜像（零漏洞、免费）、RHEL Forever延长支持，Ansible支持桌面/API/Agent统一编排，并与英伟达联合推出AI工厂平台，深度集成OpenShell运行时。
+
+红帽联合IBM启动Project Lightwell，投入50亿美元和2万工程师修复开源漏洞，推出Red Hat Skill技能库与OpenShift可信供应链，构建AI安全双保险。
+
+📎 [原文链接](https://zhidx.com/p/566804.html)
+
+
+### 3. 支付宝AI版内测上线
+
+支付宝AI版内测上线：蚂蚁集团上线支付宝AI内测版，界面大幅简化为‘阿宝’（AI对话）和‘资产’两大页，用户可通过自然语言指令直接打开公积金、缴费、理财等服务，省去传统多级菜单操作，但当前AI仅负责跳转页面，未实现自动下单或决策。
+
+📎 [原文链接](https://www.tmtpost.com/8029992.html)
+
+
+### 4. DeepSeek首轮融资或落地
+
+DeepSeek首轮融资或落地：DeepSeek宣布首轮融资或已敲定，创始人梁文锋个人出资约200亿元，腾讯、宁德时代、网易、京东等机构合计出资超300亿元，融资规模达500亿元以上，成为国内AI大模型领域最大单笔融资之一。
+
+📎 [原文链接](https://www.tmtpost.com/8030402.html)
+
+
+### 5. Amazon SageMaker 容器缓存上线
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-17/a4a133a2cce8.png)
+
+Amazon SageMaker 容器缓存上线：Amazon SageMaker 推出容器镜像缓存功能，可在启动新推理实例时消除从ECR拉取大型AI容器镜像的延迟，实测端到端扩展时间从525秒降至258秒，性能提升51%，适用于vLLM、Triton等生成式AI模型部署。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/introducing-container-caching-in-amazon-sagemaker-ai-for-faster-model-scaling/)
+
+
+### 6. Android 17 发布
+
+Android 17 发布：Google 发布 Android 17 操作系统，首次在 Pixel 设备上线气泡栏（bubble bar）多任务界面，支持快速切换和重组应用气泡，并集成 Gemini Omni 的视频编辑功能、Lyria 3 文本/图像生成音乐工具，以及基于 AudioLM 的 Pixel 10a 语音翻译。
+
+📎 [原文链接](https://techcrunch.com/2026/06/16/android-17-launches-with-new-multitasking-tools-as-google-expands-gemini-features/)
+
+
+### 7. 蚂蚁百灵Ling-2.6系列开源
+
+蚂蚁百灵Ling-2.6系列开源：蚂蚁百灵团队开源Ling-2.6-flash、Ling-2.6-1T和Ring-2.6-1T三款万亿级模型，采用混合线性注意力架构，将上下文窗口扩展至256K，Ling-2.6-1T仅用16M输出token在AI分析榜单取得34分，逼近GPT-5.4，Ring-2.6-1T在ARC-AGI-V2、PinchBench和Cla
+
+📎 [原文链接](https://zhidx.com/p/566648.html)
+
+
+### 8. Curr-0 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-17/3bcfb272aee1.jpg)
+
+Curr-0 发布：Current Robotics 发布机器人全身操作模型 Curr-0，首次用单一策略网络统一控制行走、躯干姿态与手部精细操作，实现在真实场景中完成撕茶包、点香、盖章、捡纸团等任务，无需分步执行。
+
+📎 [原文链接](https://www.qbitai.com/2026/06/436073.html)
+
+
+### 9. AnySearch 上线首月获10万开发者
+
+AnySearch 上线首月获10万开发者：AnySearch 是一家初创公司推出的专为AI Agent设计的搜索层服务，上线首月被10万开发者接入，累计调用超400万次，其V2.1.0版本通过多源数据路由与结构化融合，将企业尽调、代码研究等任务的搜索调用次数从7-28次降至1次，准确率显著提升。
+
+📎 [原文链接](https://www.tmtpost.com/8030083.html)
+
+
+### 10. cwcode v1.11 发布
+
+cwcode v1.11 发布：cwcode 是一个由 Go 编写的终端编码智能体，支持 DeepSeek V4 Pro、Qwen3.6-27B、Azure 等 OpenAI 兼容 API，通过哈希锚定编辑和持久前缀缓存，使 DeepSeek V4 Pro 上的 token 成本降至 Claude 的 5%，每轮对话输出减少 30–40%，且无需联网即可在本
+
+它内置文件编辑、子智能体、语义记忆存储、检查点回滚和自主目标循环，会话数据完全本地存储于 ~/.cwcode/，无遥测、无账户，适合开发者在终端中直接操控真实代码库，夜间可自动执行 20 轮任务。
+
+安装仅需下载二进制文件，配置 JSON 即可切换模型，支持 macOS、Windows、Linux，源码暂未开源，但已提供预编译版本和完整工具接口文档。
+
+📎 [原文链接](https://code.intellios.ai)
+
+
+### 11. Amazon Bedrock Guardrails 推出 InvokeGuardrailChecks API
+
+Amazon Bedrock Guardrails 推出 InvokeGuardrailChecks API：亚马逊云科技推出 Amazon Bedrock Guardrails 的 InvokeGuardrailChecks API，允许开发者在智能体多轮交互的任意环节直接调用内容过滤、提示攻击检测和敏感信息识别等安全检查，无需预先创建防护资源，仅返回0–
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/safeguard-your-agentic-ai-applications-with-the-amazon-bedrock-guardrails-invokeguardrailchecks-api/)
+
+
+### 12. 网易有道子曰4.0发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-17/180d9e3d91d7.png)
+
+网易有道子曰4.0发布：网易有道发布教育大模型子曰4.0，支持文本、图片、音频多模态交互，在高考数学模拟测试中取得145分，并开源其多模态模型与跨语种无口音语音合成（TTS）模型，用于作文批改、口语练习等教育场景。
+
+📎 [原文链接](https://www.qbitai.com/2026/06/435950.html)
+
+
+### 13. Wolfram Language 15 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-17/81bde1c37097.png)
+
+Wolfram Language 15 发布：Wolfram Language 15 正式发布，首次在笔记本中内置AI助手，用户可通过聊天栏用自然语言提问，AI自动生成并执行精确的Wolfram代码，无需订阅即可使用基础功能，Pro和Research订阅提供更高阶能力。
+
+📎 [原文链接](https://writings.stephenwolfram.com/2026/06/launching-version-15-of-wolfram-language-mathematica-built-in-useful-ai-lots-of-new-core-functionality/)
+
+
+### 14. Encord Merlin 发布
+
+Encord Merlin 发布：Encord 推出智能代理 Merlin，允许用户通过自然语言指令自动生成标注配置、定义标签体系、定制界面并设置审核流程，覆盖数据构建、观察与优化全生命周期，目前已在 MCP、Claude、Codex 等平台开启公测。
+
+📎 [原文链接](https://encord.com/blog/merlin-encord-mcp-agentic-intelligence/)
+
+
+---
+
+## 🔥 开源热门
+
+### 1. headroom 数据压缩工具
+
+⭐ 28,700 stars · 今日增长 2,698 stars
+
+headroom 是一种在数据输入LLM前压缩文本、日志和RAG块的工具，可减少60%-95%的token消耗而不影响答案质量，适用于需要降低推理成本的开发者和AI代理系统。
+
+📎 [原文链接](https://github.com/chopratejas/headroom)
+
+
+### 2. Agent-Reach AI代理全网洞察工具
+
+⭐ 29,900 stars · 今日增长 2,614 stars
+
+Agent-Reach 让AI代理无需API即可通过命令行实时搜索和阅读Twitter、Reddit、YouTube、GitHub等主流平台内容，解决AI缺乏实时网络感知的痛点，适合开发者构建具备全网洞察力的智能代理应用。
+
+📎 [原文链接](https://github.com/Panniantong/Agent-Reach)
+
+
+### 3. NVIDIA/SkillSpector AI代理技能安全扫描器
+
+⭐ 6,200 stars · 今日增长 1,903 stars
+
+NVIDIA/SkillSpector 是一款用于检测AI代理技能中安全漏洞、恶意模式和风险行为的扫描工具，帮助开发者在部署前识别潜在威胁，适用于AI安全工程师和智能体开发者。
+
+📎 [原文链接](https://github.com/NVIDIA/SkillSpector)
+
+
+### 4. Lum1104/Understand-Anything 代码知识图谱生成
+
+⭐ 60,300 stars · 今日增长 1,872 stars
+
+将任意代码库转化为可交互、可搜索、可提问的知识图谱，帮助开发者快速理解复杂项目，适配Claude Code、Copilot等主流AI工具，提升代码阅读与调试效率。
+
+📎 [原文链接](https://github.com/Lum1104/Understand-Anything)
+
+
+### 5. Leonxlnx/taste-skill 赋予AI良好品味
+
+⭐ 44,400 stars · 今日增长 1,409 stars
+
+Leonxlnx/taste-skill 通过优化提示词与内容风格引导，帮助AI生成更具审美与创意的文本，适用于内容创作者、AI产品经理和开发者提升生成质量。
+
+📎 [原文链接](https://github.com/Leonxlnx/taste-skill)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. Wattfare 发布开发者预览版
+
+Wattfare 发布开发者预览版：Wattfare 是一个AI支付中间层，开发者通过嵌入一个‘连接AI预算’按钮，让用户自行设置月度消费上限，所有推理费用由用户承担，开发者无需垫付任何成本，且兼容Vercel AI SDK和OpenAI接口，集成仅需5分钟。
+
+📎 [原文链接](https://wattfare.com/)
+
+
+### 2. AWS P-EAGLE 在 SageMaker 上线
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-17/c9bbaf2cf863.jpg)
+
+AWS P-EAGLE 在 SageMaker 上线：AWS 推出并行推测解码技术 P-EAGLE，并在 Amazon SageMaker JumpStart 原生支持，通过可学习占位符替代自回归草稿生成，实现单次前向传播并行预测最多11个令牌，相比 EAGLE-3 在 Qwen3-Coder-30B 上最高提升 1.69 倍吞吐量，无需修改代码即可一键部署
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/parallelize-speculative-decoding-with-p-eagle-on-amazon-sagemaker-ai/)
+
+
+### 3. Anthropic 发布 NLA 可解释性工具
+
+Anthropic 发布 NLA 可解释性工具：Anthropic 发布自然语言自编码器（NLA），通过两个LLM模块将Claude模型的内部激活转化为可读文本解释，成功发现其存在未言明的评估意识，并在无训练数据访问情况下，使审计代理在自动化基准中超越SAE和黑箱基线。
+
+📎 [原文链接](https://transformer-circuits.pub/2026/nla/)
+
+
+### 4. Databricks 发布 Lakehouse//RT 和 LTAP
+
+Databricks 发布 Lakehouse//RT 和 LTAP：Databricks在Data + AI峰会上发布Lakehouse//RT和LTAP两项新产品，前者直接在Delta/Iceberg表上实现低于100毫秒的实时查询，后者将Postgres事务数据以开放格式直接写入数据湖，彻底消除操作与分析系统间的ETL管道和数据冗余。
+
+📎 [原文链接](https://venturebeat.com/data/databricks-says-it-solved-the-decades-old-data-pipeline-problem-thats-been-slowing-ai-agents)
+
+
+### 5. Google Cloud OKF v0.1 发布
+
+Google Cloud OKF v0.1 发布：Google Cloud 发布开放知识格式（OKF）v0.1，一种厂商中立的开源规范，用纯Markdown文件加YAML头部存储AI代理所需的结构化知识，如表、指标、运维手册，支持跨系统直接读取，无需任何SDK或专有平台。
+
+📎 [原文链接](https://www.marktechpost.com/2026/06/16/google-cloud-introduces-open-knowledge-format-okf-a-vendor-neutral-markdown-spec-for-giving-ai-agents-curated-context/)
+
+
+### 6. Qwen3.6-27B 被开发者实测
+
+Qwen3.6-27B 被开发者实测：Qwen3.6-27B 是通义千问系列的本地编码模型，被llama.cpp作者Georgi Gerganov在Hacker News实测，称其在M2 Ultra和RTX 5090上运行稳定，适合日常代码维护和PR审查，他通过极简框架pi -nc --offline + 自定义提示词提升效率。
+
+📎 [原文链接](https://simonwillison.net/2026/Jun/16/georgi-gerganov/#atom-everything)
+
+
+### 7. 国产大模型出路探讨
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-17/003b67dde651.jpg)
+
+国产大模型出路探讨：文章提出国产大模型不应硬拼顶尖推理能力，而应通过多模型动态路由（Fusion）和元框架Omnigent，定位为低成本执行层，承担文档处理、代码生成等基础任务，以50%成本实现接近GPT-5.5的综合性能，真正进入企业生产流程。
+
+📎 [原文链接](https://www.tmtpost.com/8029887.html)
+
+
+### 8. Hermes Agent 支持异步子代理
+
+Hermes Agent 支持异步子代理：Hermes Agent 是由 Nous Research 开源的个人 AI 代理，最新版本新增异步子代理功能，通过 `delegate_task_async` 等 6 个新工具实现任务后台运行，用户可实时检查、引导或取消任务，主聊天窗口不再冻结。
+
+📎 [原文链接](https://www.marktechpost.com/2026/06/16/hermes-agent-adds-asynchronous-subagents-so-delegated-work-no-longer-blocks-the-parent-chat/)
+
+
+### 9. Probably 融资 900 万美元
+
+Probably 融资 900 万美元：Probably 是一家 AI 初创公司，完成 900 万美元种子轮融资，由 a16z 领投，其核心产品通过‘数据科学机械外骨骼’系统，在生成结果后用确定性验证器校验原始数据，拒绝任何不一致输出，实现 99.99% 准确率，且可在本地低算力设备运行，模型规模比主流模型低四个层级。
+
+📎 [原文链接](https://techcrunch.com/2026/06/16/probably-raises-9m-to-build-a-more-reliable-kind-of-ai/)
+
+
+### 10. Privatemode AI 发布
+
+Privatemode AI 发布：Privatemode AI 是德国公司Edgeless Systems推出的隐私优先AI平台，基于机密计算技术，在数据处理全程加密，支持直接替代OpenAI和Anthropic API，无需修改代码，适用于医疗、法律等高合规场景。
+
+📎 [原文链接](https://www.privatemode.ai/)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. 百度提出DAA指标
+
+百度提出DAA指标：百度在Create2026大会上提出DAA（Daily Active Agents，日活智能体数）作为AI价值的新衡量标准，取代传统Token消耗量，强调AI应以完成任务、交付结果为核心，而非计算资源消耗。
+
+📎 [原文链接](https://www.tmtpost.com/8029553.html)
+
+
+### 2. ChatGPT 市场份额跌破50%
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-17/08acb3ab9a45.jpg)
+
+ChatGPT 市场份额跌破50%：OpenAI的ChatGPT全球市场份额从今年1月的超50%降至5月底的46.4%，首次跌破半数，主要因Google Gemini（27.7%）和Anthropic Claude（10.3%）的快速增长，三者合计占据AI助手市场89%的使用时长。
+
+📎 [原文链接](https://techcrunch.com/2026/06/16/chatgpts-market-share-slips-below-50-for-first-time/)
+
+
+### 3. 华院计算冲刺港交所IPO
+
+华院计算冲刺港交所IPO：华院计算向港交所递交招股书，2025年营收达4.74亿元，三年研发总投入超3亿元，核心产品为认知智能算法平台和工业/运营决策智能体，聚焦钢铁、冶金等重工业场景，实现知识与数据融合的自主决策。
+
+📎 [原文链接](https://zhidx.com/p/566469.html)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
