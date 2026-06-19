@@ -1,0 +1,358 @@
+---
+title: "06.19 ChatGPT Enterprise推支出控制 | AI 早报"
+date: "2026-06-19"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 06.19 ChatGPT Enterprise推支出控制 | AI 早报
+
+> 2026年06月19日 周五 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- ChatGPT Enterprise 推出信用额度分析与细粒度支出控制 —— 企业AI成本管控能力显著增强
+- Z.ai GLM-5.2 拥有7530亿参数、100万token上下文，开源权重登顶Artificial Analysis榜首 —— 国产开源大模型首次登顶国际权威基准
+- 微软在中国销售OpenAI模型，OpenAI和Anthropic拒绝入华 —— 中国AI市场唯一合法接入GPT的渠道
+- Amazon Bedrock AgentCore Harness 两行API实现生产级智能体，支持多模型无缝切换 —— AWS 打通智能体生产落地最后一公里
+- Anthropic Claude Code Artifacts 支持实时共享交互式HTML仪表板，禁止外部网络请求 —— AI 编程助手进入企业安全协作新阶段
+
+**今日共收录 38 条动态，涵盖 模型与产品 16条、开源热门 5条、技术洞察 8条、行业动态 9条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. ChatGPT Enterprise 更新支出控制
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-19/3a398b4933d5.webp)
+
+ChatGPT Enterprise 更新支出控制：OpenAI 为 ChatGPT Enterprise 推出新版用量分析与支出控制功能，管理员可按用户、产品、模型维度追踪信用额度消耗，支持设置工作区默认限额、群组限额和个人例外，并通过 Cost API 导出数据用于内部审计。
+
+📎 [原文链接](https://openai.com/index/chatgpt-enterprise-spend-controls)
+
+
+### 2. Z.ai GLM-5.2 开源发布
+
+Z.ai GLM-5.2 开源发布：Z.ai 发布开源大模型 GLM-5.2，参数规模达7530亿，上下文窗口扩展至100万token，采用40专家MoE架构，在Artificial Analysis Intelligence Index v4.1中以51分超越MiniMax-M3、DeepSeek V4 Pro等模型，成为当前最强纯文本开源权重模型。
+
+该模型在Code Arena WebDev排行榜位列第二，仅落后于Claude Fable 5，且能生成完整动画SVG，但对特定提示（如负鼠骑滑板）的创意生成能力较前代GLM-5.1明显退化。
+
+GLM-5.2已在OpenRouter等9家平台上线，定价为输入$1.40/百万token、输出$4.40/百万token，显著低于GPT-5.5和Claude Opus。
+
+📎 [原文链接](https://simonwillison.net/2026/Jun/17/glm-52/)
+
+
+### 3. Amazon Bedrock AgentCore Harness 正式上线
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-19/087cb4848071.png)
+
+Amazon Bedrock AgentCore Harness 正式上线：Amazon Bedrock AgentCore Harness 正式发布，开发者通过 CreateHarness 和 InvokeHarness 两个 API 调用即可部署生产级智能体，自动集成沙箱、内存、工具连接与可观测性，无需手动构建容器或编排代码。
+
+支持在会话中动态切换模型（如 Claude → GPT-5.5 → Gemini）并保持上下文，内置 AWS 精选技能包一键启用，可直接调用 S3、EFS、MCP、浏览器和代码解释器，所有操作自动记录至 CloudWatch。
+
+智能体支持自定义容器镜像与文件系统，托管内存默认启用，支持按会话或跨会话持久化，AWS 开发者可直接调用 IaC、IAM、CloudWatch 等核心服务技能，无需额外配置。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/amazon-bedrock-agentcore-harness-is-now-generally-available-go-from-idea-to-production-grade-agent-in-minutes/)
+
+
+### 4. Anthropic Claude Code Artifacts 发布
+
+Anthropic Claude Code Artifacts 发布：Anthropic 为 Claude Code 团队和企业用户推出 Artifacts 功能，可将 AI 生成的代码与数据自动转化为安全的实时交互式 HTML 仪表板，支持团队内共享与自动刷新，所有内容内联且禁止任何外部网络请求，确保企业数据不外泄。
+
+📎 [原文链接](https://venturebeat.com/data/anthropics-claude-code-artifacts-update-brings-live-shared-dashboards-and-interactive-workspaces-to-enterprises)
+
+
+### 5. 百川 M4 发布
+
+百川 M4 发布：百川智能发布医疗大模型M4，支持10轮以上连续追问，初诊得分79.0，循证引用精度达90%，全病程记忆能力较M3提升21.1分，可识别家庭场景中隐性健康风险并主动提醒，已在北京儿童医院、瑞金医院等三甲医院测试验证。
+
+📎 [原文链接](https://www.qbitai.com/2026/06/436758.html)
+
+
+### 6. 谷歌发布新款智能音箱
+
+谷歌发布新款智能音箱：谷歌时隔6年推出新款智能音箱，搭载居家版Gemini语音助手，售价99.99美元（约677元），支持多轮连续对话、一次性多指令识别、10种拟人化音色，并可联动Nest摄像头调取录像，会员可无限制对话。
+
+音箱支持Thread与Matter协议，可作智能家居网关，配备360度环绕发声单元、实体麦克风开关和氛围灯，语音识别准确率和低音表现显著提升，已支持英语、法语、德语、中文等语言。
+
+📎 [原文链接](https://zhidx.com/p/567736.html)
+
+
+### 7. Odyssey完成3.1亿美元融资
+
+美国AI初创公司Odyssey完成3.1亿美元融资，投后估值达14.5亿美元，推出三款世界模型：Odyssey-2 Max支持高精度物理仿真视频生成，Starchild-1实现音画同步实时响应，Agora-1支持4智能体协同交互，已与AWS、英伟达达成算力合作，开发者使用成本为每小时2-4美元。
+
+📎 [原文链接](https://zhidx.com/p/567616.html)
+
+
+### 8. ChatGPT GPT-5.5 Instant 发布
+
+ChatGPT GPT-5.5 Instant 发布：OpenAI 发布 ChatGPT GPT-5.5 Instant，面向所有免费用户开放，健康领域事实性错误率下降71%，在 HealthBench Professional 评估中表现超越旧版模型和医生人工撰写回应，能更准确识别紧急情况、主动追问信息并提供清晰转诊建议。
+
+📎 [原文链接](https://openai.com/index/improving-health-intelligence-in-chatgpt)
+
+
+### 9. Adobe Creative Cloud AI 工作流升级
+
+Adobe Creative Cloud AI 工作流升级：Adobe 将具身式AI代理深度嵌入Creative Cloud，支持Premiere Pro、Photoshop、Illustrator等应用直接调用底层API，自动完成批量重命名、品牌资产更新、矢量图形复制随机化等多步骤生产任务，人类保留最终创意决策权。
+
+📎 [原文链接](https://venturebeat.com/orchestration/adobe-embeds-agentic-ai-workflows-across-creative-cloud-shifting-from-media-generation-to-production-orchestration)
+
+
+### 10. 码上飞开源AipexBase
+
+码上飞开源AipexBase：码上飞开源AI原生后端即服务平台AipexBase，开发者通过前端SDK或MCP协议，无需编写后端代码即可生成含数据库、鉴权、API的完整应用，已支撑华为小艺Claw的系统级AI应用生成能力，并适配微信小程序、钉钉、飞书等国内生态。
+
+📎 [原文链接](https://www.qbitai.com/2026/06/436674.html)
+
+
+### 11. 高德 ABot-Earth0.5 发布
+
+高德 ABot-Earth0.5 发布：高德地图发布全球首个3D原生城市世界模型ABot-Earth0.5，直接基于3D数据训练，输入卫星图或文字描述即可在消费级GPU上10分钟生成公里级3DGS格式城市场景，支持无缝导入Unity、Unreal Engine等主流引擎进行开发。
+
+📎 [原文链接](https://www.qbitai.com/2026/06/436698.html)
+
+
+### 12. MiniT2I 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-19/525e5c5daa62.webp)
+
+MiniT2I 发布：MIT何恺明团队发布极简文生图模型MiniT2I，基于MM-JiT架构直接在像素空间扩散，无需VAE和AdaLN，仅258M参数即达到FID 13.7，训练仅需8张H100运行3天，成本相当于一次ImageNet实验。
+
+📎 [原文链接](https://www.qbitai.com/2026/06/436518.html)
+
+
+### 13. SubQ 1.1 Small 发布
+
+SubQ 1.1 Small 发布：SubQ 1.1 Small 是由 Subquadratic 公司发布的全球首款子二次方架构大模型，支持长达1200万令牌的上下文窗口，在1M令牌下比FlashAttention-2快56倍，注意力计算量降低近1000倍，且在12M上下文下仍保持100%单事实检索准确率。
+
+📎 [原文链接](https://subq.ai/)
+
+
+### 14. 美图发布8款AI Agent产品
+
+美图发布8款AI Agent产品：美图在2026影像节发布8款AI原生产品，包括Picchi、Artflo、MVLAND等，全部围绕Agent Teams架构，用户只需提出需求，系统自动完成从生成到交付的全流程，无需手动调参或切换工具。
+
+其中AI设计室可一次性生成跨平台电商物料，开拍AI助手实现7×24小时口播视频全自动生产，RoboNeo串联编剧-分镜-剪辑全流程生成AI短剧，核心目标是让用户从操作工具转向表达需求。
+
+美图同步转向AI算力点计费模式，2026年3月算力消耗较2025年12月增长59%，全球月活达2.76亿，付费用户1691万，验证了‘交付成果’模式的商业可行性。
+
+📎 [原文链接](https://www.qbitai.com/2026/06/436517.html)
+
+
+### 15. co/core 开源AI算力合作社
+
+co/core 开源AI算力合作社：co/core 是一个由用户共享闲置Mac算力组成的去中心化AI推理网络，使用标准OpenAI API格式，开发者只需替换API密钥和端点即可无缝接入，模型基于MLX开源框架（如Qwen2.5系列），当前网络拥有864GB内存、266个CPU核心，任务全程由设备安全隔区签名验证，结算公开可链上追溯。
+
+📎 [原文链接](https://console.cocore.dev/)
+
+
+### 16. Palmier Pro 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-19/3ff5fd942490.jpg)
+
+Palmier Pro 发布：Palmier Pro 是一款专为AI设计的视频编辑器，支持在时间线上直接调用Kling V3、Veo 3.1、Seedance 2.0等主流AI模型生成视频与音频，无需导出导入，实拍素材与AI片段可混合编辑并导出至Premiere和DaVinci，支持MCP协议连接Claude、Cursor等AI代理协同工作。
+
+📎 [原文链接](https://www.palmier.io/)
+
+
+---
+
+## 🔥 开源热门
+
+### 1. Headroom 数据压缩工具
+
+⭐ 31,200 stars · 今日增长 1,334 stars
+
+Headroom 在数据进入LLM前压缩输出、日志、文件和RAG分块，减少60-95% token消耗且保持答案不变，适合需要降低推理成本的开发者和AI应用团队。
+
+📎 [原文链接](https://github.com/chopratejas/headroom)
+
+
+### 2. Lum1104/Understand-Anything 代码知识图谱生成
+
+⭐ 62,700 stars · 今日增长 1,250 stars
+
+将任意代码库转化为可交互、可搜索、可提问的知识图谱，帮助开发者快速理解复杂项目，适配Claude Code、Copilot等主流AI工具，提升代码阅读与调试效率。
+
+📎 [原文链接](https://github.com/Lum1104/Understand-Anything)
+
+
+### 3. Agent-Reach AI代理全网洞察工具
+
+⭐ 33,000 stars · 今日增长 1,131 stars
+
+Agent-Reach 让AI代理通过单一命令行免费访问并搜索Twitter、Reddit、YouTube、GitHub等主流平台，无需API密钥，为开发者提供低成本、全网级信息获取能力，适用于构建自主智能代理与数据抓取应用。
+
+📎 [原文链接](https://github.com/Panniantong/Agent-Reach)
+
+
+### 4. addyosmani/agent-skills AI编码代理技能库
+
+⭐ 62,100 stars · 今日增长 1,031 stars
+
+为AI编码代理提供生产级工程技能集合，帮助自动化完成代码生成、调试与重构任务，适用于开发者和AI工程团队提升自动化开发效率。
+
+📎 [原文链接](https://github.com/addyosmani/agent-skills)
+
+
+### 5. Leonxlnx/taste-skill 赋予AI良好品味
+
+⭐ 45,900 stars · 今日增长 723 stars
+
+Leonxlnx/taste-skill 通过优化提示词与内容风格引导，帮助AI生成更具创意、个性和审美价值的内容，适合内容创作者、AI产品经理和开发者提升生成质量。
+
+📎 [原文链接](https://github.com/Leonxlnx/taste-skill)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. PyTorch Helion LLM调优器发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-19/50bb3a493179.png)
+
+PyTorch Helion LLM调优器发布：PyTorch 基金会发布基于大语言模型的 Helion 内核自动调优器，通过 LLM 生成候选配置，将内核调优所需的基准测试次数减少 9.8 倍（从 546 降至 55），端到端耗时从 261 秒降至 39 秒，性能与原贝叶斯优化方法（LFBO）持平（几何平均延迟比 1.009X）。
+
+📎 [原文链接](https://pytorch.org/blog/from-minutes-to-seconds-llm-guided-autotuning-for-helion-kernels/)
+
+
+### 2. 蔚来智驾跨平台部署突破
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-19/fe1c57c6a41e.jpg)
+
+蔚来智驾跨平台部署突破：蔚来通过自研AI Infra（含推理引擎、AI编译器和AI Agent工作流），实现同一套智驾模型在NT2.0、NT2.5和NT3.0三代硬件平台上的统一部署，推理性能提升20%以上，模型上车部署时间从1-2天缩短至2小时内，支撑每周4000万公里的影子模式测试数据回传。
+
+📎 [原文链接](https://36kr.com/p/3858329994875908?f=rss)
+
+
+### 3. SageMaker 推理可观测性升级
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-19/2f835f59fb01.png)
+
+SageMaker 推理可观测性升级：Amazon SageMaker 推出详细推理可观测性功能，自动向 CloudWatch 发送超100项指标，包括首次令牌时间（TTFT）、令牌间延迟（ITL）、KV缓存压力、跨可用区流量分布和冷启动阶段分析，无需自建Grafana即可通过内置Insights仪表板监控生成式AI推理性能。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/monitor-and-debug-generative-ai-inference-with-sagemaker-detailed-metrics-and-insights-dashboard-on-cloudwatch/)
+
+
+### 4. Arbor 框架发布
+
+Arbor 框架发布：中国人民大学与微软研究院推出的Arbor框架，通过假设树精炼机制实现AI自主优化，在相同计算预算下，于真实工程任务中将Claude Code和Codex的可验证性能提升2.5倍，支持并行隔离实验与跨任务泛化。
+
+📎 [原文链接](https://venturebeat.com/orchestration/new-ai-optimization-framework-beats-claude-code-and-codex-by-2-5x-on-the-same-compute-budget)
+
+
+### 5. AMP发布计算网格愿景
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-19/a0e4cf545acf.jpg)
+
+AMP发布计算网格愿景：AMP由投资人Anjney Midha创立，提出构建一个跨云、跨芯片的计算网格，目标是让AI训练的FLOPs像电力一样高效流动，当前已设定1.2GW基载和6GW峰值算力目标，解决当前AI实验室MFU不足30%的系统性浪费问题。
+
+AMP不自建数据中心，而是整合现有可靠基础设施，通过经济激励和调度协议提升算力利用率，推动计算市场向独立系统运营商（ISO）模式演进，并主张将算力成本的一部分返还社区以缓解电力与环境压力。
+
+📎 [原文链接](https://www.latent.space/p/anj)
+
+
+### 6. Auriko 缓存路由成本优化报告
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-19/38dc56226f47.png)
+
+Auriko 缓存路由成本优化报告：Auriko 发布技术报告，通过缓存感知推理路由在80,634次API请求测试中，相较主流推理提供商和竞品实现32.8%的平均成本节约，最高单提供商节约达38.3%，核心机制是动态选择缓存命中率最高的提供商。
+
+📎 [原文链接](https://www.auriko.ai/reports/llm-cost-arbitrage)
+
+
+### 7. MosaicLeaks 提出隐私泄露基准
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-19/04a58d23dda2.png)
+
+MosaicLeaks 提出隐私泄露基准：MosaicLeaks 是由 Now 公司研究人员提出的新型隐私泄露基准，发现主流AI研究智能体在多跳任务中会通过网页查询无意泄露企业私有信息，如‘70%云迁移’等敏感数据，仅优化任务性能的训练使泄露率飙升至51.7%，而新提出的PA-DR强化学习方法在保持58.7%任务成功率的同时，将完整信息泄露率从34%大幅压降
+
+📎 [原文链接](https://huggingface.co/blog/ServiceNow/mosaicleaks)
+
+
+### 8. Intelica 4.5.0 发布
+
+Intelica 4.5.0 发布：Intelica 推出 4.5.0 版本竞争情报 API，支持通过 x402 协议以 0.05 USDC 单次调用分析竞争对手数据，批量调用（最多10次）仅 0.2 USDC，适用于销售赋能、融资尽调、市场进入等场景，部署在 Base 和 Solana 主网。
+
+📎 [原文链接](https://api.intelica.dev)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. 微软在中国销售OpenAI模型
+
+微软在中国销售OpenAI模型：微软绕过OpenAI和Anthropic的禁令，向中国头部互联网企业销售GPT-4等模型服务，成为唯一在中国提供这些模型的美国AI厂商，直接面向企业客户落地生成式AI应用。
+
+📎 [原文链接](https://www.artificialintelligence-news.com/news/microsoft-sells-openai-models-china/)
+
+
+### 2. 亚马逊拟对外销售Trainium芯片
+
+亚马逊拟对外销售Trainium芯片：亚马逊AWS计划向第三方出售自研AI训练芯片Trainium，目标是将芯片业务打造成年收入500亿美元的独立业务，直接挑战英伟达在AI芯片市场的主导地位，目前谈判尚处早期阶段。
+
+📎 [原文链接](https://techcrunch.com/2026/06/18/amazon-hopes-to-challenge-nvidia-more-directly-by-selling-its-ai-chips/)
+
+
+### 3. 美国FERC强制AI数据中心优先并网
+
+美国FERC强制AI数据中心优先并网：美国联邦能源监管委员会（FERC）下令六大电网运营商必须优先处理AI数据中心的并网申请，要求其在30天内报告剩余容量，60天内调整电价，尽管未解决发电短缺问题，但已推动科技公司转向成本更高的‘表后’供电模式。
+
+📎 [原文链接](https://techcrunch.com/2026/06/18/ai-data-centers-just-got-a-government-mandated-fast-lane-to-the-grid/)
+
+
+### 4. Manus拟被腾讯等中资回购
+
+Manus拟被腾讯等中资回购：通用AI智能体Manus因被Meta收购遭中国监管叫停，腾讯、红杉中国、真格基金等原投资方计划以约135亿元人民币按原始收购价回购Meta所持股权，并拟设立中国合资实体为港股IPO铺路，目前公司年化营收已从1亿美元飙升至4-5亿美元。
+
+📎 [原文链接](https://zhidx.com/p/567793.html)
+
+
+### 5. LiteLLM 与 Copilot 安全漏洞曝光
+
+LiteLLM 与 Copilot 安全漏洞曝光：LiteLLM 被曝三重CVE漏洞（CVE-2026-47101/47102/40217），默认用户可绕过权限提升为管理员并执行远程代码，暴露所有接入的OpenAI、Azure等API密钥；同时Microsoft 365 Copilot被发现可通过恶意URL利用Bing SSRF窃取用户邮箱内容，无需用户交互
+
+📎 [原文链接](https://venturebeat.com/security/copilot-searched-your-mailbox-litellm-handed-out-admin)
+
+
+### 6. Databricks营收突破69亿美元
+
+Databricks营收突破69亿美元：Databricks发布财报显示其年化营收达69亿美元（同比增长80%），AI相关产品收入17亿美元，主要来自Genie和Agent Bricks等AI驱动的数据查询与智能体平台，按使用量计费模式推高收入但压缩毛利率。
+
+📎 [原文链接](https://zhidx.com/p/567124.html)
+
+
+### 7. Noam Shazeer加入OpenAI
+
+Noam Shazeer加入OpenAI：Transformer架构核心作者Noam Shazeer正式离开谷歌，加入OpenAI担任架构研究负责人，将主导下一代模型底层结构研发，其此前在谷歌主导了Transformer、稀疏MoE和Gemini模型开发。
+
+📎 [原文链接](https://www.tmtpost.com/8033380.html)
+
+
+### 8. 商务部推“人工智能+消费”17项举措
+
+商务部推“人工智能+消费”17项举措：商务部等八部门发布《关于加快“人工智能+消费”发展的实施意见》，提出17项具体措施，推动AI在智能终端、人形机器人、智能家居、养老、文旅等消费场景落地，明确支持人形机器人从工业向家庭渗透，并打造“人、车、家”全场景联动生态。
+
+📎 [原文链接](https://36kr.com/p/3858015526704129?f=rss)
+
+
+### 9. Sourcehut 因 LLM 爬虫中断
+
+Sourcehut 因 LLM 爬虫中断：Sourcehut 是开源开发者托管平台，因恶意 LLM 爬虫网络大规模抓取其 git 代码库用于训练大模型，导致服务器过载，被迫临时关闭大量 Web 路由，造成普通用户服务中断。
+
+📎 [原文链接](https://status.sr.ht/issues/2026-06-06-llms-again/)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
