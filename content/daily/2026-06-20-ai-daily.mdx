@@ -1,0 +1,221 @@
+---
+title: "06.20 Amazon Bedrock AgentCore推网页搜索 | AI 早报"
+date: "2026-06-20"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 06.20 Amazon Bedrock AgentCore推网页搜索 | AI 早报
+
+> 2026年06月20日 周六 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- Amazon Bedrock AgentCore 推出网页搜索，按千次查询7美元，查询不离开AWS —— 企业级AI代理首次实现零配置实时联网
+- DeepGate 编译器在Arm Cortex-M上比TFLM省3倍RAM、快2倍，超越厂商原生工具链 —— 国产边缘AI编译器首次全面超越大厂工具链
+- FunctionEvolve 推理公式能力提升3.6倍，AI-Feynman测试满分 —— 大模型首次实现符号推理满分
+- Codex 支持录制用户操作生成可复用技能，自动执行重复任务 —— AI 开始直接学习人类操作软件，绕开 API 限制
+- Seedance 2.0 Mini 视频生成成本降至0.5元/秒 —— AI视频进入价格战，成本决定商业化落地
+
+**今日共收录 21 条动态，涵盖 模型与产品 11条、开源热门 5条、技术洞察 2条、行业动态 3条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. Amazon Bedrock AgentCore 推出网页搜索
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-20/1f1dbd0ed1d4.png)
+
+Amazon Bedrock AgentCore 推出网页搜索：Amazon Bedrock AgentCore 正式上线网页搜索功能，通过内置的数百亿文档专用索引和分钟级更新机制，让AI代理能实时获取网络信息，无需自建搜索系统，且所有查询全程在AWS内部处理，保障数据隐私。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/introducing-web-search-on-amazon-bedrock-agentcore/)
+
+
+### 2. DeepGate 编译器 v0.15.0 发布
+
+DeepGate 编译器 v0.15.0 发布：DeepGate发布边缘AI编译器v0.15.0，可将.tflite模型编译为静态二进制文件，在Arm Cortex-M芯片上相比谷歌TFLM减少高达3倍RAM占用、提升2倍推理速度，并在MLPerf Tiny基准测试中超越Infineon、Silicon Labs等厂商的原生工具链，成功运行原本因内存不足无法
+
+📎 [原文链接](https://deepgate.ai/blog/compiler)
+
+
+### 3. FunctionEvolve 发布
+
+FunctionEvolve 发布：博世与清华联合推出 FunctionEvolve，通过强化学习让大模型自主推导数学公式，在 LLM-SRBench 基准上性能提升 3.6 倍，并在 AI-Feynman 全部 100 个测试题中取得满分，首次实现通用大模型对物理公式的精确符号推理。
+
+📎 [原文链接](https://www.jiqizhixin.com/articles/2026-06-19-3)
+
+
+### 4. Codex Record & Replay 功能上线
+
+Codex Record & Replay 功能上线：OpenAI 推出 Codex 的 Record & Replay 功能，允许用户在 macOS 上演示一次操作（如报销、上传视频、建 issue），Codex 自动学习并生成可复用的技能，后续通过自然语言调用该技能自动完成同类任务，依赖 Computer Use 底层能力直接操作图形界面，无需 API 
+
+📎 [原文链接](https://www.ifanr.com/1669204?utm_source=rss&utm_medium=rss&utm_campaign=)
+
+
+### 5. Seedance 2.0 Mini 发布
+
+Seedance 2.0 Mini 发布：字节跳动旗下AI视频模型Seedance推出轻量版2.0 Mini，将视频生成成本降至0.5元/秒，较原版降价50%，虽分辨率降低，但瞄准电商、短剧、广告等中小企业市场，通过低价策略抢占用户习惯和生产流程入口。
+
+📎 [原文链接](https://www.tmtpost.com/8034155.html)
+
+
+### 6. 信实Jio发布AI电话助手与智能屏
+
+信实Jio发布AI电话助手与智能屏：信实工业旗下Jio平台发布AI语音助手Jio Call Agent，可实时转录通话、生成摘要并执行订车点餐等任务，通过语音指令“Hey Jio”激活，直接嵌入电信网络，面向超5亿用户推出；同时上线AI智能屏TeleFrame和MyJio应用，支持22种印度语言，覆盖医疗、教育、农业等场景。
+
+📎 [原文链接](https://techcrunch.com/2026/06/19/billionaire-ambani-wants-ai-in-every-call-app-and-home/)
+
+
+### 7. 阿里 HappyOyster 1.0 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-20/b2ade044d31c.png)
+
+阿里 HappyOyster 1.0 发布：阿里云ATH团队发布开放式世界模型HappyOyster 1.0，用户输入图文后可进入可交互的AI生成世界，通过加速、跳跃、攻击等实时指令驱动角色动作，系统自动识别环境元素并解锁对应交互（如骑马、开车），且角色、场景在长时序中保持一致，支持回溯与剧情分支。
+
+该模型通过隐状态摘要实现长程一致性，以持久身份卡解决主体漂移，自然语言指令直接映射物理动作，音视频联合生成确保声画同步，API即将开放，适用于游戏开发、互动叙事与虚拟文旅场景。
+
+📎 [原文链接](https://www.qbitai.com/2026/06/436864.html)
+
+
+### 8. NVIDIA SpatialClaw 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-20/274b28060feb.png)
+
+NVIDIA SpatialClaw 发布：NVIDIA发布无训练空间推理智能体SpatialClaw，将Python代码作为动作接口，通过动态组合感知工具（如Depth Anything 3和SAM3）实现跨帧几何计算，在20个基准上平均准确率达59.9%，超越SOTA模型SpaceTools 11.2个百分点，无需微调即可适配Qwen3.5、Gemma4
+
+📎 [原文链接](https://www.marktechpost.com/2026/06/19/nvidia-ai-introduce-spatialclaw-a-training-free-agent-that-treats-code-as-the-action-interface-for-spatial-reasoning/)
+
+
+### 9. OpenAI o3 Deep Research 用于罕见病诊断
+
+OpenAI o3 Deep Research 用于罕见病诊断：OpenAI 基于 o3 Deep Research 模型对 376 例长期未确诊的儿童罕见病病例进行重分析，通过整合临床表型、基因变异和科学文献生成可验证的诊断假设，经专家确认后新增 18 例明确诊断，诊断率提升 4.8%，其中 7 例为公共数据库已记录但未被原团队发现的‘再发现’病例。
+
+📎 [原文链接](https://openai.com/index/diagnose-rare-childhood-diseases/)
+
+
+### 10. Liquid AI LFM2.5-Embedding/ColBERT 发布
+
+Liquid AI LFM2.5-Embedding/ColBERT 发布：Liquid AI 发布了两款3.5亿参数的多语言检索模型 LFM2.5-Embedding-350M 和 LFM2.5-ColBERT-350M，分别采用稠密编码和晚期交互架构，在NanoBEIR和MKQA-11基准上全面超越Qwen3-Embedding-0.6B，支持阿拉伯语、
+
+📎 [原文链接](https://www.marktechpost.com/2026/06/19/liquid-ai-introduces-lfm2-5-embedding-350m-and-lfm2-5-colbert-350m-dense-bi-encoder-and-late-interaction-models-for-fast-multilingual-search-across-11-languages/)
+
+
+### 11. DeepGate 自动化边缘AI模型设计
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-20/83cb2077f84b.jpg)
+
+DeepGate 自动化边缘AI模型设计：DeepGate 是一个自动化边缘AI模型设计系统，通过神经架构搜索和智能体搜索结合编译器，在STM32H7A3等微控制器上将MLPerf Tiny基准模型的推理延迟从104.3ms降至2.3ms，RAM从23.7KB减至2.1KB，同时保持90%以上准确率，使AI模型可在更低功耗、更低成本硬件上运行。
+
+📎 [原文链接](https://deepgate.ai/blog/neural-architecture-search)
+
+
+---
+
+## 🔥 开源热门
+
+### 1. headroom 数据压缩工具
+
+⭐ 33,800 stars · 今日增长 2,604 stars
+
+headroom 是一种在数据输入LLM前压缩输出、日志、文件和RAG分块的工具，可减少60%-95%的token消耗且不损失答案质量，适用于需要降低推理成本的开发者和AI代理系统。
+
+📎 [原文链接](https://github.com/chopratejas/headroom)
+
+
+### 2. DeusData/codebase-memory-mcp 高性能代码智能MCP服务器
+
+⭐ 6,800 stars · 今日增长 1,785 stars
+
+DeusData/codebase-memory-mcp 将代码库极速索引为持久化知识图谱，支持158种语言，毫秒级查询响应并减少99%令牌消耗，适合开发者与AI工具集成以实现高效代码理解与智能补全。
+
+📎 [原文链接](https://github.com/DeusData/codebase-memory-mcp)
+
+
+### 3. Agent-Reach AI代理全网洞察工具
+
+⭐ 34,300 stars · 今日增长 1,252 stars
+
+Agent-Reach 让开发者通过单一命令行免费访问并搜索Twitter、Reddit、YouTube等主流平台，为AI代理提供实时全网信息洞察，适用于构建无需付费API的智能爬取与分析应用。
+
+📎 [原文链接](https://github.com/Panniantong/Agent-Reach)
+
+
+### 4. Lum1104/Understand-Anything 代码知识图谱生成
+
+⭐ 63,400 stars · 今日增长 781 stars
+
+将任意代码库转化为可交互、可搜索、可提问的知识图谱，帮助开发者快速理解复杂系统，适用于使用Claude Code、Copilot等AI工具的程序员提升代码洞察效率。
+
+📎 [原文链接](https://github.com/Lum1104/Understand-Anything)
+
+
+### 5. addyosmani/agent-skills AI编码代理技能库
+
+⭐ 62,800 stars · 今日增长 694 stars
+
+为AI编码代理提供生产级工程技能集合，帮助自动化完成代码生成、调试与重构任务，适用于开发者和AI工程团队提升自动化开发效率。
+
+📎 [原文链接](https://github.com/addyosmani/agent-skills)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. LangChain/LangGraph/Langflow 漏洞曝光
+
+LangChain/LangGraph/Langflow 漏洞曝光：LangChain、LangGraph和Langflow三个主流AI代理框架被曝存在可串联利用的严重漏洞，包括LangGraph的SQL注入导致远程代码执行、Langflow的未认证路径遍历已遭野外利用（7000个暴露实例）、LangChain-core可读取.env文件泄露API密钥，攻击
+
+Check Point、Tenable、Cyera等安全机构已确认漏洞细节与利用链，相关补丁均已发布：langgraph升级至1.0.10、langflow至1.9.0+、langchain-core至1.2.22，但大量生产环境仍未修复，安全团队需立即轮换密钥、关闭自动登录、将框架纳入零信任网络。
+
+📎 [原文链接](https://venturebeat.com/security/7000-langflow-servers-under-attack-langgraph-langchain-same-holes)
+
+
+### 2. 陈文虎发布MMLU-Pro与MMMU-Pro
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-20/c56308e0ca66.png)
+
+陈文虎发布MMLU-Pro与MMMU-Pro：加拿大滑铁卢大学助理教授陈文虎团队发布AI评估基准MMLU-Pro和MMMU-Pro，前者将语言模型准确率拉低16%-33%，通过10选1和强化推理题提升区分度；后者专攻多模态模型，强制模型依赖图像信息作答，堵住仅靠文本猜测的漏洞，已被HuggingFace和lm-evaluation-harness集成。
+
+这两个基准由陈文虎主导的TIGERLab（虎头帮）研发，其团队同时参与Gemini和Meta基础模型研发，确保评估设计直击模型真实能力边界，成为当前行业衡量大模型推理能力的核心标准。
+
+📎 [原文链接](https://www.tmtpost.com/8034299.html)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. 美国AI拉动亚洲出口
+
+美国AI拉动亚洲出口：美国科技巨头微软、谷歌、Meta、亚马逊2026年AI资本开支预计超7000亿美元，直接拉动亚洲半导体、AI服务器和电子元器件出口，中国台湾台积电代工AI芯片、中国大陆工业富联供应服务器整机、韩国SK海力士供应HBM存储，均实现同比50%以上增长。
+
+📎 [原文链接](https://www.tmtpost.com/8034217.html)
+
+
+### 2. Google 推自研 AI 芯片
+
+Google 推自研 AI 芯片：谷歌正模仿英伟达的软硬件一体化策略，自研 AI 芯片以替代 H100，用于其云服务和 Gemini 模型训练，已内部测试多代原型芯片并计划 2025 年大规模部署。
+
+📎 [原文链接](https://www.wsj.com/tech/ai/google-is-using-nvidias-playbook-to-build-a-rival-ai-chip-business-1eac86f9)
+
+
+### 3. 壁仞BR20X即将发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-20/f927997d539c.jpg)
+
+壁仞BR20X即将发布：壁仞科技即将在2026年第四季度发布新一代AI GPU BR20X，采用国产7nm工艺，支持FP8/FP4低精度计算，内存带宽与互联能力升级，目标对标NVIDIA H200，主要面向国内大模型训练与推理场景。
+
+📎 [原文链接](https://www.tmtpost.com/8033720.html)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
