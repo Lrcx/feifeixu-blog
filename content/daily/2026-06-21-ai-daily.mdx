@@ -1,0 +1,148 @@
+---
+title: "06.21 英伟达ENPIRE让AI代理操控机器人 | AI 早报"
+date: "2026-06-21"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 06.21 英伟达ENPIRE让AI代理操控机器人 | AI 早报
+
+> 2026年06月21日 周日 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- 英伟达ENPIRE让8个AI代理自主操控机器人，3小时将插针成功率从0提升至99% —— AI自主科研首次落地物理世界
+- Cisco FAPO 通过Claude Code自动优化LLM流水线，结构级调整平均提升33.8pp —— 首个支持结构级自动优化的开源提示引擎
+- TOON减少输出token30%，精简Markdown降低输入token50% —— 低成本优化LLM推理的实操方案
+- John Jumper 离开 DeepMind 加入 Anthropic，AlphaFold 创始人转投竞品 —— AI 生物计算核心人才转向竞品
+- Stepyard 支持YAML流水线+内置LLM步骤，本地运行无需云服务 —— 开发者可完全自主控制自动化流程
+
+**今日共收录 12 条动态，涵盖 模型与产品 3条、开源热门 5条、技术洞察 2条、行业动态 2条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. 英伟达ENPIRE开源
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-21/bb77d7463714.webp)
+
+英伟达ENPIRE开源：英伟达联合CMU和伯克利开源ENPIRE框架，让8个AI代理协同操控真实机器人，自动读论文、设计策略、执行实验、复位场景并分析结果，无需人工干预，在Pin Insertion任务中3小时内将成功率从0提升至99%。
+
+该框架通过环境自动复位、视觉评分系统和多代理协作机制，首次在物理世界实现类似代码开发的可迭代研究循环，经验可跨任务迁移，且机器人舰队并行探索使效率提升2倍以上。
+
+📎 [原文链接](https://www.qbitai.com/2026/06/437041.html)
+
+
+### 2. Cisco FAPO 开源发布
+
+Cisco FAPO 开源发布：Cisco AI 开源了 FAPO（全自动化提示优化系统），该系统利用 Claude Code 或 Codex 自动迭代优化多步骤 LLM 流水线，通过步骤级故障归因决定是调整提示、参数还是结构，已在 HoVer 和 IFBench 等基准上实现最高 +33.8pp 的性能提升。
+
+📎 [原文链接](https://www.marktechpost.com/2026/06/20/cisco-ai-introduces-fapo-pipeline-aware-prompt-optimization-with-step-level-failure-attribution-and-claude-code-orchestration/)
+
+
+### 3. Hermes Agent 推出空白启动模式
+
+Hermes Agent 推出空白启动模式：Nous Research 开源的 Hermes Agent 发布空白启动模式，初始仅启用提供商、模型、文件操作和终端工具，网络、浏览器、代码执行等全部功能默认禁用，并通过 platform_toolsets.cli 和 agent.disabled_toolsets 两个配置文件永久锁定，即使执行更新也不会自动恢
+
+📎 [原文链接](https://www.marktechpost.com/2026/06/20/nous-research-updates-hermes-agent-with-a-blank-slate-mode-that-pins-toolsets-via-platform_toolsets-cli-and-disabled_toolsets/)
+
+
+---
+
+## 🔥 开源热门
+
+### 1. DeusData/codebase-memory-mcp 高性能代码智能MCP服务器
+
+⭐ 8,000 stars · 今日增长 1,172 stars
+
+DeusData/codebase-memory-mcp 将代码库极速索引为持久化知识图谱，支持158种语言，查询响应低于毫秒，减少99% token消耗，适合开发者在大型项目中实现零延迟代码智能检索与上下文理解。
+
+📎 [原文链接](https://github.com/DeusData/codebase-memory-mcp)
+
+
+### 2. Kilo-Org/kilocode 全栈智能体工程平台
+
+⭐ 22,800 stars · 今日增长 828 stars
+
+Kilo-Org/kilocode 是一个整合主流开源编码智能体的全栈平台，帮助开发者快速构建、部署和迭代AI驱动的代码工程，适用于需要高效自动化编码的团队和个人开发者。
+
+📎 [原文链接](https://github.com/Kilo-Org/kilocode)
+
+
+### 3. Agent-Reach AI代理全网洞察工具
+
+⭐ 35,000 stars · 今日增长 730 stars
+
+Agent-Reach 让AI代理无需API即可实时阅读和搜索Twitter、Reddit、YouTube、GitHub等主流平台内容，解决AI缺乏真实网络洞察的痛点，适合开发者构建具备实时信息获取能力的智能代理应用。
+
+📎 [原文链接](https://github.com/Panniantong/Agent-Reach)
+
+
+### 4. Lum1104/Understand-Anything 代码知识图谱生成
+
+⭐ 64,000 stars · 今日增长 553 stars
+
+将任意代码库转化为可交互、可搜索、可提问的知识图谱，帮助开发者快速理解复杂项目，适配Claude Code、Copilot等主流AI工具，提升代码阅读与调试效率。
+
+📎 [原文链接](https://github.com/Lum1104/Understand-Anything)
+
+
+### 5. Leonxlnx/taste-skill 赋予AI良好品味
+
+⭐ 47,000 stars · 今日增长 517 stars
+
+Leonxlnx/taste-skill 通过优化提示词与内容风格，帮助AI生成更具创意、个性和审美价值的文本，适合内容创作者、AI产品经理和开发者提升生成质量。
+
+📎 [原文链接](https://github.com/Leonxlnx/taste-skill)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. TOON与精简Markdown降低LLM成本
+
+TOON与精简Markdown降低LLM成本：开发者Abbas_Maka通过实践发现，在LLM流水线中用TOON替代JSON可减少30%输出token，用精简版Markdown替代完整Markdown可降低50%输入token，配合2–3个示例替代冗长指令，整体成本下降60%，无需更换模型。
+
+📎 [原文链接](https://news.ycombinator.com/item?id=48608978)
+
+
+### 2. Stepyard 开源本地自动化工具
+
+Stepyard 开源本地自动化工具：Stepyard 是由 rorlikowski 开源的本地自动化运行器，允许开发者用 YAML 定义包含 LLM 步骤（如 gpt-4o-mini）的流水线，所有操作在本地机器执行，无需云账户或服务器，支持 Python 插件扩展和 SQLite 本地状态存储。
+
+📎 [原文链接](https://rorlikowski.github.io/stepyard/)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. John Jumper 离开 DeepMind 加入 Anthropic
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-21/f89be415cab8.jpg)
+
+John Jumper 离开 DeepMind 加入 Anthropic：诺贝尔化学奖得主、AlphaFold 创始人 John Jumper 宣布离开 Google DeepMind，加入竞争对手 Anthropic，其主导开发的 AlphaFold 模型彻底改变了蛋白质结构预测领域，此次跳槽被视为 AI 生物计算领域关键人才流动。
+
+📎 [原文链接](https://techcrunch.com/2026/06/20/nobel-laureate-john-jumper-is-leaving-deepmind-for-rival-anthropic/)
+
+
+### 2. Momenta拟港交所上市
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-21/15d9e3e5611a.webp)
+
+Momenta拟港交所上市：Momenta计划在港交所上市，拟发行4375万股，募资约10亿美元，估值90亿美元，主要目的并非补充现金流，而是为早期财务投资人提供退出通道，并在二级市场确立估值锚点。
+
+📎 [原文链接](https://www.tmtpost.com/8034852.html)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
