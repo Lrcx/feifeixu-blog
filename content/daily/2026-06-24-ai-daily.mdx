@@ -1,0 +1,325 @@
+---
+title: "06.24 Claude嵌入Slack | AI 早报"
+date: "2026-06-24"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 06.24 Claude嵌入Slack | AI 早报
+
+> 2026年06月24日 周三 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- Anthropic Claude Tag 嵌入Slack，持久记忆企业对话上下文 —— 企业AI协作进入上下文记忆新阶段
+- 豆包Seed 2.1 Pro 18小时自动生成1303行RTL芯片代码，API价格为Claude的1/4 —— 国产大模型首次在芯片设计任务中实现生产级输出
+- 五大国产开源模型上架Amazon Bedrock，DeepSeek/Qwen/Kimi/MiniMax/GLM可直接调用 —— 国产大模型首次大规模登陆国际云平台
+- 英伟达BioNeMo Agent工具包集成十年生命科学模型，支持AI智能体协同推理与实验推荐 —— AI驱动生命科学发现进入自动化新阶段
+- Seedance 2.5 支持30秒高清视频生成，多参考输入达50个 —— 国产视频模型突破时长与编辑瓶颈
+
+**今日共收录 33 条动态，涵盖 模型与产品 12条、开源热门 5条、技术洞察 8条、行业动态 8条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. Anthropic Claude Tag 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-24/ba8d0f4df4b5.png)
+
+Anthropic Claude Tag 发布：Anthropic 推出企业级AI助手Claude Tag，作为Slack插件持续学习团队对话，支持跨频道记忆、任务拆解与自动跟进，仅对Claude Enterprise和Team客户开放测试，管理员可控制数据访问范围。
+
+📎 [原文链接](https://techcrunch.com/2026/06/23/anthropics-claude-tag-is-learning-your-company-one-slack-message-at-a-time/)
+
+
+### 2. 豆包Seed 2.1发布
+
+豆包Seed 2.1发布：字节跳动发布豆包Seed 2.1系列模型，其中Pro版本在火山方舟上线，能独立运行18小时、经9轮迭代完成6个模块共1303行RTL芯片设计代码，性能媲美Claude Opus 4.7，在Terminal Bench 2.1、SciCode和MCP-Atlas等基准中超越GPT-5.5。
+
+其API输入价格低至6元/百万Token，输出30元/百万Token，缓存命中仅1.2元，仅为Claude Opus 4.6-4.8的1/4，已接入豆包办公、TRAE、扣子等字节系产品，覆盖开发者与普通办公场景。
+
+📎 [原文链接](https://www.qbitai.com/2026/06/437503.html)
+
+
+### 3. 五大国产模型上架Amazon Bedrock
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-24/e33ea71226a8.png)
+
+五大国产模型上架Amazon Bedrock：亚马逊云科技在AWS中国峰会上宣布，DeepSeek、Qwen、Kimi、MiniMax、GLM五大国产开源大模型已正式接入Amazon Bedrock平台，企业可一键调用这些模型构建Agentic AI应用，无需自建推理集群。
+
+📎 [原文链接](https://zhidx.com/p/567230.html)
+
+
+### 4. 英伟达发布BioNeMo Agent工具包
+
+英伟达发布BioNeMo Agent工具包，整合其十年积累的生命科学领域模型与工具，允许AI智能体自动收集证据、跨研究推理、运行计算实验并推荐下一步科学行动，直接面向生物制药与科研实验室场景。
+
+📎 [原文链接](https://36kr.com/newsflashes/3866365717386499?f=rss)
+
+
+### 5. Seedance 2.5 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-24/7ecbf2a6d696.png)
+
+Seedance 2.5 发布：字节跳动旗下火山引擎发布视频生成模型 Seedance 2.5，支持单视频最长30秒、50个全模态参考素材输入，原生4K 10bit输出，可局部编辑画面元素，已进入内测尾声，7月初正式上线。
+
+📎 [原文链接](https://www.ifanr.com/1669752?utm_source=rss&utm_medium=rss&utm_campaign=)
+
+
+### 6. IBM CUGA 开源发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-24/c18119150e47.png)
+
+IBM CUGA 开源发布：IBM Research 开源了 CUGA（Configurable Generalist Agent）代理运行框架，通过 pip install cuga 即可使用，仅需四行代码定义模型、工具和提示词，即可构建如 IBM Cloud 架构顾问、电影推荐器等24个完整可运行应用，自动处理规划、状态管理、工具调用与自我修正，无需手动
+
+CUGA 支持 OpenAI、Ollama、watsonx 等多模型无缝切换，内置意图护栏、工具审批等六类治理策略，通过语义匹配阻止危险操作，并支持多代理协同（CugaSupervisor）与技能自进化（ALTK-Evolve），所有示例代码均开源在 GitHub，可直接复用。
+
+其核心创新在于用框架承担长流程稳定性负担，让小模型也能在 AppWorld 和 WebArena 基准中登顶，无需依赖 GPT-4 等高价 API，显著降低企业级智能体部署门槛。
+
+📎 [原文链接](https://huggingface.co/blog/ibm-research/cuga-apps)
+
+
+### 7. 微信小微 AI 助手上线
+
+微信小微 AI 助手上线：微信推出原生AI助手「小微」，基于自研模型WeLM，深度集成于聊天、朋友圈、公众号、小程序等核心场景，支持通过自然语言发消息、总结群聊、分析朋友圈动态、调用小程序服务，并能基于聊天记录推荐个性化礼物和商品链接。
+
+小微可读取用户朋友圈（限两天内）、收藏夹和支付账单，生成带来源跳转的总结，且所有敏感操作均需用户二次授权，体现微信对隐私与安全的保守设计。
+
+用户可通过语音指令生成简易小程序工具（如跑步记录、抽奖工具），但暂不支持小游戏和分享，标志着微信从「应用平台」转向「AI驱动的交互中枢」。
+
+📎 [原文链接](https://www.ifanr.com/1669694?utm_source=rss&utm_medium=rss&utm_campaign=)
+
+
+### 8. Krea 2 Turbo 开源发布
+
+Krea 2 Turbo 开源发布：Krea公司开源了AI图像生成模型Krea 2 Turbo，生成速度仅2秒，为当前最快开源图像模型之一，支持通过Hugging Face下载，企业员工超50人需付费，个人和小企业可免费商用，且不主张用户生成内容的版权。
+
+📎 [原文链接](https://venturebeat.com/technology/enterprise-grade-ai-image-generation-in-2-seconds-is-here-krea-2-raw-and-turbo-available-as-open-weights-under-custom-license)
+
+
+### 9. Datalab lift 开源发布
+
+Datalab lift 开源发布：Datalab 发布开源视觉模型 lift，参数量90亿，可接收JSON Schema并从PDF和图像中提取结构化JSON，字段准确率达90.2%，单文档平均处理仅9.5秒，支持本地vLLM或HuggingFace推理，适用于发票、合同等文档自动化处理。
+
+📎 [原文链接](https://www.marktechpost.com/2026/06/23/datalab-releases-lift-a-9b-open-weights-vision-model-that-extracts-structured-json-from-pdfs-using-schemas/)
+
+
+### 10. Lobu 开源AI队友框架
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-24/242634637c61.png)
+
+Lobu 开源AI队友框架：Lobu 是一个开源基础设施，允许开发者构建能持续观察企业数据（如HubSpot、GitHub、Notion等50+系统）、记忆事件并自主行动的AI队友，通过仅追加日志和沙盒执行实现无状态中断的连续工作流。
+
+📎 [原文链接](https://lobu.ai/)
+
+
+### 11. Mistral OCR 4 发布
+
+Mistral OCR 4 发布：Mistral AI 发布 OCR 4 文档理解模型，可从 PDF、DOC 等格式中提取带边界框、块类型（标题/表格/公式）和逐字置信度的结构化数据，支持170种语言，单容器部署，企业可自托管，API 每千页定价4美元（批量2美元）。
+
+在基准测试中，OCR 4 在独立标注员偏好测试中胜率72%，OlmOCRBench得分85.20，Rogo客户实测成本为竞品1/8、延迟降低17倍，已集成至 Mistral Search Toolkit，适用于 RAG、智能体文档操作与企业搜索。
+
+📎 [原文链接](https://www.marktechpost.com/2026/06/23/mistral-ocr-4/)
+
+
+### 12. Aside AI 浏览器发布
+
+Aside AI 浏览器发布：Aside 是由 Y Combinator 资助的 AI 浏览器，能直接在已登录网站（如 Gmail、Figma、Notion）中自动完成复杂任务，如回复消息、填写表单、保存文件，所有操作本地运行，不上传数据，且密码管理器通过 Secure Enclave 加密，不向 LLM 暴露凭证。
+
+📎 [原文链接](https://aside.com)
+
+
+---
+
+## 🔥 开源热门
+
+### 1. Headroom 数据压缩工具
+
+⭐ 46,800 stars · 今日增长 5,146 stars
+
+Headroom 在数据进入LLM前压缩输出、日志、文件和RAG分块，减少60-95%的token消耗且保持答案不变，适用于需要降低推理成本的开发者和AI代理系统。
+
+📎 [原文链接](https://github.com/chopratejas/headroom)
+
+
+### 2. OpenMontage 智能视频制作系统
+
+⭐ 11,500 stars · 今日增长 4,563 stars
+
+全球首个开源智能视频制作系统，集成12条工作流与500+智能代理技能，将AI编程助手转化为全自动视频工作室，适合开发者快速生成高质量AI视频内容。
+
+📎 [原文链接](https://github.com/calesthio/OpenMontage)
+
+
+### 3. palmier-pro AI视频编辑器
+
+⭐ 7,100 stars · 今日增长 4,050 stars
+
+专为AI开发者设计的macOS视频编辑器，支持AI驱动的自动剪辑、语音转字幕与智能素材推荐，适合内容创作者快速生成高质量AI视频作品。
+
+📎 [原文链接](https://github.com/palmier-io/palmier-pro)
+
+
+### 4. DeusData/codebase-memory-mcp 高性能代码智能MCP服务器
+
+⭐ 11,300 stars · 今日增长 2,188 stars
+
+DeusData/codebase-memory-mcp 将代码库极速索引为持久化知识图谱，支持158种语言，查询响应低于毫秒，降低99%令牌消耗，适合开发者在大型项目中实现零延迟代码智能检索与分析。
+
+📎 [原文链接](https://github.com/DeusData/codebase-memory-mcp)
+
+
+### 5. Agent-Reach AI代理全网洞察工具
+
+⭐ 37,700 stars · 今日增长 2,002 stars
+
+Agent-Reach 让AI代理无需API即可通过命令行实时搜索和阅读Twitter、Reddit、YouTube、GitHub等主流平台内容，解决AI缺乏实时网络感知的痛点，适合开发者构建自主决策的智能代理系统。
+
+📎 [原文链接](https://github.com/Panniantong/Agent-Reach)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. 英伟达 Rubin 全液冷平台发布
+
+英伟达 Rubin 全液冷平台发布：英伟达发布Rubin系列AI基础设施，全球首款100%高温液冷算力平台，冷却液进水温度达45℃、出水55℃，完全取消风扇，50MW数据中心年省400万美元（约2712万元）电费和近100%水资源消耗。
+
+📎 [原文链接](https://zhidx.com/p/568526.html)
+
+
+### 2. Envoy AI Gateway 1.0 发布
+
+Envoy AI Gateway 1.0 发布：Envoy AI Gateway 1.0 是由 Tetrate、Bloomberg、腾讯、Netflix 等公司联合发布的开源 AI 网关，基于 CNCF Envoy 构建，支持 OpenAI、Azure、Google、Anthropic 等 16 家 AI 提供商，通过单一 OpenAI 兼容接口统一管理请求
+
+📎 [原文链接](https://aigateway.envoyproxy.io/blog/v1.0-release-announcement/)
+
+
+### 3. Amazon Bedrock AgentCore 多租户架构发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-24/4a598b351a0c.png)
+
+Amazon Bedrock AgentCore 多租户架构发布：Amazon Bedrock AgentCore 发布多租户架构方案，通过分层（Tier）→租户（Tenant）→用户（User）三级隔离，结合Cognito JWT认证、TVM角色临时凭证和MCP网关，实现医疗AI代理等场景下租户数据、内存、模型与成本的完全隔离，支持基础版用Mistral 
+
+方案利用S3前缀分区存储文档、Bedrock知识库元数据过滤、DynamoDB ABAC策略和Lambda工具头传递，确保租户间零数据泄露，同时通过成本标签实现按层级精确计费，无需为每个租户部署独立实例。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/shared-infrastructure-isolated-tenants-pool-model-multi-tenancy-with-amazon-bedrock-agentcore/)
+
+
+### 4. no-ai-coauthors 开源
+
+no-ai-coauthors 开源：no-ai-coauthors 是一个开源的 Git commit-msg 钩子和 GitHub Action，用于自动拒绝在提交信息中将 Claude、Copilot、Qwen 等 AI 工具标注为 'Co-Authored-By' 的行为，确保只有真实人类才能被列为作者，防止责任归属模糊。
+
+📎 [原文链接](https://no-ai-coauthors.dev)
+
+
+### 5. Amazon Bedrock AgentCore 蛋白质研究助手发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-24/fe89501c64c0.jpg)
+
+Amazon Bedrock AgentCore 蛋白质研究助手发布：亚马逊云科技基于 Bedrock AgentCore 和 Strands Agents SDK 发布了一个蛋白质研究助手原型，支持用户用自然语言查询（如‘查找与LPAIVREAI相似的10条登革病毒肽’），自动解析参数、调用ESM-C 300M模型生成960维嵌入、在Aurora Post
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/build-a-protein-research-copilot-with-amazon-bedrock-agentcore/)
+
+
+### 6. Sherlock-Agent-Eval 基准发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-24/e776949ece95.jpg)
+
+Sherlock-Agent-Eval 基准发布：开发者发布开源评估基准 Sherlock-Agent-Eval，基于《福尔摩斯咨询侦探》桌游，测试LLM代理的多步推理能力，发现Claude单代理模型普遍陷入‘伪装陷阱’，而将推理与探索分离为双代理架构后，即使使用较弱模型（Claude Sonnet 4.6）也能正确识别隐藏真相。
+
+实验表明，模型规模不是关键，架构设计才是突破第二层推理的杠杆：理论家代理仅维护外部化世界模型并证伪假设，探索代理仅传递线索，二者通过纯文本管道通信，彻底避免了自生成幻觉与叙事绑架。
+
+📎 [原文链接](https://alexweil.github.io/sherlock-agent-eval/)
+
+
+### 7. Khala 发布AI会话互联工具
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-24/6a1fca81ff44.png)
+
+Khala 发布AI会话互联工具：Khala 是由 Team Sisyphus 开发的AI会话互联工具，支持Claude、Codex、Cursor等MCP兼容模型之间自动传递完整对话上下文，无需手动复制粘贴，实现规划、编码、审查等跨工具工作流无缝衔接。
+
+📎 [原文链接](https://khala.to/)
+
+
+### 8. 揽月动力推出约化模型
+
+揽月动力推出约化模型：深圳具身智能公司揽月动力推出基于约化模型（Reduced-Order Model）的机器人训练框架，通过物理规律建模替代传统强化学习的海量数据依赖，使简单动作训练样本从万条降至几十条，复杂动作数据需求减少60%-75%，算力消耗降低55%-70%，已用于汽车零部件搬运、磁材上料等工业场景。
+
+📎 [原文链接](https://www.tmtpost.com/8036568.html)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. OpenAI 发起 Appia 基金会
+
+OpenAI 发起 Appia 基金会：OpenAI 联合 Linux Foundation 发起 Appia 基金会，旨在将前沿AI系统的评估实践转化为开放、模块化的国际技术标准，使第三方能验证模型安全与能力，支持政府与企业跨司法管辖区互信协作。
+
+📎 [原文链接](https://openai.com/index/helping-build-shared-standards-for-advanced-ai)
+
+
+### 2. Baseten完成15亿美元F轮融资
+
+美国AI推理基础设施公司Baseten完成15亿美元F轮融资，估值达130亿美元，其平台帮助企业部署开源模型，客户使用后推理成本平均降低40%以上，过去一年营收增长20倍。
+
+📎 [原文链接](https://zhidx.com/p/568412.html)
+
+
+### 3. 字节火山引擎推出AI短剧平台
+
+字节火山引擎推出AI短剧平台：字节跳动火山引擎发布AI短剧一站式生产平台‘火山剧创1.0’，集成剧本解析、角色生成、分镜到成片全流程，支持Seedance等模型，将单部短剧制作周期从数月压缩至数小时，成本降至真人拍摄的十分之一，单分钟制作成本仅800-1500元。
+
+📎 [原文链接](https://www.tmtpost.com/8038091.html)
+
+
+### 4. GitHub 呼吁修正加州AI法案
+
+GitHub 呼吁修正加州AI法案：GitHub 联合 Hugging Face、Black Forest Labs 和 Mozilla 等机构，呼吁修改加州 SB 1000 AI 透明度法案，因当前草案要求‘撤销许可证’与开源许可证的不可撤销性根本冲突，可能破坏全球开源供应链的稳定性。
+
+📎 [原文链接](https://github.blog/news-insights/policy-news-and-insights/github-joins-coalition-advocating-for-fixes-to-california-ai-transparency-act-to-protect-open-source/)
+
+
+### 5. 中国超算‘灵晟’登顶全球第一
+
+中国超算‘灵晟’登顶全球第一：中国自主研发的‘灵晟’超级计算机在ISC2026大会上以2.19EFlops持续双精度性能登顶全球TOP500，成为九年来的首个世界第一，其采用国产LX2 CPU、首颗国产HBM内存和全液冷系统，算力与能效双双突破。
+
+📎 [原文链接](https://www.tmtpost.com/8038616.html)
+
+
+### 6. 中美AI算力差距
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-24/17633e71709a.jpg)
+
+中美AI算力差距：中美AI竞赛的核心瓶颈在于高端训练算力，美国Anthropic的Mythos模型参数达10万亿，训练成本超100亿美元，而中国最强模型DeepSeek V4 Pro仅1.6万亿参数，算力规模仅为美国头部企业的1/8，导致性能落后约8-15个月。
+
+国产GPU如昇腾910、寒武纪思元等虽在推理端实现替代，但在万亿参数级训练场景仍依赖英伟达，且CUDA生态缺失使国产芯片难以规模化应用，仅智谱、摩尔线程等少数团队完成国产芯片全流程训练验证。
+
+📎 [原文链接](https://www.tmtpost.com/8036519.html)
+
+
+### 7. MoEngage收购Aampe
+
+MoEngage收购Aampe：印度客户互动平台MoEngage以数千万美元全现金收购AI初创公司Aampe，获得其为每个用户生成独立AI代理的技术，可基于个体行为而非人群分群实现精准营销，已服务Swiggy、Grab等企业客户。
+
+📎 [原文链接](https://techcrunch.com/2026/06/23/indias-moengage-bets-marketings-future-on-millions-of-ai-agents/)
+
+
+### 8. Omio 使用 OpenAI 模型重构旅行产品开发
+
+Omio 使用 OpenAI 模型重构旅行产品开发：旅行平台 Omio 将 OpenAI 模型深度整合进工程流程，彻底重构内部开发流程以加速产品迭代，已用于快速生成和优化其多模态预订界面，覆盖全球 47 国 3000 多家交通服务商。
+
+📎 [原文链接](https://www.artificialintelligence-news.com/news/omio-scales-travel-product-development-using-openai-models/)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
