@@ -1,0 +1,317 @@
+---
+title: "06.30 百度Unlimited OCR登顶四榜 | AI 早报"
+date: "2026-06-30"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 06.30 百度Unlimited OCR登顶四榜 | AI 早报
+
+> 2026年06月30日 周二 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- 百度 Unlimited OCR 在HuggingFace和GitHub四榜登顶，OmniDocBench综合得分93.92% —— 国产OCR模型突破国际领先水平
+- DeepSeek V4高峰时段API价格翻倍，输入输出成本最高达12元/百万Tokens —— 国内大模型API价格策略首次明确峰谷机制
+- AISHPerf-智算运维智能体评测基准开源，103道真实故障考题覆盖国产GPU —— 国产AI基础设施首个实操评测标准诞生
+- Arena 年化收入达1亿美元，企业AI评估服务成核心收入源 —— AI评估赛道爆发，企业愿为模型优化付费
+- GE Vernova燃气轮机订单排至2031年，20%来自AI数据中心，单台超2.5亿美元 —— AI算力竞争从GPU扩展到电力基础设施
+
+**今日共收录 33 条动态，涵盖 模型与产品 13条、开源热门 5条、技术洞察 6条、行业动态 9条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. 百度 Unlimited OCR 登顶四榜
+
+百度 Unlimited OCR 登顶四榜：百度开源端到端OCR模型Unlimited OCR，参数规模3B、推理激活参数仅570M，在HuggingFace全球模型总榜、多模态榜及GitHub Python榜、日榜均排名第一，OmniDocBench v1.6基准测试综合得分93.92%，刷新端到端OCR纪录，适用于长文档解析与企业文档数字化场景。
+
+📎 [原文链接](https://36kr.com/p/3873626425332743?f=rss)
+
+
+### 2. DeepSeek V4 API调价
+
+DeepSeek V4 API调价：DeepSeek于6月29日向API用户发送邮件，宣布V4正式版将于7月中旬上线并实施峰谷定价，高峰时段（9:00-12:00、14:00-18:00）的输入和输出价格最高翻倍，V4 Pro输出价格达12元/百万Tokens，旨在优化资源调度与服务稳定性。
+
+📎 [原文链接](https://www.tmtpost.com/8046236.html)
+
+
+### 3. Amazon Nova 2 Lite + Claude Sonnet 4.6 双模型方案发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-30/ff03b6d3bd93.png)
+
+Amazon Nova 2 Lite + Claude Sonnet 4.6 双模型方案发布：AWS 推出 Amazon Nova 2 Lite 与 Claude Sonnet 4.6 的双模型文档处理流水线，Nova 负责低成本多模态提取姓名与照片坐标，Claude 用自适应推理匹配姓名与面孔，在336页年鉴测试中实现93.3%的高置信度匹配，每页成本较单
+
+Nova 2 Lite 采用固定每图像计费（$0.000069/页），输出仅限关键姓名而非全OCR，每页总成本约$0.0027；Claude 启用自适应推理，自动处理复杂布局，无需人工调参，推理轨迹可追踪用于调试。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/pair-nova-2-lite-with-claude-for-cost-optimized-document-processing/)
+
+
+### 4. OceanBase发布AI数据库三件套
+
+OceanBase发布AI数据库三件套，包括湖库一体数据库Lakebase、数据开发平台DataStudio和智能数据Agent DataPilot，原生支持结构化、文本、图像、向量等多模态数据统一存储与检索，TCO在蚂蚁阿福、灵光等场景中降低30%-50%，替代传统交易库+数仓+向量库+数据湖的多系统架构。
+
+📎 [原文链接](https://zhidx.com/p/570475.html)
+
+
+### 5. Amazon Bedrock AgentCore 可观测性上线
+
+Amazon Bedrock AgentCore 可观测性上线：Amazon Bedrock AgentCore 推出内置可观测性功能，通过 OpenTelemetry 追踪、CloudWatch 指标和结构化日志，帮助开发者定位生产环境中 AI 代理的无限循环、工具调用失败和幻觉问题，无需额外埋点即可查看每一步推理与工具调用细节。
+
+系统可识别典型故障模式：如 token 消耗激增但错误率为 0 的循环、401/403 权限错误、重复工具调用，并提供 CloudWatch Logs Insights 查询模板和修复建议，例如添加终止条件、限制推理步数、优化工具描述。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/debugging-production-agents-with-amazon-bedrock-agentcore-observability/)
+
+
+### 6. Gemini 个性化图像生成功能免费开放
+
+Gemini 个性化图像生成功能免费开放：谷歌宣布Gemini应用向美国用户免费开放由Gemini Nano驱动的个性化AI图像生成功能，此前仅限付费订阅用户；系统可自动分析用户Gmail、Google相册、YouTube和搜索记录，无需手动输入提示词即可生成贴合个人兴趣的图像，并支持直接调用相册照片。
+
+📎 [原文链接](https://techcrunch.com/2026/06/29/geminis-personalized-ai-image-generation-is-now-free-for-u-s-users/)
+
+
+### 7. Proception 完成1100万美元融资
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-30/9aaf7784a665.jpg)
+
+Proception 完成1100万美元融资：Proception是一家机器人手公司，前特斯拉Optimus首席技术官Jay Li创立，已向研究人员和机器人公司交付首批22自由度高灵巧机械手，并开放商业订单，同时宣布完成由First Round Capital领投的1100万美元种子轮融资。
+
+📎 [原文链接](https://techcrunch.com/2026/06/29/robot-hand-company-settles-tesla-trade-secret-suit-and-announces-11m-raise/)
+
+
+### 8. DeepSeek 开源 DSpark 框架
+
+DeepSeek 开源 DSpark 框架：DeepSeek 开源了 DSpark 推理加速框架，通过动态置信度调度和半自回归草稿机制，在 DeepSeek-V4-Flash 和 V4-Pro 模型上实现用户感知生成速度提升 60%–85%，并在 Qwen3 和 Gemma4 等第三方模型上验证有效，显著降低推理延迟与算力成本。
+
+📎 [原文链接](https://venturebeat.com/orchestration/deepseek-open-sources-dspark-a-new-framework-to-speed-up-llm-inference-by-up-to-85)
+
+
+### 9. NVIDIA BioNeMo Agent Toolkit 发布
+
+NVIDIA BioNeMo Agent Toolkit 发布：NVIDIA发布开源的BioNeMo Agent Toolkit，将Boltz-2、OpenFold3、GenMol等生物分子模型封装为AI代理可调用的技能，覆盖蛋白质折叠、分子对接、生成化学等场景，使代理任务完成率从57.1%提升至100%，每千token通过断言数翻倍。
+
+技能通过NIM端点托管或本地部署，支持CLI安装，提供标准化YAML文档和失败模式说明，并内置多步骤工作流如‘生成蛋白结合剂’，适用于药物发现研发流程。
+
+📎 [原文链接](https://www.marktechpost.com/2026/06/29/nvidia-bionemo-agent-toolkit-turns-biomolecular-models-into-callable-skills-for-ai-agents-in-drug-discovery/)
+
+
+### 10. Cursor Mobile 应用上线
+
+Cursor Mobile 应用上线：Cursor 推出移动端应用 Cursor Mobile，允许用户通过手机直接启动或与桌面端的编码代理实时交互，无需频繁访问代码库，标志着 AI 编码工具从代码生成转向代理远程监督的趋势。
+
+📎 [原文链接](https://techcrunch.com/2026/06/29/cursor-now-has-a-mobile-app-for-guiding-your-coding-agent-on-the-go/)
+
+
+### 11. OpenAI调查Codex额度异常消耗
+
+OpenAI调查Codex额度异常消耗：OpenAI成立专项小组调查Codex额度异常消耗问题，多名付费用户报告在未使用的情况下周额度一天内从96%骤降至0%，团队已进行两次全网硬重置，首次重置于6月27日失败。
+
+📎 [原文链接](https://36kr.com/newsflashes/3874414788531205?f=rss)
+
+
+### 12. JetBrains Air 登陆 Windows
+
+JetBrains Air 登陆 Windows：JetBrains 推出的 AI 首先开发环境 JetBrains Air 正式支持 Windows x64 和 ARM 架构，允许开发者并行运行多个 AI 智能体（如 Claude 和 Codex），分别负责代码生成、重构和测试审查，任务可基于 Git 工作树隔离执行，目前完全免费，JetBrains AI
+
+📎 [原文链接](https://www.neowin.net/news/jetbrains-new-ai-first-ide-jetbrains-air-is-now-on-windows/)
+
+
+### 13. Moxy摸喜发布AI陪伴机器人
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-30/7b91d82c2187.jpg)
+
+Moxy摸喜发布AI陪伴机器人：Moxy摸喜发布首款AI陪伴机器人，采用自研离电型柔性电子皮肤，可精准识别轻抚、揉捏、拍打等12种触觉动作并对应不同情绪反应，整机无摄像头、无主动语音，所有数据本地加密存储，规避隐私风险。
+
+📎 [原文链接](https://36kr.com/p/3874015941645570?f=rss)
+
+
+---
+
+## 🔥 开源热门
+
+### 1. DeusData/codebase-memory-mcp 高性能代码智能MCP服务器
+
+⭐ 17,200 stars · 今日增长 1,845 stars
+
+DeusData/codebase-memory-mcp 将代码库极速索引为持久化知识图谱，支持158种语言、毫秒级查询响应，降低99%令牌消耗，适合开发者构建零依赖、高性能的本地AI编码助手。
+
+📎 [原文链接](https://github.com/DeusData/codebase-memory-mcp)
+
+
+### 2. OpenMontage 全球首个AI视频制作系统
+
+⭐ 25,100 stars · 今日增长 1,629 stars
+
+OpenMontage 是全球首个开源AI视频制作系统，集成12条工作流与500+代理技能，可将AI编程助手转化为全自动视频创作工作室，适合开发者快速构建智能视频内容生成应用。
+
+📎 [原文链接](https://github.com/calesthio/OpenMontage)
+
+
+### 3. google-labs-code/design.md 视觉系统设计规范
+
+⭐ 22,200 stars · 今日增长 1,236 stars
+
+该规范为编码代理提供结构化视觉系统描述格式，帮助AI理解并一致实现UI设计意图，适用于前端开发与AI编程协作场景。
+
+📎 [原文链接](https://github.com/google-labs-code/design.md)
+
+
+### 4. Agent-Reach AI代理全网洞察工具
+
+⭐ 43,300 stars · 今日增长 1,139 stars
+
+Agent-Reach 让AI代理无需API即可通过命令行实时阅读和搜索Twitter、Reddit、YouTube、GitHub等主流平台内容，解决AI缺乏真实网络感知的痛点，适合开发者构建具备实时信息获取能力的智能代理系统。
+
+📎 [原文链接](https://github.com/Panniantong/Agent-Reach)
+
+
+### 5. xbtlin/ai-berkshire AI价值投资研究框架
+
+⭐ 4,000 stars · 今日增长 960 stars
+
+基于Claude Code构建的AI价值投资分析系统，融合巴菲特、芒格等四大投资宗师方法论，通过多Agent对抗推理辅助投资者做出理性决策，适合金融从业者与量化爱好者使用。
+
+📎 [原文链接](https://github.com/xbtlin/ai-berkshire)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. AISHPerf-智算运维智能体评测基准开源
+
+AISHPerf-智算运维智能体评测基准开源：中国信通院联合无问芯穹开源全球首个AI算力运维智能体评测基准AISHPerf，基于百亿条真实运维数据构建103个高保真故障场景，覆盖宿主机、GPU硬件、网络、容器、训推脚本等五大技术栈，并首次纳入天数智芯、昇腾等国产芯片故障类型，要求智能体必须通过调用Shell工具自主排查修复，禁止直接猜测答案。
+
+📎 [原文链接](https://zhidx.com/p/570345.html)
+
+
+### 2. Agentjacking 漏洞曝光
+
+Agentjacking 漏洞曝光：安全公司 Tenet Security 揭露名为 Agentjacking 的系统性漏洞，攻击者可通过公开的 Sentry DSN 发送伪造错误报告，诱使 Claude Code、Cursor、Codex 等 AI 编码代理以开发者权限执行恶意代码，且 EDR、WAF、IAM 等传统安全机制完全无法检测，因所有操作均属授权
+
+该漏洞影响所有连接 Sentry、Datadog、PagerDuty、Jira 等 MCP 数据源且具备执行能力的 AI 代理，Tenet 测试中成功率高达 85%，已发现 2,388 家组织暴露公开 DSN，其中一处环境被发现包含 AWS 密钥和私有仓库 URL。
+
+云安全联盟已将 Agentjacking 列为系统性 MCP 漏洞类别，CrowdStrike 推出 AI 代理连续身份认证机制，强调必须区分代理与人类操作，否则所有权限控制均无效。
+
+📎 [原文链接](https://venturebeat.com/security/the-attack-that-hijacked-claude-code-came-through-sentry-datadog-pagerduty-and-jira-have-the-same-exposure)
+
+
+### 3. TraceLab 开源编码代理工作负载数据集
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-30/c73667e2ce9e.png)
+
+TraceLab 开源编码代理工作负载数据集：华盛顿大学SyFI实验室开源TraceLab工具链与550亿token的编码代理真实工作负载数据集，基于Claude Code和Codex的4300次真实研发会话，揭示每个请求平均触发8.8次LLM-工具循环、10.8次工具调用，输入输出token比例高达294:1，且76%工具调用为shell命令。
+
+数据表明工具调用延迟长尾严重（4%调用耗时超1分钟，占总耗时85%），前缀缓存命中率95.7%但新用户请求命中率仅84.4%，导致81%的预填充为重复token，系统存在显著冗余开销。
+
+项目提供完整采集、脱敏、分析和重放工具，支持开发者用vLLM/SGLang等引擎复现真实负载，推动编码代理服务架构优化。
+
+📎 [原文链接](https://syfi.cs.washington.edu/blog/2026-06-25-tracelab/)
+
+
+### 4. PAR构建AWS多租户LLM安全代理
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-30/0f07b7b2299d.png)
+
+PAR构建AWS多租户LLM安全代理：PAR Technology基于AWS Bedrock和Databricks构建多租户LLM分析代理，通过SigV4请求签名、语义意图验证和Split-Plane SQL三重机制，在数据库层强制行级安全，确保每个用户只能访问其授权数据，即使LLM被诱导或失效也不会泄露其他租户数据。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/multi-tenant-llm-analytics-with-row-level-security-how-we-built-a-secure-agent-on-aws/)
+
+
+### 5. AWS Bedrock AgentCore 医疗索赔流水线发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-30/21b117e60ddc.png)
+
+AWS Bedrock AgentCore 医疗索赔流水线发布：AWS 发布基于 Amazon Bedrock AgentCore 和 HealthLake 的医疗索赔自动化流水线，通过 AI 智能体自动提取 CMS-1500 表单数据、比对 HealthLake 患者记录、生成 FHIR 标准索赔资源，并能识别如数字'0'与字母'o'的细微录入错误，错误时
+
+该方案使用 Claude Sonnet 3.7 模型，每份文档处理成本约 $0.32，支持通过 CDK 一键部署，开源代码已发布于 GitHub，适用于保险科技公司和医疗IT系统集成商。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/build-an-agentic-ai-healthcare-claims-pipeline-with-amazon-bedrock-and-aws-healthlake/)
+
+
+### 6. EverOS 开源发布
+
+EverOS 开源发布：EverOS 是由 EverMind 开源的 AI 智能体内存运行时，采用 Apache 2.0 许可证，将记忆以可编辑的 .md 文件存储于本地，通过 SQLite 和 LanceDB 实现混合 BM25 + 向量检索，支持任务自动提炼为可复用的 Skills，实现智能体自我进化。
+
+📎 [原文链接](https://www.marktechpost.com/2026/06/29/meet-everos-an-open-source-markdown-first-agent-memory-runtime-with-hybrid-bm25-vector-retrieval-and-self-evolving-skills/)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. Arena 年收入破1亿美元
+
+Arena 年收入破1亿美元：Arena是加州大学伯克利分校孵化的AI模型评估平台，通过众包用户对比模型输出生成公开排行榜，2024年9月推出面向企业的AI Evaluations服务，基于1000万次用户评估数据提供深度性能分析，八个月内实现1亿美元年化收入。
+
+📎 [原文链接](https://techcrunch.com/2026/06/29/arena-the-ai-leaderboard-everyone-uses-is-now-a-100m-business/)
+
+
+### 2. GE Vernova燃气轮机订单排至2031年
+
+GE Vernova燃气轮机订单排至2031年：美国能源公司GE Vernova因微软、谷歌、OpenAI等巨头采购燃气轮机为AI数据中心供电，订单已排满至2029年并开始承接2030-2031年订单，其中约20%来自AI项目，单台设备售价超2.5亿美元，三年涨价300%。
+
+📎 [原文链接](https://zhidx.com/p/570401.html)
+
+
+### 3. 昆仑芯拟港交所IPO
+
+昆仑芯拟港交所IPO：百度旗下AI芯片公司昆仑芯计划在香港IPO，目标估值500亿美元，要求参与认购的机构投资者后续采购芯片金额达到其持股金额的3至7倍，旨在筛选产业客户而非财务投资人，目前在手订单超32万片，客户包括中国移动、腾讯、字节等。
+
+📎 [原文链接](https://www.tmtpost.com/8045729.html)
+
+
+### 4. 华为M-Robots OS 2.0发布
+
+华为M-Robots OS 2.0发布：华为发布M-Robots OS 2.0开源机器人操作系统，已适配双足人形机器人、四足机器狗、机械臂等20余种形态，支持与鸿蒙生态13亿设备跨终端联动，实现语音控制家居、‘碰一碰’传照片等场景，由松延动力、灵人形机器人等厂商落地应用。
+
+📎 [原文链接](https://www.tmtpost.com/8045771.html)
+
+
+### 5. 比亚迪兜底智驾事故赔付
+
+比亚迪兜底智驾事故赔付：比亚迪宣布对使用天神之眼A/B系统的车辆，在城市领航辅助驾驶期间发生的有责事故，承担全部直接经济损失，无上限、不走商业险，直接提升用户对高阶智驾的信任门槛。
+
+📎 [原文链接](https://www.tmtpost.com/8044639.html)
+
+
+### 6. 大晓机器人机器狗上岗
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-06-30/9aec3ba63b82.jpg)
+
+大晓机器人机器狗上岗：大晓机器人推出的赛博机器狗搭载A1超级大脑，在上海西岸和天津实现7×24小时城市巡逻，无需预设地图，可实时感知人车流、自主上下台阶、避让障碍，并识别践踏草坪、公共场所吸烟、遛狗不牵绳等行为，当场语音劝导+抓拍取证，后台可一人管理多机。
+
+📎 [原文链接](https://www.ifanr.com/1670434?utm_source=rss&utm_medium=rss&utm_campaign=)
+
+
+### 7. Grok 4.5进入私测
+
+Grok 4.5进入私测：马斯克旗下xAI发布的Grok 4.5模型已进入SpaceX和Tesla内部私测，基于1.5T参数的V9基础模型，并融合Cursor编程数据，早期评估显示其性能接近Anthropic的Claude Opus，但未公布具体benchmark数据。
+
+📎 [原文链接](https://www.tmtpost.com/8045761.html)
+
+
+### 8. Anthropic 与加州政府达成半价协议
+
+Anthropic 与加州政府达成半价协议：Anthropic 与加州州长纽森达成协议，州政府机构可享半价使用 Claude AI，用于公文起草、信息分析并获得官方培训支持，旨在提升行政效率。
+
+📎 [原文链接](https://techcrunch.com/2026/06/29/anthropic-and-gov-newsom-forge-deal-allowing-california-government-to-use-claude-at-half-price/)
+
+
+### 9. 贾扬清离开英伟达
+
+贾扬清离开英伟达：贾扬清已离职英伟达，其创办的Lepton AI于2023年被英伟达以7亿美元（约48亿人民币）收购，后整合为DGX Cloud Lepton云平台，但项目未达黄仁勋预期，且原定开源计划被否决。
+
+📎 [原文链接](https://zhidx.com/p/570426.html)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
