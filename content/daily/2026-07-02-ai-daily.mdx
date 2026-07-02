@@ -1,0 +1,301 @@
+---
+title: "07.02 AWS AgentCore QA准确率跃升 | AI 早报"
+date: "2026-07-02"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 07.02 AWS AgentCore QA准确率跃升 | AI 早报
+
+> 2026年07月02日 周四 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- AWS AgentCore 元数据过滤使QA准确率从40%提升至64% —— 企业级AI代理记忆精准度重大升级
+- 可灵AI获30亿美元融资，投后估值180亿美元，年化收入超3亿美元 —— AI视频领域最大单笔融资落地
+- NVIDIA Nemotron 120B 和 OpenAI GPT OSS 120B 在 AWS GovCloud 可用，支持百万令牌上下文 —— 美国政府机构首次可合规调用千亿级开源大模型
+- Inscribe 借助 Amazon Bedrock 90秒内识别AI伪造文档，审核速度提升20倍 —— AI防欺诈落地金融场景新标杆
+- AWS Model Profiler 开源，一键对比120+ Bedrock模型的定价、配额与区域可用性 —— 企业选型AI模型效率提升90%
+
+**今日共收录 31 条动态，涵盖 模型与产品 12条、开源热门 5条、技术洞察 5条、行业动态 9条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. AWS AgentCore 支持元数据过滤
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-07-02/9d9a3530e3df.png)
+
+AWS AgentCore 支持元数据过滤：AWS AgentCore 记忆系统新增元数据过滤功能，允许在语义检索前按优先级、部门、时间等结构化标签过滤记忆记录，在151个长期对话测试中将问答准确率从40%提升至64%，尤其在时间限定和部门过滤场景下从16%跃升至69%。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/structured-memory-filtering-with-metadata-in-agentcore-memory/)
+
+
+### 2. NVIDIA Nemotron 和 GPT OSS 上线 AWS GovCloud
+
+NVIDIA Nemotron 和 GPT OSS 上线 AWS GovCloud：AWS GovCloud (US) 现支持 NVIDIA Nemotron 3 Super 120B 和 OpenAI GPT OSS 120B 两个开源大模型，均提供百万令牌上下文窗口，可在完全隔离的美国政府合规环境中运行，适用于情报分析、合同审查等敏感任务，推理全程不离开
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/run-nvidia-nemotron-and-openai-gpt-oss-models-on-amazon-bedrock-in-aws-govcloud-us/)
+
+
+### 3. Inscribe 使用 Amazon Bedrock 防欺诈
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-07-02/319de926f199.png)
+
+Inscribe 使用 Amazon Bedrock 防欺诈：Inscribe 基于 Amazon Bedrock 构建智能体AI系统，通过多模型协同（Claude Haiku、Llama、Claude Sonnet）在90秒内完成金融文档欺诈检测，相比人工审核提速20倍，已帮助BHG Financial等客户阻止超千万美元欺诈损失。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/how-inscribe-uses-amazon-bedrock-to-stop-document-fraud-in-seconds/)
+
+
+### 4. AWS Model Profiler 开源发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-07-02/882b4b6d0f7a.png)
+
+AWS Model Profiler 开源发布：AWS 开源了 Amazon Bedrock Model Profiler，这是一个自动抓取120多个基础模型的定价、TPM/RPM配额、33个区域可用性及生命周期状态的Web工具，支持并排对比、筛选和收藏，帮助开发者5分钟内完成模型选型，无需手动调用多个API或查阅分散文档。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/simplify-model-selection-in-amazon-bedrock-with-the-open-source-model-profiler/)
+
+
+### 5. Anthropic 发布 Claude Sonnet 5
+
+Anthropic 发布 Claude Sonnet 5：Anthropic 正式发布 Claude Sonnet 5，并在通过美国联邦出口管制审查后，恢复了此前被禁的前沿模型 Fable 和 Mythos 的访问权限，结束了为期18天的运营暂停。
+
+📎 [原文链接](https://www.artificialintelligence-news.com/news/anthropic-deploys-claude-sonnet-5-fable-and-mythos-restored/)
+
+
+### 6. M-Robots OS 开源
+
+M-Robots OS 开源：深开鸿基于开源鸿蒙推出的机器人操作系统M-Robots OS正式开源，支持双足、四足、机械臂等20余种机器人形态，本体间音视频通信时延低至4毫秒，较传统DDS方案提升42%，并兼容ROS1/2，迁移成本降低80%。
+
+该系统由开放原子开源基金会治理，已吸引中软国际、智元机器人、北京大学等30余家机构加入，计划2026年发布3.0版本，构建统一机器人IDE与Agent协同体系。
+
+📎 [原文链接](https://www.tmtpost.com/8048275.html)
+
+
+### 7. Square接入ChatGPT和Claude订餐
+
+Square接入ChatGPT和Claude订餐：Square推出与ChatGPT和Claude的原生集成，允许用户在AI聊天窗口内直接向接入Square的餐厅下单，餐厅无需开发或设置，仅支付标准交易费2.9%+0.30美元，不收取DoorDash等平台30%的高额佣金。
+
+📎 [原文链接](https://venturebeat.com/technology/restaurants-can-now-accept-orders-placed-directly-from-chatgpt-and-claude-thanks-to-squares-new-low-fee-no-setup-integration)
+
+
+### 8. Om AI VLX端侧流式多模态发布
+
+Om AI VLX端侧流式多模态发布：Om AI联汇发布VLX端侧流式多模态模型系列，包含Flow、Seek、Go三个模型，首次在端侧实现持续感知→精准定位→行动决策闭环，3B参数的Seek模型在MSCOCO等基准上超越Gemini 3.1 Pro和GPT-5，0.6B的Go模型在机器人导航任务中成功率85.42%，超越13倍参数的Qwen-RobotNav
+
+VLX采用Linear Attention、区域指代、短时航点预测等端侧专用架构，推理延迟仅0.1秒，比云端快50倍，已落地云深处、宇树机器人、AI助视眼镜、无人机巡检、AI PC等场景，并适配昇腾、RK3588等国产芯片。
+
+该系统无需更换硬件，可直接部署于边缘设备，降低部署成本，推动物理AI从Demo走向量产，开发者可通过开放平台接入使用。
+
+📎 [原文链接](https://zhidx.com/p/571697.html)
+
+
+### 9. Claude Fable 5 全球恢复
+
+Claude Fable 5 全球恢复：Anthropic 在美国撤销出口管制后，正式恢复 Claude Fable 5 的全球访问，该模型为当前最贵的商用AI模型，输入定价10美元/百万标记、输出50美元/百万标记，企业可通过 Claude Platform、Claude.ai 及 AWS/GCP/Microsoft Foundry 接入。
+
+📎 [原文链接](https://venturebeat.com/technology/anthropic-is-bringing-back-claude-fable-5-globally-after-us-lifts-export-control-order-where-can-enterprises-access-it)
+
+
+### 10. NVIDIA Nemotron-Labs-TwoTower 发布
+
+NVIDIA Nemotron-Labs-TwoTower 发布：NVIDIA 发布开源扩散语言模型 Nemotron-Labs-TwoTower，基于冻结的 Nemotron-3-Nano-30B-A3B 骨干网络，采用双塔架构，实现 2.42 倍生成吞吐量提升，同时保持 98.7% 的自回归模型基准性能，支持扩散、伪自回归和自回归三种解码模式。
+
+📎 [原文链接](https://www.marktechpost.com/2026/07/01/nvidia-releases-nemotron-labs-twotower/)
+
+
+### 11. 英伟达开源ASPIRE机器人技能库
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-07-02/ca7515b0732d.webp)
+
+英伟达开源ASPIRE机器人技能库：英伟达开源机器人持续学习系统ASPIRE，通过AI Agent自动分析机器人执行失败轨迹、修复代码并沉淀可复用技能，实现在Robosuite双臂交接任务中成功率从20%提升至92%，并支持跨任务泛化，技能库越丰富，新任务表现越好。
+
+📎 [原文链接](https://www.qbitai.com/2026/07/441396.html)
+
+
+### 12. Gemini Spark 登陆 Mac
+
+Gemini Spark 登陆 Mac：谷歌推出 Gemini Spark 的 macOS 测试版，支持直接访问本地文件、自动将发票转为预算表格、集成 Google Tasks 和 Keep，并连接 Canva、Dropbox 等第三方应用，仅对美国地区 Google AI Ultra 订阅用户开放。
+
+📎 [原文链接](https://techcrunch.com/2026/07/01/gemini-spark-googles-agentic-assistant-is-now-available-on-mac/)
+
+
+---
+
+## 🔥 开源热门
+
+### 1. DeusData/codebase-memory-mcp 高性能代码智能MCP
+
+⭐ 21,200 stars · 今日增长 3,999 stars
+
+DeusData/codebase-memory-mcp 将代码库极速索引为持久化知识图谱，支持158种语言、毫秒级查询与99%令牌压缩，适合开发者在大型项目中实现零依赖、低开销的智能代码检索与上下文理解。
+
+📎 [原文链接](https://github.com/DeusData/codebase-memory-mcp)
+
+
+### 2. OpenMontage 智能视频制作系统
+
+⭐ 28,400 stars · 今日增长 3,319 stars
+
+全球首个开源智能视频制作系统，集成12条工作流与500+智能代理技能，将AI编程助手转化为全自动视频工作室，适合开发者快速生成高质量AI视频内容。
+
+📎 [原文链接](https://github.com/calesthio/OpenMontage)
+
+
+### 3. xbtlin/ai-berkshire AI价值投资研究框架
+
+⭐ 6,500 stars · 今日增长 2,523 stars
+
+基于Claude Code构建的AI价值投资研究框架，融合巴菲特、芒格、段永平与李录的投资哲学，通过多智能体并行分析帮助投资者系统化理解长期价值投资逻辑。
+
+📎 [原文链接](https://github.com/xbtlin/ai-berkshire)
+
+
+### 4. Agent-Reach 让AI代理洞察全网
+
+⭐ 45,600 stars · 今日增长 2,243 stars
+
+Agent-Reach 让AI代理无需API密钥即可通过命令行实时浏览和搜索Twitter、Reddit、YouTube、GitHub等主流平台，解决AI缺乏真实网络洞察力的问题，适合开发者构建自主决策的智能代理系统。
+
+📎 [原文链接](https://github.com/Panniantong/Agent-Reach)
+
+
+### 5. DeepSpec AI规范生成工具
+
+⭐ 3,600 stars · 今日增长 1,469 stars
+
+DeepSpec 自动从代码中生成高质量API规范与文档，帮助开发者减少手动编写文档的负担，适用于后端工程师和API设计团队快速标准化接口契约。
+
+📎 [原文链接](https://github.com/deepseek-ai/DeepSpec)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. OpenAI Codex 周活超500万
+
+OpenAI Codex 周活超500万：OpenAI Codex是面向编程与知识工作的AI工具，最新数据显示其周活跃用户突破500万，内部90%员工（含非技术岗）高频使用，正从编码助手演变为覆盖文件管理、数据分析、邮件处理的通用桌面应用。
+
+📎 [原文链接](https://zhidx.com/p/571648.html)
+
+
+### 2. 华弘数科发布全液冷AI超算一体机
+
+华弘数科发布全液冷AI超算一体机：华弘数科发布全球首款边端侧全液冷AI超算一体机，采用自研‘冻芯’液冷系统，相比传统风冷设备算力提升55%、热通量处理能力提升271%，满载噪音控制在45dB以下，体积仅2.7L，可直接部署于办公环境，已实现数千万年营收。
+
+📎 [原文链接](https://36kr.com/p/3877035735740673?f=rss)
+
+
+### 3. OceanBase湖库一体发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-07-02/fd1cfea18c4b.webp)
+
+OceanBase湖库一体发布：OceanBase发布湖库一体AI数据库，通过多模表统一管理结构化、向量、文本等多模态数据，支持SQL、Spark、Daft on Ray统一计算，向量搜索性能在768/1536维下超越Milvus、Elasticsearch，混合搜索比Elasticsearch提升30%以上。
+
+系统首创Fork Database功能，秒级创建PB级数据库分支，支持Copy-on-Write无感实验与回滚，并通过逻辑表解决千万级Agent的Schema爆炸问题，实现Agent级数据隔离与低成本并行。
+
+内置PowerMem记忆引擎，实现记忆自进化，AppWorld测试中任务通过率39%（Hermes为22%），Token消耗降低32%；同时集成OSI语义层，提升自然语言转SQL准确率。
+
+📎 [原文链接](https://www.qbitai.com/2026/07/441386.html)
+
+
+### 4. BoltzGen on SageMaker 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-07-02/d6bcb748dfc3.png)
+
+BoltzGen on SageMaker 发布：AWS 推出 BoltzGen 在 Amazon SageMaker 上的部署方案，支持通过 GPU 实例自动化生成蛋白质结合剂，单次10个设计任务成本低至$1.50，并通过S3步骤级缓存跳过90%重复计算，适用于生物制药研发和学术实验室。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/accelerate-protein-design-with-boltzgen-on-amazon-sagemaker-ai/)
+
+
+### 5. aiCompiler 发布
+
+aiCompiler 发布：aiCompiler 是由 The Weekend Projects 开发的全新编程范式，允许开发者用纯 Markdown 编写 .aic 文件，经编译为结构化 .aix 操作码后，由 aiVM 虚拟机调用 LLM（如 Llama 3.3 70B）逐条执行，无需代码、API 密钥或安装，直接在浏览器中运行。
+
+📎 [原文链接](https://aicompiler.dev)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. 可灵AI完成30亿美元融资
+
+快手旗下AI视频生成产品可灵AI完成30亿美元融资，投后估值180亿美元，2024年第一季度收入达7500万美元，年化收入超3亿美元，主要来自北美等海外市场，腾讯参与投资。
+
+快手计划在未来12个月内推动可灵AI赴港上市，募资用于算力基建与人才引进，当前估值相当于快手总市值的78%。
+
+📎 [原文链接](https://zhidx.com/p/571825.html)
+
+
+### 2. Meta Compute 计划曝光
+
+Meta Compute 计划曝光：Meta 正筹备名为 Meta Compute 的新业务，计划将过剩AI算力对外出售，托管其闭源模型 Muse Spark 并提供原始算力资源，直接与 AWS、Azure 和 Google Cloud 竞争，以回收其已承诺的1829亿美元AI基础设施投入。
+
+📎 [原文链接](https://techcrunch.com/2026/07/01/meta-like-spacex-looks-to-turn-excess-ai-compute-into-cash/)
+
+
+### 3. 阿里云海外扩算力
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-07-02/272364776166.jpg)
+
+阿里云海外扩算力：阿里云在2026年6月宣布新增法国巴黎和马来西亚柔佛两个海外数据中心，并扩建日本东京、墨西哥等地，全球节点总数达32个地域、105个可用区，主要为满足AI推理低延迟需求，支撑Qwen大模型API在欧洲和东南亚的调用。
+
+📎 [原文链接](https://www.tmtpost.com/8048934.html)
+
+
+### 4. 优必选2025年报发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-07-02/9139c14d45d8.png)
+
+优必选2025年报发布：优必选发布2025年年报，全尺寸人形机器人产品及解决方案实现收入8.21亿元，同比增长2203.7%，销量1079台，在手订单近14亿元，成为国内首家在财报中系统披露人形机器人商业化数据的公司，但全年净亏损7.9亿元。
+
+📎 [原文链接](https://www.tmtpost.com/8047045.html)
+
+
+### 5. Cloudflare 推出AI内容付费机制
+
+Cloudflare 推出AI内容付费机制：Cloudflare 宣布自2026年9月15日起，默认阻止混合用途爬虫抓取含广告的网页，迫使AI公司区分搜索与训练爬虫，并推出‘Pay Per Use’模式，允许出版商在AI使用其内容时收费，目前已与Ceramic.ai和You.com合作实现收益分账。
+
+📎 [原文链接](https://techcrunch.com/2026/07/01/cloudflares-new-policy-pushes-ai-companies-to-pay-for-publishers-content/)
+
+
+### 6. 厘清智能完成数亿元种子轮融资
+
+清华系初创公司厘清智能完成数亿元种子轮融资，由顺为、红杉、高瓴等投资，核心团队自研数据采集系统与可微物理引擎，实现百万小时级真实数据采集和Real-to-Sim-Real强化学习闭环，支持跨本体、跨场景的精细操作训练，如切割、插拔、搅拌等，显著降低真实数据依赖。
+
+📎 [原文链接](https://36kr.com/p/3877109751803904?f=rss)
+
+
+### 7. Koah 融资2050万美元
+
+Koah 融资2050万美元：Koah 是一个为对话式AI应用设计的广告网络，通过实时意图匹配在AI助手对话中插入原生广告，帮助开发者提升收入，广告主可获得3%平均点击率和3倍于传统平台的 payouts，SDK 集成仅需几分钟。
+
+📎 [原文链接](https://www.koahlabs.com)
+
+
+### 8. 灵动芯光获数千万融资
+
+灵动芯光获数千万融资：清华系芯片企业灵动芯光完成数千万元天使++轮融资，资金将用于研发硅基光子芯片间光互联技术，重点推进SmartComb多波长光源和SmartPHY光I/O小芯粒产品化，目标解决AI算力集群中铜互联带宽瓶颈。
+
+📎 [原文链接](https://36kr.com/p/3877057215393793?f=rss)
+
+
+### 9. 优必选U1陪伴机器人发布
+
+优必选U1陪伴机器人发布：优必选发布U1系列陪伴机器人，Lite/Pro/Ultra三款售价从11.98万至99万元，搭载自研情感大模型，可识别20余种细粒度情绪，语音-唇形延迟低至20ms，面向家庭场景提供情绪支持与长期互动，目前已获超1.3万台订单。
+
+📎 [原文链接](https://www.tmtpost.com/8048847.html)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
