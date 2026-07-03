@@ -1,0 +1,301 @@
+---
+title: "07.03 微软斥资25亿建AI公司，谷歌限制Meta使用Gemini | AI 早报"
+date: "2026-07-03"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 07.03 微软斥资25亿建AI公司，谷歌限制Meta使用Gemini | AI 早报
+
+> 2026年07月03日 周五 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- 微软斥资25亿美元成立Microsoft Frontier Company，专为企业提供AI落地服务 —— 大厂AI落地竞赛正式升级
+- 谷歌限制Meta使用Gemini，微软禁用Claude Code，Meta封禁Claude和Codex用于模型训练 —— AI工具从免费插件变为核心资产，大厂进入互防时代
+- Z.ai ZCode 免费上线，基于GLM-5.2模型，定价仅为Claude Code十分之一 —— 中国AI编程工具首次具备全球价格与自主可控优势
+- 阿里 Page Agent 通过JS嵌入网页，用自然语言操作DOM —— AI协作者首次实现无后端网页自动化
+- 天工 3.2 推出 Skywork Tags，可直接嵌入飞书/钉钉/Slack 成为团队共享AI同事 —— AI协作从私聊走向团队共用新范式
+
+**今日共收录 31 条动态，涵盖 模型与产品 12条、开源热门 5条、技术洞察 4条、行业动态 10条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. Z.ai 发布 ZCode
+
+Z.ai 发布 ZCode：Z.ai 推出免费AI编程IDE ZCode，深度集成7440亿参数的GLM-5.2模型，支持跨平台使用和微信/飞书远程控制，API定价低至每百万输入token 1.4美元，仅为Anthropic Claude Opus 4.8的28%，并提供MIT开源权重供企业自托管，直接挑战Cursor、GitHub Copilot和Clau
+
+GLM-5.2完全基于华为芯片训练，无任何美国技术依赖，且ZCode支持BYOK接入Claude、Gemini等第三方模型，满足企业对地缘政治风险的规避需求，已吸引大量中国开发者抢购编程计划配额。
+
+📎 [原文链接](https://venturebeat.com/technology/z-ai-launches-zcode-to-challenge-cursor-claude-code-and-github-copilot-in-ai-coding)
+
+
+### 2. 阿里 Page Agent 开源
+
+阿里 Page Agent 开源：阿里巴巴开源 Page Agent，一个嵌入网页的 JavaScript GUI 代理，通过脱水后的 FlatDomTree 文本结构，让任意 OpenAI 兼容 LLM 直接用自然语言点击按钮、填写表单，无需截图或多模态模型，仅需一行 script 标签即可部署。
+
+📎 [原文链接](https://www.marktechpost.com/2026/07/02/meet-alibabas-page-agent-a-javascript-in-page-gui-agent-that-controls-web-interfaces-with-natural-language-through-the-dom/)
+
+
+### 3. 天工 3.2 发布 Skywork Tags
+
+天工 3.2 发布 Skywork Tags：天工AI发布天工3.2版本，上线Skywork Tags功能，允许用户将AI助手直接拉入飞书、钉钉、Slack等已有工作群聊，无需迁移数据，AI即可实时读取上下文并参与协作，成为团队共享的持久型智能成员。
+
+该功能支持团队共用一个AI实例，任务进度透明、可接力、长期积累上下文，内部测试显示共享版在两周后性能反超个人定制版，越多人使用越智能。
+
+📎 [原文链接](https://www.qbitai.com/2026/07/442030.html)
+
+
+### 4. Claude Science 集成 BioNeMo
+
+Claude Science 集成 BioNeMo：Anthropic 推出 Claude Science 公开测试版，集成 NVIDIA BioNeMo Agent 工具包，允许科学家通过自然语言直接指挥 AI 代理完成分子模拟、实验设计等生命科学研究流程，原生对接科研数据与计算工具。
+
+📎 [原文链接](https://www.artificialintelligence-news.com/news/nvidia-bionemo-accelerates-anthropic-claude-science/)
+
+
+### 5. 宇树科技IPO注册获批
+
+宇树科技IPO注册获批：宇树科技正式获得中国证监会同意在科创板首次公开发行股票的注册申请，成为国内人形机器人领域首家获批IPO的公司，标志着其商业化进程进入新阶段。
+
+📎 [原文链接](https://www.tmtpost.com/8050848.html)
+
+
+### 6. OpenAI推理成本降超50%
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-07-03/553830687d92.png)
+
+OpenAI推理成本降超50%：OpenAI通过KV cache优化和自研推理芯片Jalapeño，将模型推理成本降低50%以上，其中KV cache复用技术可使输入token成本下降90%，Jalapeño芯片专为LLM推理设计，与Cerebras超大芯片协同部署，支撑GPT-5.4等模型高效运行。
+
+该优化使OpenAI在月活8亿规模下显著降低算力开销，2025年亏损209亿美元背景下，API毛利率已提升至39%，目标年底达52%，技术路径明显效仿DeepSeek的MLA压缩方案。
+
+📎 [原文链接](https://www.tmtpost.com/8050492.html)
+
+
+### 7. 阿里 SkillWeaver 框架发布
+
+阿里 SkillWeaver 框架发布：阿里巴巴推出AI代理框架SkillWeaver，通过技能感知分解（SAD）技术将复杂任务自动拆解并精准路由到工具，使Qwen-Max模型在多步骤任务中的准确率从21.1%提升至92%，同时将每次查询的上下文令牌消耗从88.4万降至1160，降幅达99.9%。
+
+📎 [原文链接](https://venturebeat.com/orchestration/new-alibaba-ai-framework-skips-loading-every-tool-cutting-agent-token-use-99)
+
+
+### 8. Adobe 推出智能型网站原型
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-07-03/e47dff574f91.jpg)
+
+Adobe 推出智能型网站原型：Adobe 首席科学家 Carlos Sanchez 展示了名为‘智能型网站’的原型系统，能根据访客意图（如探索、购买）实时从企业现有内容中提取信息，动态组装个性化页面，例如为露营爱好者重组咖啡机产品页，单页生成成本约1-2美分，延迟控制在1-2秒内。
+
+📎 [原文链接](https://www.latent.space/p/the-website-of-the-future)
+
+
+### 9. 美团 LongCat-2.0 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-07-03/5bf51154eb44.png)
+
+美团 LongCat-2.0 发布：美团发布LongCat-2.0，全球首个在国产芯片上完成全链路训练与推理的万亿参数模型，总参数1.6万亿，支持1M上下文，通过MoE架构和LSA稀疏注意力优化，在OpenRouter上以匿名身份Owl Alpha月调用量超Claude Code，位居全球第一。
+
+该模型在代码生成、多步推理和长文本理解中表现优异，可将GitHub项目从原生JS迁移到React，且token消耗比GPT-5.5低40%，训推成本显著低于英伟达方案，已开放API和平台体验。
+
+团队通过自研算子、故障自动恢复和N-gram Embedding等技术，将国产芯片MFU从17.8%提升至27.68%，单日处理token达1.12万亿，支撑5万张国产卡集群稳定运行。
+
+📎 [原文链接](https://www.qbitai.com/2026/07/442047.html)
+
+
+### 10. Tessera-1B 开源
+
+Tessera-1B 开源：AIIT-THRESHOLD开源了10亿参数语言模型Tessera-1B，使用单张H100在145.7小时内以315美元成本从零训练，基于245亿词元人工精选语料，支持英语和日语，架构为自定义Transformer，提供两个经过安全微调的LoRA适配器，适用于专业领域微调起点。
+
+📎 [原文链接](https://huggingface.co/AIIT-Threshold/Tessera-1B)
+
+
+### 11. llm-coding-agent 0.1a0 发布
+
+llm-coding-agent 0.1a0 发布：Simon Willison 发布了开源编码代理 llm-coding-agent 0.1a0，基于 LLM 实现文件读写、命令执行、搜索和测试驱动开发，支持通过命令行或 Python API 自动构建应用，如生成带 ASCII 时间显示的 Swift CLI 程序。
+
+📎 [原文链接](https://simonwillison.net/2026/Jul/2/llm-coding-agent/#atom-everything)
+
+
+### 12. Halo 发布 Mac 本地AI助手
+
+Halo 发布 Mac 本地AI助手：Halo 是一款由开发者创建的Mac本地AI助手，运行于Apple Silicon芯片，所有数据处理均在设备端完成，支持语音唤醒、自动补全、通话录音转文字、记忆搜索和自动化监控，不上传任何数据，且永久免费。
+
+📎 [原文链接](https://heyhalo.app/)
+
+
+---
+
+## 🔥 开源热门
+
+### 1. Agent-Reach 让AI代理洞察全网
+
+⭐ 48,200 stars · 今日增长 2,619 stars
+
+Agent-Reach 通过命令行工具让AI代理无需API即可实时浏览和搜索Twitter、Reddit、YouTube、GitHub等主流平台，解决AI缺乏真实网络洞察力的问题，适合开发者构建具备实时信息获取能力的智能代理应用。
+
+📎 [原文链接](https://github.com/Panniantong/Agent-Reach)
+
+
+### 2. DeusData/codebase-memory-mcp 高性能代码智能MCP服务器
+
+⭐ 23,700 stars · 今日增长 2,409 stars
+
+将代码库极速索引为持久化知识图谱，支持158种语言，毫秒级查询响应，减少99% token消耗，适合开发者与AI工具集成以实现高效代码理解与智能补全。
+
+📎 [原文链接](https://github.com/DeusData/codebase-memory-mcp)
+
+
+### 3. OpenMontage 全球首个AI视频制作系统
+
+⭐ 30,800 stars · 今日增长 2,382 stars
+
+OpenMontage 是全球首个开源AI视频制作系统，集成12条工作流与500+代理技能，将AI编程助手转化为全自动视频创作工作室，适合开发者快速生成高质量短视频内容。
+
+📎 [原文链接](https://github.com/calesthio/OpenMontage)
+
+
+### 4. DeepSpec AI代码规范检测工具
+
+⭐ 5,700 stars · 今日增长 2,145 stars
+
+DeepSpec 是一个自动检测代码规范与最佳实践的AI工具，帮助开发者在提交前发现潜在缺陷，适用于团队协作中提升代码质量与一致性。
+
+📎 [原文链接](https://github.com/deepseek-ai/DeepSpec)
+
+
+### 5. xbtlin/ai-berkshire AI价值投资研究框架
+
+⭐ 8,100 stars · 今日增长 1,569 stars
+
+基于Claude Code构建的AI价值投资研究框架，融合巴菲特、芒格等四大师投资哲学，通过多Agent并行分析实现智能决策，适合金融开发者与量化投资者构建自动化投研系统。
+
+📎 [原文链接](https://github.com/xbtlin/ai-berkshire)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. AReaL 2.0 开源
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-07-03/b99e9c9bef8d.jpg)
+
+AReaL 2.0 开源：AReaL 2.0 是由蚂蚁集团、清华和港科大开源的强化学习基础设施，允许已部署的智能体在真实任务中自动记录交互轨迹与反馈信号，并通过统一入口接入在线RL训练流程，实现无需重部署的持续能力进化。
+
+📎 [原文链接](https://www.qbitai.com/2026/07/442134.html)
+
+
+### 2. Mirrors 发布AI代理测试镜像
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-07-03/12c0d6970f25.png)
+
+Mirrors 发布AI代理测试镜像：Mirrors 是一个AI代理测试工具，通过导入生产环境追踪数据，自动生成完全可复现的隔离运行镜像，支持在不接触真实系统的情况下测试退款、改签等高风险操作，所有工具调用均按真实数据模拟并评分。
+
+📎 [原文链接](https://www.runmirrors.com/)
+
+
+### 3. Declaw Arena 开源挑战平台
+
+Declaw Arena 开源挑战平台：Declaw Arena 是一个开源的CTF风格AI安全挑战平台，由开发者创建，提供4个AI代理场景和5种攻击模式，测试在不同防护策略下AI代理是否会被诱导泄露敏感数据，全强度防护下65次尝试全部失败。
+
+📎 [原文链接](https://declaw.ai/arena)
+
+
+### 4. Impeccable 发布技能工程系统
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-07-03/7a5b25c7c48c.jpg)
+
+Impeccable 发布技能工程系统：Impeccable 是由前 Anthropic 工程师 Paul Bakaus 开发的开源设计技能系统，通过定义‘更醒目’‘更安静’等术语的精确操作含义，让 AI 智能体在代码层面执行符合设计规范的微调，而非盲目重做整个界面。
+
+📎 [原文链接](https://www.latent.space/p/skill-engineering-design)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. 微软成立AI部署公司
+
+微软成立AI部署公司：微软正式成立全资子公司Microsoft Frontier Company，投入25亿美元并调配6000名工程师，专为大型企业客户提供AI部署服务，已与伦敦证券交易所、联合利华、埃森哲等达成早期合作，直接对标亚马逊和OpenAI的同类项目。
+
+📎 [原文链接](https://techcrunch.com/2026/07/02/microsoft-launches-its-own-ai-deployment-company-with-2-5-billion-commitment/)
+
+
+### 2. 大厂互限AI工具使用
+
+大厂互限AI工具使用：谷歌、微软和Meta在2026年上半年相继限制员工使用竞争对手的AI模型，谷歌因算力不足限制Meta调用Gemini，微软取消Claude Code许可证并禁用Claude Fable5以防止数据外泄，Meta则禁止员工在模型训练中使用Claude和Codex，以防能力被蒸馏用于竞品研发。
+
+📎 [原文链接](https://www.tmtpost.com/8050490.html)
+
+
+### 3. 天工AI ARR突破8亿美元
+
+天工AI ARR突破8亿美元：天工AI宣布其AI业务年经常性收入（ARR）突破8亿美元，成为继BAT之后中国首个接近10亿美元ARR的独立AI公司，主要收入来自企业级大模型服务与API调用。
+
+📎 [原文链接](https://www.jiqizhixin.com/articles/2026-07-02-14)
+
+
+### 4. 阿里整合QoderWork、悟空、MuleRun
+
+阿里整合QoderWork、悟空、MuleRun：阿里巴巴将旗下三款企业级AI Agent产品QoderWork、悟空和MuleRun合并，以QoderWork为前端桌面入口，MuleRun为中台执行引擎，悟空/钉钉为后台组织底座，构建统一的企业生产力AI平台，由钉钉CEO陈宇森主导。
+
+QoderWork日活与Token消耗居阿里AI工具首位，支持本地文件操控与MCP协议，具备OS级入口潜力，整合后将融合SOP驱动的流程自动化能力，应对字节Coze、飞书Agent等竞品。
+
+📎 [原文链接](https://zhidx.com/p/572228.html)
+
+
+### 5. Meta计划出售闲置AI算力
+
+Meta计划出售闲置AI算力：Meta正研究将过剩的H100和H200算力对外出租，以提升资产周转率，同时将新一代Blackwell和Rubin集群保留用于前沿模型训练，表明其算力策略是结构性优化而非过剩危机。
+
+📎 [原文链接](https://www.tmtpost.com/8050077.html)
+
+
+### 6. 扎克伯格称AI代理进展不及预期
+
+扎克伯格称AI代理进展不及预期：Meta首席执行官马克·扎克伯格在内部会议中表示，公司投入1450亿美元建设的AI代理系统进展缓慢，预期收益尚未实现，尽管已裁员8000人并重组团队，但AI代理的落地效果远低于高层预期。
+
+📎 [原文链接](https://techcrunch.com/2026/07/02/mark-zuckerberg-tells-staff-that-ai-agents-havent-progressed-as-quickly-as-hed-hoped/)
+
+
+### 7. OpenAI提议捐5%股权给美国主权基金
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-07-03/7c3fc0b86794.jpg)
+
+OpenAI提议捐5%股权给美国主权基金：OpenAI提议将公司5%的股权捐赠给美国主权财富基金，旨在缓解政治压力并让公众分享AI增长红利，该提案需国会批准，目前仍处早期讨论阶段。
+
+📎 [原文链接](https://techcrunch.com/2026/07/02/openai-proposed-donating-5-of-its-equity-to-a-us-sovereign-wealth-fund/)
+
+
+### 8. 科大讯飞三大平台升级
+
+科大讯飞三大平台升级：科大讯飞在2026智能交互生态发布会上宣布AIUI平台从语音交互升级为支持图像理解与生成的多模态交互平台，机器人超脑平台增强多模态感知与场景执行能力，多语种平台覆盖40+语言，面向智能硬件出海提供底层支持。
+
+📎 [原文链接](https://www.qbitai.com/2026/07/442048.html)
+
+
+### 9. 钉钉A1录音卡入选Gartner报告
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-07-03/de9d71c84626.png)
+
+钉钉A1录音卡入选Gartner报告：钉钉A1录音卡被Gartner列入全球AI可穿戴设备报告，作为唯一被点名的中国企业级设备，其核心优势在于深度集成钉钉协作平台，支持会议录音实时转写、摘要生成，并自动同步至日程、待办、知识库，同时提供企业统一采购、设备管理与数据加密功能，解决职场AI硬件的数据安全痛点。
+
+📎 [原文链接](https://www.qbitai.com/2026/07/442024.html)
+
+
+### 10. Anthropic与三星谈自研芯片
+
+Anthropic与三星谈自研芯片：Anthropic正与三星讨论合作开发定制AI芯片，旨在降低对英伟达依赖，但尚未确定芯片用途、集成方式或算力规模，公司仍强调以谷歌、亚马逊和英伟达的多元硬件栈为核心。
+
+📎 [原文链接](https://techcrunch.com/2026/07/02/anthropic-is-discussing-a-new-custom-chip-with-samsung/)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
