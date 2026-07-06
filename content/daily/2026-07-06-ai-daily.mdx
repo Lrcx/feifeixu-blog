@@ -1,0 +1,168 @@
+---
+title: "07.06 Meta推Compute托管Claude | AI 早报"
+date: "2026-07-06"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 07.06 Meta推Compute托管Claude | AI 早报
+
+> 2026年07月06日 周一 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- Meta计划推出Meta Compute，拟出租超10GW算力并托管Claude等第三方模型 —— 大厂从模型竞赛转向算力变现
+- 微软365企业版涨价最高43%，Copilot成核心捆绑项 —— 企业AI成本显性化，订阅价成新税
+- 美团 LongCat-2.0 参数1.6万亿，原生支持100万上下文，国产ASIC训练 —— 中国首个万亿级长上下文开源模型落地
+- 华为韬定律论文公布LogicFolding与Hi-ONE实测数据，功耗降41%、互联延迟压至100纳秒 —— 华为芯片架构突破首次系统公开
+- 豆包、千问智能体功能将于7月15日下线，用户将无法访问历史对话 —— 大厂AI产品战略转向信号
+
+**今日共收录 14 条动态，涵盖 模型与产品 2条、开源热门 5条、技术洞察 4条、行业动态 3条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. 美团 LongCat-2.0 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-07-06/d2426c3e3537.webp)
+
+美团 LongCat-2.0 发布：美团发布开源MoE语言模型LongCat-2.0，总参数1.6万亿，每token动态激活约480亿参数，原生支持100万token上下文，采用自研LongCat稀疏注意力机制，训练与推理全程基于国产AI ASIC集群，未使用任何NVIDIA硬件。
+
+📎 [原文链接](https://www.marktechpost.com/2026/07/05/meituan-releases-longcat-2-0-a-1-6t-parameter-open-moe-model-with-native-1m-context-and-longcat-sparse-attention/)
+
+
+### 2. microide 发布
+
+microide 发布：microide 是由 Pablo Jiménez Mateo 开发的开源桌面 IDE，完全用 C++20 构建，无网络连接、无遥测，支持 LLM 通过 AF_UNIX 套接字和 JSONL 协议驱动编辑器、设置断点、启动调试、读取变量，所有功能均通过命令面板暴露，且项目全部源码由 Claude、GPT 等 AI 代理编写，人工仅指导
+
+📎 [原文链接](https://pablojimenezmateo.github.io/microide/)
+
+
+---
+
+## 🔥 开源热门
+
+### 1. strix AI黑客代理工具
+
+⭐ 35,900 stars · 今日增长 1,560 stars
+
+strix 是一个开源AI黑客代理工具，专为开发者和安全团队设计，可自动化扫描代码库与在线应用、模拟真实攻击路径、生成PoC并提供可操作的修复建议，显著提升渗透测试效率与应用安全水平。
+
+📎 [原文链接](https://github.com/usestrix/strix)
+
+
+### 2. JuliusBrussee/caveman 穴居人式编码减token
+
+⭐ 83,800 stars · 今日增长 1,039 stars
+
+该工具通过极简提示词策略，用‘穴居人式’表达替代冗长AI指令，显著降低65%的token消耗，适合希望降低API成本、提升推理效率的开发者和AI工程团队。
+
+📎 [原文链接](https://github.com/JuliusBrussee/caveman)
+
+
+### 3. Leonxlnx/taste-skill 赋予AI审美能力
+
+⭐ 56,300 stars · 今日增长 851 stars
+
+Leonxlnx/taste-skill 通过训练AI识别并生成富有审美价值的内容，解决AI输出平庸、缺乏创意的问题，适合内容创作者、AI产品经理和提示工程开发者提升生成质量。
+
+📎 [原文链接](https://github.com/Leonxlnx/taste-skill)
+
+
+### 4. astryx 完全可定制的智能代理设计系统
+
+⭐ 5,300 stars · 今日增长 826 stars
+
+astryx 是一个为智能代理优化的开源设计系统，支持完全定制化组件与交互逻辑，帮助开发者快速构建高效、一致的AI代理界面与用户体验。
+
+📎 [原文链接](https://github.com/facebook/astryx)
+
+
+### 5. Agent-Reach AI代理全网洞察工具
+
+⭐ 50,500 stars · 今日增长 749 stars
+
+Agent-Reach 让开发者通过单一命令行免费访问并搜索Twitter、Reddit、YouTube等主流平台内容，无需API密钥，为AI代理提供实时全网信息洞察，适用于构建自主决策的智能代理系统。
+
+📎 [原文链接](https://github.com/Panniantong/Agent-Reach)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. 华为更新韬定律论文
+
+华为更新韬定律论文：华为更新《韬定律》论文第二版，首次公开LogicFolding三维堆叠技术在手机SoC上的实测数据：晶体管密度从155M/mm²提升至238M/mm²，相当于三年制程迭代的成果；在AI集群中，通过Hi-ONE光互联协议将跨节点通信延迟从微秒级降至100纳秒，带宽达8Tb/s，并明确放弃高精度顺序式3D集成路线，改用晶圆混合键合以提升良率。
+
+论文还首次披露散热问题的工程应对方案：采用热感知三维布局，主动错开高功耗模块，同时量化功耗降低41%是基于同等性能下电压下调的对比结果，而非单纯频率提升，技术选型与实测条件全部透明化。
+
+📎 [原文链接](https://www.qbitai.com/2026/07/443186.html)
+
+
+### 2. Terminai 开源
+
+Terminai 开源：Terminai 是一个开源的终端封装器，由开发者 emosenkis 创建，通过 Ctrl+Space 激活透明 AI 覆盖层，允许用户在不离开终端的情况下调用 Codex、Claude Code 或自定义 AI 代理，所有操作需人工审批，且不收集用户数据。
+
+📎 [原文链接](https://terminai.app)
+
+
+### 3. SchedPilot 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-07-06/6cdcf59a2f2a.png)
+
+SchedPilot 发布：SchedPilot 是一款专为AI代理设计的社交媒体管理工具，支持Claude、ChatGPT、Cursor等通过REST API或MCP服务器一键调用，自动在X、Instagram、TikTok等9个平台起草、排期并等待人工审核发布，开发者可集成其API实现全平台内容自动化。
+
+提供get_accounts、create_post、get_analytics等6个工具接口，支持n8n节点、curl调用和Chrome扩展，内置视频编辑器与最佳发布时间算法，已服务210+用户，月发布内容超3981条。
+
+📎 [原文链接](https://schedpilot.com/)
+
+
+### 4. Quickchat AI 推出 MCP 服务器
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-07-06/caefcf5d3d00.webp)
+
+Quickchat AI 推出 MCP 服务器：Quickchat AI 发布 MCP 服务器功能，允许用户将任意 AI 代理通过单一 URL（https://app.quickchat.ai/mcp/your-agent-id）暴露为标准化工具，无需编码即可被 ChatGPT、Claude 和 Cursor 等主流 AI 应用调用，支持知识库问答、线索捕获
+
+该功能默认私有，需登录 Quickchat 账户才能访问，且每个代理仅暴露一个只读工具，调用由客户端 AI 自主判断，确保安全与可控；已实测支持速率限制查询、SDK 不存在时诚实回复、自动收集用户信息等真实场景。
+
+📎 [原文链接](https://quickchat.ai/post/expose-ai-agent-as-mcp-server)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. Meta计划推出Meta Compute
+
+Meta计划推出Meta Compute：Meta正计划推出Meta Compute业务，将自建的超10GW AI算力（含2.5GW自建数据中心）开放给外部客户，拟托管Anthropic的Claude模型并以API形式出租，目标年收入达百亿美元，同时继续支撑自家Llama和Watermelon模型训练。
+
+📎 [原文链接](https://www.qbitai.com/2026/07/443339.html)
+
+
+### 2. 微软365涨价
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-07-06/65af7ca691e5.png)
+
+微软365涨价：微软于2026年7月1日上调Microsoft 365企业版价格，部分套餐涨幅达43%，如无Teams的F1套餐从2.25美元涨至3美元，涨价主因是捆绑了Copilot、Defender、Intune等AI与安全功能，但个人版和教育版价格不变。
+
+📎 [原文链接](https://www.windowslatest.com/2026/07/05/microsoft-365-just-got-a-price-hike-over-continuous-innovation-but-copilot-is-the-ai-tax-on-businesses/)
+
+
+### 3. 豆包、千问下线智能体功能
+
+豆包、千问下线智能体功能：字节跳动豆包和阿里通义千问同步宣布，将于2026年7月15日下线各自平台的智能体功能，下线后用户将无法再配置或访问任何智能体及历史对话记录，标志着两大厂牌在C端AI助手产品上的战略收缩。
+
+📎 [原文链接](https://www.tmtpost.com/8053349.html)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
