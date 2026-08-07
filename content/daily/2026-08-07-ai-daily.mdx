@@ -1,0 +1,542 @@
+---
+title: "08.07 GPT-5.6 免费开放 | AI 早报"
+date: "2026-08-07"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 08.07 GPT-5.6 免费开放 | AI 早报
+
+> 2026年08月07日 周五 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- GPT-5.6 Sol 事实错误降68%，免费用户获 GPT-5.6 Luna —— 免费用户获无限聊天及更强模型
+- DeepSWE 发布长周期代码智能体基准，区分前沿模型性能 —— 首个有效区分前沿模型长周期代码能力的基准
+- OpenAI 联合 Anthropic 等达成 AI Agent 插件开放标准 —— 打破大厂生态壁垒，统一 AI Agent 接口标准
+- Cloudflare Kitesurf 内存降7倍，专为AI Agent设计 —— 大幅降低 AI Agent 浏览器运行成本
+- Google 调整 AI 架构，DeepMind 创始人 Hassabis 退居二线 —— Google 核心 AI 战略控制权变更
+
+**今日共收录 48 条动态，涵盖 模型与产品 13条、技术洞察 12条、行业动态 23条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. OpenAI 更新 GPT-5.6 模型
+
+OpenAI 更新 GPT-5.6 模型：OpenAI 更新 ChatGPT 中的 GPT-5.6 Sol 模型，针对金融、医疗等场景事实错误率降低 68%，并新增滑块调节思考深度。
+
+免费用户默认升级为 GPT-5.6 Luna，下周起提供无限文本聊天及“思考”按钮，Plus/Pro 用户即刻体验 Sol 更新。
+
+📎 [原文链接](https://openai.com/index/improving-gpt-5-6-sol-in-chatgpt)
+
+
+### 2. DeepSWE 代码智能体基准发布
+
+DeepSWE 代码智能体基准发布：DeepSWE 是 Datacurve 发布的长周期软件工程代码智能体基准测试，包含 113 个真实任务，旨在解决现有基准饱和问题。
+
+该基准测试无数据污染，涵盖 91 个仓库和 5 种语言，验证器均为手工编写以测试实际行为。
+
+排行榜显示 claude-opus-5 通过率 74% 居首，gpt-5.6-sol 以 73% 通过率且成本更低紧随其后，有效区分了模型在复杂工程任务上的表现。
+
+📎 [原文链接](https://deepswe.datacurve.ai/)
+
+
+### 3. Cloudflare Kitesurf 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-08-07/7d1c85f20db4.webp)
+
+Cloudflare Kitesurf 发布：Cloudflare 发布 Kitesurf，一款完全运行在 Cloudflare Workers V8 隔离环境中的无状态 Web 浏览器，专为 AI Agent 设计。
+
+相比 Chromium，Kitesurf 内存占用降低 4.7-7.0 倍，CPU 时间减少 3.1-3.8 倍，兼容 Puppeteer/Playwright，仅需添加 browser=kitesurf 参数即可无缝切换。
+
+目前处于 Browser Run 免费 Beta 阶段，支持 HTML 提取、截图及 PDF 渲染，暂不支持 WebGL 和持久化会话，计划后续开源。
+
+📎 [原文链接](https://www.marktechpost.com/2026/08/06/cloudflare-introduces-kitesurf-an-agent-first-web-browser-that-runs-entirely-in-v8-isolates-on-cloudflare-workers/)
+
+
+### 4. Google Maps 新增 Agentic 功能
+
+Google Maps 新增 Agentic 功能：Google Maps 的 Ask Maps 功能新增 Agentic（代理式）能力，支持用户直接查询并下单外卖（接入 Square、Toast 等平台）以及预订酒店和演出门票。
+
+同时引入 Personal Intelligence，默认关闭，可读取 Gmail 和 Google Calendar 信息提供个性化行程建议，并新增对话历史记忆与实时交通小部件。
+
+该功能正在向美国用户逐步推送，标志着 Google Maps 从导航工具向现实任务智能助手转型。
+
+📎 [原文链接](https://techcrunch.com/2026/08/06/google-maps-adds-agentic-features-including-food-ordering-and-hotel-bookings/)
+
+
+### 5. AWS Bedrock AgentCore 时序策略
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-08-07/e87aa5e0dc11.png)
+
+AWS Bedrock AgentCore 时序策略：AWS 在 Amazon Bedrock AgentCore 中推出时序策略（Temporal Policies），允许定义有状态规则，通过评估智能体轨迹中的先前事件来确定授权。
+
+该策略在网关边缘运行，智能体无法拦截或操纵，可强制执行工具调用顺序、防止数据伪造、限制累计财务风险及要求人工审批。
+
+时序策略基于会话 ID 和主体身份，支持 24 小时回溯窗口，默认拒绝且拒绝优先，确保智能体行为符合预设的安全工作流。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/securing-ai-agents-with-temporal-policies-in-amazon-bedrock-agentcore/)
+
+
+### 6. AWS 单区域 Claude Code 数据驻留方案
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-08-07/622f9fd6ff29.png)
+
+AWS 单区域 Claude Code 数据驻留方案：AWS 发布在 Amazon Bedrock 上通过单区域运行 Claude Code 的技术指南，支持 Mantle 端点原生路由和经典 API 应用推理配置文件两种路径，确保提示与推理数据严格保留在指定 AWS 区域（如伦敦 eu-west-2），满足金融等行业的合规红线。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/enforcing-data-residency-with-single-region-claude-code-on-amazon-bedrock/)
+
+
+### 7. AWS Bedrock Agent Skills 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-08-07/56af05e2d135.png)
+
+AWS Bedrock Agent Skills 发布：AWS 发布 Amazon Bedrock Agent Skills 套件，通过六项技能（构建、审查、测试、调试、部署、验证）实现自动化推理策略的端到端代码化管理。
+
+该套件支持 Claude Code、Cursor 等编码智能体，将自然语言规则转化为形式逻辑并自动验证，解决策略编写学习曲线高和调试困难的问题。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/agent-skills-for-automated-reasoning-policies-in-amazon-bedrock/)
+
+
+### 8. Liquid AI LFM2.5-2.6B 开源
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-08-07/44203365ac44.jpg)
+
+Liquid AI LFM2.5-2.6B 开源：Liquid AI 开源 LFM2.5-2.6B 模型，专为边缘设备设计，无需 GPU 即可在树莓派、手机等本地硬件运行。
+
+模型仅 2.6B 参数，内存占用低于 2.5GB，原生支持工具调用，在 ToolSandbox 等智能体基准测试中超越 Qwen3.5-9B。
+
+采用 LFM Open License v1.0，年收入低于 1000 万美元可商用，适合对隐私和延迟敏感的企业场景。
+
+📎 [原文链接](https://venturebeat.com/technology/no-cloud-no-gpus-no-problem-liquid-ais-new-model-lfm2-5-2-6b-brings-powerful-ai-agents-to-devices-as-small-as-a-raspberry-pi)
+
+
+### 9. AWS AgentCore 网关支持速率限制
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-08-07/d37b19ecf9b0.png)
+
+AWS AgentCore 网关支持速率限制：AWS 宣布 Amazon Bedrock AgentCore 网关支持配置 AI 流量速率限制，允许按用户或用户组精细控制对工具、推理模型和智能体的消耗。
+
+支持请求速率（RPS/RPM）、令牌吞吐量（TPM）和并发连接数（CPS）三种限制类型，可通过 JWT 或 IAM 维度键实现基于角色的差异化配额管理。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/configure-rate-limits-for-ai-traffic-on-agentcore-gateway/)
+
+
+### 10. Amazon SageMaker SDK 集成 LLM 优化
+
+Amazon SageMaker SDK 集成 LLM 优化：Amazon SageMaker Python SDK v3.17.0 新增 LLM 优化集成，支持在 Notebook 中自动化生成式 AI 推理部署的基准测试、配置推荐及一键部署。
+
+开发者可通过 `sagemaker.serve.ai_inference_recommender` 接口，根据实际流量模式自动评估实例类型与框架配置，直接输出按成本性能排序的部署建议并部署至实时端点。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/llm-optimization-integration-for-amazon-sagemaker-python-sdk/)
+
+
+### 11. GitHub Copilot 应用斜杠命令指南
+
+GitHub Copilot 应用斜杠命令指南：GitHub Copilot 桌面应用新增 /plan、/spar、/autopilot 等斜杠命令，支持在聊天编辑器中通过输入 / 快速调用。
+
+/plan 用于拆解任务与制定实施路径，/spar 用于压力测试架构假设，/autopilot 用于自动执行多步骤代码修改。
+
+这些命令将 Copilot 从单纯聊天升级为具备规划、辩论和自动执行能力的 Agent 工作流，提升复杂开发场景效率。
+
+📎 [原文链接](https://github.blog/ai-and-ml/github-copilot/a-guide-to-slash-commands-in-the-github-copilot-app/)
+
+
+### 12. GreatArrow.ai 开放测试版上线
+
+GreatArrow.ai 开放测试版上线：GreatArrow.ai 是一款面向 AI 助手的共享记忆与工具层，支持 Claude、ChatGPT、Cursor 等 17 个客户端，实现跨平台上下文同步。
+
+它连接 Gmail、GitHub 等 38 个工具，提供 315 项实际执行动作，支持多步代理编排，个人版 $39/月，企业版定制。
+
+📎 [原文链接](https://www.greatarrow.ai)
+
+
+### 13. Hermes Agent 0.20 更新
+
+Hermes Agent 0.20 更新：Hermes Agent 发布 0.20 版本，集成 firecrawl-anydoc 实现 PDF/Excel 等文件秒转 Markdown，无需额外配置。
+
+新增 A2A 多代理交互与对话式语音模式，优化本地模型推理；隐藏底部状态栏，可通过 ⌘+K 调出命令面板调整审批模式。
+
+📎 [原文链接](https://zhidx.com/p/582712.html)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. AWS 开源 Dogwood AI 代理运行时验证
+
+AWS 开源 Dogwood AI 代理运行时验证：AWS 开源 Dogwood，这是专为 AI 代理设计的运行时验证治理语言，基于时序逻辑解决代理工具调用的安全风险。
+
+Dogwood 支持在 AgentCore Policy 中回溯查看近期事件，通过 formerly 等操作符实现前提条件、速率限制和顺序约束，兼容现有 Cedar 策略。
+
+该语言采用 Apache 2.0 许可，提供解析器、验证器和参考解释器，帮助开发者在 IDE 中定义代理行为策略。
+
+📎 [原文链接](https://aws.amazon.com/blogs/opensource/introducing-dogwood-runtime-verification-for-ai-agents/)
+
+
+### 2. vLLM V1 引擎深度解析
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-08-07/f5b11a757164.png)
+
+vLLM V1 引擎深度解析：vLLM 发布 V1 引擎架构深度解析，拆解 Paged Attention、Continuous Batching 及 Prefix Caching 等核心机制。
+
+文章基于 commit 42172ad，详细分析调度器如何混合 Prefill 与 Decode 请求，以及 KV Cache 块分配逻辑。
+
+涵盖从单 GPU 离线推理到多节点分布式服务层的完整技术栈，适合 vLLM 贡献者及高性能推理开发者阅读。
+
+📎 [原文链接](https://www.aleksagordic.com/blog/vllm)
+
+
+### 3. MarketDaily 多模型议会架构
+
+MarketDaily 多模型议会架构：MarketDaily 采用 9 模型议会加法官仲裁架构，通过 31 项确定性审计门控解决金融场景下的静默退化问题。
+
+系统利用免费层配额工程与本地模型兜底，强制方向由代码锁定，防止幻觉，保障零容错率下的生产可靠性。
+
+📎 [原文链接](https://marketdaily.ai/blog/eng-llm-council-judge-en-202608)
+
+
+### 4. Meta Ax 自适应实验指南
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-08-07/7d1c85f20db4.webp)
+
+Meta Ax 自适应实验指南：Meta 发布 Ax 实用编码指南，演示如何使用 Client API 进行自适应实验，涵盖受约束贝叶斯优化、多目标优化及参数约束场景。
+
+教程提供完整代码，展示在合成数据集上调参并可视化帕累托前沿，支持实验持久化以便复用。
+
+📎 [原文链接](https://www.marktechpost.com/2026/08/06/adaptive-experimentation-with-metas-ax-a-practical-coding-guide/)
+
+
+### 5. stillsane 开源 LLM 漂移检测工具
+
+stillsane 开源 LLM 漂移检测工具：stillsane 是开源的 LLM 应用漂移金丝雀工具，通过纯 HTTP 定时探测端点，无需代码插桩或 SDK 即可检测模型更新、提示词修改或 RAG 漂移导致的质量下降。
+
+工具采用稳健统计学习每个探测点的方差，自动设定阈值，避免误报；支持 CI 集成，漂移时退出码非零，适合无评估指标的生产环境。
+
+📎 [原文链接](https://pypi.org/project/stillsane/)
+
+
+### 6. AWS 博客：Bedrock 构建智能体部署器
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-08-07/9f13415e6032.png)
+
+AWS 博客：Bedrock 构建智能体部署器：AWS 博客发布文章，介绍 PDI Technologies 如何利用 Amazon Bedrock 和 AWS Lambda 构建 PDI Brew 平台，实现非技术人员通过自然语言生成并部署多租户 Web 应用。
+
+架构采用“规划智能体”与“配置智能体”分离模式，支持在外部 AI 助手或 AWS 信任边界内生成部署清单，由 Lambda 自动编排资源创建，提供 SSO 集成与受治理的 AI 功能。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/building-an-agentic-app-deployer-with-amazon-bedrock-and-aws-lambda/)
+
+
+### 7. Qwen 3.8-Max 实际成本分析
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-08-07/d10579cfbc4a.png)
+
+Qwen 3.8-Max 实际成本分析：Qwen 3.8-Max 在 5-12 小时长时预算下编码表现领先，但在 45 分钟短预算下基准测试垫底，揭示原始分数无法反映实际账单。
+
+文章指出高推理模型易因 Token 上限或超时导致失败，建议开发者关注“每个成功任务成本”而非单纯每 Token 价格。
+
+推荐将超时与错误区分统计，并检查部署时的默认努力设置，避免以最高推理配置运行导致成本激增。
+
+📎 [原文链接](https://venturebeat.com/orchestration/qwen-3-8-max-and-claude-opus-5-show-why-raw-benchmark-scores-dont-predict-the-bill)
+
+
+### 8. Prime Agent 开源 RLM 编码框架
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-08-07/7d1c85f20db4.webp)
+
+Prime Agent 开源 RLM 编码框架：Prime Intellect 开源 Prime Agent，这是一个基于递归语言模型 (RLM) 的自改进编码框架，采用 MIT 许可证。
+
+框架核心为持久化 IPython 内核，子代理作为函数调用运行，支持 Opus 5、GLM-5.2 等模型及多种 API 接入。
+
+在 ARC-AGI-3 基准测试中，Opus 5 模型得分 95.5%，超越人类专家基线 95.4%，且支持 `/refine` 自改进机制。
+
+📎 [原文链接](https://www.marktechpost.com/2026/08/06/prime-intellect-releases-prime-agent/)
+
+
+### 9. 智能体 AI 能耗是普通提示 600 倍
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-08-07/2cee56e2d722.jpg)
+
+智能体 AI 能耗是普通提示 600 倍：Stripe 工程师实测显示，使用 Claude Code 等智能体工具时，单次提示触发约 12 次模型调用，处理 290 万 token，能耗约 150Wh，是普通聊天提示（0.24Wh）的 600 倍。
+
+智能体 96% 的能耗来自缓存读取，全年重度使用智能体产生的碳排放约 370kgCO2e，相当于美国普通家庭用电量的十分之一。
+
+文章指出单纯提升芯片能效无法解决总能耗问题，建议通过切换小模型处理简单任务、使用清洁电力等杠杆降低 AI 碳足迹。
+
+📎 [原文链接](https://www.theclimatebrink.com/p/the-real-energy-use-of-agentic-ai)
+
+
+### 10. AWS 发布 Codex 可观测性方案
+
+AWS 发布 Codex 可观测性方案：AWS 发布技术指南，指导开发者利用 OpenTelemetry 和 Amazon CloudWatch 构建 Amazon Bedrock 上 Codex 的可观测性。该方案通过本地 Collector 收集 Codex 指标并路由至 CloudWatch，支持按用户、团队、部门追踪 API 请求、Token 消耗及
+
+方案提供预置的 CodexOnBedrock 仪表板，可分析活跃用户、对话轮数及 Token 使用量，帮助技术管理者区分广泛采用与孤立实验，并支持通过 IAM 主体数据进行成本分摊。
+
+实施包含启用 CloudWatch OTel 功能、部署仪表板、生成开发者配置及配置最小权限访问等步骤，参考代码已开源在 AWS 指导仓库中。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/build-visibility-for-codex-on-amazon-bedrock-with-opentelemetry-and-amazon-cloudwatch/)
+
+
+### 11. LLM 邮件主题行线程断裂修复
+
+LLM 邮件主题行线程断裂修复：Gmail 建立线程需同时匹配 References 头与主题行，LLM 生成的创意主题会导致线程断裂。
+
+修复方案：主题行由代码从原文衍生（Re: 原文），并透传 Message-ID 设置 In-Reply-To。
+
+模型仅负责正文，主题降级为无线程场景的后备，确保协议字段由代码控制。
+
+📎 [原文链接](https://ddz.dev/blog/llm-subject-line-gmail-threading/)
+
+
+### 12. Korvo ARF 开源
+
+Korvo ARF 开源：Korvo 开源 ARF（Atlas Record Format）v0.1，这是一种用于 AI 评估运行的标准化 JSON 记录格式，旨在解决评估分数缺乏上下文和不可复现的痛点。
+
+ARF 通过严格的 JSON 键排序和数组顺序保留规则，将评估数据转化为唯一的字节序列并计算 SHA-256 摘要，确保不同实现能计算出相同的哈希值，实现离线验证。
+
+该格式包含 Question、Source、Claim、Evaluation 等 10 种记录类型，支持完整的血缘追踪和审查机制，采用 Apache-2.0 许可，参考实现代码已托管在 GitHub。
+
+📎 [原文链接](https://www.korvo.xyz/arf)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. OpenAI 联合四家巨头达成 AI Agent 标准
+
+OpenAI 联合四家巨头达成 AI Agent 标准：OpenAI 与 Anthropic、Cohere、Mistral、Perplexity 四家 AI 巨头共同宣布达成 AI Agent 插件（Skills）的开放标准协议。该协议旨在统一 AI 智能体调用外部工具和服务的接口规范，解决当前各模型生态封闭、互操作性差的问题，推动 AI Agent 跨平台
+
+📎 [原文链接](https://thenextweb.com/news/openai-agent-plugins-open-standard-skills-mcp)
+
+
+### 2. Google AI 权力回归 Brin
+
+Google AI 权力回归 Brin：据 FT 报道，Google 内部 AI 权力结构发生变动，DeepMind 联合创始人 Demis Hassabis 退出核心决策层，AI 战略主导权重新回归联合创始人 Sergey Brin。
+
+📎 [原文链接](https://www.ft.com/content/1453e9c2-4922-482f-8720-0bafd7e07df7)
+
+
+### 3. AMD 收购 AI 芯片初创公司 Taalas
+
+AMD 收购 AI 芯片初创公司 Taalas：AMD 宣布收购多伦多 AI 芯片初创公司 Taalas，其加速器针对单个 AI 模型硬连线，非通用型。
+
+该技术承诺成本更低且推理速度比传统 GPU 快数千倍，旨在补充 AMD 的 GPU 产品线，提升低延迟应用性能。
+
+Taalas 自 2023 年成立获投 2.19 亿美元，其芯片已运行 Meta Llama 3.1 小版本，AMD 计划将其整合进 Helios 系统。
+
+📎 [原文链接](https://www.cnbc.com/2026/08/06/amd-buys-taalas-startup-that-hardwires-ai-models-into-its-silicon.html)
+
+
+### 4. DeepSeek 拟上调 API 定价
+
+DeepSeek 拟上调 API 定价：DeepSeek 官方公告计划近期整体上调 API 服务定价，预计涨幅较大，建议用户合理安排使用。具体调价方案以正式通知为准。
+
+📎 [原文链接](https://www.tmtpost.com/8094590.html)
+
+
+### 5. 宇树科技科创板上市
+
+宇树科技科创板上市：宇树科技科创板IPO发行价150.80元/股，总市值609.9亿元，市盈率219.23倍，远超市场预估的420亿。
+
+2025年营收16.99亿元，人形机器人出货5511台，全球份额32.4%，成为具身赛道少数规模化盈利企业。
+
+此次上市终结了行业估值悬念，推动具身智能赛道从一级市场“故事驱动”转向二级市场“数据驱动”定价。
+
+📎 [原文链接](https://www.tmtpost.com/8094474.html)
+
+
+### 6. 字节跳动 AI 战略转向 To B
+
+字节跳动 AI 战略转向 To B：字节跳动 CEO 梁汝波在年中全员会上承认大语言模型落后于海外领先者，决定坚持自研并优化长期技术基础。
+
+公司明确将抖音和豆包作为两大“粗主线”，并整合飞书、火山引擎资源，将 AI 业务重心全面转向 To B 生产力场景。
+
+📎 [原文链接](https://www.tmtpost.com/8094419.html)
+
+
+### 7. 蚂蚁灵波拟募资15亿
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-08-07/e7907ef9aaf5.jpg)
+
+蚂蚁灵波拟募资15亿：蚂蚁集团旗下具身智能公司蚂蚁灵波启动首轮独立融资，拟募资15亿元人民币，目标年底完成二轮融资。
+
+其开源模型 LingBot-VLA 2.0 已适配宇树、智元等17个机器人品牌的20多种构型，并在国大药房完成多品牌机器人协同作业测试。
+
+📎 [原文链接](https://www.tmtpost.com/8094094.html)
+
+
+### 8. 和平精英 AI 队友累计体验破 1.1 亿
+
+和平精英 AI 队友累计体验破 1.1 亿：腾讯《和平精英》推出 AI 队友功能，累计体验用户已突破 1.1 亿，周末日活达 1770 万，成为行业首个大规模落地的 AI 游戏伙伴。
+
+该功能由混元 3.0 驱动，支持跨局记忆玩家偏好、语音指令交互及战术配合，玩家与 AI 组排时主动开麦交流比例接近 75%。
+
+同时上线的绿洲 AI 编辑器允许玩家通过自然语言生成地图和玩法，降低 UGC 创作门槛，推动玩家从内容消费者转变为创造者。
+
+📎 [原文链接](https://zhidx.com/p/582429.html)
+
+
+### 9. 美国FCC禁止中国具身智能设备
+
+美国FCC禁止中国具身智能设备：美国联邦通信委员会（FCC）将人形机器人、四足机器人及并网逆变器纳入管制清单，禁止新机型进入美国市场，直接切断硅谷团队采购中国底盘及核心零部件的二次开发路径。
+
+新规虽未点名中国，但实质阻断中国具身智能企业出海，促使里工实业、智元机器人等加速转向欧洲、东南亚市场，并聚焦本土工业场景落地。
+
+📎 [原文链接](https://www.tmtpost.com/8093205.html)
+
+
+### 10. Suno 宣布推出音频水印
+
+Suno 宣布推出音频水印：AI 音乐生成平台 Suno 宣布将推出数字水印和指纹识别技术，用于标记平台生成的音轨，并限制下载以防止在其他流媒体平台被滥用。
+
+此举旨在应对环球音乐、索尼等唱片公司提起的多项版权诉讼，同时 Suno 已与 Musixmatch 合作引入版权检测系统，并更新了禁止仿冒的社区准则。
+
+📎 [原文链接](https://techcrunch.com/2026/08/06/amid-legal-battles-suno-says-it-will-start-watermarking-songs/)
+
+
+### 11. BMS 部署 NVIDIA Vera Rubin AI 集群
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-08-07/340ab71ed3d8.jpg)
+
+BMS 部署 NVIDIA Vera Rubin AI 集群：百时美施贵宝 (BMS) 宣布部署基于八套 DGX Vera Rubin NVL72 的第二套 SuperPOD 集群，每兆瓦性能达旧设施 10 倍，全面开放给内部科学家。
+
+该集群整合 BioNeMo Agent Toolkit 与 Mission Control 工具，实现全球站点统一数据平面，支持从靶点识别到先导化合物优化的全流程 AI 加速。
+
+BMS 已运营 AI 集群三年，利用 AI 辅助靶点识别节省数周工时，并扩展 CELMoD 化合物库用于血液癌症治疗，新算力旨在饱和利用以加速阿尔茨海默病等药物研发。
+
+📎 [原文链接](https://blogs.nvidia.com/blog/bristol-myers-squibb-building-life-science-industrys-most-advanced-ai-factory-on-nvidia-vera-rubin/)
+
+
+### 12. 谷歌拟15亿美元授权Mechanize
+
+谷歌拟15亿美元授权Mechanize：谷歌正与AI编程评测初创公司Mechanize洽谈超15亿美元交易，拟以非独家授权方式获取其技术，并吸纳部分员工加入模型评估与开发团队。
+
+Mechanize专为AI编程智能体构建软件工程仿真沙盒及长任务评测体系（如GBA Eval），旨在通过真实开发环境强化模型复杂任务处理能力。
+
+此举延续谷歌“挖人+授权”策略，意在补强AI编程模型短板，应对OpenAI和Anthropic在编程智能体领域的竞争。
+
+📎 [原文链接](https://zhidx.com/p/582732.html)
+
+
+### 13. GitHub 恶意软件警告扩展至八大生态
+
+GitHub 恶意软件警告扩展至八大生态：GitHub 将恶意软件警告从 npm 扩展至 PyPI、Maven、RubyGems、NuGet、Go、crates.io 和 PHP Composer 共八大包生态。
+
+Dependabot 后端集成 OpenSSF malicious-packages 仓库数据，通过自动化导入器处理 15,000+ 条 OSV 格式报告，实现自动警报。
+
+构建三层防护机制应对上游数据风险：设置批量上限、记录溯源信息、支持一键回滚，确保误报可快速修复。
+
+📎 [原文链接](https://github.blog/security/supply-chain-security/how-we-took-malware-advisories-beyond-npm/)
+
+
+### 14. 自变量机器人 秘密递表港交所
+
+自变量机器人 秘密递表港交所：具身智能企业自变量机器人已向港交所秘密递表，估值突破200亿元人民币，其核心优势在于全栈自研的“世界统一模型架构”（WUM）及自建数据工厂。
+
+公司近期连续完成B至C轮融资，获阿里、字节、美团等巨头领投，并计划于Q4发布第三代机器人产品，成为首家主打端到端具身模型的上市后备企业。
+
+📎 [原文链接](https://www.tmtpost.com/8094329.html)
+
+
+### 15. SpaceX Q2 财报发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-08-07/593001caab38.png)
+
+SpaceX Q2 财报发布：SpaceX 发布上市后首份财报，Q2 营收 78.14 亿美元（同比增 92%），但 AI 业务单季资本开支高达 158.28 亿美元，占总支出的 86%，导致盘后股价暴跌超 11%。
+
+尽管 Starlink 连接业务利润释放，但 AI 基础设施的重资产投入引发华尔街对投资回报率的担忧；公司通过 IPO 和发债囤积资金，试图在地面 AI 云服务验证商业闭环后，再推进太空算力网络。
+
+📎 [原文链接](https://www.tmtpost.com/8093971.html)
+
+
+### 16. 中际旭创港股IPO破发
+
+中际旭创港股IPO破发：中际旭创在港交所上市，募资约614亿港元，首日股价下跌2.04%。
+
+新易盛、天孚通信等光模块龙头集体赴港融资，合计募资规模近1100亿港元。
+
+资金主要用于1.6T/3.2T研发、上游芯片收购及海外扩产，以谋求产业链定价权。
+
+📎 [原文链接](https://www.tmtpost.com/8091646.html)
+
+
+### 17. OpenAI AI 智能音箱售价曝光
+
+OpenAI AI 智能音箱售价曝光：OpenAI 正联合 Jony Ive 的 LoveFrom 工作室开发一款 AI 智能音箱，预计 2027 年发布，售价 300-400 美元。
+
+该设备采用甜甜圈造型和高品质金属材质，旨在成为 ChatGPT 的物理实体化身，目前正面临苹果的商业机密诉讼。
+
+📎 [原文链接](https://techcrunch.com/2026/08/06/openais-new-ai-smart-speaker-will-reportedly-sell-for-between-300-and-400/)
+
+
+### 18. JumpCloud 发布 Agentic IAM 框架
+
+JumpCloud 发布 Agentic IAM 框架，针对 AI 智能体缺乏正式身份治理的问题，提出从发现、注册、最小权限到持续治理的四阶段管理流程。
+
+该框架主张将智能体注册为具有明确所有者的正式身份，采用即时凭证和凭证屏蔽技术，旨在解决影子 AI 和僵尸智能体带来的安全风险。
+
+JumpCloud 调研显示 83% 组织非人类身份超人类用户，但仅 21% 实施专门治理，统一控制层可提升 5 倍智能体部署效率。
+
+📎 [原文链接](https://venturebeat.com/security/ai-agents-are-part-of-your-team-now-heres-how-to-secure-all-of-them)
+
+
+### 19. OpenAI研究员加入脑机接口创企
+
+OpenAI研究员加入脑机接口创企：前OpenAI研究员娜奥米·巴什坎斯基离职，加入脑机接口初创公司Conduit担任创始研究员，致力于训练通过非侵入式设备读取人类思维意图的AI模型。
+
+该团队正利用神经信号结合大语言模型推测用户意图，当前技术阶段被类比为“GPT-2时代”，预计2027年可实现通过思维控制编程工具。
+
+📎 [原文链接](https://zhidx.com/p/582841.html)
+
+
+### 20. DeepSeek等模型公司AI办公生存战
+
+DeepSeek等模型公司AI办公生存战：腾讯、阿里、字节等巨头通过组织变革重押AI办公，掌握企业微信、钉钉、飞书等核心入口。智谱、Kimi、DeepSeek等模型公司因缺乏C端流量和企业客户关系，面临被巨头自研模型替代的风险。
+
+智谱通过政企私有化部署建立壁垒，Kimi尝试做任务入口，DeepSeek通过开源低价做底层地基。模型公司需解决数据安全、权限控制和ROI问题，才能将技术声量转化为持续收入。
+
+📎 [原文链接](https://www.tmtpost.com/8094022.html)
+
+
+### 21. Naïve 完成 2850 万美元融资
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-08-07/1b3afe632b94.jpg)
+
+Naïve 完成 2850 万美元融资：Naïve 完成 2850 万美元 A 轮融资，其 API 可自动化注册 LLC、配置支付邮箱及云基础设施，目前已有 3 万开发者用户。
+
+公司正构建模型路由、记忆层及无服务器运行时，旨在降低 AI 智能体运行的推理成本，支持自主型企业运营。
+
+📎 [原文链接](https://techcrunch.com/2026/08/06/naive-raises-28-5m-to-automate-the-grunt-work-of-setting-up-and-running-a-company/)
+
+
+### 22. Malachyte 融资1000万美元
+
+Malachyte 融资1000万美元：前 Spotify 推荐引擎核心团队成员创立的 Malachyte 完成 1000 万美元种子轮融资，旨在将 Vector AI 技术引入电商领域。
+
+该平台通过实时捕捉悬停、点击等行为信号预测用户意图，无需账户或历史记录即可实现个性化推荐，目前已上线 Shopify 集成。
+
+📎 [原文链接](https://techcrunch.com/2026/08/06/ex-spotify-employees-raise-10m-to-bring-the-ai-behind-its-recommendations-to-e-commerce/)
+
+
+### 23. Mirendil 获 Google Cloud 1亿美元协议
+
+Mirendil 获 Google Cloud 1亿美元协议：AI 初创公司 Mirendil 与 Google Cloud 签署超 1 亿美元多年期协议，获取 TPUs 和 Nvidia GPUs 算力以开发自我改进型 AI。
+
+该交易占 Mirendil 种子轮融资额一半，旨在通过混合匹配不同芯片降低训练成本，目标是构建能自动进行前沿 AI 研究的系统。
+
+📎 [原文链接](https://techcrunch.com/2026/08/06/exclusive-mirendil-inks-100m-google-cloud-deal-to-scale-self-improving-ai/)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
