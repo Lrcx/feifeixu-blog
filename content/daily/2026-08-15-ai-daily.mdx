@@ -1,0 +1,352 @@
+---
+title: "08.15 Qwen3.8开源，智谱GLM-5.3最强 | AI 早报"
+date: "2026-08-15"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 08.15 Qwen3.8开源，智谱GLM-5.3最强 | AI 早报
+
+> 2026年08月15日 周六 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- Qwen3.8-27B 开源，支持1M上下文及推理控制 —— 27B 参数兼顾性能与家用显卡部署能力
+- 智谱 GLM-5.3 编程逼近 Fable 5，成最强开源安全模型 —— 国产最强开源模型，编程安全双突破
+- OpenAI 年化营收超400亿美元，任命Wiz前总裁为首席营收官 —— OpenAI 营收翻倍，加速企业市场布局
+- 小马智行 Robotruck 第四代量产，硬件成本降70% —— 无人货运从技术验证走向规模化算账
+- Grok 4.6 智能指数61分，成本0.84美元 —— xAI 模型性能成本双突破
+
+**今日共收录 30 条动态，涵盖 模型与产品 6条、技术洞察 7条、行业动态 17条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. Qwen3.8-27B 开源
+
+Qwen3.8-27B 开源：阿里通义千问正式开源 Qwen3.8-27B 原生多模态稠密模型，采用 Apache 2.0 协议，支持免费下载、部署及商用。
+
+该模型支持 262K 原生上下文（通过 YaRN 技术外推至 1M Tokens），编程与办公场景性能超越 Qwen3.7-Plus，新增 reasoning_effort 功能可按任务难度控制思考深度以节省资源。
+
+模型已上线 Hugging Face 和魔搭社区，千问系列累计开源 460 余个模型，全球下载量超 30 亿次。
+
+📎 [原文链接](https://www.qbitai.com/2026/08/473379.html)
+
+
+### 2. 智谱 GLM-5.3 发布
+
+智谱 GLM-5.3 发布：智谱发布 GLM-5.3 开源大模型，编程与智能体能力接近 Claude Fable 5，在 High 档位下以更低 Token 消耗超越 Opus 4.8 准确率。
+
+该模型获称最强开源安全模型，CyberGym 白盒代码审查得分 84.5%，具备自动发现、修复漏洞及回归测试能力，实测可交付完整模拟游戏。
+
+📎 [原文链接](https://www.qbitai.com/2026/08/473038.html)
+
+
+### 3. 百度库库AI双端上线
+
+百度库库AI双端上线：百度在AI Day上发布通用智能体GenFlow中文名“库库AI”，推出独立客户端与小程序，月活突破2500万。
+
+产品打通文库网盘，支持Office生成、AI视频及金融研报建模，具备多设备无缝协同与企业级数据安全能力。
+
+📎 [原文链接](https://zhidx.com/p/585214.html)
+
+
+### 4. OpenRouter 统一 LLM API 介绍
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-08-15/83fa922aada2.jpg)
+
+OpenRouter 统一 LLM API 介绍：OpenRouter 是统一 LLM API 代理服务，提供 300+ 模型访问，通过标准化接口和单一 API Key 解决多提供商集成难题。
+
+核心功能包括自动故障转移、统一账单监控及 5.5% 加价透明定价，集成仅需修改端点 URL 和 Key，但增加 100-200ms 延迟。
+
+📎 [原文链接](https://trpevski.com/blog/openrouter-unified-llm-api-with-routing-and-fallbacks/)
+
+
+### 5. AWS SageMaker AI 集成 Bedrock AgentCore
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-08-15/4640260b547c.png)
+
+AWS SageMaker AI 集成 Bedrock AgentCore：AWS 发布技术指南，展示如何在 Amazon Bedrock AgentCore 运行时中混合调用 Bedrock 托管模型与 SageMaker AI 上的自部署模型（如 Qwen 3.5 9B），无需重写智能体框架。
+
+通过 Strands Agents 框架实现多智能体协作，协调器使用 Claude Haiku 4.5，专用智能体分别调用 Claude Sonnet 4.6 和 SageMaker 端点，解决成本优化与数据驻留问题。
+
+针对 SageMaker 端点缺乏自动令牌遥测的问题，提供基于 OpenTelemetry 的自定义解决方案，实现跨模型调用的完整成本监控与延迟追踪。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/building-agentic-workflows-with-sagemaker-ai-and-bedrock-agentcore/)
+
+
+### 6. Osaurus v0.22.22 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-08-15/7335a14da5bd.webp)
+
+Osaurus v0.22.22 发布：Osaurus 发布 v0.22.22 版本，这是基于原生 Swift 开发的开源 AI 客户端，专为 Apple Silicon Mac 设计。
+
+支持一键连接 Ollama、MLX 或 LM Studio，模型完全在本地离线运行，数据不离开设备，支持构建智能体并拖入文件执行任务。
+
+采用 MIT 许可，永久免费，无需账户即可使用，支持 macOS 15.5+，可通过 Homebrew 安装。
+
+📎 [原文链接](https://osaurus.ai)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. GitHub 发布 Agent 应用
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-08-15/76df3f4e34c5.png)
+
+GitHub 发布 Agent 应用，支持在 PR 评论中直接调用 Amplitude、Endor Labs、LaunchDarkly 和 PagerDuty 等第三方服务，实现从需求分析、依赖审查到灰度发布的全流程自动化。
+
+该功能基于 Copilot Cloud Agent 技术，开发者无需离开 GitHub 即可获取数据洞察、执行安全扫描及配置功能标志，所有操作均通过 @mention 触发并生成提交。
+
+首批 Agent 应用已上线 GitHub Marketplace，涵盖 Packfiles、Miro、Bright Security、SonarQube 和 Octopus Deploy 等工具，开发者可直接安装并集成至现有工作流。
+
+📎 [原文链接](https://github.blog/ai-and-ml/github-copilot/how-to-bring-your-software-delivery-workflow-into-github-with-agent-apps/)
+
+
+### 2. OpenRouter 搜索基准测试报告
+
+OpenRouter 搜索基准测试报告：OpenRouter 发布实时网络搜索基准测试，对比 Exa、Perplexity 等引擎及 Claude Opus 5、GPT-5.6 等模型。
+
+数据显示增加搜索轮次（预算）对质量提升最显著，从 1 轮增至 25 轮可使 BrowseComp 得分翻倍，且成本增幅有限。
+
+模型选择比引擎更重要，前沿模型平均比高性价比模型高出 15 分，建议开发者根据任务复杂度设定搜索轮次预算。
+
+📎 [原文链接](https://openrouter.ai/blog/announcements/web-search-benchmark/)
+
+
+### 3. Parasail LLM推理优化指南
+
+Parasail LLM推理优化指南：Parasail 发布 LLM 推理优化指南，深入解析 Prefill（预填充）与 Decode（解码）两个阶段的性能差异及优化策略。
+
+文章指出 Prefill 阶段受计算能力限制，主要影响首字延迟（TTFT）；Decode 阶段受内存带宽限制，主要影响流式输出平滑度（ITL）。
+
+建议开发者根据实际工作负载（如长上下文或长输出）分别测量 TTFT 和 ITL，并权衡分块预填充、KV 缓存复用及解耦服务等架构方案。
+
+📎 [原文链接](https://www.parasail.io/blog/prefill-vs-decode-llm-inference)
+
+
+### 4. Shoehorn 开源 LLM 量化库
+
+Shoehorn 开源 LLM 量化库：Shoehorn 是一个开源库，旨在将大语言模型量化以适配 Mac 设备的统一内存限制。
+
+实测在 24GB 内存的 M4 MacBook Pro 上成功运行 Qwen3-30B-A3B 模型，推理速度达到 50 tok/sec，解决了中端硬件难以运行超大模型的痛点。
+
+📎 [原文链接](https://github.com/notactuallytreyanastasio/shoehorn)
+
+
+### 5. AWS Nova Forge 多轮 RL 教程
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-08-15/101ba24466df.png)
+
+AWS Nova Forge 多轮 RL 教程：AWS 发布博客详解 Amazon Nova Forge 中多轮强化学习（RFT）的自定义奖励函数设计，支持 Bring Your Own Orchestration (BYOO) 模式。
+
+文章指导开发者使用 GRPO 算法，结合结果、行为和惩罚三类信号构建复合奖励，并解决 Lambda 超时及稀疏奖励问题。
+
+提供基于 Amazon SageMaker HyperPod 和 ECS 的完整基础设施代码及示例，帮助开发者优化模型在代理式任务中的泛化能力。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/custom-reward-functions-for-multi-turn-reinforcement-learning-with-amazon-nova-forge/)
+
+
+### 6. Simon Willison 博客观点
+
+Simon Willison 博客观点：Simon Willison 博客介绍 Doug Turnbull 提出的标签分类新思路：让 LLM 生成新颖的虚构标签，再通过向量嵌入与现有语料库比对匹配，以解决标签体系过大导致 LLM 无法一次性处理的问题。
+
+📎 [原文链接](https://simonwillison.net/2026/Aug/14/dont-classify-hallucinate/)
+
+
+### 7. Simon Willison 播客分享 AI 编程观
+
+Simon Willison 播客分享 AI 编程观：开源开发者 Simon Willison 在《Talking Postgres》播客中分享 AI 编程实践，提出判断 AI 生成代码是否可发布的黄金标准：“我能否向别人解释清楚这段代码？”
+
+他指出当前开发瓶颈已从编写代码转向理解代码，强调工程管理能力在管理 AI 智能体时的关键作用，并警告“垃圾内容代理”毫无价值。
+
+📎 [原文链接](https://talkingpostgres.com/episodes/how-ai-is-changing-software-development-with-simon-willison)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. OpenAI 年化营收破400亿美元
+
+OpenAI 年化营收破400亿美元：OpenAI 年化营收据彭博社报道突破400亿美元，较2025年末翻倍，增长主要得益于AI编程工具、订阅及广告业务。
+
+OpenAI 任命谷歌旗下Wiz前总裁达利·拉吉奇为新任首席营收官，负责搭建全球营收体系并推进上市准备。
+
+OpenAI 近期下调GPT-5.6 Luna和Terra价格，旨在与Anthropic争夺企业及开发者客户，同时多名高管近期离职。
+
+📎 [原文链接](https://zhidx.com/p/585093.html)
+
+
+### 2. 小马智行 Robotruck 第四代量产
+
+小马智行 Robotruck 第四代量产：小马智行第四代无人驾驶重卡进入量产阶段，硬件成本较上一代下降约70%，计划2-3年内在国内投放500-1000辆，覆盖高速干线、西北大宗运输及港口场景。
+
+基于Robotaxi供应链复用，无人轻卡同步下线，目标2030年规模达10万辆；商业模式探索TaaS（自营运输）与ADaaS（技术赋能）双轨并行。
+
+📎 [原文链接](https://www.tmtpost.com/8100924.html)
+
+
+### 3. Grok 4.6 发布
+
+Grok 4.6 发布：SpaceXAI 发布 Grok 4.6 模型，Artificial Analysis 评测智能指数达 61 分，追平 ChatGPT-5.6 Sol。该模型每任务成本仅 0.84 美元，相比竞品具备显著成本优势。
+
+Grok 4.6 的逆袭得益于收购 Cursor 后建立的 Co-design Loop，通过编程场景真实反馈数据持续优化模型，实现性能与成本的双重突破。
+
+📎 [原文链接](https://www.tmtpost.com/8103823.html)
+
+
+### 4. Google Gemini 移除可见水印
+
+Google Gemini 移除可见水印：Google 宣布在 Gemini 及 Flow 视频编辑器中提供开关，允许用户移除 AI 生成图像、视频和音频中的可见水印。
+
+该功能覆盖 Nano Banana、Omni 和 Lyria 模型，同时保留不可见的 SynthID 水印及 C2PA 元数据以保障透明度。
+
+Google 同步开源 Credentio 库，支持开发者在应用中嵌入本地验证机制，功能将于未来几天陆续上线。
+
+📎 [原文链接](https://techcrunch.com/2026/08/14/google-will-now-allow-users-to-remove-visible-watermark-from-its-ai-generations/)
+
+
+### 5. Meta 发布开源模型 Glimmer
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-08-15/fe8f785d6c67.jpg)
+
+Meta 发布开源模型 Glimmer：Meta 发布开源权重模型 Glimmer，允许开发者下载并在自有硬件上运行，与仅通过 API 提供的 Muse Spark 形成对比。
+
+此举配合扎克伯格关于 AI 应“服务于所有人”的公开信，旨在推动 AI 技术的广泛普及与本地化应用。
+
+📎 [原文链接](https://techcrunch.com/video/does-mark-zuckerberg-really-believe-ai-is-for-everyone/)
+
+
+### 6. 余家辉离职Meta创业
+
+余家辉离职Meta创业：前OpenAI研究员余家辉官宣离开Meta，入职仅一年零一个月。
+
+他在Meta期间领导TBD Lab多模态团队，主导发布了Muse Spark、Muse Video等模型。
+
+Meta近期离职研究员超900人，其创业方向暂未公开。
+
+📎 [原文链接](https://www.qbitai.com/2026/08/473261.html)
+
+
+### 7. 谷歌重组DeepMind
+
+谷歌重组DeepMind：谷歌宣布将DeepMind数个非技术团队移出并划归公司总部汇报，旨在减少中间环节，加速Gemini模型在搜索和Cloud等产品的集成。
+
+联合创始人谢尔盖·布林重新介入AI资源分配，推动“递归自我改进”方向；Koray Kavukcuoglu获重大决策权，负责落地执行。
+
+此举源于Gemini因TPU算力受限、内部协调及官僚流程导致版本推迟，谷歌正通过组织调整解决研发效率问题。
+
+📎 [原文链接](https://www.qbitai.com/2026/08/473153.html)
+
+
+### 8. Databricks 估值破1900亿美元
+
+Databricks 估值破1900亿美元：美国AI数据基础设施独角兽Databricks宣布完成50亿美元战略融资，投后估值达到1900亿美元（约合人民币1.29万亿元），半年内估值增长约42%。
+
+本轮融资由Coatue领投，资金将重点投入三款面向企业Agent的产品：无服务器Postgres数据库Lakebase、企业AI助手Genie，以及多模型治理工具Unity AI Gateway。
+
+公司第二季度同比增长超80%，年化营收突破70亿美元，Lakehouse业务营收超15亿美元，Lakebase营收突破1亿美元，拥有超2万家客户。
+
+📎 [原文链接](https://zhidx.com/p/585298.html)
+
+
+### 9. OpenAI 关停 Atlas 浏览器
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-08-15/8c48f03fcecf.jpg)
+
+OpenAI 关停 Atlas 浏览器：OpenAI 正式关停 AI 浏览器 Atlas，该产品上线仅 10 个月便停止服务。OpenAI 将 Atlas 的浏览器 Agent 能力迁移至 ChatGPT 和 Codex，标志着独立 AI 浏览器作为“下一代入口”的尝试失败。
+
+目前 Chrome 全球份额仍超 70%，巨头将 AI 直接嵌入现有浏览器，创业公司难以争夺默认入口。行业趋势转向将 AI 作为特定场景的生产工具，而非大众入口。
+
+📎 [原文链接](https://www.tmtpost.com/8103854.html)
+
+
+### 10. 四大厂商 LLM 批量 API 定价对比
+
+四大厂商 LLM 批量 API 定价对比：Google、OpenAI 和 Anthropic 的异步批量 API 均提供同步费率 50% 的折扣，而 xAI 的旗舰模型 Grok 4.6 无批量折扣，旧款仅 20%。
+
+Google Gemini Flash 促销价与批量折扣叠加，输入低至 $0.375/百万 token，比 2027 年标价低 75%；OpenRouter 存在 Luna 批量价格误标为同步价的情况。
+
+批量 API 牺牲实时流式响应换取成本减半，完成窗口期通常为 1-24 小时，适合非实时的大规模数据处理和离线推理任务。
+
+📎 [原文链接](https://www.digitalapplied.com/blog/llm-batch-api-pricing-landscape-2026)
+
+
+### 11. Google Health 接入雅培血糖数据
+
+Google Health 接入雅培血糖数据：Google Health 应用宣布接入雅培 Lingo 连续血糖监测仪数据，用户可同步查看血糖趋势。该功能由 Gemini 驱动，旨在为开发者提供整合多源个人健康信息的 AI 健康指导场景。
+
+📎 [原文链接](https://www.artificialintelligence-news.com/news/google-ai-health-coach-abbott-glucose-data/)
+
+
+### 12. SUSE Linux Enterprise Server 16 发布
+
+SUSE Linux Enterprise Server 16 发布：SUSE 发布 SUSE Linux Enterprise Server 16 (SLES 16)，定位为 AI 就绪的企业级操作系统，提供长期支持（LTS）。该版本旨在满足企业部署 AI 工作负载的基础设施需求，但原文未提供具体技术细节、性能数据或定价信息。
+
+📎 [原文链接](https://www.suse.com/news/suse-linux-enterprise-server-16-ai-ready-long-term-support/)
+
+
+### 13. Aibee 爱笔智能 空间智能方案
+
+Aibee 爱笔智能 空间智能方案：Aibee 爱笔智能专注于线下空间数字化，每天处理超 100 万小时真实视频数据，构建物理世界 AI 训练所需的稀缺 3D 场景数据。
+
+其 AI 解决方案覆盖购物中心、机场等场景，将 10 万平米 3D 建模成本从数百万降至 10 万元以内，计算效率提升百倍，已实现北京海淀交通优化等落地。
+
+📎 [原文链接](https://www.tmtpost.com/8104183.html)
+
+
+### 14. Manus 回购独立并重启服务
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-08-15/89c4a9f0745b.jpg)
+
+Manus 回购独立并重启服务：Manus 于 8 月 11 日发布用户信，宣布恢复独立公司身份并继续服务全球用户，由国内老股东出资回购。
+
+为满足监管要求，Manus 将于 8 月 23 日至 24 日删除 2025 年 12 月 29 日 Meta 宣布收购后产生的部分数据，以此与 Meta 完成合规切割。
+
+该事件被视为 AI 出海合规的典型案例，提示企业需从创立之初明确主体架构，避免后期“换壳”带来的合规风险。
+
+📎 [原文链接](https://www.tmtpost.com/8102509.html)
+
+
+### 15. Kog 融资加速 GPU 推理
+
+Kog 融资加速 GPU 推理：法国初创企业 Kog 完成种子轮融资，由 Varsity VC 领投，旨在通过底层软件优化挖掘传统 GPU 的推理性能潜力。
+
+团队仅 11 人，CEO 拥有网络安全背景，计划 9 月实现主流大模型 10 倍加速以启动 A 轮融资。
+
+目前主要面向企业级应用，通过 KIE 引擎降低延迟，已获 200 个业务线索及 Scaleway 支持。
+
+📎 [原文链接](https://techcrunch.com/2026/08/14/kog-is-going-deeper-to-squeeze-more-inference-out-of-gpus/)
+
+
+### 16. SUSE AI 1.0 部署指南
+
+SUSE 发布 SUSE AI 1.0 部署指南，详细说明了基于 SUSE Linux Enterprise Server 和 RKE2 集群的 AI 基础设施搭建流程。
+
+文档涵盖 NVIDIA GPU 驱动安装、Rancher Prime 管理、安全监控配置，以及 Ollama、vLLM、Open WebUI、Kubeflow 等核心 AI 组件的 Helm 安装与验证。
+
+📎 [原文链接](https://documentation.suse.com/suse-ai/1.0/html/AI-deployment/index.html)
+
+
+### 17. 李开复新书《AI 未来已来》发布
+
+李开复新书《AI 未来已来》发布：零一万物创始人李开复发布新书《AI 未来已来：CEO、组织、个人的时代红利》，定位为写给企业一号位的 AI 必答题。
+
+该书结合零一万物从 ToC 转向 ToB 的实战经历，探讨 AI 在供应链、库存等场景的落地，旨在为企业管理者提供决策参考。
+
+📎 [原文链接](https://www.tmtpost.com/8102428.html)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
