@@ -4,7 +4,7 @@ import ResourcesPageClient from "./ResourcesPageClient";
 
 export const metadata: Metadata = {
   title: "Agent 资源库",
-  description: "持续收藏的 Agent 学习网站、框架、论文、工具、课程和项目。",
+  description: "持续收藏的 Agent 学习网站、框架、论文、工具、课程、面试题集和项目。",
 };
 
 export default function ResourcesPage() {

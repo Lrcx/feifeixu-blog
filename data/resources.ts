@@ -72,6 +72,36 @@ export const agentResources: AgentResource[] = [
     featured: false,
     addedAt: "2026-05-21",
   },
+  {
+    title: "小林面试笔记 - AI 面试题",
+    url: "https://xiaolinnote.com/ai/",
+    description: "小林面试笔记的大模型面试问答，覆盖 Transformer、RAG、Agent、微调等高频 AI 面试题，讲解结构化并配有图示，适合系统过一遍八股。",
+    category: "面试",
+    tags: ["interview", "llm", "qna", "rag", "agent"],
+    level: "进阶",
+    featured: false,
+    addedAt: "2026-08-20",
+  },
+  {
+    title: "卡码笔记 - 大模型面经汇总",
+    url: "https://notes.kamacoder.com/interview/llm/",
+    description: "卡码笔记的大模型面试题与回答思路汇总，覆盖 Agent、RAG、Transformer、Vibe Coding 等大厂高频考点，适合当面试前的总复习清单。",
+    category: "面试",
+    tags: ["interview", "llm", "agent", "rag", "vibe-coding"],
+    level: "进阶",
+    featured: false,
+    addedAt: "2026-08-20",
+  },
+  {
+    title: "面试鸭 - AI 面试题库",
+    url: "https://www.mianshiya.com/banks?category=ai",
+    description: "面试鸭的 AI 面试题库合集，提供面向大厂岗位整理的 AI 精选面试题，支持按题库刷题，适合针对性练习。",
+    category: "面试",
+    tags: ["interview", "ai", "question-bank"],
+    level: "入门",
+    featured: false,
+    addedAt: "2026-08-20",
+  },
 ];
 
 export function getAllResources(): AgentResource[] {

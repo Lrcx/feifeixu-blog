@@ -57,7 +57,7 @@ export default function ResourcesPageClient({
                 Agent 资源库
               </h1>
               <p className="mt-4 max-w-2xl text-secondary leading-8">
-                这里放我筛过、想反复回看的 Agent 网站、框架、论文、工具和课程。它不是堆链接，更像一张可以长期维护的学习索引。
+                这里放我筛过、想反复回看的 Agent 网站、框架、论文、工具、课程和面试题库。它不是堆链接，更像一张可以长期维护的学习索引。
               </p>
             </div>
 
