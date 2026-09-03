@@ -1,0 +1,476 @@
+---
+title: "09.03 Gemini 3.8 发布，Claude 跑分翻倍 | AI 早报"
+date: "2026-09-03"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 09.03 Gemini 3.8 发布，Claude 跑分翻倍 | AI 早报
+
+> 2026年09月03日 周四 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- Google Gemini 3.8 Flash 发布，含网络安全专项模型 —— Google 发布新一代轻量级模型
+- Claude Fable 5.1 跑分翻倍，思考块 API 防蒸馏上锁 —— API 层防蒸馏升级，国内蒸馏路线受阻
+- 美国政府支持 OpenAI 使用版权材料训练大模型 —— AI 版权合规面临重大政策利好
+- 月之暗面Kimi K3 向三大云厂商索要最高30%分成 —— 中国AI模型向全球云巨头收取版税
+- World Labs Atlas 3机位重建3D世界，支持精确Camera Pose控制 —— 李飞飞发布全球首个多模态世界模型
+
+**今日共收录 40 条动态，涵盖 模型与产品 11条、开源热门 1条、技术洞察 12条、行业动态 16条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. Google Gemini 3.8 Flash 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-03/03775a21fa3e.webp)
+
+Google Gemini 3.8 Flash 发布：Google 发布 Gemini 3.8 Flash 及其网络安全专项版本，旨在提升推理速度与安全性。
+
+📎 [原文链接](https://deepmind.google/blog/introducing-gemini-3-8-flash-and-38-flash-cyber/)
+
+
+### 2. Anthropic Claude Fable 5.1 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-03/5a6ef942c901.jpg)
+
+Anthropic Claude Fable 5.1 发布：Anthropic 发布 Claude Fable 5.1 和 Mythos 5.1 模型，科研 Agent 跑分翻倍，缓存读取费降价 75%。
+
+同步升级 Messages API 防蒸馏机制，将思考块与历史上下文绑定，修改旧消息将导致推理过程失效。
+
+Mythos 5.1 仅限可信机构访问，Fable 5.1 面向公众，Cursor 等工具已快速适配。
+
+📎 [原文链接](https://www.tmtpost.com/8125528.html)
+
+
+### 3. World Labs 发布世界模型 Atlas
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-03/674410dbdf3f.png)
+
+World Labs 发布世界模型 Atlas：李飞飞创立的 World Labs 发布 3D 世界模型 Atlas，仅需 3-5 个稀疏视角即可重建高保真三维场景，打破传统多机位阵列限制。
+
+模型原生支持 Camera Pose 精确控制虚拟摄影机轨迹，可输出深度图、点云及 3D Gaussian Splat，为具身智能提供低成本仿真训练数据。
+
+📎 [原文链接](https://www.ifanr.com/1678150?utm_source=rss&utm_medium=rss&utm_campaign=)
+
+
+### 4. Meta Muse Voice Transcribe 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-03/58da965cfe7e.png)
+
+Meta Muse Voice Transcribe 发布：Meta 发布 Muse Voice Transcribe 实时语音转文本 API，定价为每小时 0.18 美元，支持 20 个以上说话人的实时分割及 70 多种语言。
+
+该模型在 Artificial Analysis 基准测试中字错率 3.1% 排名第一，将说话人归属与转录整合在同一自回归架构中，适合会议助手及客服分析场景。
+
+📎 [原文链接](https://venturebeat.com/technology/meta-prices-muse-voice-transcribe-at-0-18-an-hour-with-real-time-diarization-for-20-speakers-a-steal-for-enterprises)
+
+
+### 5. Google Gemini 3.8 Flash 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-03/f9f0c7d43847.webp)
+
+Google Gemini 3.8 Flash 发布：Google DeepMind 发布 Gemini 3.8 Flash，保持 1M 上下文窗口，默认 MEDIUM 思考模式，通过增加推理步骤换取更高准确性，API 价格维持每 1M token $0.75/$3.75。
+
+同步推出 Gemini 3.8 Flash Cyber，在 CWE-Bench 上 pass@1 达 47.2%，专为漏洞修复优化，仅通过 Fairwind 计划向受信任防御者开放，不公开售卖。
+
+📎 [原文链接](https://www.marktechpost.com/2026/09/02/google-deepmind-releases-gemini-3-8-flash-and-gemini-3-8-flash-cyber-one-core-model-two-access-envelopes/)
+
+
+### 6. 豆包工作多Agents与Mac操作
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-03/746ea4f23c2c.png)
+
+豆包工作多Agents与Mac操作：字节跳动豆包工作发布两项新功能：一是多Agents并行机制，主Agent拆解任务后交由子Agent分别处理；二是Mac系统操作功能，无需API或插件即可直接读取本地界面并完成GUI操作。
+
+该功能让AI具备本地桌面控制能力，适合自动化办公场景，开发者无需编写复杂接口即可实现复杂任务流。
+
+📎 [原文链接](https://www.tmtpost.com/8126299.html)
+
+
+### 7. Mercury 2.5 预览版发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-03/217628f39b9c.png)
+
+Mercury 2.5 预览版发布：Inception 发布 Mercury 2.5 预览版，采用扩散型大语言模型（dLLM）架构，在标准 GPU 上实现每秒 1,107 个 token 的推理速度，智力水平较 Mercury 2 提升 10 分，性能对标 GPT-5.6 Luna 和 Claude Haiku 4.5。
+
+该模型支持 260K 上下文长度、并行工具调用及 Schema 对齐的 JSON 输出，API 定价为输入 $0.04/M、输出 $0.15/M，专为搜索智能体、语音处理管道等低延迟生产场景设计。
+
+📎 [原文链接](https://openrouter.ai/inception/mercury-2.5-preview)
+
+
+### 8. Amazon Alexa for Shopping 防诈骗升级
+
+Amazon Alexa for Shopping 防诈骗升级：Amazon 宣布 Alexa for Shopping 新增 AI 防诈骗功能，可自动比对数十亿条官方消息，分析发件人、内容和元数据，明确判定用户收到的邮件或短信是否为钓鱼诈骗。
+
+该功能旨在解决每年约 30 万客户咨询消息真伪的痛点，覆盖虚假订单、Prime 续费等常见诈骗场景，目前已在 Amazon 网站和 App 上线。
+
+📎 [原文链接](https://techcrunch.com/2026/09/02/psa-amazons-shopping-ai-can-now-tell-you-if-that-message-is-a-scam/)
+
+
+### 9. 天工工作台 SkyProduction 上线
+
+天工工作台 SkyProduction 上线：天工工作台（SkyProduction）全新版本上线，集成剧本翻译、评分及小说转剧本功能，支持导演Agent自动生成资产与分镜。
+
+底层集成Seedance 2.5模型，720P视频生成低至0.4元/秒，支持10分钟超长视频生成及局部片段重拍，降低试错成本。
+
+提供无限画布多人协作与团队积分权限管理，实现从剧本到成片的完整短剧生产流程闭环。
+
+📎 [原文链接](https://www.qbitai.com/2026/09/483274.html)
+
+
+### 10. AWS AgentCore 智能体架构文档
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-03/f359cdb3c5a4.png)
+
+AWS AgentCore 智能体架构文档：AWS 发布基于 Amazon Bedrock AgentCore 的自主智能体方案，自动分析 .NET 代码库并生成 UML/Mermaid 架构图表。
+
+该方案集成 AWS CodePipeline 实现 CI/CD 触发，利用 Amazon Bedrock Knowledge Bases 提供语义搜索，解决文档过时和知识孤岛问题。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/from-code-to-diagrams-agentic-architecture-documentation-with-amazon-bedrock-agentcore/)
+
+
+### 11. Apple 发布 Safari AI 智能体文档
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-03/b536badc0ac6.jpg)
+
+Apple 发布 Safari AI 智能体文档：Apple 发布开发者文档，介绍如何将 AI 智能体连接到 Safari 浏览器，用于网站的检查、测试和调试。
+
+文档提供自动化工具与辅助工具支持，并包含 Markdown 版本供开发者查看。
+
+📎 [原文链接](https://developer.apple.com/documentation/safari-developer-tools/connecting-an-ai-agent-to-safari)
+
+
+---
+
+## 🔥 开源热门
+
+### 1. Soup 低资源LLM微调工具
+
+⭐ 4,500 stars · 今日增长 897 stars
+
+Soup 通过 YAML 配置实现大语言模型微调，支持分层流式训练，仅需 4GB 显存即可在笔记本 GPU 上训练 8B 模型，适合硬件受限的开发者进行高效模型定制。
+
+📎 [原文链接](https://github.com/MakazhanAlpamys/Soup)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. NVIDIA 发布推测解码协同设计指南
+
+NVIDIA 发布推测解码协同设计指南：NVIDIA 发布推测解码（Speculative Decoding）协同设计指南，提出5项优化原则以加速 LLM 推理，并开源 SPEED-Bench 基准测试及 Model-Optimizer 训练示例。
+
+指南涵盖草稿长度选择（如 GEMM 计算密集区、注意力 Tile 对齐）及机制对比（EAGLE-3、DFlash 等），旨在平衡接受长度与草稿开销，提升吞吐量与降低延迟。
+
+📎 [原文链接](https://developer.nvidia.com/blog/co-designing-ai-models-using-speculative-decoding-for-faster-llm-inference/)
+
+
+### 2. Ollama 绕过 Claude 限制
+
+Ollama 绕过 Claude 限制：Ollama 发布 v0.33.0 版本，通过本地代理机制让 Claude Desktop 支持接入 Qwen、DeepSeek 等第三方开源模型，实现界面与底层引擎解耦。
+
+该方案通过槽位重映射绕过 Anthropic 的模型 ID 校验，支持一键配置与隐私保护，目前仅限 Mac 版，Windows 版规划中。
+
+📎 [原文链接](https://www.tmtpost.com/8125118.html)
+
+
+### 3. Qwen 开源 zg 本地搜索层
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-03/37da119c085b.png)
+
+Qwen 开源 zg 本地搜索层：Qwen 开发者开源 zg (zvec-grep)，这是一个本地优先的搜索层，统一了 ripgrep、BM25 和向量搜索功能，支持 npm 安装且无需 GPU。
+
+通过统一接口为智能体提供语义、关键词和正则匹配，在 SWE-QA-Bench 测试中使工具调用减少超 50%，输入令牌减少近一半。
+
+默认使用本地静态嵌入模型，索引构建在 M4 Pro 上仅需 30 秒，采用 Apache 2.0 许可证，支持 Codex、Cursor 等主流编辑器。
+
+📎 [原文链接](https://www.marktechpost.com/2026/09/02/qwen-developers-open-sources-zg-zvec-grep-a-local-first-search-layer-unifying-ripgrep-bm25-and-vector-search/)
+
+
+### 4. GitHub Copilot 降低编程成本
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-03/12bc97e785a2.png)
+
+GitHub Copilot 降低编程成本：GitHub Copilot 发布四项优化策略，通过保留源码上下文、移除行号格式噪音、选择性压缩构建日志及后台并行处理，在不牺牲任务质量的前提下降低 AI 编程成本。
+
+该方案基于代理式编码基准测试与在线 A/B 实验验证，解决了单纯缩短单次输出导致代理重复调用、增加全局 Token 消耗的问题，实现端到端效率提升。
+
+📎 [原文链接](https://github.blog/ai-and-ml/github-copilot/how-we-make-ai-coding-more-cost-efficient-without-sacrificing-task-quality/)
+
+
+### 5. WebLLM 浏览器推理引擎
+
+WebLLM 浏览器推理引擎：WebLLM 是 MLC-AI 开源的浏览器端大模型推理引擎，利用 WebGPU 技术在客户端本地运行 LLM，无需依赖后端服务器。
+
+📎 [原文链接](https://github.com/mlc-ai/web-llm)
+
+
+### 6. NVIDIA Switchyard 开源
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-03/37da119c085b.png)
+
+NVIDIA Switchyard 开源：NVIDIA 开源 Switchyard，一款基于 Rust 的 LLM 流量代理与库，支持在 OpenAI Chat/Responses 和 Anthropic Messages 格式间双向转换。
+
+提供直通、随机、LLM 分类器和阶段路由器四种算法，内置 Prometheus 指标监控，目前处于预-alpha 阶段，仅限评估用途。
+
+📎 [原文链接](https://www.marktechpost.com/2026/09/02/nvidia-releases-switchyard-rust-proxy-llm-traffic-openai-anthropic-api-translation/)
+
+
+### 7. LLM 分词性能优化分析
+
+LLM 分词性能优化分析：Andrew Healey 通过 Rust 重写 GPT-2 分词器，发现优先队列优化因开销过大导致性能下降，而基于字节偏移量的直接映射方案显著提升了吞吐量。
+
+V3 版本利用解码后的词汇表直接查找字节序列，避免重复合并计算，在 M1 Pro 上实现 6.0 MiB/s 吞吐量，比 Python 原版快近 7 倍。
+
+📎 [原文链接](https://healeycodes.com/what-makes-llm-tokenization-slow)
+
+
+### 8. AWS Bedrock 仪表盘故障检测方案
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-03/897f8d7a6542.png)
+
+AWS Bedrock 仪表盘故障检测方案：AWS 团队利用 Amazon Bedrock 构建无服务器自动化验证方案，通过视觉分析和数值一致性检查，解决 BI 仪表盘内容静默故障问题。
+
+该方案将平均检测时间从 72 小时缩短至不到 1 小时，通过脱敏截图和结构化裁决，有效识别空白图表、数据错误及权限异常。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/how-an-aws-team-detects-dashboard-content-failures-at-scale-using-amazon-bedrock/)
+
+
+### 9. AI-Memory 2.0 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-03/7e52d039def8.png)
+
+AI-Memory 2.0 发布：AI-Memory 2.0 是专为 Agent 和团队打造的长期记忆系统，支持多 Agent 并行处理同一项目且互不干扰，并支持团队多人共享同一项目上下文。
+
+新版本默认启用本地 Embedding（基于 Rust 运行 all-MiniLM-L6-v2 模型），无需 API 密钥且数据不出本机，搜索准确率提升至 0.779。
+
+记忆数据采用 Google OKF 开放格式，纯 Markdown 存储，支持 Git 版本控制，解决了数据锁定问题，且通过单一写入器避免并发损坏。
+
+📎 [原文链接](https://akitaonrails.com/en/2026/09/02/ai-memory-2-0-best-memory-system-for-agents-and-teams/)
+
+
+### 10. Antithetical Labs 本体论评估
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-03/213230fbf485.png)
+
+Antithetical Labs 本体论评估：Antithetical Labs 发布研究，对比 LLM 评分与本体论检查在评估智能体输出时的有效性。实验显示，LLM 法官对“去引用”等隐蔽缺陷完全不可见，而本体论检查以 100% 召回率捕获全部 9 类缺陷并定位断裂对象。
+
+该研究指出 LLM 评分仅衡量文本流畅度，无法识别内部逻辑矛盾。本体论方法通过定义对象关系和纯函数检查，能精准定位错误，且单次提取成本仅约 35 美元，适合生产环境部署。
+
+📎 [原文链接](https://antithetical-labs.com/blog/the-judge-liked-it-better/)
+
+
+### 11. proxy-llms 开源项目
+
+proxy-llms 开源项目：GitHub 项目 proxy-llms 提供本地网关方案，允许开发者在 Cursor 的 Codex 标签页和 Claude Desktop 中接入本地或第三方 LLM，实现模型自由切换。
+
+📎 [原文链接](https://github.com/0xhsn/proxy-llms)
+
+
+### 12. LLM Inference 价格追踪工具
+
+LLM Inference 价格追踪工具：该工具是一个轻量级 LLM 推理价格历史追踪器，覆盖 100 多个平台，每 6 小时自动更新一次价格数据，支持 Atom 订阅源。
+
+📎 [原文链接](https://github.com/tokencanopy/price)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. 美国政府支持 OpenAI 训练 LLM
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-03/c2e5e82cbc81.jpg)
+
+美国政府支持 OpenAI 训练 LLM：特朗普政府在《纽约时报》诉 OpenAI 案中提交 20 页简报，支持 OpenAI 未经授权使用受版权保护材料训练大模型，认为此举对美国保持 AI 全球领导地位至关重要。
+
+简报强调限制合理使用将扼杀创新，尽管该立场无法律约束力，但可能影响案件走向。
+
+📎 [原文链接](https://techcrunch.com/2026/09/02/u-s-government-sides-with-openai-on-issue-of-training-llms-on-copyrighted-material/)
+
+
+### 2. 月之暗面Kimi K3 谈云厂商分成
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-03/9f15777a7b7c.jpg)
+
+月之暗面Kimi K3 谈云厂商分成：月之暗面正与微软、谷歌、亚马逊洽谈，要求将旗舰模型Kimi K3上架至Azure、AWS和Google Cloud，并从销售收入中抽取最高30%的分成。
+
+Kimi K3采用自研License，设定2000万美元营收门槛，旨在通过开源建立生态后收取“模型版税”，目前谈判仍在早期阶段。
+
+📎 [原文链接](https://www.tmtpost.com/8125170.html)
+
+
+### 3. Claude 会话 Cookie 泄露致企业 Gmail 风险
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-03/6f22e2693b03.png)
+
+Claude 会话 Cookie 泄露致企业 Gmail 风险：Anthropic 披露被盗 Claude 会话 Cookie 可绕过 2FA 重放，因个人账号不受企业 SSO 管控，导致攻击者持有对 Gmail 等第三方服务的 OAuth 授权且 IT 管理员无法撤销。
+
+攻击利用 Vidar 等恶意软件窃取 Cookie，Anthropic 仅能注销会话并退款，无法清除底层授权，建议企业限制个人 AI 账号对企业 Workspace 的 OAuth 权限。
+
+📎 [原文链接](https://venturebeat.com/security/stolen-claude-session-cookies-can-reach-corporate-gmail-through-grants-no-it-admin-can-revoke)
+
+
+### 4. Keep 发布运动垂直大模型
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-03/671be08e3f5c.jpg)
+
+Keep 发布运动垂直大模型：Keep 发布自研运动健康垂直大模型 Keepace.ai，聚焦课程生成、运动问答和数据解读，在 MoveBench 评测中综合得分 0.943，课程生成和运动问答任务位列参测模型第一。
+
+该模型已上线超 8000 节 AI 定制课程，App 9.0 集成语音陪跑 Agent 实现 1 秒内实时交互，日均 Token 调用量从 84 亿增至 185 亿，8 月推出“超级 AI 会员”独立付费权益。
+
+Keep 战略从 C 端转向 B 端，计划提供模型 API 调用、Agent 组件及定制 AI 教练等运动健康行业解决方案，已与耐克、平安健康达成合作。
+
+📎 [原文链接](https://www.tmtpost.com/8125756.html)
+
+
+### 5. OpenAI 面临 30 起新诉讼
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-03/67973f9ad6e5.jpg)
+
+OpenAI 面临 30 起新诉讼：律所 Edelson PC 针对 OpenAI 提起 30 起新诉讼，指控其协助并教唆加拿大 Tumbler Ridge 校园枪击案，而非仅过失。
+
+原告指控 OpenAI 首席全球事务官 Chris Lehane 指示员工不向警方通报嫌疑人暴力言论，并优先公关而非安全。
+
+OpenAI 否认指控，称决策基于内部风险评估标准，且未达“紧迫且可信”的伤害风险阈值。
+
+📎 [原文链接](https://techcrunch.com/2026/09/02/openai-faces-30-more-lawsuits-tied-to-tumbler-ridge-shooting/)
+
+
+### 6. 商汤科技首获盈利
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-03/746ea4f23c2c.png)
+
+商汤科技首获盈利：商汤科技发布2026年半年报，实现净利润6.2亿元，为上市以来首次盈利。其生成式AI业务收入23.3亿元，经常性收入（RR）同比大增124%至占总收入39.3%。
+
+公司通过“一套模型+一座Token工厂+一套智能体管控系统”的工业化体系，实现日均Token服务量2.4万亿（同比增22倍），毛利率升至41.4%，验证了从项目制向规模化服务转型的商业闭环。
+
+📎 [原文链接](https://www.tmtpost.com/8125570.html)
+
+
+### 7. 腾讯 WorkBuddy 开放平台上线
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-03/8f829495b052.png)
+
+腾讯 WorkBuddy 开放平台上线：腾讯 WorkBuddy 开放平台正式上线，面向智能硬件、行业应用及开发者开放 Agent 能力，首批引入超过百家生态伙伴。
+
+发布《智能硬件接入白皮书》，提供 OEM 预装、Cloud Agent 被集成等四种接入方案，支持 OAuth 协议三步快速绑定。
+
+现场展示乐奇 Rokid、科大讯飞等 9 款联名硬件，涵盖 AI 眼镜、录音笔等品类，实现跨设备账号、任务与记忆同步。
+
+📎 [原文链接](https://zhidx.com/p/590041.html)
+
+
+### 8. OpenAI Astra 引发安全担忧
+
+OpenAI Astra 引发安全担忧：OpenAI 新模型 Astra 引入“不透明递归”推理技术，打破传统序列化思维链，导致模型内部推理过程难以被外部监控和解释。
+
+尽管 OpenAI 声称 Astra 仍保留可读思维链，但 Redwood 等机构警告该技术若大规模应用将彻底破坏 AI 对齐的可追溯性。
+
+📎 [原文链接](https://techcrunch.com/2026/09/02/openais-new-reasoning-technique-alarms-ai-safety-experts/)
+
+
+### 9. 盖茨发文呼吁AI减速
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-03/746ea4f23c2c.png)
+
+盖茨发文呼吁AI减速：比尔·盖茨发表长文呼吁AI发展慢一点，指出AI正挤压入门级招聘并降低犯罪门槛，建议对自动化收益征税。
+
+与此同时，微软、亚马逊、谷歌、Meta四大巨头2026年合计资本开支逼近7500亿美元，英伟达单季营收962亿美元，行业加速态势未改。
+
+📎 [原文链接](https://www.tmtpost.com/8124978.html)
+
+
+### 10. AWS Bedrock 上线 GPT-5.6
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-03/8cfe8569da1c.png)
+
+AWS Bedrock 上线 GPT-5.6：AWS 宣布在 Amazon Bedrock 上线 GPT-5.6 系列模型（Sol、Terra、Luna），支持澳大利亚悉尼和墨尔本区域用户通过全球跨区域推理访问。
+
+模型支持 100 万 token 上下文，兼容 OpenAI Responses API、Chat Completions API 及 AWS Converse API，提供按需、流式输出及提示缓存优化能力。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/accessing-openai-gpt-5-6-models-on-amazon-bedrock-from-australia-with-global-cross-region-inference/)
+
+
+### 11. 中国具身智能进入基建时代
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-03/746ea4f23c2c.png)
+
+中国具身智能进入基建时代：中国电子信息产业发展院联合智元机器人、银河通用等发布超2500小时真实场景运营数据集，涵盖12类场景44种任务，免费向公众开放。
+
+工信部同步发布《人形机器人与具身智能标准体系（2026版）》及基准测试方法，确立行业统一标准。
+
+发改委发文警惕“羊群效应”，宇树科技上市首日暴涨后回调，行业重心从运动竞技转向真实场景数据积累。
+
+📎 [原文链接](https://www.tmtpost.com/8126318.html)
+
+
+### 12. 极智嘉 H1 财报：人形机器人未兑现
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-03/746ea4f23c2c.png)
+
+极智嘉 H1 财报：人形机器人未兑现：极智嘉发布2026年中报，营收12.8亿元同比增25.3%，但受汇兑损失及高研发投入影响，净亏损扩大至1.8亿元。
+
+公司核心AMR业务稳健，但押注的第二增长曲线——人形机器人及具身智能业务，目前尚未产生具体营收数据，股价较IPO价跌超39%。
+
+📎 [原文链接](https://www.tmtpost.com/8126302.html)
+
+
+### 13. 企业AI芯片评估趋势
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-03/e7f0891425dd.jpg)
+
+企业AI芯片评估趋势：VentureBeat调查显示，39.4%企业计划评估AWS Trainium、Google TPU等非Nvidia芯片，高于评估Nvidia Blackwell的25.3%，反映企业构建算力多元化战略。
+
+Azure生产采用率升至47.1%，开源自管理栈使用率增至12.9%，新云合作意向升至38%，企业正通过多路径降低对单一供应商依赖。
+
+📎 [原文链接](https://venturebeat.com/data/enterprises-put-non-nvidia-chips-14-points-ahead-of-nvidias-next-gen-gpus-on-their-evaluation-lists)
+
+
+### 14. AIMX Singapore 2026 现场观察
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-03/746ea4f23c2c.png)
+
+AIMX Singapore 2026 现场观察：AIMX Singapore 2026 大会现场显示，中国 AI 企业出海东盟正从技术展示转向商业化落地，核心逻辑从“技术可行性”转向“运营就绪度”与“信任构建”。
+
+具身智能领域，智元机器人 Agibot G2 在樟宜机场 T5 完成 RaaS 部署，验证了从 Demo 到采购的闭环；医疗与零售领域强调 10-20-70 法则，即 70% 成功取决于人、流程与本地合规适配。
+
+润建股份发布 Apollo 11 平台并推出 Token-as-a-Service 算力服务，旨在解决企业 AI 落地中成本不可控与价值量化难题，新加坡成为连接中国技术与东盟采购流程的关键中转站。
+
+📎 [原文链接](https://www.tmtpost.com/8124464.html)
+
+
+### 15. 创新奇智 AInnoGC 平台发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-03/746ea4f23c2c.png)
+
+创新奇智 AInnoGC 平台发布：创新奇智发布 AInnoGC 工业本体智能体平台，利用本体技术连接产线、设备与数据关系，解决工业大模型落地中的数据孤岛与逻辑黑箱问题。
+
+平台支持从手工梳理转向自动化搭建本体，FDE 工程师工作重心转向业务逻辑梳理与模型选型，目前已在宝钢、山东精工等客户产线实现真实使用。
+
+📎 [原文链接](https://www.tmtpost.com/8125160.html)
+
+
+### 16. Reliance Jio 开放 JioPC 云服务
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-03/fba0a23e1ef4.jpg)
+
+Reliance Jio 开放 JioPC 云服务：Reliance Jio 将 JioPC 云 PC 服务向所有互联网用户开放，通过云端流式传输虚拟 PC（最高 8 vCPU、16GB 内存、1TB 存储），无需更换硬件即可让 8 年机龄的老旧电脑运行现代 AI 应用。
+
+服务起价 ₹1,000（约 11 美元/2 个月），旨在延长印度存量 6,500 万台 PC 的使用寿命，挑战传统硬件升级周期，但依赖稳定网络连接。
+
+📎 [原文链接](https://techcrunch.com/2026/09/02/indias-richest-man-now-wants-to-turn-aging-computers-into-ai-ready-pcs/)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
