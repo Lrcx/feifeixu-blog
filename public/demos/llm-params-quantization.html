@@ -1,0 +1,2236 @@
+<!doctype html>
+<html lang="zh-CN" data-page-node-id="dp9OTEGCHzLrRGRZJU93DO">
+<head data-page-node-id="I1e9gC2k5KtGATUxBAMfB0">
+<meta charset="utf-8" data-page-node-id="pdZxEKGSK1rt8evSxS4KF7">
+<meta name="viewport" content="width=device-width, initial-scale=1" data-page-node-id="kbQkAWi00aq6LDoaWe9QTO">
+<title>大模型参数是怎么存的？—— 从比特到量化的互动教程</title>
+<style>
+:root{
+  --bg:#f6f4ef; --card:#ffffff; --ink:#20242e; --muted:#68707e; --line:#e5e1d8;
+  --accent:#4f46e5; --accent-soft:#eef2ff; --teal:#0d9488;
+  --ok:#16a34a; --warn:#d97706; --bad:#dc2626;
+  --fp32:#64748b; --bf16:#0ea5e9; --fp16:#8b5cf6; --e4m3:#f59e0b; --e5m2:#10b981; --int8:#ec4899; --int4:#ef4444;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.8 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;}
+main{max-width:1000px;margin:0 auto;padding:0 20px 90px}
+h1{font-size:32px;line-height:1.35;margin:0 0 10px;letter-spacing:.5px}
+h2{font-size:23px;margin:0 0 4px}
+h3{font-size:17px;margin:18px 0 8px}
+p{margin:8px 0}
+.sub{color:var(--muted);margin:0 0 14px;font-size:15px}
+code{font-family:var(--mono);font-size:.9em;background:#eef0f4;border:1px solid var(--line);border-radius:5px;padding:1px 5px}
+.hero{max-width:1000px;margin:0 auto;padding:52px 20px 26px}
+.hero p.lead{font-size:17px;color:#3c4250;max-width:760px}
+.kicker{display:inline-block;background:var(--accent-soft);color:var(--accent);font-size:13px;font-weight:600;border-radius:999px;padding:4px 12px;margin-bottom:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:14px 0;box-shadow:0 1px 2px rgba(20,20,40,.05)}
+.card.play{background:#fbfaf7}
+.nav{position:sticky;top:0;z-index:50;background:rgba(246,244,239,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav-inner{max-width:1000px;margin:0 auto;display:flex;gap:6px;overflow-x:auto;padding:10px 20px;scrollbar-width:none}
+.nav-inner::-webkit-scrollbar{display:none}
+.nav a{white-space:nowrap;padding:6px 13px;border-radius:999px;color:var(--muted);text-decoration:none;font-size:14px;transition:background .15s,color .15s}
+.nav a:hover{background:#e9e6de}
+.nav a.active{background:var(--accent);color:#fff}
+section{margin-top:44px;scroll-margin-top:70px}
+.step-badge{display:inline-flex;align-items:center;justify-content:center;min-width:30px;height:30px;border-radius:9px;background:var(--accent);color:#fff;font-weight:700;font-size:15px;margin-right:10px;padding:0 8px;vertical-align:-6px}
+.callout{border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:0 12px 12px 0;padding:10px 16px;margin:12px 0;font-size:15px}
+.callout.warn{border-color:var(--warn);background:#fff7ed}
+.callout.ok{border-color:var(--ok);background:#f0fdf4}
+.callout b{font-weight:700}
+.bit{display:inline-flex;align-items:center;justify-content:center;width:20px;height:22px;border-radius:5px;font:11px/1 var(--mono);margin:1px;color:#fff}
+.bit.s{background:#ef4444}.bit.e{background:#f59e0b}.bit.m{background:#3b82f6}.bit.i{background:#64748b}
+.bitrow{display:flex;flex-wrap:wrap;align-items:center}
+.fmtrow{display:grid;grid-template-columns:158px 1fr 168px 176px;gap:12px;align-items:center;padding:13px 2px;border-bottom:1px dashed var(--line)}
+.fmtrow:last-child{border-bottom:none}
+.fname{font-weight:700;font-size:15px}
+.fname small{display:block;font-weight:400;color:var(--muted);font-size:12px;font-family:var(--mono)}
+.stored{font-family:var(--mono);font-size:14px;text-align:right}
+.stored .tag{font-family:inherit;font-size:11px;border-radius:5px;padding:1px 6px;margin-left:6px}
+.tag.overflow{background:#fee2e2;color:#b91c1c}
+.tag.sat{background:#fef3c7;color:#92400e}
+.tag.sub{background:#e0e7ff;color:#3730a3}
+.errline{font-family:var(--mono);font-size:12.5px;text-align:right}
+.err-ok{color:var(--ok)}.err-warn{color:var(--warn)}.err-bad{color:var(--bad)}
+@media(max-width:820px){.fmtrow{grid-template-columns:1fr 1fr;grid-template-areas:"n n" "b b" "s e"}.fmtrow .fname{grid-area:n}.fmtrow .bitrow{grid-area:b}.fmtrow .stored{grid-area:s;text-align:left}.fmtrow .errline{grid-area:e;text-align:left}}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 14px;font-size:14px;cursor:pointer;transition:all .12s;color:var(--ink)}
+.chip:hover{border-color:var(--accent);color:var(--accent)}
+.chip.on{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+label.ctl{font-size:14px;color:#3c4250;display:block;margin:10px 0 4px}
+input[type=range]{width:100%;accent-color:var(--accent);margin:6px 0}
+input[type=number],input[type=text]{font-family:var(--mono);font-size:15px;padding:7px 10px;border:1px solid var(--line);border-radius:9px;background:#fff;width:170px}
+input:focus,select:focus,button:focus{outline:2px solid var(--accent);outline-offset:1px}
+select{font-size:14px;padding:6px 10px;border:1px solid var(--line);border-radius:9px;background:#fff}
+.btn{border:none;background:var(--accent);color:#fff;border-radius:10px;padding:8px 18px;font-size:14px;cursor:pointer;font-weight:600}
+.btn.ghost{background:#fff;color:var(--accent);border:1px solid var(--accent)}
+.btn:hover{filter:brightness(1.08)}
+.statgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:12px 0}
+.stat{background:#f8fafc;border:1px solid var(--line);border-radius:12px;padding:10px 14px}
+.stat .k{font-size:12.5px;color:var(--muted)}
+.stat .v{font:700 19px var(--mono);margin-top:2px}
+.stat .v.good{color:var(--ok)}.stat .v.mid{color:var(--warn)}.stat .v.bad{color:var(--bad)}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;color:var(--muted);margin:8px 0}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+table.tbl{width:100%;border-collapse:collapse;font-size:14.5px}
+.tbl th{font-size:13px;color:var(--muted);text-align:left;font-weight:600}
+.tbl th.num,.tbl td.num{text-align:right;font-family:var(--mono)}
+.tbl td{padding:9px 10px;border-top:1px solid var(--line)}
+.tbl tr.hl td{background:var(--accent-soft);font-weight:600}
+details.gloss{border:1px solid var(--line);border-radius:12px;background:#fff;margin:8px 0;padding:0}
+details.gloss summary{cursor:pointer;padding:12px 16px;font-weight:600;list-style:none;position:relative;padding-right:36px}
+details.gloss summary::-webkit-details-marker{display:none}
+details.gloss summary::after{content:"+";position:absolute;right:16px;top:10px;font-size:18px;color:var(--muted)}
+details.gloss[open] summary::after{content:"−"}
+details.gloss .g-body{padding:0 16px 14px;color:#3c4250;font-size:15px}
+.ggrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:760px){.ggrid{grid-template-columns:1fr}}
+.quiz-opt{display:block;width:100%;text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:11px;padding:10px 14px;margin:8px 0;font-size:15px;cursor:pointer;transition:all .12s}
+.quiz-opt:hover:not(:disabled){border-color:var(--accent)}
+.quiz-opt.correct{border-color:var(--ok);background:#f0fdf4;font-weight:600}
+.quiz-opt.wrong{border-color:var(--bad);background:#fef2f2}
+.quiz-opt:disabled{cursor:default;opacity:.85}
+.quiz-why{display:none;margin-top:8px;font-size:14px;background:#f8fafc;border:1px dashed var(--line);border-radius:10px;padding:10px 14px}
+.quiz-why.show{display:block}
+.mono{font-family:var(--mono)}
+.small{font-size:13px;color:var(--muted)}
+footer{max-width:1000px;margin:40px auto 0;padding:24px 20px 60px;color:var(--muted);font-size:13px;border-top:1px solid var(--line)}
+.progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--accent),var(--teal));z-index:100;transition:width .1s linear}
+.s1-grid{display:grid;grid-template-columns:1fr 240px;gap:16px;align-items:center}
+.next-sec{display:flex;align-items:flex-start;gap:10px;margin-top:28px;padding:14px 18px;background:#fff;border:1px dashed var(--line);border-radius:12px;color:#3c4250;font-size:14.5px;line-height:1.8}
+.next-sec b{color:var(--accent)}
+@media(max-width:760px){
+  .s1-grid{grid-template-columns:1fr !important}
+  #ptx-viz input[type=range]{width:100%;max-width:280px}
+  .next-sec{margin-top:22px}
+}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body data-page-node-id="vp8Yivta6oId0ACC484zCM">
+<div class="hero" data-page-node-id="VdOtoITsATCD1YjVrWAdVc">
+  <span class="kicker" data-page-node-id="bPGxQYqs5NjDEWVOck3tfh">互动教程 · 零基础可懂</span>
+  <h1 data-page-node-id="wE9BNcBGEECNTp0Npty2gF">大模型的参数，到底是怎么存的？</h1>
+  <p class="lead" data-page-node-id="fgRjZBmfoTLutoEy6RcbkR">一个"7B 大模型"里的 <b data-page-node-id="EnltwUbCsrBnjFTjHxyQgz">7B = 70 亿</b>，指的就是 70 亿个数字。
+  这些数字用不同的方式"写下来"，就会变成 14 GB、7 GB 或者 3.5 GB ——
+  这就是 FP16、BF16、FP8、INT4 这些名词背后的全部秘密。
+  本教程有 4 个可以动手玩的实验，边玩边懂，不用任何数学基础。</p>
+</div>
+<nav class="nav" data-page-node-id="eIp4npC3rYc3pM4N1D4tyF"><div class="nav-inner" id="nav" data-page-node-id="RZBFO27yM6CYq1AZwFO8ip">
+  <a href="#s1" data-page-node-id="qDostGYt8GjimczXHwlMmS">① 参数是什么</a>
+  <a href="#s2" data-page-node-id="9TXNIrg811a8jEcCbWEoxh">② 数字占多大地方</a>
+  <a href="#s3" data-page-node-id="Ilp82ziXiF1gFn3HukMjrr">③ 量化工坊</a>
+  <a href="#s4" data-page-node-id="Nuelu2Ihw3ezDAz5Te7bhj">④ 模型有多大</a>
+  <a href="#s5" data-page-node-id="hBShhpD38XCn9FgyvukErE">⑤ 术语表</a>
+  <a href="#s6" data-page-node-id="mHoPyvNJS8UbrHlNgRAOfH">⑥ 小测验</a>
+  <a href="#s7" data-page-node-id="eY7DTRSsWIA0xmR6DTRtin">⑦ 一页总结</a>
+</div></nav>
+<main data-page-node-id="IAqpOvkvSRkpLeka7tlu45">
+
+<!-- ================= S1 参数是什么 ================= -->
+<section id="s1" data-page-node-id="n7E5P9DlYadt7QEFUnec6N">
+  <h2 data-page-node-id="2mv6vjS8zLTg3CoOYkYLSQ"><span class="step-badge" data-page-node-id="FTm2bThV1VQe70FEBMXd9E">1</span>参数是什么？就是一堆数字</h2>
+  <p class="sub" data-page-node-id="efMUvDU9s17bZofxljhBlH">别被"神经网络"吓到，它的本质比你想的简单得多。</p>
+  <p data-page-node-id="i7cvHTrQxmsgRaY6L1P6ZA">大模型内部做的运算，拆开看就是无数条这样的"算式"：</p>
+  <p class="mono" style="text-align:center;font-size:17px" data-page-node-id="f8zdnAz3Pf26qY8kaSl5z6">y = w × x + b</p>
+  <p data-page-node-id="BSdGqWwRa6wTodO5TBVXlF">其中 <b data-page-node-id="4InZTSZBAOn7Pi3n4kZ4Jy">w（weight，权重）</b>和 <b data-page-node-id="8iJSyE7Gn3BtJ52edHAeLp">b（bias，偏置）</b>就是<b data-page-node-id="UBihBs8Z56O4nNmC84cafm">参数</b>——它们是训练阶段学出来的"数字"。
+  整个大模型，就是几亿到几千亿条这样的算式串接起来。所谓"参数规模 7B"，就是里面有 70 亿个这样的数字。</p>
+
+  <div class="card play" data-page-node-id="QDGZH5tqd5iOxqjIlPjpzS">
+    <h3 style="margin-top:0" data-page-node-id="obn2HqEbUdauPR73G0c8gr">🎛️ 动手 1：亲手扭一个"参数"</h3>
+    <p class="small" data-page-node-id="S8VqiBMFW8f8nVNoDBHuiB">下面是一条 y = w·x + b 的直线。<b data-page-node-id="tS3YdlzxfpsPUSnDAlaBo0">拖动滑块改变 w 和 b，看直线怎么变。</b>
+    这就是"改参数"的全部含义——模型训练，本质上就是反复微调几十亿个这样的 w 和 b。</p>
+    <div class="s1-grid" data-page-node-id="2iKQBIrmT5n0TXlHiPKBMg">
+      <div id="linePlot" role="img" aria-label="y 等于 w 乘 x 加 b 的直线图，随滑块变化" data-page-node-id="OFn1iCBrTrckzPZQ7Khxqx"></div>
+      <div data-page-node-id="E6CBCHdDRL27nBloVuR5rF">
+        <label class="ctl" data-page-node-id="8jhEQNo9oK0ifToVfFvLcG">w（斜率）：<span id="wVal" class="mono" data-page-node-id="tZXirs8vx9lSDI9CJPja7C">1.20</span></label>
+        <input type="range" id="wSlider" min="-3" max="3" step="0.05" value="1.2" aria-label="权重 w" data-page-node-id="DvW1B0pFK9dTTquDH4DmRQ">
+        <label class="ctl" data-page-node-id="3kqq04AcxhQDjswCFfcpTD">b（上下平移）：<span id="bVal" class="mono" data-page-node-id="BBfIFdonN5PPGBwpe4wvkt">0.50</span></label>
+        <input type="range" id="bSlider" min="-3" max="3" step="0.05" value="0.5" aria-label="偏置 b" data-page-node-id="glHlaqVSXGZgj8Zli6nx07">
+        <p class="small" data-page-node-id="pH0qBF6m0RJ4lnHKFtLkrb">当前算式：<span class="mono" id="eqVal" data-page-node-id="BWJEF0TOlufvlqfcp72Ssw">y = 1.20x + 0.50</span></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card play" data-page-node-id="Fu8BeUkSDfmAiXAFbuMt2X">
+    <h3 style="margin-top:0" data-page-node-id="PtFYix6XkrOAu9hIZqMIQr">📦 动手 2：一个模型到底有多少个数字？</h3>
+    <label class="ctl" data-page-node-id="NJwBCOJ2e9Cjx6QrGMLzAm">拖动改变模型规模（对数刻度，0.5B ～ 500B）：<span id="psizeVal" class="mono" data-page-node-id="fBw7GpcdoqRsAzo6ps6HhX">8 B（80 亿）</span></label>
+    <input type="range" id="pSlider" min="0" max="1000" value="401" aria-label="模型参数规模" data-page-node-id="zTQ4Hl5Th4cN19dhj8mXru">
+    <div class="chips" id="pPresets" data-page-node-id="TT2gKHNZTzKp5UfEqRhVOF">
+      <button class="chip" data-p="1e9" data-page-node-id="5oFDSwOtO2CUN4ePXLFmu0">1B</button>
+      <button class="chip" data-p="3e9" data-page-node-id="sw9jHgy34wnxxpimsJs2vX">3B</button>
+      <button class="chip on" data-p="8e9" data-page-node-id="SCSJAvDiamBZE9P3W0kdBe">8B</button>
+      <button class="chip" data-p="13e9" data-page-node-id="2KIsVvLkUs23A93HkOnQY5">13B</button>
+      <button class="chip" data-p="70e9" data-page-node-id="hOs7BTyHe1IR44yCXkvB3e">70B</button>
+      <button class="chip" data-p="405e9" data-page-node-id="M5uRQnKc47HuEvDmavUUjX">405B</button>
+    </div>
+    <p data-page-node-id="rT7J2aqUjzlg0NPcFfTM0S">这个模型里有 <span class="mono" id="pCount" data-page-node-id="apHeXOEFQXMbHraHyvIGAZ">8,000,000,000</span> 个实数。
+    如果每个数字都用 FP16（2 字节）存，光是权重就要
+    <span class="mono" id="pBytes" style="font-weight:700" data-page-node-id="5QfdFI9JsblqCg3pX0incU">16.0 GB</span>。
+    ——注意，这还只是"存下来"的体积；存得准不准（精度）下一节细说，总体积怎么算第 4 节专门算账。</p>
+  </div>
+  <div class="next-sec" data-page-node-id="pxVGbvXwfctEsUgLvP2SNy">✅ 到这里你知道了：参数 = 一大堆可微调的数字。<b data-page-node-id="eMcJ03Em2vYRksbWG1FC19">下一个问题很自然：一个数字，在计算机里到底占多大地方？</b>往下看第 2 节。</div>
+</section>
+
+
+<!-- ================= S2 比特与格式 ================= -->
+<section id="s2" data-page-node-id="KUEsJjR8rSKMC5RPUqNHOH">
+  <h2 data-page-node-id="DgWFZzRpLr04u20vbovwlJ"><span class="step-badge" data-page-node-id="umSHgmvkZgkWJiqe5OK6Te">2</span>一个数字，要占多大地方？</h2>
+  <p class="sub" data-page-node-id="NRkqKuFNda8EqvdtS2wmTn">计算机不认识"0.1"，它只认识 0 和 1。存一个数字，本质上是决定：给它多少个小格子（bit）。</p>
+  <p data-page-node-id="9u4akbISaw1RTXAoNImYFm">先对齐一下单位：<b data-page-node-id="LIwsbZ54DbBP7GAVYO3XIC">8 bit = 1 字节（byte）</b>；1 GB = 10 亿字节。
+  一个 7B 模型有 70 亿个数字：用 32 bit 存就是 <span class="mono" data-page-node-id="n77LeVWAWNp3ZDatGgc9Aw">70 亿 × 4 字节 = 28 GB</span>，用 4 bit 存就是 <span class="mono" data-page-node-id="l2ngYBs6FBzbenFRemk4Jl">70 亿 × 0.5 字节 = 3.5 GB</span>——差 8 倍，就是"精度换空间"的全部戏码。</p>
+  <p data-page-node-id="hgLmDmOwIkw6qDRDfO0bWS">数字的存法分两大流派：</p>
+  <div class="ggrid" data-page-node-id="3DEZR2djSOKtOcgCKoyEgR">
+    <div class="card" style="margin:0" data-page-node-id="59PDYyChwObnXSK2rr5xuC">
+      <h3 style="margin-top:0" data-page-node-id="YYFh6Ivbm2ZWF2fKs3m9uP">🪙 浮点（FP）：科学计数法</h3>
+      <p style="margin-bottom:4px" data-page-node-id="wKnvFHDlKSQXsuieum1Ajz">把数字拆成三段：<code data-page-node-id="j3pnzYATDHS1GG4CHdmiZb">符号</code> × <code data-page-node-id="FTEEERtrsbkQEULlwHNaRc">2的指数</code> × <code data-page-node-id="BCHLV13rHicnkwF3btZZPT">尾数</code>。</p>
+      <p style="margin-bottom:0" class="small" data-page-node-id="E2ejdC5ftcLA2DPmq2ACRK"><b data-page-node-id="OZEAZbtVelG6fNGgry0UNe">指数位</b>决定能表示的<b data-page-node-id="qtxeuemv7ioLRJal3CeL9Y">范围</b>（从多小到大），<b data-page-node-id="M8ayEgmxkPGx3AeZJS03Xj">尾数位</b>决定<b data-page-node-id="mDnbqaM2WmbViscbIE6WAh">精度</b>（小数能写几位）。
+      例如 FP16 = 1 位符号 + 5 位指数 + 10 位尾数 = 16 bit，正好 2 字节。</p>
+    </div>
+    <div class="card" style="margin:0" data-page-node-id="1p7xDOfUXnBoQOOF6jp7Ux">
+      <h3 style="margin-top:0" data-page-node-id="UbG2Dt5opJOsg390A9Zvmu">📏 定点/整数（INT）：等距的格子</h3>
+      <p style="margin-bottom:4px" data-page-node-id="m6YNJU1u2pBcbR8wBaI9Ko">就像一把刻度均匀的小尺子：INT8 有 256 个刻度，INT4 只有 16 个刻度。</p>
+      <p style="margin-bottom:0" class="small" data-page-node-id="cdF2xreXj37tVEPUYxv6Xs">数字被"取整"到最近的刻度上，再用一个 scale（刻度间距）还原出来：
+      <code data-page-node-id="YWwKE8dMGpoISsAx5j2AnH">原值 ≈ 刻度号 × scale</code>。刻度越少越省空间，但"取整"误差越大——下一节亲手试试。</p>
+    </div>
+  </div>
+
+  <div class="card play" data-page-node-id="0MybzLD5QrVEo61SVaXEhH">
+    <h3 style="margin-top:0" data-page-node-id="vKmWxSA5ocsaHSbwdL6vDB">🔬 动手 3：比特观察器——把同一个数字塞进不同格式</h3>
+    <p class="small" data-page-node-id="8ebFsRiJtJVX1tJ1qmAvC2">选一个数字，看它被每种格式"压缩"成什么样子。彩色方块是真实的比特：<span class="bit s" data-page-node-id="kVhPab5XV6GDKKHmEnomEK">1</span> 符号　<span class="bit e" data-page-node-id="rbv98eQ5tRqcPNaPqCR8NX">1</span> 指数　<span class="bit m" data-page-node-id="QAbahqeOs3diugkHkInjTG">1</span> 尾数　<span class="bit i" data-page-node-id="bHgTLbPVFe3JgoR1GBuypR">1</span> 整数。</p>
+    <label class="ctl" data-page-node-id="BkZ4E8cmDnDR7J5G3wy3pU">要存的数字：</label>
+    <input type="text" id="vInput" value="0.1" inputmode="decimal" aria-label="要存储的数字" data-page-node-id="EOwZvyahnGxj8VHtB08SiY">
+    <div class="chips" id="vPresets" data-page-node-id="kaAoS4ePW51UGMCQSKzBOl">
+      <button class="chip on" data-v="0.1" data-page-node-id="N8uSADn0HzWulyCO9vkJt5">0.1</button>
+      <button class="chip" data-v="3.14159" data-page-node-id="2NPgJKA5yi0srLxXGwKDLL">3.14159</button>
+      <button class="chip" data-v="42" data-page-node-id="69rcWh5pKCt6UX87O5ccsB">42</button>
+      <button class="chip" data-v="-0.0001234" data-page-node-id="kCrEh4OAeCabn4teEdVtx8">-0.0001234</button>
+      <button class="chip" data-v="1000" data-page-node-id="aU4HlRJ1ydRGKMDyNgZaqG">1000</button>
+      <button class="chip" data-v="65505" data-page-node-id="Ky6SsSfYm3HdGzdsAfYgGQ">65505（FP16 极限+1）</button>
+      <button class="chip" data-v="500" data-page-node-id="vTQuwCwFZMiBs6NwgHOhG1">500（超过 FP8 极限）</button>
+    </div>
+    <label class="ctl" data-page-node-id="oj28YK3F525Gs3VmnkyDSA">INT 格式没有小数点，只有等距的整数刻度（INT4 = 16 格，INT8 = 256 格）。要存小数，得配一把"标尺"：<b>假设这组权重的最大幅度是 ±<span id="spanVal" class="mono" data-page-node-id="fFSftx0lt7l7VE0hM8lBBf">1</span></b>（拖动下面的滑块改变它）。</label>
+    <input type="range" id="spanSlider" min="0" max="1000" value="500" aria-label="标尺范围" data-page-node-id="lEhGac0dNpPW63iMCmUwEj">
+    <p class="small" id="spanHint" style="margin:4px 0 8px;font-size:14px;color:#3c4250;background:#f8fafc;border:1px solid var(--line);border-radius:10px;padding:8px 12px"></p>
+    <p class="small" style="margin:2px 0 8px">为什么要有这把标尺？存的时候把原值<b>除以"一格多大"（scale）再取整</b>，读的时候乘回来。一格多大取决于标尺要覆盖多宽的范围——真实量化时，每组权重会自动统计出这个最大幅度，不用人猜。下面的范围对比图里，INT 那两条的长度也会跟着这个滑块变。</p>
+    <div class="legend" data-page-node-id="4Dcs9fbfMaPYz1jkZ44vVW">
+      <span data-page-node-id="BLeFF3KuvWBJet2Acp1xpo"><i style="background:#ef4444" data-page-node-id="ynxh2haUz5og7iSQliPaqm"></i>符号位</span>
+      <span data-page-node-id="YrMWTqwVjpUU24ZHDU9RD3"><i style="background:#f59e0b" data-page-node-id="Etfay81mfwaBK7Q3NmGpzb"></i>指数位（管范围）</span>
+      <span data-page-node-id="db3DQtg7574CPIUjeEyoVK"><i style="background:#3b82f6" data-page-node-id="iGhgAXZlMVefWNJ8KgW8gC"></i>尾数位（管精度）</span>
+      <span data-page-node-id="LT7YqN0azFNWlv3mQJwocl"><i style="background:#64748b" data-page-node-id="pbeL9oyQbFuUB950pNNQ1U"></i>整数位</span>
+    </div>
+    <div id="fmtTable" data-page-node-id="FJ5uuq9JyImGrD57XoPQ65"></div>
+    <div class="callout" style="margin-bottom:0" data-page-node-id="B3RwoTVvgYjMyRn6O188XR">
+      <b data-page-node-id="eHtwbDEaHYUrpeHF6qIIAt">看点：</b>试 0.1 —— 没有任何格式能精确存下它，区别只在误差多大；
+      试 65505 —— FP16 直接<b data-page-node-id="Bv7ZD1ofabnWaghmjg6Sxg">溢出变 ∞</b>，而 BF16 安然无恙（指数位更多）；
+      试 500 —— FP8 只能<b data-page-node-id="BLr4Pv7VkSHoHkfrdEDLMO">饱和</b>到 448。这就是各格式的"性格差异"。
+    </div>
+  </div>
+
+  <p data-page-node-id="YbT3OFA7G9wDekxf2w7TpK">上面的观察器告诉你"每个格式把数字存成了什么"，但还有一个更根本的问题没回答：<b data-page-node-id="Es3Gf0TNPDAnf4tcvhWpuQ">浮点数的"浮"字，到底是什么在浮？</b>下面这个小实验是整个浮点体系的灵魂，值得花一分钟亲手滑一滑。</p>
+  <div class="card play" data-page-node-id="GuVb4wyoiCFCQyeb2qFekm">
+    <h3 style="margin-top:0" data-page-node-id="iipRifazddJNjd0PoZbHsV">🎢 小数点为什么要移动？——自己滑一滑，感受一下</h3>
+    <p class="small" data-page-node-id="kE3TTMW3mxo7PY6CaJpviR">下面这串二进制就是 <b data-page-node-id="CfTTbplMg3NATJe5pUG8oi">3.14159</b>（可以切换）。把橙色小数点左右滑动，盯住三样东西：
+    ① "直接读"出来的值会随点的位置变——<b data-page-node-id="66XEenylR4ABJgyhCZ9BOs">点的位置本身就是"大小"</b>（右移 1 位 = ×2，左移 1 位 = ÷2）；
+    ② 但乘上 2 的某次方后，总能变回原数——<b data-page-node-id="m28GmrQIgZl7OS3Du3xp6D">移动小数点并不改变数值，它只是把"大小"外包给了指数</b>；
+    ③ 数一数前导零：点在第一个 1 左边时，前导零一个信息都不带，纯浪费有限的数位格子——这就是计算机坚持"点在第一个 1 后面"的核心原因。</p>
+    <div id="ptx-viz" role="region" aria-label="小数点移动实验" data-page-node-id="Nh2Bj4SvcrRT3X2cqHpdhJ">
+<style>
+#ptx-viz{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:#20242e}
+#ptx-viz .ptx-row{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin-bottom:10px}
+#ptx-viz .ptx-label{font-size:13.5px;color:#68707e}
+#ptx-viz .ptx-chip{border:1px solid #d9d4c8;background:#fff;border-radius:999px;padding:4px 12px;font-size:13px;cursor:pointer;color:#20242e;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+#ptx-viz .ptx-chip:hover{border-color:#4f46e5;color:#4f46e5}
+#ptx-viz .ptx-chip.on{background:#4f46e5;border-color:#4f46e5;color:#fff;font-weight:600}
+#ptx-viz .ptx-bitrow{display:flex;flex-wrap:wrap;align-items:center;gap:3px;margin:14px 0 4px}
+#ptx-viz .ptx-bit{display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:30px;border-radius:6px;font:700 14px/1 ui-monospace,monospace;color:#fff;position:relative}
+#ptx-viz .ptx-b1{background:#3b82f6}
+#ptx-viz .ptx-b0{background:#c7c2b8}
+#ptx-viz .ptx-first{outline:3px solid #f59e0b;outline-offset:1px}
+#ptx-viz .ptx-dot{width:5px;height:34px;background:#f97316;border-radius:3px;margin:0 2px;box-shadow:0 0 0 2px #ffedd5;flex:none}
+#ptx-viz .ptx-mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.95em}
+#ptx-viz .ptx-line{background:#fff;border:1px solid #e5e1d8;border-radius:12px;padding:11px 16px;margin-top:10px;font-size:14.5px;line-height:2}
+#ptx-viz .ptx-st{font-weight:700;font-size:14px;color:#4f46e5;margin-bottom:2px}
+#ptx-viz .ptx-ok{color:#166534;font-weight:700}
+#ptx-viz .ptx-warn{color:#b45309;font-weight:700}
+#ptx-viz .ptx-mut{color:#68707e;font-size:13px}
+#ptx-viz input[type=range]{width:280px;accent-color:#f97316}
+#ptx-insight{background:#eef2ff;border-left:3px solid #4f46e5;border-radius:0 10px 10px 0;padding:12px 16px;margin-top:14px;font-size:13.5px;line-height:1.95;color:#3c4250}
+#ptx-insight b{color:#20242e}
+</style>
+      <div class="ptx-row" data-page-node-id="qfbIKSInNtY7VX3f3MrEQr">
+        <span class="ptx-label" data-page-node-id="WDASxeI3NlyhfDk8FwxeLA">换一个数：</span>
+        <button class="ptx-chip on" data-v="0" data-page-node-id="iXpwbbCCCvYP0ZJuoG25LY">3.14159</button>
+        <button class="ptx-chip" data-v="1" data-page-node-id="LBExyumWVvegJ9u7UHlN2a">0.75</button>
+        <button class="ptx-chip" data-v="2" data-page-node-id="iHiGeohKoH4RyadFej3tio">100</button>
+        <button class="ptx-chip" data-v="3" data-page-node-id="1jkBdqZinTPCeZvGKGchr5">0.0001</button>
+        <span style="width:14px" data-page-node-id="kPaQF0FKTwDh9eycVAD2HN"></span>
+        <button class="ptx-chip" id="ptx-nat" title="点回到原始位置（整数部分和小数部分的分界）" data-page-node-id="ueoRm8UOFOk3RnrBAyPmut">自然位置</button>
+        <button class="ptx-chip" id="ptx-std" title="点移到第一个 1 的后面（标准形式）" data-page-node-id="4NKyzHOrslL5yxPCq4cj99">标准形式</button>
+      </div>
+      <div class="ptx-row" data-page-node-id="s2S4JwSLsrO8NkiPEfHWAN">
+        <span class="ptx-label" data-page-node-id="HHbwoDd3PbWnLmBCePIEWs">滑动小数点（在第 <b id="ptx-pval" data-page-node-id="Z7m0uolwEjNKppGfvkBXOq">0</b> 位之后，0 = 最左边）：</span>
+        <input type="range" id="ptx-slider" min="0" max="24" step="1" value="0" aria-label="小数点位置" data-page-node-id="tEnIRlnvBeRvpQpvHRwc4l">
+      </div>
+      <div class="ptx-bitrow" id="ptx-strip" data-page-node-id="196m4C3YDkRYsldYWZQyCX"></div>
+      <div class="ptx-mut" style="margin-bottom:6px" data-page-node-id="0NjUeVBfyhew1Pw1stzZPp">金色描边的那颗 1 = "第一个 1"（最重要的一位）。橙色竖条 = 当前小数点位置。</div>
+      <div id="ptx-out" data-page-node-id="YTE9rDhuQAsBJ92sFJkAyx"></div>
+      <div id="ptx-insight" data-page-node-id="vlYsnG68gg4XeI1NZIa8nC">
+        <b data-page-node-id="P35j0tcn6DTr3XPDAZQ59P">🧩 串起来：三个"为什么"</b>
+        <br data-page-node-id="TSpKFT15Xf7u3iUOkdID0B">· <b data-page-node-id="SExoh4N6sd6EoxUXJ00fVC">小数点起什么作用？</b>它把数分成"整数部分（有几个 2）"和"小数部分（几分之几）"。它的位置 = 数的大小：
+        点右边每一位的权重都是左边一半（2⁻¹、2⁻²、2⁻³…）。所以点右移 1 位，整个数 ×2；左移 1 位，÷2。
+        <br data-page-node-id="1vC8BXsX2JNVYPPoFmxwhZ">· <b data-page-node-id="Cp6eUchAfalYpQCwCGmfII">为什么要移动它？</b>数位格子是有限的（FP32 的尾数只有 24 格）。点放在第一个 1 左边，前导零一格一格地浪费格子、一个信息都不带；
+        "第一个 1 的后面"是唯一 0 前导零的位置 → 同样 24 格装下最多的信息。
+        <br data-page-node-id="tIpY2M7GFuh1Auav6eKnH0">· <b data-page-node-id="75kdsFoKQLct3AqJQdzmvm">为什么不固定点不动（定点）？</b>24 位定死的格子，想精确存 10⁻³⁸ 得把点放在第 1 位左边约 128 格处，想存 10³⁸ 又得放到右边约 128 格处——一个位置只能伺候一段范围。
+        点能"浮"动 + 8 位指数记位置，同样 24 格数字就能同时伺候 10⁻³⁸ ~ 10³⁸，精度还不打折。"浮点"（floating point）这个名字就是这么来的：<b data-page-node-id="Z4ddG5GpIhdpAic1syrvQU">点在浮动，指数是它的停车位</b>。
+        <br data-page-node-id="jAZDYgZFV53TjT1LFNWHOt">· <b data-page-node-id="G27SKgFWsm3mIVMzi9VbKa">顺手的红利：</b>标准形式下第一位永远是 1，这个 1 干脆不存（"隐藏位"）→ 24 格实际等于 25 位精度。下面的"分步拆解"里你还会见到这个把戏。
+      </div>
+    </div>
+  </div>
+  <script>
+  (function(){
+  "use strict";
+  const root = document.getElementById('ptx-viz');
+  if (!root) return;
+  const stripEl = root.querySelector('#ptx-strip');
+  const outEl = document.getElementById('ptx-out');
+  const slider = root.querySelector('#ptx-slider');
+  const pvalEl = root.querySelector('#ptx-pval');
+
+  const VALS = [3.14159, 0.75, 100, 0.0001];
+  const VLAB = ['3.14159', '0.75', '100', '0.0001'];
+  let cur = 0;   // 当前数
+  let p = 0;     // 当前小数点位置（第 p 位之后）
+  function binStr(v){
+    const a = Math.abs(v);
+    let ip = Math.floor(a);
+    let fr = a - ip;
+    const ipStr = ip.toString(2);
+    let frStr = '';
+    for (let i = 0; i < 26; i++){
+      fr *= 2;
+      if (fr >= 1){ frStr += '1'; fr -= 1; } else { frStr += '0'; }
+    }
+    return ipStr + frStr;
+  }
+  function buildWindow(v){
+    const a = Math.abs(v);
+    const p0natAbs = a < 1 ? 1 : Math.floor(a).toString(2).length;
+    const all = binStr(v);
+    const first1 = all.indexOf('1');
+    const s = Math.min(Math.max(0, p0natAbs - 3), Math.max(0, first1));
+    const bits = [];
+    for (let i = s; i < s + 24; i++) bits.push(i < all.length ? all[i] : '0');
+    return { bits: bits.join(''), p0: p0natAbs - s, first1: first1 - s };
+  }
+  p = buildWindow(VALS[0]).p0;   // 初始 = 自然位置
+
+  function sup(x){
+    const m = { '0':'⁰','1':'¹','2':'²','3':'³','4':'⁴','5':'⁵','6':'⁶','7':'⁷','8':'⁸','9':'⁹' };
+    return String(x).split('').map(function(c){ return m[c] || c; }).join('');
+  }
+  function supE(e){ return '2' + (e < 0 ? '⁻' : '') + sup(Math.abs(e)); }
+  function fmtNum(x){
+    if (!isFinite(x)) return '∞';
+    if (x === 0) return '0';
+    const a = Math.abs(x);
+    if (a >= 0.001 && a < 1e9){
+      return x.toPrecision(9).replace(/\.?0+$/, '');
+    }
+    return x.toExponential(4);
+  }
+  function bitsAt(bits, at, n){ // 在第 at 位后加点，显示 n 位
+    const left = bits.slice(0, at);
+    const right = bits.slice(at, at + n);
+    return (left || '0') + '.' + (right || '0');
+  }
+
+  function render(){
+    const v = VALS[cur];
+    const W = buildWindow(v);
+    const bits = W.bits;
+    const p0 = W.p0;
+    if (p < 0) p = 0;
+    if (p > 24) p = 24;
+    slider.value = p;
+    pvalEl.textContent = p;
+
+    const f = W.first1;                 // 第一个 1 的下标（-1 = 窗口里没有）
+    const pStd = f >= 0 ? f + 1 : -1;   // 标准形式的小数点位置
+    const e = p0 - p;                   // 补偿指数：原数 = 直接读 × 2^e
+    const mDec = v * Math.pow(2, p - p0);
+
+    /* bit 条 */
+    let html = '';
+    for (let i = 0; i <= 24; i++){
+      if (i === p) html += '<span class="ptx-dot" title="小数点"></span>';
+      if (i < 24){
+        html += '<span class="ptx-bit ' + (bits[i] === '1' ? 'ptx-b1' : 'ptx-b0') + (i === f ? ' ptx-first' : '') + '" title="第 ' + (i + 1) + ' 位 = 2^' + (i - p) + '">' + bits[i] + '</span>';
+      }
+    }
+    stripEl.innerHTML = html;
+
+    /* 判定信息 */
+    let judge;
+    if (pStd < 0){
+      judge = '<span class="ptx-warn">第一个 1 在窗口外</span>——这 24 位全是 0，完全没用到。指数就是用来把数从"很远的地方"拉回来的。';
+    } else if (p < pStd){
+      judge = '<span class="ptx-warn">⚠️ 前导零 ' + (pStd - p) + ' 位</span>：这些零一个信息都不带，却白白吃掉 ' + (pStd - p) + ' 格数位。';
+    } else if (p === pStd){
+      judge = '<span class="ptx-ok">✅ 标准形式（归一化）</span>：没有前导零，每一位都是有效信息——计算机就选这个位置。而且第一位永远是 1，连存都不用存（隐藏位），白赚 1 位精度。';
+    } else {
+      judge = '数位都利用了，但"第一个 1"的位置没固定 → 硬件没法用隐藏位省格子，比较大小也要多看几位。<span class="ptx-mut">标准形式是唯一的，就是图这个省心。</span>';
+    }
+
+    const eTxt = e === 0
+      ? '<span class="ptx-mono">e = 0</span>，不用补偿——现在读出来的就是 ' + fmtNum(v) + ' 本身。'
+      : '再乘上 <b class="ptx-mono">' + supE(e) + '</b> 就变回 ' + fmtNum(v) + ' ✓——点移了多少位，指数就补多少次 2，<b>数值从头到尾没变过</b>。';
+
+    outEl.innerHTML =
+      '<div class="ptx-line"><div class="ptx-st">① 按当前点的位置"直接读"（不补偿）</div>'
+      + '<span class="ptx-mono" style="font-size:15px">' + bitsAt(bits, p, 14) + '</span>₂ <span class="ptx-mono">= ' + fmtNum(mDec) + '</span>'
+      + '<br><span class="ptx-mut">点右移 1 位 → 这个值 ×2；左移 1 位 → ÷2。点的位置 = 大小本身。</span></div>'
+      + '<div class="ptx-line"><div class="ptx-st">② 把原数 ' + VLAB[cur] + ' 还原出来</div>'
+      + '直接读的值 <span class="ptx-mono">' + fmtNum(mDec) + (e === 0 ? '' : ' <b>× ' + supE(e) + '</b>') + '</span> → ' + fmtNum(v) + '<br>' + eTxt + '</div>'
+      + '<div class="ptx-line"><div class="ptx-st">③ 这个点位置划算吗？</div>' + judge
+      + '<br><span class="ptx-mut">第一个 1 是第 ' + (f >= 0 ? f + 1 : '?') + ' 位 → 标准形式的小数点应在第 ' + (pStd >= 0 ? pStd : '?') + ' 位之后。</span></div>';
+  }
+
+  /* 事件 */
+  root.querySelectorAll('.ptx-chip[data-v]').forEach(function(c){
+    c.addEventListener('click', function(){
+      cur = parseInt(c.dataset.v, 10);
+      p = buildWindow(VALS[cur]).p0;   // 回到自然位置
+      root.querySelectorAll('.ptx-chip[data-v]').forEach(function(x){ x.classList.toggle('on', x === c); });
+      render();
+    });
+  });
+  slider.addEventListener('input', function(){ p = parseInt(slider.value, 10); render(); });
+  root.querySelector('#ptx-nat').addEventListener('click', function(){ p = buildWindow(VALS[cur]).p0; render(); });
+  root.querySelector('#ptx-std').addEventListener('click', function(){
+    const W = buildWindow(VALS[cur]);
+    if (W.first1 >= 0) { p = W.first1 + 1; }
+    render();
+  });
+  render();
+  })();
+  </script>
+
+  <p data-page-node-id="sdksdnJxAQRNDhp5NxSQCC">想再往下看一层？下面这个工具把"一个数字变成一串 bit"的完整过程摊开成 7 步（换成 INT 只有 3 步）。一时看不懂每一步也没关系，先扫一遍流程，以后随时回来查。</p>
+  <div class="card play" data-page-node-id="MhpJARGoNJuUfil3H23mjM">
+    <h3 style="margin-top:0" data-page-node-id="Uhu5d0TXi2CzO9FLQdmwXZ">🔍 分步拆解：这些 bit 到底是怎么算出来的？</h3>
+    <p class="small" data-page-node-id="qlDqXhmjoycCAHOsVMzrVe">上面的观察器给你看"结果"，这个工具给你看"过程"：把选定的数字按 7 步走一遍——
+    转二进制 → 归一化 → 符号 → 指数+bias → 尾数舍入 → 拼装 → 验算。
+    换成 INT 格式只有 3 步（定标尺 → 落到最近刻度 → 乘回还原），还能拨标尺范围看误差变化。</p>
+    <div id="fpx-viz" role="region" aria-label="浮点数与整数的存储过程分步解释器" data-page-node-id="mgFyyoCmHB3Gs4GSiPuCeG">
+<style>
+#fpx-viz{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;color:#20242e;max-width:880px}
+#fpx-viz .fx-card{background:#fbfaf6;border:1px solid #e5e1d8;border-radius:14px;padding:16px 18px;box-shadow:0 1px 3px rgba(20,20,40,.06)}
+#fpx-viz .fx-title{font-weight:700;font-size:15.5px;margin:0 0 10px}
+#fpx-viz .fx-row{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin-bottom:10px}
+#fpx-viz .fx-row[hidden]{display:none}
+#fpx-viz .fx-label{font-size:13.5px;color:#68707e}
+#fpx-viz input[type=text]{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:15px;padding:6px 10px;border:1px solid #d9d4c8;border-radius:9px;background:#fff;width:150px;color:#20242e}
+#fpx-viz input[type=range]{width:170px;accent-color:#4f46e5;vertical-align:middle}
+#fpx-viz .fx-chips{display:flex;flex-wrap:wrap;gap:6px}
+#fpx-viz .fx-chip{border:1px solid #d9d4c8;background:#fff;border-radius:999px;padding:4px 12px;font-size:13px;cursor:pointer;color:#20242e;transition:all .12s}
+#fpx-viz .fx-chip:hover{border-color:#4f46e5;color:#4f46e5}
+#fpx-viz .fx-chip.on{background:#4f46e5;border-color:#4f46e5;color:#fff;font-weight:600}
+#fpx-viz .fx-mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+#fpx-viz .fx-note{background:#fff7ed;border-left:3px solid #d97706;border-radius:0 9px 9px 0;padding:7px 12px;font-size:13.5px;margin-bottom:8px}
+#fpx-viz ol.fx-steps{list-style:none;margin:4px 0 12px;padding:0}
+#fpx-viz .fx-st{display:grid;grid-template-columns:24px 1fr;gap:10px;padding:9px 2px;border-bottom:1px dashed #e8e4da;align-items:start}
+#fpx-viz .fx-st:last-child{border-bottom:none}
+#fpx-viz .fx-stn{width:22px;height:22px;border-radius:50%;background:#eef2ff;color:#4f46e5;font-weight:700;font-size:12.5px;display:flex;align-items:center;justify-content:center;margin-top:2px}
+#fpx-viz .fx-stt{font-size:14px;line-height:1.75;color:#3c4250}
+#fpx-viz .fx-stt b{color:#20242e}
+#fpx-viz .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+#fpx-viz .bm{color:#2563eb;font-weight:700}
+#fpx-viz .be{color:#b45309;font-weight:700}
+#fpx-viz .bc{color:#b45309;font-weight:700;border-bottom:2px solid #f59e0b;padding-bottom:1px}
+#fpx-viz .bd{color:#b0aca2}
+#fpx-viz .fx-asm{background:#fff;border:1px solid #e5e1d8;border-radius:12px;padding:12px 14px}
+#fpx-viz .fx-asm-bits{display:flex;flex-wrap:wrap;align-items:center;margin-bottom:8px}
+#fpx-viz .fx-bt{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:26px;padding:0 4px;border-radius:6px;font:700 13px/1 ui-monospace,SFMono-Regular,Menlo,monospace;margin:1.5px;color:#fff}
+#fpx-viz .fx-bt-s{background:#ef4444}
+#fpx-viz .fx-bt-e{background:#f59e0b}
+#fpx-viz .fx-bt-m{background:#3b82f6}
+#fpx-viz .fx-bt-i{background:#64748b}
+#fpx-viz .fx-asm-meta{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:13.5px;color:#3c4250}
+#fpx-viz .fx-lg{display:inline-flex;align-items:center;gap:5px;color:#68707e;font-size:12.5px}
+#fpx-viz .fx-sw{width:11px;height:11px;border-radius:3px;display:inline-block}
+#fpx-viz .fx-sw-s{background:#ef4444}
+#fpx-viz .fx-sw-e{background:#f59e0b}
+#fpx-viz .fx-sw-m{background:#3b82f6}
+#fpx-viz .fx-sw-i{background:#64748b}
+</style>
+<div class="fx-card" data-page-node-id="zLW5XytnkjAndk2QbtQE2p">
+  <p class="fx-title" data-page-node-id="Fh1OAX0V4Otau8nKauVaqY">一个数字是怎么变成一串串 bit 的？</p>
+  <div class="fx-row" data-page-node-id="0pApVdvhQeWFFMLAgrCEh3">
+    <span class="fx-label" data-page-node-id="9kKUXsgcvFjNyklIDDi0sv">数字</span>
+    <input id="fpx-val" type="text" inputmode="decimal" value="3.14159" aria-label="要解释的数字" data-page-node-id="r1t07EBrVeBEM2tQN4Ocrh">
+    <span class="fx-label" data-page-node-id="a38JsQ7oC6XLkVAEoyfuZ0">格式</span>
+    <span class="fx-chips" id="fpx-fmts" role="group" aria-label="存储格式" data-page-node-id="lFDti9uQ9fRby90BgB39vG"></span>
+  </div>
+  <div class="fx-row" id="fpx-spanwrap" hidden data-page-node-id="ei6FAelK1DNExOnELC2UZ0">
+    <span class="fx-label" data-page-node-id="SBGoBFqu1TfsNkuLURX4W9">标尺范围</span>
+    <input id="fpx-span" type="range" min="0" max="1000" value="333" aria-label="INT 标尺范围" data-page-node-id="m7r1CiaiFrJjl0SnQdzcHU">
+    <span id="fpx-spanval" class="fx-mono" data-page-node-id="P7G80mFKBqXAC3j222gFbR">±10</span>
+  </div>
+  <div id="fpx-note" data-page-node-id="Ws1PiE8n6EK0KHJLOE3o90"></div>
+  <ol class="fx-steps" id="fpx-steps" data-page-node-id="0Pux8V4DOVdtguZEmGQf7O"></ol>
+  <div class="fx-asm" id="fpx-assembly" data-page-node-id="hD6veQGc42OCvvg1mV5ffI"></div>
+</div>
+<script>
+(function(){
+"use strict";
+const root = document.getElementById('fpx-viz');
+if (!root) return;
+/* ===== 浮点/量化编码逻辑（与教程页面同一套计算） ===== */
+/* Step-by-step float encoding explainer logic */
+const FX = {
+  fp32: { name:'FP32', ew:8, mw:23, bias:127, maxF: 3.4028234663852886e38, sat:false },
+  fp16: { name:'FP16', ew:5, mw:10, bias:15, maxF: 65504, sat:false },
+  bf16: { name:'BF16', ew:8, mw:7, bias:127, maxF: 3.3895313892515355e38, sat:false },
+  e4m3: { name:'FP8 E4M3', ew:4, mw:3, bias:7, maxF: 448, sat:true },
+  e5m2: { name:'FP8 E5M2', ew:5, mw:2, bias:15, maxF: 57344, sat:false }
+};
+
+function toBinaryParts(v, fracBits){
+  let ip = Math.floor(v);
+  let fr = v - ip;
+  let intStr = ip === 0 ? '0' : ip.toString(2);
+  let fracStr = '';
+  for (let i = 0; i < fracBits; i++){
+    fr *= 2;
+    if (fr >= 1){ fracStr += '1'; fr -= 1; } else { fracStr += '0'; }
+  }
+  return { intStr, fracStr };
+}
+
+/* round mantissa: kept (string, len mw), rest (string) -> {man, up, reason} */
+function roundMantissa(kept, rest, mw){
+  let m = parseInt(kept, 2);
+  if (!rest) return { m, up:false, reason:'后面没有更多位，直接结束' };
+  const restInt = parseInt(rest, 2);
+  const d = restInt / Math.pow(2, rest.length);
+  let up, reason;
+  if (d < 0.5){ up = false; reason = '截掉的部分不足半格（' + rest[0] + '…）→ 直接舍去'; }
+  else if (d > 0.5){ up = true; reason = '截掉的部分超过半格 → 进位 +1'; }
+  else {
+    if (m % 2 === 1){ up = true; reason = '正好半格 → 末位是奇数，入到偶数'; }
+    else { up = false; reason = '正好半格 → 末位是偶数，舍去（五入成双）'; }
+  }
+  if (up) m += 1;
+  return { m, up, reason };
+}
+
+function fmtNum(x){
+  if (!isFinite(x)) return x > 0 ? '∞' : '-∞';
+  if (x === 0) return '0';
+  const ax = Math.abs(x);
+  if (ax >= 1e5 || ax < 1e-3) return x.toExponential(3);
+  return parseFloat(x.toPrecision(8)).toString();
+}
+
+function computeFP(v, fmtId){
+  const F = FX[fmtId];
+  const R = { steps: [], cells: [], stored: null, kind: 'normal', note: null, bitsTotal: F.ew + F.mw + 1 };
+  const neg = v < 0;
+  let a = Math.abs(v);
+
+  const push = (title, html) => R.steps.push({ title, html });
+
+  if (a === 0){
+    push('零', '0 的特殊情况：所有 bit 全为 0。');
+    R.cells = [{ c:'0', k:'s' }].concat(Array.from({length:F.ew}, () => ({c:'0',k:'e'}))).concat(Array.from({length:F.mw}, () => ({c:'0',k:'m'})));
+    R.stored = 0; R.kind = 'zero';
+    return R;
+  }
+
+  // overflow / saturation
+  if (a > F.maxF){
+    if (F.sat){
+      R.note = { text: a.toFixed(4) + ' 超过了 ' + F.name + ' 的最大值 ' + F.maxF + ' → 饱和（截断），按 ' + F.maxF + ' 存。下面按 ' + F.maxF + ' 演示。', warn:true };
+      a = F.maxF;
+    } else {
+      push('溢出', '<b>' + fmtNum(Math.abs(v)) + ' 超出了 ' + F.name + ' 能表示的最大值（' + fmtNum(F.maxF) + '）</b>——指数位全部写 1、尾数清零，这个编码约定就是 ∞。');
+      R.cells = [{ c: neg ? '1':'0', k:'s' }].concat(Array.from({length:F.ew}, () => ({c:'1',k:'e'}))).concat(Array.from({length:F.mw}, () => ({c:'0',k:'m'})));
+      R.stored = neg ? -Infinity : Infinity; R.kind = 'inf';
+      return R;
+    }
+  }
+
+  const fracBits = 60;
+  const bp = toBinaryParts(a, fracBits);
+  const binFull = bp.intStr + '.' + bp.fracStr;
+
+  // locate leading 1
+  let e, manBits;
+  if (bp.intStr !== '0'){
+    const j = bp.intStr.indexOf('1');
+    e = bp.intStr.length - 1 - j;
+    manBits = bp.intStr.slice(j + 1) + bp.fracStr;
+  } else {
+    const k = bp.fracStr.indexOf('1');
+    e = -(k + 1);
+    manBits = bp.fracStr.slice(k + 1);
+  }
+
+  // ---- Step 1: binary
+  push('第 1 步：转成二进制',
+    '整数部分反复 ÷2 取余、小数部分反复 ×2 取整：<br><span class="mono">' + fmtNum(a) + '₁₀ = <b>' + bp.intStr + '</b> . ' + bp.fracStr.slice(0, 18) + '…<sub>2</sub></span>');
+
+  // ---- Step 2: normalize
+  let normDesc;
+  if (e >= 0) normDesc = '小数点<b>左移 ' + e + ' 位</b>（移到第一个 1 后面），所以指数 e = ' + e;
+  else normDesc = '小数点<b>右移 ' + (-e) + ' 位</b>（移到第一个 1 后面），所以指数 e = ' + e;
+  push('第 2 步：写成"科学计数法" 1.xxx × 2<sup>e</sup>',
+    '<span class="mono"><b>1</b>.<span class="bm">' + manBits.slice(0, 16) + '…</span> × <span class="be">2<sup>' + e + '</sup></span></span><br>' + normDesc + '。这一步就是把"数字大小"从数值里剥出来，交给指数位保管。另外盯住开头那个 <b>1</b>——第 5 步它会表演一个"消失"的把戏。');
+
+  // ---- Step 3: sign
+  push('第 3 步：符号位', '原数 ' + (neg ? '是负数 → 符号位 = <b>1</b>' : '≥ 0 → 符号位 = <b>0</b>') + '。');
+
+  const emin = 1 - F.bias;
+  const expField = e + F.bias;
+  const shift = emin - e;
+
+  // ---- Step 4: exponent
+  if (expField >= 1){
+    push('第 4 步：指数 + 偏移量（bias = ' + F.bias + '）',
+      '指数本身可以是负数，但 bit 里没有负号——所以<b>统一加上偏移量 ' + F.bias + '</b>，保证存进去的都是非负数：<br><span class="mono">e + bias = ' + e + ' + ' + F.bias + ' = <b>' + expField + '</b> → 二进制 <b>' + expField.toString(2).padStart(F.ew,'0') + '</b>（' + F.ew + ' 位）</span>');
+  } else {
+    // subnormal
+    push('第 4 步：指数放不下 → 进入"非规格化"模式',
+      'e + bias = ' + e + ' + ' + F.bias + ' = ' + expField + ' ≤ 0，指数位不够用了。这时<b>指数位全部写 0</b>，代价是把 1.xxx 的小数点再<b>右移 ' + shift + ' 位</b>，尾数变成 0.xxx（失去隐含的 1），格距变成 ' + Math.pow(2, 1 - F.bias - F.mw).toExponential(0) + '。');
+  }
+
+  // ---- Step 5: mantissa
+  const mw = F.mw;
+  let keptStr, restStr, mFinal, reason, extra = '';
+  if (expField >= 1){
+    const padded = (manBits + '0'.repeat(mw + 4)).slice(0, mw + 12);
+    keptStr = padded.slice(0, mw);
+    restStr = padded.slice(mw);
+    const rr = roundMantissa(keptStr, restStr, mw);
+    mFinal = rr.m; reason = rr.reason;
+    if (mFinal >= 2 ** mw){
+      mFinal = 0; e += 1;
+      extra = '<br><b>进位顶满了！</b>尾数变成 ' + mw + ' 个 1 再加 1 → 进位：尾数归 0，指数 e 加 1。';
+    }
+    push('第 5 步：尾数只留 ' + mw + ' 位，多出来的舍入',
+      '关键点来了：标准形式下 1.xxx 的<b>开头永远是 1</b>，一个不会变的数字不带任何信息——所以<b>它不存进 bit 里</b>，这就是上一实验说过的"隐藏位"。尾数字段只装小数点<b>后面</b>的部分：前 ' + mw + ' 位留下、第 ' + (mw+1) + ' 位开始截掉：<br><span class="mono"><span class="bm">' + keptStr + '</span><span class="bc">' + (restStr[0]||'') + '</span><span class="bd">' + restStr.slice(1) + '</span></span><br>' + reason + '。' + (mFinal >= 0 ? '<br>尾数 = <b>' + keptStr.replace(/$/,'') + (rr.up && mFinal < 2**mw ? '' : '') + '</b>（占位值 ' + mFinal + '）' : '') + extra + '<br>🫥 数一数待会儿要拼的 bit：里面<b>确实找不到那个 1</b>——它被隐藏了，读回来时硬件会自动补上。所以 ' + mw + ' 位尾数实际带来 ' + (mw+1) + ' 位有效精度。');
+  } else {
+    // subnormal: 1.m -> 0.0...01.m (shift places), then take mw bits
+    const subStr = '0'.repeat(Math.max(0, shift - 1)) + '1' + manBits;
+    const paddedSub = (subStr + '0'.repeat(12)).slice(0, mw + 12);
+    keptStr = paddedSub.slice(0, mw);
+    restStr = paddedSub.slice(mw);
+    const rr = roundMantissa(keptStr, restStr, mw);
+    mFinal = Math.min(2 ** mw - 1, rr.m);
+    reason = rr.reason;
+    extra = '<br>注意：非规格化数没有隐含的 1，尾数字段直接就是 0.' + keptStr + '…（前面补了 ' + Math.max(0, shift - 1) + ' 个 0）';
+    push('第 5 步：整体右移 ' + shift + ' 位后取 ' + mw + ' 位',
+      '把 1.' + manBits.slice(0, 10) + '… 的小数点再右移 ' + shift + ' 位 → 0.' + subStr.slice(0, mw + 4) + '…，然后保留 ' + mw + ' 位：<br><span class="mono"><span class="bm">' + keptStr + '</span><span class="bc">' + (restStr[0]||'') + '</span><span class="bd">' + restStr.slice(1) + '</span></span><br>' + reason + '。' + extra);
+  }
+
+  // recompute expField if e changed by carry
+  const expFieldF = e + F.bias;
+  if (expFieldF <= 0){
+    // carry knocked us back into subnormal-ish? only if e was emin-1 and carried to emin → actually carry increases e, so if we were subnormal we don't carry. Normal path: e>=emin so e+1>=emin+1>0. Safe.
+  }
+
+  // ---- Step 6: assembly
+  const expStrF = (expFieldF <= 0 ? 0 : expFieldF).toString(2).padStart(F.ew, '0');
+  const manStrF = mFinal.toString(2).padStart(mw, '0');
+  R.cells = [{ c: neg ? '1':'0', k:'s' }].concat(
+    Array.from(expStrF, c => ({ c, k:'e' }))).concat(
+    Array.from(manStrF, c => ({ c, k:'m' })));
+  push('第 6 步：拼起来',
+    '<span class="mono">' + (neg?'1':'0') + ' | ' + expStrF + ' | ' + manStrF + '</span> = <b>' + R.bitsTotal + ' bit</b>' + (R.bitsTotal % 8 === 0 ? ' = ' + (R.bitsTotal/8) + ' 字节' : ' = ' + (R.bitsTotal/8).toFixed(1) + ' 字节') + '<br>仔细看这串 bit：开头的那个 1 不在其中——它就是"隐藏位"，一格都不占，凭空多赚 1 位精度。');
+
+  // ---- Step 7: verify
+  let stored, formula;
+  if (expField >= 1){
+    stored = (1 + mFinal / 2 ** mw) * 2 ** e;
+    formula = '(1 + ' + mFinal + ' ÷ ' + 2**mw + ') × 2<sup>' + e + '</sup> = ' + fmtNum(stored);
+  } else {
+    stored = (mFinal / 2 ** mw) * 2 ** (1 - F.bias);
+    formula = '(0 + ' + mFinal + ' ÷ ' + 2**mw + ') × 2<sup>' + (1 - F.bias) + '</sup> = ' + fmtNum(stored);
+  }
+  if (neg) stored = -stored;
+  R.stored = stored;
+  R.kind = expField >= 1 ? 'normal' : 'sub';
+  const err = stored - v;
+  const rel = v !== 0 ? Math.abs(err / v) : 0;
+  const hiddenNote = expField >= 1
+    ? '公式里的 <b>"1 +"</b> 就是第 5 步没存的那个隐藏位：读回来时硬件自动把 1 补到尾数前面，1.xxx 重现原形——所以 ' + mw + ' 位尾数实际贡献 ' + (mw+1) + ' 位有效精度。'
+    : '公式里是 <b>"0 +"</b> 而不是 "1 +"：非规格化数没有隐藏位可蹭，这正是它精度更差的代价之一。';
+  push('验算：读回来',
+    '把 bit 翻译回十进制：<span class="mono">' + formula + '</span><br>' + hiddenNote + '<br>和原数 ' + fmtNum(v) + ' 比：误差 = <b>' + fmtNum(err) + '</b>（相对 ' + (rel === 0 ? '0' : (rel*100).toExponential(2)) + '%）——这就是精度损失的来源：尾数只有 ' + mw + ' 位，装不下的二进制尾巴只能舍掉。');
+  return R;
+}
+
+function computeINT(v, bits, span){
+  const R = { steps: [], cells: [], stored: null, kind: 'int', note: null, bitsTotal: bits };
+  const levels = 1 << bits;
+  const qmax = levels / 2 - 1;
+  const qmin = -(levels / 2);
+  const scale = span / qmax;
+  const raw = v / scale;
+  let q = Math.round(raw);
+  const clipped = q > qmax || q < qmin;
+  q = Math.max(qmin, Math.min(qmax, q));
+  const stored = q * scale;
+  R.steps.push({ title:'第 1 步：定标尺', html:'假设这组权重的范围是 ±' + fmtNum(span) + '，INT' + bits + ' 共有 <b>' + levels + ' 个刻度</b>（' + qmin + ' ~ ' + qmax + '），所以一格（scale）= ' + span + ' ÷ ' + qmax + ' ≈ <span class="mono">' + fmtNum(scale) + '</span>。' });
+  R.steps.push({ title:'第 2 步：落到最近的刻度', html:'<span class="mono">' + fmtNum(v) + ' ÷ ' + fmtNum(scale) + ' = ' + raw.toFixed(4) + '</span> → 四舍五入到刻度 <b>' + Math.round(raw) + '</b>' + (clipped ? '，但超出标尺范围，被<b>裁切</b>到 ' + q : '') + '。' });
+  const u = q & (levels - 1);
+  const bitStr = u.toString(2).padStart(bits, '0');
+  R.cells = Array.from(bitStr, c => ({ c, k:'i' }));
+  R.steps.push({ title:'第 3 步：乘回还原', html:'存下的只是刻度号 <b>' + q + '</b>（二进制 ' + bitStr + '），用的时候再乘 scale：<span class="mono">' + q + ' × ' + fmtNum(scale) + ' = <b>' + fmtNum(stored) + '</b></span>。scale 本身要额外存一份（通常 4 字节/组）。' });
+  const err = stored - v;
+  const rel = v !== 0 ? Math.abs(err / v) : 0;
+  R.steps.push({ title:'验算：读回来', html:'误差 = <b>' + fmtNum(err) + '</b>（相对 ' + (rel === 0 ? '0' : (rel*100).toFixed(2)) + '%）。和浮点不同，INT 的误差取决于<b>标尺长短</b>：span 越大格越粗。' });
+  R.stored = stored;
+  return R;
+}
+
+
+
+FX.int8 = { name:'INT8', int:true, bits:8 };
+FX.int4 = { name:'INT4', int:true, bits:4 };
+
+/* ===== 渲染 ===== */
+const state = { fmt:'fp16', val:3.14159, span:10 };
+const CHIPS = [['fp32','FP32'],['fp16','FP16'],['bf16','BF16'],['e4m3','FP8·E4M3'],['e5m2','FP8·E5M2'],['int8','INT8'],['int4','INT4']];
+const fmtsEl = root.querySelector('#fpx-fmts');
+fmtsEl.innerHTML = CHIPS.map(c => '<button type="button" class="fx-chip" data-f="' + c[0] + '">' + c[1] + '</button>').join('');
+
+function bitCell(c){ return '<span class="fx-bt fx-bt-' + c.k + '">' + c.c + '</span>'; }
+
+function render(){
+  const R = FX[state.fmt].int ? computeINT(state.val, FX[state.fmt].bits, state.span) : computeFP(state.val, state.fmt);
+  root.querySelector('#fpx-spanwrap').hidden = !FX[state.fmt].int;
+  root.querySelector('#fpx-note').innerHTML = R.note ? '<div class="fx-note">' + R.note.text + '</div>' : '';
+  root.querySelector('#fpx-steps').innerHTML = R.steps.map((s, i) =>
+    '<li class="fx-st"><span class="fx-stn">' + (i + 1) + '</span><span class="fx-stt"><b>' + s.title + '</b><br>' + s.html + '</span></li>').join('');
+  const legend = FX[state.fmt].int
+    ? '<span class="fx-lg"><i class="fx-sw fx-sw-i"></i>整数（补码）</span>'
+    : '<span class="fx-lg"><i class="fx-sw fx-sw-s"></i>符号</span><span class="fx-lg"><i class="fx-sw fx-sw-e"></i>指数（管范围）</span><span class="fx-lg"><i class="fx-sw fx-sw-m"></i>尾数（管精度）</span>';
+  root.querySelector('#fpx-assembly').innerHTML =
+    '<div class="fx-asm-bits">' + R.cells.map(bitCell).join('') + '</div>' +
+    '<div class="fx-asm-meta"><span>存成 <b class="fx-mono">' + fmtNum(R.stored) + '</b>（' + R.bitsTotal + ' bit）</span>' + legend + '</div>';
+  root.querySelectorAll('.fx-chip').forEach(b => b.classList.toggle('on', b.dataset.f === state.fmt));
+}
+
+root.querySelector('#fpx-val').addEventListener('input', e => {
+  const n = parseFloat(e.target.value);
+  if (isFinite(n)){ state.val = n; render(); }
+});
+fmtsEl.addEventListener('click', e => {
+  const b = e.target.closest('.fx-chip');
+  if (b){ state.fmt = b.dataset.f; render(); }
+});
+root.querySelector('#fpx-span').addEventListener('input', e => {
+  const t = +e.target.value;
+  state.span = Math.pow(10, 0.5 + t / 1000 * 1.5);
+  root.querySelector('#fpx-spanval').textContent = '±' + fmtNum(state.span);
+  render();
+});
+render();
+})();
+</script>
+</div>
+
+  </div>
+
+  <div class="card play" data-page-node-id="QUYeVOtW7ugCMhHPR0znDZ">
+    <h3 style="margin-top:0" data-page-node-id="v67AFP6BspvOfsGuRNHekx">🔎 放大第 1 步：小数部分是怎么"顶"出那些 0 和 1 的？</h3>
+    <p class="small" data-page-node-id="XfTKOWFpJHXXwnH86SCaFy">上面分步拆解的第 1 步说"小数部分反复 ×2 取整"——这个工具把那一步展开：
+    每乘一次 2，二进制小数点就右移一位，被"顶"到整数位上的数字（只会是 0 或 1）就是本位，剩下的小数留给下一轮。
+    试试 <b data-page-node-id="UyFBqByWDhX6CZcuAoRAZu">0.75</b>（两轮就转完，有限二进制）和 <b data-page-node-id="DaGqbGyv3f0GMgaDg3cWIr">0.1</b>（无限循环，必须靠舍入）。</p>
+    <div id="frb-viz" role="region" aria-label="小数转二进制的逐轮演示" data-page-node-id="rh2LtuUzU9tTypK2orEpCv">
+<style>
+#frb-viz{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:#20242e;max-width:880px}
+#frb-viz .frb-card{background:#fbfaf6;border:1px solid #e5e1d8;border-radius:14px;padding:16px 18px;box-shadow:0 1px 3px rgba(20,20,40,.06)}
+#frb-viz .frb-title{font-weight:700;font-size:15.5px;margin:0 0 10px}
+#frb-viz .frb-row{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin-bottom:12px}
+#frb-viz .frb-label{font-size:13.5px;color:#68707e}
+#frb-viz input[type=text]{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:15px;padding:6px 10px;border:1px solid #d9d4c8;border-radius:9px;background:#fff;width:140px;color:#20242e}
+#frb-viz .frb-chip{border:1px solid #d9d4c8;background:#fff;border-radius:999px;padding:4px 12px;font-size:13px;cursor:pointer;color:#20242e}
+#frb-viz .frb-chip:hover{border-color:#4f46e5;color:#4f46e5}
+#frb-viz .frb-chip.on{background:#4f46e5;border-color:#4f46e5;color:#fff;font-weight:600}
+#frb-viz .frb-note{background:#eef2ff;border-left:3px solid #4f46e5;border-radius:0 9px 9px 0;padding:7px 12px;font-size:13.5px;margin-bottom:10px;color:#3c4250}
+#frb-viz table.frb-tbl{width:100%;border-collapse:collapse;font-size:13.5px}
+#frb-viz .frb-tbl th{font-size:12px;color:#68707e;text-align:left;font-weight:600;padding:4px 8px}
+#frb-viz .frb-tbl td{padding:6px 8px;border-top:1px solid #edeae1;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+#frb-viz .frb-tbl td:nth-child(1){font-family:inherit;color:#9aa1ac;width:34px}
+#frb-viz .frb-tbl .done td{background:#f0fdf4}
+#frb-viz .frb-bit{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:24px;padding:0 4px;border-radius:6px;font:700 13px/1 ui-monospace,monospace;color:#fff}
+#frb-viz .frb-b1{background:#3b82f6}
+#frb-viz .frb-b0{background:#9ca3af}
+#frb-viz .frb-acc{margin-top:12px;font-size:14px;background:#fff;border:1px solid #e5e1d8;border-radius:12px;padding:10px 14px;line-height:2}
+#frb-viz .frb-acc .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+#frb-viz .frb-acc .bit{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:20px;border-radius:5px;font:700 12px/1 ui-monospace,monospace;margin:1px;color:#fff}
+#frb-viz .frb-acc .bit1{background:#3b82f6}
+#frb-viz .frb-acc .bit0{background:#c7c2b8}
+#frb-viz .ok{color:#16a34a;font-weight:700}
+#frb-viz .warn{color:#d97706;font-weight:700}
+</style>
+<div class="frb-card" data-page-node-id="H1VHJ7kutKOmlkQj9ajAps">
+  <p class="frb-title" data-page-node-id="c9FRzVChBG0cilnV4VEala">小数部分反复 ×2：每一轮"顶"出一位二进制</p>
+  <div class="frb-row" data-page-node-id="DLjKcmtCdo98D9qfsDreKd">
+    <span class="frb-label" data-page-node-id="p4fFOHGWVxA0JtFEYAikcH">小数</span>
+    <input id="frb-val" type="text" inputmode="decimal" value="0.14159" aria-label="要转的小数" data-page-node-id="kbkFCJ5E6stEWB3WjWNVs1">
+    <span class="frb-chip on" data-v="0.14159" data-page-node-id="CG0dE043TUry71qVvOmDfF">0.14159（3.14159 的小数）</span>
+    <span class="frb-chip" data-v="0.1" data-page-node-id="EEFqdXyS2g7d6e0ThOFp5q">0.1</span>
+    <span class="frb-chip" data-v="0.75" data-page-node-id="V0LNUsdasOBfxNLBEGoFBI">0.75（有限）</span>
+    <span class="frb-chip" data-v="0.6" data-page-node-id="yH9iApeUvCMrMgPaZIEG21">0.6</span>
+  </div>
+  <div id="frb-note" data-page-node-id="ZSZUuOE9JMqAWXQ1AlOFaG"></div>
+  <table class="frb-tbl" aria-label="逐轮乘 2 的过程" data-page-node-id="A9uHgG0U55RQqA00jbd1Rm">
+    <thead data-page-node-id="PKMA9k99zb8vlf8G1fvdGA"><tr data-page-node-id="EwLQ1v8LZaM90ZV0ZBE1cv"><th data-page-node-id="JxRgg2bDGY4SIfvSelmB46">轮</th><th data-page-node-id="G75E2ZyJOo0iXy8d2M7DOe">当前小数</th><th data-page-node-id="3prF22ezSWzNi4VFELErxs">× 2 后</th><th data-page-node-id="a5HxPcmNzT8qrAQ8oehLZk">整数部分 = 本位</th><th data-page-node-id="n4SWAo1izmzSttEb5NMnj9">留作下一轮的小数</th></tr></thead>
+    <tbody id="frb-body" data-page-node-id="qwHBOur3l8YQ3LwXOhgt7c"></tbody>
+  </table>
+  <div class="frb-acc" id="frb-acc" data-page-node-id="uCiO9RiBqKegDjfcJvklJi"></div>
+</div>
+<script>
+(function(){
+"use strict";
+const root = document.getElementById('frb-viz');
+if (!root) return;
+const MAXROWS = 12;
+function fmt(x){
+  if (x === 0) return '0';
+  const s = parseFloat(x.toPrecision(7)).toString();
+  return s;
+}
+function render(v){
+  const noteEl = root.querySelector('#frb-note');
+  const bodyEl = root.querySelector('#frb-body');
+  const accEl = root.querySelector('#frb-acc');
+  const frac = v - Math.floor(v);
+  let note = '';
+  if (v !== frac && Math.floor(v) !== 0) note += '先看整数部分 ' + Math.floor(v) + '（÷2 取余法，另说）；这里转它的小数部分 ' + fmt(frac) + '。<br>';
+  if (frac === 0){
+    note += '整数没有小数部分，二进制小数就是 0.000…（直接写 0 就行）。';
+    noteEl.innerHTML = note ? '<div class="frb-note">' + note + '</div>' : '';
+    bodyEl.innerHTML = '';
+    accEl.innerHTML = '';
+    return;
+  }
+  let fr = frac;
+  let rows = '';
+  let bits = '';
+  let sum = 0;
+  let finished = false;
+  for (let i = 1; i <= MAXROWS; i++){
+    const doubled = fr * 2;
+    const bit = doubled >= 1 ? 1 : 0;
+    const rem = doubled - bit;
+    bits += bit;
+    sum += bit / Math.pow(2, i);
+    const done = rem === 0;
+    if (done) finished = true;
+    rows += '<tr' + (done ? ' class="done"' : '') + '>'
+      + '<td>' + i + '</td>'
+      + '<td>' + fmt(fr) + '</td>'
+      + '<td>' + fmt(doubled) + '</td>'
+      + '<td><span class="frb-bit ' + (bit ? 'frb-b1' : 'frb-b0') + '">' + bit + '</span></td>'
+      + '<td>' + (done ? '<b class="ok">0 → 转完了！</b>' : fmt(rem)) + '</td>'
+      + '</tr>';
+    fr = rem;
+    if (done) break;
+  }
+  // 特殊情况提示：0.1 这类永远转不完
+  if (!finished && Math.abs(frac - 0.1) < 1e-12) note += '0.1 的二进制永远转不完（后面是 1001 1001… 无限循环）——就像十进制里 1/3 = 0.333… 写不完一样。<br>';
+  if (finished) note += '余数在第 ' + bits.length + ' 轮变成 0，<b>正好结束</b>：' + fmt(frac) + ' 是有限二进制，能精确存下。<br>';
+  noteEl.innerHTML = note ? '<div class="frb-note">' + note + '</div>' : '';
+  bodyEl.innerHTML = rows;
+  const bitHtml = bits.split('').map((b, i) => '<span class="bit ' + (b === '1' ? 'bit1' : 'bit0') + '" data-tooltip="第 ' + (i+1) + ' 位 = 2^-' + (i+1) + '">' + b + '</span>').join('');
+  const diff = Math.abs(frac - sum);
+  const diffTxt = finished
+    ? '<span class="ok">0</span>（正好相等，因为已经转完了）'
+    : fmt(diff) + '（再多转几轮会更小——这就是"近似"）';
+  accEl.innerHTML = '拼出来的二进制：<span class="mono">0.</span>' + bitHtml + (finished ? '' : '<span class="mono">…</span>')
+    + '<br>把这几位加回来检验：' + bits.split('').map((b, i) => b === '1' ? '<span class="mono">2<sup>-' + (i+1) + '</sup></span>' : '').filter(Boolean).join(' + ') + ' <span class="mono">= ' + fmt(sum) + '</span>'
+    + '，与原数差 <span class="mono">' + diffTxt + '</span>';
+}
+function setVal(v){
+  root.querySelector('#frb-val').value = v;
+  root.querySelectorAll('.frb-chip').forEach(c => c.classList.toggle('on', c.dataset.v === String(v)));
+  render(parseFloat(v));
+}
+root.querySelector('#frb-val').addEventListener('input', e => {
+  const n = parseFloat(e.target.value);
+  if (isFinite(n)){
+    root.querySelectorAll('.frb-chip').forEach(c => c.classList.remove('on'));
+    render(n);
+  }
+});
+root.querySelectorAll('.frb-chip').forEach(c => c.addEventListener('click', () => setVal(c.dataset.v)));
+render(0.14159);
+})();
+</script>
+</div>
+
+  </div>
+
+  <p data-page-node-id="wbMB73VvidynUGHvizwZJr">玩到这里你可能冒出一个疑问：<b data-page-node-id="cjUkJpA5RdZUcZblFKQDow">那有没有办法把数字存得分毫不差？</b>有，但每种办法都有代价——下面的工具会告诉你，为什么工程上大家最终都选择了"近似但快"。</p>
+  <div class="card play" data-page-node-id="A0fWHRVw7QGlcCsi4QMrVe">
+    <h3 style="margin-top:0" data-page-node-id="7XV4nIYdBEPNisSLq5OV6r">💯 它到底能不能被"精确"写下？</h3>
+    <p class="small" data-page-node-id="ZHyNnrdKKlDuLCw5D80xf2">你问得好：3.14159 这种数，计算机<b data-page-node-id="lxCjEdD6mbsU4Xn1nFLDXE">确实有</b>能精确写下它的方式——只是每一种都有代价。
+    而二进制浮点"写不精确"的根源不在计算机，在数学：把数写成分数并约分，<b data-page-node-id="Q5yqsQzW5t5MWSBDP5KYEN">分母只含因子 2 → 二进制有限，能精确写尽；
+    分母还含别的因子（5、3、7…）→ 二进制无限循环，给多少比特都写不完</b>——就像十进制永远写不尽 1/3 = 0.333… 一样。
+    输入一个数，直接看结论 👇</p>
+    <div id="exx-viz" role="region" aria-label="二进制精确性检测工具" data-page-node-id="lezGmJcS4TviNLOoAJ68pA">
+<style>
+#exx-viz{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:#20242e}
+#exx-viz .exx-row{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin-bottom:8px}
+#exx-viz .exx-label{font-size:13.5px;color:#68707e}
+#exx-viz input[type=text]{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:15px;padding:6px 10px;border:1px solid #d9d4c8;border-radius:9px;background:#fff;width:160px;color:#20242e}
+#exx-viz .exx-chip{border:1px solid #d9d4c8;background:#fff;border-radius:999px;padding:4px 12px;font-size:13px;cursor:pointer;color:#20242e;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+#exx-viz .exx-chip:hover{border-color:#4f46e5;color:#4f46e5}
+#exx-viz .exx-chip.on{background:#4f46e5;border-color:#4f46e5;color:#fff;font-weight:600}
+#exx-viz .exx-v{border-radius:12px;padding:12px 16px;font-size:15px;line-height:1.8;margin-top:14px;border:1px solid}
+#exx-viz .exx-v-ok{background:#f0fdf4;border-color:#bbf7d0;color:#14532d}
+#exx-viz .exx-v-bad{background:#fef2f2;border-color:#fecaca;color:#7f1d1d}
+#exx-viz .exx-v-warn{background:#fffbeb;border-color:#fde68a;color:#78350f}
+#exx-viz .exx-step{background:#fff;border:1px solid #e5e1d8;border-radius:12px;padding:12px 16px;margin-top:10px;font-size:14.5px;line-height:1.95}
+#exx-viz .exx-st{font-weight:700;font-size:14px;color:#4f46e5;margin-bottom:4px}
+#exx-viz .exx-mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.95em}
+#exx-viz .exx-bit{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:24px;margin:1px;border-radius:5px;font:700 13px/1 ui-monospace,monospace;color:#fff}
+#exx-viz .exx-b1{background:#3b82f6}
+#exx-viz .exx-b0{background:#c7c2b8}
+#exx-viz .exx-cyc{background:#fde68a;border-radius:6px;padding:2px 3px;margin:0 2px}
+#exx-viz table.exx-tbl{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}
+#exx-viz .exx-tbl th{font-size:12px;color:#68707e;text-align:left;font-weight:600;padding:5px 8px}
+#exx-viz .exx-tbl td{padding:7px 8px;border-top:1px solid #edeae1;vertical-align:top;line-height:1.7}
+#exx-viz .exx-tbl td:nth-child(2){font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;word-break:break-all}
+#exx-viz .exx-tag{display:inline-block;border-radius:999px;padding:1px 9px;font-size:12px;font-weight:600;white-space:nowrap}
+#exx-viz .exx-tag-ok{background:#dcfce7;color:#166534}
+#exx-viz .exx-tag-bad{background:#fee2e2;color:#991b1b}
+#exx-viz .exx-tag-warn{background:#fef3c7;color:#92400e}
+#exx-viz .exx-err{background:#fef2f2;border:1px solid #fecaca;color:#7f1d1d;border-radius:12px;padding:10px 16px;margin-top:12px}
+#exx-analogy{background:#eef2ff;border-left:3px solid #4f46e5;border-radius:0 10px 10px 0;padding:12px 16px;margin-top:14px;font-size:13.5px;line-height:1.95;color:#3c4250}
+#exx-analogy b{color:#20242e}
+</style>
+      <div class="exx-row" data-page-node-id="PI1BMST7aqMmCpBwUAUJML">
+        <span class="exx-label" data-page-node-id="pmBcHgtYEkxSnmE6s3JXYz">输入一个十进制数（≤15 位数字）：</span>
+        <input type="text" id="exx-input" value="3.14159" spellcheck="false" autocomplete="off" data-page-node-id="1TS5Lpx13j7lBtFPAlY26Y">
+        <button class="exx-chip" data-v="0.5" data-page-node-id="4bpOBrNahHDLLuMFtXgfcQ">0.5</button>
+        <button class="exx-chip" data-v="0.75" data-page-node-id="IGH8TCQpSCDsZeRmHAzMOu">0.75</button>
+        <button class="exx-chip" data-v="0.1" data-page-node-id="eWWLkAp6Mk5VN3zdTyxcoS">0.1</button>
+        <button class="exx-chip on" data-v="3.14159" data-page-node-id="K3DNbVAO7U1zPLD6xRPLDy">3.14159</button>
+        <button class="exx-chip" data-v="16777217" title="2²⁴+1：是整数，但二进制要 25 位有效位，FP32 装不下" data-page-node-id="oG4DiYOqrrX9Bn2YHPhamJ">16777217</button>
+      </div>
+      <div class="exx-row" data-page-node-id="TqdM6knZIyuHd3pC0Fli8B">
+        <span class="exx-label" data-page-node-id="c4DuY5QzjrW6InKkeLbTAF">选一种格式来存它：</span>
+        <span id="exx-fmts" style="display:contents" data-page-node-id="leHPTFdbmTtY2SdUkcqMXB"></span>
+      </div>
+      <div id="exx-out" data-page-node-id="nZvo9kq3NIA4hkYMb13pFP"></div>
+      <div id="exx-analogy" data-page-node-id="Dr0YBvjYJGpVzDuhoOnL6g">
+        <b data-page-node-id="LwWyrHKnA6FvRdJ6Rpv7Kl">🔗 十进制的类比（我们人用的系统）：</b>十进制的数位是 1/10、1/100、1/1000…，而 10 = 2×5，
+        所以十进制只能"写尽"分母（约分后）只含因子 2 和 5 的分数：0.25、0.75、0.125 能写尽，1/3 = 0.333… 永远写不尽。
+        <br data-page-node-id="eCdJW2euDnQqprm44OtS9q">二进制更"挑剔"：数位是 1/2、1/4、1/8…，分母只能是 2 的幂——0.5、0.25、0.75 能写尽，0.1（分母 10 = 2×5，带个 5）就不行。
+        <br data-page-node-id="jXbuod6ClmXyW5cMrjQDS0"><br data-page-node-id="aFR0yb9tyr5lCOMDjC8U4q"><b data-page-node-id="VnbUlgLoQnVGQQLL3g9fvC">🤔 那 3.14159 就没办法精确表示了吗？</b>有，但各有代价：
+        <br data-page-node-id="FJDOpr4ZpHXCe5SJnX5u06">· <b data-page-node-id="0OCq3qchWQ6yOjbk2EOMxi">文本（字符串）</b>：把 "3.14159" 当 7 个字符存，精确——可那是文本不是数，不能直接参与计算；
+        <br data-page-node-id="IprdYk8AZPSP5XbCRb99OV">· <b data-page-node-id="ikzAv9kIMqMmCUAiN2M9hQ">分数（有理数）</b>：存"分子 314159 ÷ 分母 100000"，精确——但每次加减乘除都要算大数，数字越算越大、极慢；
+        <br data-page-node-id="wsLQfru2cCDFKNWzRDUuSv">· <b data-page-node-id="TmCRlbynvixwu0omIsvk5H">十进制浮点（BCD）</b>：用十进制数位存数（金融会计场景用过），硬件支持差、速度慢；
+        <br data-page-node-id="nuRCJ5KJi0DQouqBCScWy3">· <b data-page-node-id="TsSfm5JWP8YmTRbP60BKtt">无限比特</b>：当然精确，可没有计算机有无限内存。
+        <br data-page-node-id="iD5pxfUX8IAuqzGmCQvUjY"><br data-page-node-id="9l7oA6OzV0Hw68Ly1bd6Mk"><b data-page-node-id="FZM69ZKXjwfweBGw0TsQhe">⚡ 为什么大家还是接受浮点近似？</b>CPU/GPU 对浮点运算有专门的硬件流水线，可以成千上万个一起算，快几个数量级；
+        而 FP32 的相对误差只有 10⁻⁷ 量级——大模型的权重本身就是从数据里"拟合"出来的统计量，对这个量级的扰动完全不敏感。
+        这也是下一节"量化"敢把精度砍到 INT4 的根本原因之一。
+      </div>
+    </div>
+  </div>
+  <script>
+  (function(){
+  "use strict";
+  const out = document.getElementById('exx-out');
+  const input = document.getElementById('exx-input');
+  const fmtBox = document.getElementById('exx-fmts');
+  if (!out || !input || !fmtBox) return;
+
+  /* ===== 浮点舍入（与本页其他工具同一套算法，IEEE 754 平局入偶） ===== */
+  const dv32 = new DataView(new ArrayBuffer(4));
+  function f32bits(v){ dv32.setFloat32(0, v, true); return dv32.getUint32(0, true); }
+  function bitsF32(b){ dv32.setUint32(0, b >>> 0, true); return dv32.getFloat32(0, true); }
+  function rne(x){ const f = Math.floor(x); const d = x - f; if (d > 0.5) return f + 1; if (d < 0.5) return f; return (f & 1) ? f + 1 : f; }
+  function fp16Round(v){
+    if (typeof v !== 'number' || Number.isNaN(v)) return v;
+    if (!isFinite(v)) return v;
+    if (v === 0) return v;
+    const sign = v < 0 ? -1 : 1;
+    let a = Math.abs(v);
+    if (a > 65504) return sign * Infinity;
+    let e = Math.floor(Math.log2(a) + 1e-12);
+    if (e >= -14){
+      let m = rne((a / Math.pow(2, e) - 1) * 1024);
+      if (m >= 1024){ m = 0; e += 1; if (e > 15) return sign * Infinity; }
+      return sign * Math.pow(2, e) * (1 + m / 1024);
+    }
+    let msub = rne(a / Math.pow(2, -24));
+    if (msub > 1023) msub = 1023;
+    if (msub === 0) return sign * 0;
+    return sign * (msub / 1024) * Math.pow(2, -14);
+  }
+  function bf16Round(v){
+    if (typeof v !== 'number' || Number.isNaN(v)) return v;
+    if (!isFinite(v)) return v;
+    const bits = f32bits(v);
+    let keep = bits >>> 16;
+    const low = bits & 0xFFFF;
+    if (low > 0x8000 || (low === 0x8000 && (keep & 1))) keep = (keep + 1) >>> 0;
+    if ((keep & 0x7F80) === 0x7F80) return (keep & 0x8000) ? -Infinity : Infinity;
+    return bitsF32((keep << 16) >>> 0);
+  }
+  function fp8e4m3Round(v){
+    if (typeof v !== 'number' || Number.isNaN(v)) return v;
+    if (!isFinite(v)) return Math.sign(v) * 448;
+    if (v === 0) return v;
+    const sign = v < 0 ? -1 : 1;
+    let a = Math.abs(v);
+    if (a > 448) return sign * 448;
+    let e = Math.floor(Math.log2(a) + 1e-12);
+    if (e >= -6){
+      let m = rne((a / Math.pow(2, e) - 1) * 8);
+      if (m >= 8){ m = 0; e += 1; if (e > 8) return sign * 448; }
+      return sign * Math.pow(2, e) * (1 + m / 8);
+    }
+    let msub = rne(a / Math.pow(2, -9));
+    if (msub > 8) msub = 8;
+    if (msub === 0) return sign * 0;
+    return sign * (msub / 8) * Math.pow(2, -6);
+  }
+
+  const FMTS = [
+    { id:'fp64', name:'FP64', max:'1.8e308', mant:53, round:function(v){ return v; } },
+    { id:'fp32', name:'FP32', max:'3.4e38', mant:24, round:function(v){ return Math.fround(v); } },
+    { id:'bf16', name:'BF16', max:'3.4e38', mant:8, round:bf16Round },
+    { id:'fp16', name:'FP16', max:'65504', mant:11, round:fp16Round },
+    { id:'e4m3', name:'FP8-E4M3', max:'448', mant:4, round:fp8e4m3Round }
+  ];
+  let curFmt = FMTS[1];
+  FMTS.forEach(function(f){
+    const b = document.createElement('button');
+    b.className = 'exx-chip' + (f === curFmt ? ' on' : '');
+    b.dataset.f = f.id;
+    b.textContent = f.name + '（最大 ' + f.max + '）';
+    b.addEventListener('click', function(){
+      curFmt = f;
+      fmtBox.querySelectorAll('.exx-chip').forEach(function(c){ c.classList.remove('on'); });
+      b.classList.add('on');
+      render();
+    });
+    fmtBox.appendChild(b);
+  });
+
+  /* ===== 精确分数工具（BigInt，不做任何近似） ===== */
+  function gcd(a, b){ a = a < 0n ? -a : a; b = b < 0n ? -b : b; while (b){ const t = a % b; a = b; b = t; } return a; }
+  function parseDecimal(str){
+    const s = String(str).trim();
+    if (!/^[+-]?(\d+(\.\d*)?|\.\d+)$/.test(s)) return null;
+    const neg = s.charAt(0) === '-';
+    const body = s.replace(/^[+-]/, '');
+    const dot = body.indexOf('.');
+    const ip = dot < 0 ? body : body.slice(0, dot);
+    const fr = dot < 0 ? '' : body.slice(dot + 1);
+    const digits = (ip || '0') + fr;
+    if (digits.length > 15) return { tooLong: true };
+    let n0 = BigInt((ip || '0') + fr);
+    let d0 = 10n ** BigInt(fr.length);
+    let n = n0, d = d0;
+    const g = gcd(n, d); n = n / g; d = d / g;
+    if (neg && n !== 0n) n = -n;
+    return { n: n, d: d, n0: n0, d0: d0, ndig: digits.length };
+  }
+  function doubleFraction(x){ // 有限 double 的精确分数
+    if (x === 0) return { n: 0n, d: 1n };
+    const dv = new DataView(new ArrayBuffer(8));
+    dv.setFloat64(0, x, true);
+    const b = dv.getBigUint64(0, true);
+    const neg = (b >> 63n) === 1n;
+    const exp = Number((b >> 52n) & 0x7FFn);
+    const man = b & 0xFFFFFFFFFFFFFn;
+    let n, d;
+    if (exp === 0){ n = man; d = 1n << 1074n; }
+    else {
+      n = (1n << 52n) | man;
+      const e = BigInt(exp) - 1075n;
+      if (e >= 0n){ n = n << e; d = 1n; } else { d = 1n << (-e); }
+    }
+    const g = gcd(n, d); n = n / g; d = d / g;
+    return { n: neg ? -n : n, d: d };
+  }
+  function sameFrac(a, b){ return a.n * b.d === b.n * a.d; }
+  function fracDiff(a, b){
+    let n = a.n * b.d - b.n * a.d;
+    const d = a.d * b.d;
+    if (n < 0n) n = -n;
+    if (n === 0n) return { n: 0n, d: 1n };
+    const g = gcd(n, d);
+    return { n: n / g, d: d / g };
+  }
+  function binaryDigits(n, d, maxIters){ // 精确长除法，检测循环
+    const neg = n < 0n;
+    const N = neg ? -n : n;
+    const ip = N / d;
+    let r = N % d;
+    const intStr = ip.toString(2);
+    const fr = [];
+    const seen = new Map();
+    let finished = false, cycleStart = -1, cycleLen = 0;
+    for (let i = 0; i < maxIters; i++){
+      if (r === 0n){ finished = true; break; }
+      if (seen.has(r)){ cycleStart = seen.get(r); cycleLen = i - cycleStart; break; }
+      seen.set(r, i);
+      r = r * 2n;
+      fr.push((r / d) === 1n ? '1' : '0');
+      r = r % d;
+    }
+    return { intStr: intStr, fr: fr, neg: neg, finished: finished, cycleStart: cycleStart, cycleLen: cycleLen };
+  }
+  function sup(x){
+    const m = { '0':'⁰','1':'¹','2':'²','3':'³','4':'⁴','5':'⁵','6':'⁶','7':'⁷','8':'⁸','9':'⁹' };
+    return String(x).split('').map(function(c){ return m[c] || c; }).join('');
+  }
+  function fmtErr(x){
+    if (x === 0) return '0';
+    const a = Math.abs(x);
+    if (a >= 1e-4 && a < 1e6) return String(x);
+    return x.toExponential(3);
+  }
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  const bitSpan = function(ch){ return '<span class="exx-bit ' + (ch === '1' ? 'exx-b1' : 'exx-b0') + '">' + ch + '</span>'; };
+  const bitsRun = function(list, a, b){ return list.slice(a, b).map(bitSpan).join(''); };
+
+  function render(){
+    const raw = input.value.trim();
+    const parsed = parseDecimal(raw);
+    if (!parsed){
+      out.innerHTML = '<div class="exx-err">⚠️ 请输入形如 <b>3.14</b>、<b>0.5</b>、<b>-2.75</b> 的十进制数。</div>';
+      return;
+    }
+    if (parsed.tooLong){
+      out.innerHTML = '<div class="exx-err">⚠️ 演示最多支持 15 位数字，理解原理完全够用了。</div>';
+      return;
+    }
+    const n = parsed.n, d = parsed.d;
+    let den = d, k = 0;
+    while (den % 2n === 0n){ den = den / 2n; k++; }
+    const finite = den === 1n;
+    const bd = binaryDigits(n, d, 200000);
+    const exactVal = Number(n) / Number(d);
+    const stored = curFmt.round(exactVal);
+    const storedFrac = isFinite(stored) ? doubleFraction(stored) : null;
+    const exact = storedFrac !== null && sameFrac(storedFrac, { n: n, d: d });
+
+    /* ---- 结论横幅 ---- */
+    let vHtml, vcls;
+    if (!isFinite(stored)){
+      vcls = 'exx-v-warn';
+      vHtml = '💥 <b>溢出！</b>' + esc(raw) + ' 超过了 ' + curFmt.name + ' 的最大值（' + curFmt.max + '），只能存成 ∞，后面的计算全废。';
+    } else if (n === 0n){
+      vcls = 'exx-v-ok';
+      vHtml = '✅ 0 在任何格式里都能精确存下，误差为 0。';
+    } else if (exact){
+      vcls = 'exx-v-ok';
+      vHtml = '✅ <b>' + curFmt.name + ' 能精确存下</b> ' + esc(raw) + '：实际存的就是 ' + esc(String(stored)) + '，误差为 0。';
+    } else if (stored === 0){
+      vcls = 'exx-v-bad';
+      vHtml = '❌ ' + esc(raw) + ' 对 ' + curFmt.name + ' 来说太小，舍入之后变成了 <b>0</b>。';
+    } else {
+      const df = fracDiff(storedFrac, { n: n, d: d });
+      let errAbs = Number(df.n) / Number(df.d);
+      if (!isFinite(errAbs) || isNaN(errAbs)) errAbs = Math.abs(stored - exactVal);
+      const rel = Math.abs(exactVal) > 0 ? errAbs / Math.abs(exactVal) : 0;
+      vcls = 'exx-v-bad';
+      vHtml = '❌ <b>' + curFmt.name + ' 只能存近似值</b>：实际存成 ' + esc(String(stored))
+        + '，绝对误差 ≈ ' + fmtErr(errAbs) + '，相对误差 ≈ ' + fmtErr(rel) + '。';
+    }
+
+    /* ---- 第 1 步：分数 ---- */
+    let s1;
+    if (parsed.d0 !== parsed.d){
+      s1 = '① 先把它写成分数：<span class="exx-mono">' + parsed.n0 + '/' + parsed.d0 + ' → ' + n + '/' + d + '</span>（约分后）<br>';
+    } else {
+      s1 = '① 先把它写成分数：<span class="exx-mono">' + n + '/' + d + '</span><br>';
+    }
+    s1 += '你敲出来的任何十进制数，本质都是"两个整数相除"。它能不能被二进制写尽，就藏在这个<b>分母</b>里。';
+    s1 = '<div class="exx-st">第 1 步 · 写成分数</div>' + s1;
+
+    /* ---- 第 2 步：分母 ---- */
+    let s2;
+    if (d === 1n){
+      s2 = '它是<b>整数</b>（分母是 1）：整数的二进制一定有限，1 和 0 全排在小数点左边，随便写。';
+    } else if (finite){
+      s2 = '分母 ' + d + ' = 2' + sup(k) + '，<b>只含因子 2</b> → 二进制是<b>有限</b>的，理论上能精确写尽。（不过还要看格式装不装得下，见第 4 步。）';
+    } else {
+      s2 = '分母 ' + d + ' = 2' + sup(k) + ' × ' + den + '，剩下的 <b>' + den + '</b> 不是 2 的幂（还带着别的因子）→ 二进制是<b>无限循环</b>的：<b>给多少比特都写不完</b>——这不是格式的错，是这个数本身的性质。';
+    }
+    s2 = '<div class="exx-st">第 2 步 · 检查分母（能不能写尽，就看它）</div>' + s2
+      + '<br><span style="color:#68707e;font-size:13px">规则：一个数能被二进制写尽 ⟺ 写成分数后，分母是 2 的幂。这和十进制一模一样：十进制只能写尽分母只含 2、5 的分数——所以 1/3 在我们眼里也写不尽。</span>';
+
+    /* ---- 第 3 步：二进制展开 ---- */
+    const intMono = '<span class="exx-mono">' + (bd.neg ? '-' : '') + bd.intStr + '</span>';
+    let bitsHtml, s3note = '';
+    if (bd.finished){
+      const frAll = bd.fr.join('');
+      const shown = frAll.length > 40 ? frAll.slice(0, 40) + '…' : frAll;
+      bitsHtml = intMono + (frAll ? '.' + shown : '');
+      s3note = '这是<b>完整</b>的二进制展开（有限，到此为止，一个多余位都没有）。';
+    } else if (bd.cycleStart >= 0 && bd.cycleStart + bd.cycleLen <= 24){
+      const pre = bitsRun(bd.fr, 0, bd.cycleStart);
+      const cyc = bitsRun(bd.fr, bd.cycleStart, bd.cycleStart + bd.cycleLen);
+      bitsHtml = intMono + '.' + pre + '<span class="exx-cyc">' + cyc + '</span><span class="exx-mono">…</span>';
+      s3note = '黄底那块（' + bd.cycleLen + ' 位）<b>从这里开始永远重复</b>——这就是二进制世界的 "0.333…"。';
+    } else {
+      const n24 = Math.min(24, bd.fr.length);
+      bitsHtml = intMono + '.' + bitsRun(bd.fr, 0, n24) + '<span class="exx-mono">…</span>';
+      if (bd.cycleStart >= 0) s3note = '循环部分从第 ' + (bd.cycleStart + 1) + ' 位开始、长度 ' + bd.cycleLen + ' 位——太长了画不下，但它会一直这样重复下去。';
+      else s3note = '循环部分很长还没扫完，但光看分母已经知道：它<b>永远不会结束</b>。';
+    }
+    const s3 = '<div class="exx-st">第 3 步 · 它的二进制长什么样（看前几位）</div><span style="font-size:15px">' + bitsHtml + '</span><br><span style="color:#68707e;font-size:13px">' + s3note + '</span>';
+
+    /* ---- 第 4 步：格式里实际存什么 ---- */
+    let s4;
+    if (!isFinite(stored)){
+      s4 = curFmt.name + ' 最大只能到 ' + curFmt.max + '，这个数超出了 → 存成 ∞，什么都算不了。';
+    } else if (n === 0n){
+      s4 = '存成 0，精确无误。';
+    } else if (exact){
+      s4 = '存成 <span class="exx-mono">' + esc(String(stored)) + '</span>，和原数完全相等。✅';
+    } else {
+      s4 = '存成 <span class="exx-mono">' + esc(String(stored)) + '</span>（四舍五入到格式允许的最接近的刻度）。❌<br>';
+      if (finite){
+        const allBits = bd.intStr + bd.fr.join('');
+        const sig = allBits.replace(/^0+(?=\d)/, '');
+        s4 += '它的二进制虽然有限，但要 <b>' + sig.length + ' 位有效位</b>，而 ' + curFmt.name + ' 只有 ' + curFmt.mant + ' 位——装不下，末位被舍掉了。';
+      } else {
+        s4 += '它的二进制是<b>无限</b>的：给多少位都写不完，只能舍入到格式里最接近的那个值。';
+      }
+    }
+    s4 = '<div class="exx-st">第 4 步 · ' + curFmt.name + ' 里实际存了什么</div>' + s4;
+
+    /* ---- 第 5 步：精确的替代方案对比表 ---- */
+    const err32 = exact ? 0 : 0;
+    let tbl;
+    if (isFinite(stored)){
+      const f64Frac = doubleFraction(exactVal);
+      const d64 = fracDiff(f64Frac, { n: n, d: d });
+      const err64 = Number(d64.n) / Number(d64.d);
+      const dS = fracDiff(storedFrac, { n: n, d: d });
+      let errS = Number(dS.n) / Number(dS.d);
+      if (!isFinite(errS)) errS = Math.abs(stored - exactVal);
+      const tagExact = '<span class="exx-tag exx-tag-ok">✅ 精确</span>';
+      const tagApprox = function(e){ return '<span class="exx-tag exx-tag-bad">❌ 近似 · 误差≈' + fmtErr(e) + '</span>'; };
+      const d32 = Math.abs(exactVal) > 0 ? errS / Math.abs(exactVal) : 0;
+      const d64r = Math.abs(exactVal) > 0 ? err64 / Math.abs(exactVal) : 0;
+      tbl = '<table class="exx-tbl"><tr><th>存法</th><th>实际存的内容</th><th>大小</th><th>精确吗</th><th>代价</th></tr>'
+        + '<tr><td>二进制浮点<br><b>' + curFmt.name + '</b></td><td>' + esc(String(stored)) + '</td><td>' + ({fp64:8,fp32:4,bf16:2,fp16:2,e4m3:1})[curFmt.id] + ' 字节</td><td>' + (exact ? tagExact : tagApprox(errS)) + '</td><td>⚡ 最快：硬件原生，成千上万个并行</td></tr>'
+        + '<tr><td>二进制浮点<br><b>FP64</b>' + (curFmt.id === 'fp64' ? '（当前）' : '') + '</td><td>' + esc(String(exactVal)) + '</td><td>8 字节</td><td>' + (d64.n === 0n ? tagExact : tagApprox(err64)) + '</td><td>⚡ 快：硬件支持，但占两倍空间</td></tr>'
+        + '<tr><td>文本（字符串）</td><td>"' + esc(raw) + '"</td><td>' + raw.length + ' 字节</td><td>' + tagExact + '</td><td>🐢 它不是数，用之前还得先解析</td></tr>'
+        + '<tr><td>分数（有理数）</td><td>' + esc(String(n)) + ' / ' + esc(String(d)) + '</td><td>约 ' + (String(n).length + String(d).length + 1) + ' 字节</td><td>' + tagExact + '</td><td>🐢🐢 每次乘加都要算大数，越算越大</td></tr>'
+        + '<tr><td>十进制浮点（BCD）</td><td>按十进制数位存</td><td>' + Math.ceil(parsed.ndig / 2) + ' 字节</td><td>' + tagExact + '</td><td>🐢🐢 硬件支持差，多数靠软件模拟</td></tr>'
+        + '</table>';
+      void err32; void d32;
+    } else {
+      tbl = '<div style="margin-top:6px">这个数已经让 ' + curFmt.name + ' 溢出了，精确存法也救不回来——换更大的格式试试。</div>';
+    }
+    const s5 = '<div class="exx-st">第 5 步 · 如果非要"精确"，有哪些办法？</div>' + tbl;
+
+    out.innerHTML =
+      '<div class="exx-v ' + vcls + '">' + vHtml + '</div>'
+      + '<div class="exx-step">' + s1 + '</div>'
+      + '<div class="exx-step">' + s2 + '</div>'
+      + '<div class="exx-step">' + s3 + '</div>'
+      + '<div class="exx-step">' + s4 + '</div>'
+      + '<div class="exx-step">' + s5 + '</div>';
+  }
+
+  input.addEventListener('input', function(){
+    document.querySelectorAll('#exx-viz .exx-chip[data-v]').forEach(function(c){ c.classList.toggle('on', c.dataset.v === input.value.trim()); });
+    render();
+  });
+  document.querySelectorAll('#exx-viz .exx-chip[data-v]').forEach(function(c){
+    c.addEventListener('click', function(){
+      input.value = c.dataset.v;
+      document.querySelectorAll('#exx-viz .exx-chip[data-v]').forEach(function(x){ x.classList.toggle('on', x === c); });
+      render();
+    });
+  });
+  render();
+  })();
+  </script>
+
+  <div class="card" data-page-node-id="BQBQXwlOHcj92xK5hFboqg">
+    <h3 style="margin-top:0" data-page-node-id="PXo7D3cNGzoXHA6LA59Ckx">📊 一张图看懂"范围"：各格式能表示的数值区间（对数坐标）</h3>
+    <div id="rangeChart" data-page-node-id="SeUoi9zcQo0vtuZTptYWDx"></div>
+    <p class="small" data-page-node-id="WRmRh0KKSWjmyDosB9QP2R">蓝色越长 = 范围越大。注意 BF16 和 FP32 的范围几乎一样长（都是 8 位指数），
+    而 FP16 短得多——这就是训练怕 FP16、爱 BF16 的原因。INT 的"范围"由标尺决定，拉动上面的幅度滑块可以改变它的长度。</p>
+  </div>
+  <div class="card" data-page-node-id="vPIMWNODWiq8tv08rCeRSM">
+    <h3 style="margin-top:0" data-page-node-id="rQAeJ9TPJvjM9npSxFDq70">🎯 另一张图看懂"精度"：尾数能写出多少位有效数字</h3>
+    <div id="precBars" data-page-node-id="avdKBFZjVqL4aRIvNRNXIN"></div>
+  </div>
+
+  <p data-page-node-id="8BMhwuncjibrUWnuvbyhXI">最后一个动手实验回答一个"考古"问题：<b data-page-node-id="wtq9TRHux8DxQQCjxCa9li">FP32 为什么偏偏是 1 + 8 + 23？</b>拨一拨下面这个跷跷板，你会看到它是权衡出来的，而不是天经地义。</p>
+  <div class="card play" data-page-node-id="05k0zaCTu8qU8aQSfAG4LK">
+    <h3 style="margin-top:0" data-page-node-id="QvsLzlSAlHDjaoMf9dMyGG">🎚️ 一笔账：FP32 的 32 位是怎么分家的？</h3>
+    <p class="small" data-page-node-id="Nws3EXUW7E8qeiJQQnmNgd">FP32 的总预算是 <b data-page-node-id="aGOA5XINNzAsq0r8vZ3exK">32 位</b>：符号位拿 1 位（必须），剩下 31 位要在 <b data-page-node-id="95Bv12iUAbbb0rOz0aDJHd">指数（管范围）</b>和 <b data-page-node-id="BtkvDYwa2tAJgZVOIiO0ad">尾数（管精度）</b>之间分——
+    指数分得多，范围越大但精度越粗；尾数分得多，精度越细但范围越窄。FP32 的"24 格" = <b data-page-node-id="iaF6BfL48F5qC6ZgO3LuUp">存的 23 位 + 隐藏位 1 位</b>。
+    这个 23 不是数学规律，是当年人们拨下的一个位置。下面自己拨拨这个跷跷板：</p>
+    <div id="bud-viz" role="region" aria-label="32 位预算分配实验" data-page-node-id="48gXx3AYOKchZ8C4hn6Iik">
+<style>
+#bud-viz{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:#20242e}
+#bud-viz .bud-row{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin-bottom:10px}
+#bud-viz .bud-label{font-size:13.5px;color:#68707e}
+#bud-viz .bud-chip{border:1px solid #d9d4c8;background:#fff;border-radius:999px;padding:4px 12px;font-size:13px;cursor:pointer;color:#20242e}
+#bud-viz .bud-chip:hover{border-color:#4f46e5;color:#4f46e5}
+#bud-viz .bud-chip.on{background:#4f46e5;border-color:#4f46e5;color:#fff;font-weight:600}
+#bud-viz input[type=range]{width:220px;accent-color:#f59e0b}
+#bud-viz .bud-strip{display:flex;flex-wrap:wrap;gap:3px;margin:14px 0 4px}
+#bud-viz .bud-cell{width:24px;height:28px;border-radius:5px;font:700 11px/28px ui-monospace,monospace;text-align:center;color:#fff}
+#bud-viz .bud-cs{background:#ef4444}
+#bud-viz .bud-ce{background:#f59e0b}
+#bud-viz .bud-cm{background:#3b82f6}
+#bud-viz .bud-legend{font-size:12.5px;color:#68707e;margin-bottom:8px}
+#bud-viz .bud-sw{display:inline-block;width:10px;height:10px;border-radius:3px;margin:0 4px 0 10px;vertical-align:-1px}
+#bud-viz .bud-sw-s{background:#ef4444}
+#bud-viz .bud-sw-e{background:#f59e0b}
+#bud-viz .bud-sw-m{background:#3b82f6}
+#bud-viz .bud-line{background:#fff;border:1px solid #e5e1d8;border-radius:12px;padding:11px 16px;margin-top:10px;font-size:14.5px;line-height:1.9}
+#bud-viz .bud-st{font-weight:700;font-size:14px;color:#4f46e5;margin-bottom:2px}
+#bud-viz .bud-mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.95em}
+#bud-viz .bud-bar{position:relative;height:18px;background:#f1f0eb;border-radius:9px;margin:8px 0 2px}
+#bud-viz .bud-range{position:absolute;top:0;height:100%;background:rgba(245,158,11,.35);border:1px solid #f59e0b;border-radius:9px}
+#bud-viz .bud-prec{position:absolute;top:0;left:0;height:100%;background:rgba(59,130,246,.35);border-right:2px solid #3b82f6;border-radius:9px}
+#bud-viz .bud-tick{position:absolute;top:-4px;height:26px;width:2px;background:#94a3b8}
+#bud-viz .bud-tick.bud-zero{background:#64748b}
+#bud-viz .bud-tlab{position:absolute;top:20px;font-size:11px;color:#64748b;transform:translateX(-50%);white-space:nowrap}
+#bud-viz .bud-ends{display:flex;justify-content:space-between;font-size:11.5px;color:#9aa1ac;font-family:ui-monospace,monospace}
+#bud-viz .bud-gap{height:26px}
+#bud-insight{background:#eef2ff;border-left:3px solid #4f46e5;border-radius:0 10px 10px 0;padding:12px 16px;margin-top:14px;font-size:13.5px;line-height:1.95;color:#3c4250}
+#bud-insight b{color:#20242e}
+</style>
+      <div class="bud-row" data-page-node-id="I4P0wxG3yl4KD4uSGitk7T">
+        <span class="bud-label" data-page-node-id="GjUwGEHjHuRVIv6ZBLYvqQ">指数分 <b id="bud-evt" data-page-node-id="IvTLz89MqYIDhXuZRC9twz">8</b> 位（剩下的 31−指数 位归尾数）：</span>
+        <input type="range" id="bud-e" min="4" max="14" step="1" value="8" aria-label="指数位数" data-page-node-id="NidKJ5SEovBhbKHKgBRViA">
+        <button class="bud-chip on" data-e="8" data-page-node-id="HfHoC9JCOdicE9HCIeceol">FP32 实际分法 8+23</button>
+        <button class="bud-chip" data-e="12" data-page-node-id="RoYhEHNW47LZYCdKFyTu96">走范围路线 12+19</button>
+        <button class="bud-chip" data-e="6" data-page-node-id="Fi2EXu7qF19M86WEnYL7fT">走精度路线 6+25</button>
+      </div>
+      <div class="bud-strip" id="bud-strip" data-page-node-id="7amAbXDurHeF9z01FQKCSL"></div>
+      <div class="bud-legend" data-page-node-id="XmvakLyvqrBvCgtDWpcsRQ">32 位的家底：<span class="bud-sw bud-sw-s" data-page-node-id="0FjsYVt6GyFwCwnY7VL9wI"></span>符号 1 位（必须）<span class="bud-sw bud-sw-e" data-page-node-id="GpPFkIrZpUzM0NxHbvSFMe"></span>指数（管范围）<span class="bud-sw bud-sw-m" data-page-node-id="N6zpvCWHcaJHrrT8VZ9XYP"></span>尾数（管精度）</div>
+      <div id="bud-out" data-page-node-id="oFp3LauJ7gY0UI8k38LVES"></div>
+      <div id="bud-insight" data-page-node-id="TKVPljhV23MjsREdOEc9wI">
+        <b data-page-node-id="LdBSCme7a3rRbrgUzZprtK">📜 "24" 到底哪来的？一点历史：</b>
+        <br data-page-node-id="ALRYn2tTLtUUVIn13BC7Nv">· 1964 年，IBM System/360 让 <b data-page-node-id="YREaSdsgtOfKlMYcrbwoVH">32 位机器字</b>成为主流 → 最自然的设计就是"一个浮点数 = 正好一个机器字" = 32 位。
+        <br data-page-node-id="boDP42TCFOwozCK2StdaWY">· 符号占 1 位是必须的。剩下 31 位怎么分？60–70 年代，<b data-page-node-id="roWr5isEFVNBmUtK6zWUNe">7 位有效数字对科学计算已经绰绰有余</b>（算盘和计算尺时代的人习惯了 3–4 位），
+        而 8 位指数能给出 10⁻³⁸~10³⁸ 的范围，对当时的应用足够大 → "8 指数 + 23 尾数"是那个年代的平衡点，23+1（隐藏位）= 24 ≈ 7.2 位十进制。
+        <br data-page-node-id="HmMbuBYHeqDJTm8MBrJHwb">· 1985 年 <b data-page-node-id="EeqWkc3eACdgHVv8jQDLWm">IEEE 754 标准把它钉死</b>：单精度 = 1+8+23，双精度 = 1+11+52。硬件、编译器、文件格式、整个软件生态都照着长出来，
+        惯性一路延续到今天——哪怕内存早就便宜了，大家还是在用这两个尺寸。
+        <br data-page-node-id="f5IBokwFh8GxCNGKlJfHqe">· 所以"24 格"既不是数学规律，也不是硬件极限，而是<b data-page-node-id="V0WHPKELF1rUqOgbKk1DYs">工程选择 + 标准化惯性</b>，和"手机号为什么是 11 位"是同一类事。
+        <br data-page-node-id="9Jp0U5qcucG1NGtAbTbwBr">· 对大模型来说，7.2 位十进制精度绰绰有余——下一节你会看到，连 INT4（约 2.2 位）都够用。
+      </div>
+    </div>
+  </div>
+  <script>
+  (function(){
+  "use strict";
+  const root = document.getElementById('bud-viz');
+  if (!root) return;
+  const stripEl = root.querySelector('#bud-strip');
+  const outEl = document.getElementById('bud-out');
+  const slider = root.querySelector('#bud-e');
+  const evtEl = root.querySelector('#bud-evt');
+  const L2 = Math.log10(2); // 0.30103
+  let e = 8;
+
+  function render(){
+    evtEl.textContent = e;
+    slider.value = e;
+    const m = 31 - e;          // 存的尾数
+    const eff = m + 1;         // 有效位（+隐藏位）
+    const maxExp = Math.pow(2, e - 1) - 2;      // 最大指数
+    const R = maxExp * L2;                      // 范围的十进制指数量级
+    const D = eff * L2;                         // ≈ 多少位十进制
+
+    /* 32 格家底 */
+    let html = '';
+    for (let i = 0; i < 32; i++){
+      let cls = 'bud-cm';
+      if (i === 0) cls = 'bud-cs';
+      else if (i <= e) cls = 'bud-ce';
+      html += '<span class="bud-cell ' + cls + '" title="第 ' + (i + 1) + ' 位：' + (i === 0 ? '符号' : (i <= e ? '指数' : '尾数')) + '">' + (i + 1) + '</span>';
+    }
+    stripEl.innerHTML = html;
+
+    /* 范围条：对数刻度 ±320 */
+    const rPct = Math.min(99, R / 320 * 50);
+    const tF32 = 37.9 / 320 * 50, tF64 = 307.7 / 320 * 50;
+    const rangeBar =
+      '<div class="bud-bar">'
+      + '<div class="bud-range" style="left:' + (50 - rPct).toFixed(2) + '%;width:' + (2 * rPct).toFixed(2) + '%"></div>'
+      + '<div class="bud-tick bud-zero" style="left:50%"></div>'
+      + '<div class="bud-tick" style="left:' + (50 - tF32).toFixed(2) + '%"></div><div class="bud-tick" style="left:' + (50 + tF32).toFixed(2) + '%"></div>'
+      + '<div class="bud-tick" style="left:' + (50 - tF64).toFixed(2) + '%"></div><div class="bud-tick" style="left:' + (50 + tF64).toFixed(2) + '%"></div>'
+      + '<span class="bud-tlab" style="left:50%">1</span>'
+      + '<span class="bud-tlab" style="left:' + (50 + tF32).toFixed(2) + '%">FP32 ±38</span>'
+      + '<span class="bud-tlab" style="left:' + (50 + tF64).toFixed(2) + '%;transform:translateX(-100%)">FP64 ±308</span>'
+      + '</div>'
+      + '<div class="bud-ends"><span>10⁻³²⁰</span><span>10³²⁰</span></div>'
+      + '<div class="bud-gap"></div>';
+
+    /* 精度条：0–16 位十进制 */
+    const dPct = Math.min(100, D / 16 * 100);
+    const pF32 = 7.2 / 16 * 100, pF64 = 15.9 / 16 * 100;
+    const precBar =
+      '<div class="bud-bar">'
+      + '<div class="bud-prec" style="width:' + dPct.toFixed(1) + '%"></div>'
+      + '<div class="bud-tick" style="left:' + pF32.toFixed(1) + '%"></div>'
+      + '<div class="bud-tick" style="left:' + pF64.toFixed(1) + '%"></div>'
+      + '<span class="bud-tlab" style="left:' + pF32.toFixed(1) + '%">FP32 7.2 位</span>'
+      + '<span class="bud-tlab" style="left:' + Math.min(99, pF64) + '%;transform:translateX(-100%)">FP64 15.9 位</span>'
+      + '</div>'
+      + '<div class="bud-ends"><span>0 位</span><span>16 位十进制</span></div>';
+
+    const rTxt = R > 999 ? String(Math.round(R)) : (Math.round(R * 10) / 10).toString();
+    outEl.innerHTML =
+      '<div class="bud-line"><div class="bud-st">范围（指数 ' + e + ' 位，bias ' + (Math.pow(2, e - 1) - 1) + '）</div>'
+      + '最大指数 ' + maxExp + ' → 能存 <span class="bud-mono">10⁻' + rTxt + ' ~ 10⁺' + rTxt + '</span>（0 在正中间，两边对称）。'
+      + rangeBar + '</div>'
+      + '<div class="bud-line"><div class="bud-st">精度（尾数存 ' + m + ' 位 + 隐藏 1 位 = ' + eff + ' 位有效位）</div>'
+      + '2' + eff + ' 种组合 ≈ <b>' + (Math.round(D * 10) / 10) + ' 位十进制</b>的有效数字。'
+      + precBar + '</div>';
+  }
+
+  slider.addEventListener('input', function(){
+    e = parseInt(slider.value, 10);
+    root.querySelectorAll('.bud-chip').forEach(function(c){ c.classList.toggle('on', parseInt(c.dataset.e, 10) === e); });
+    render();
+  });
+  root.querySelectorAll('.bud-chip').forEach(function(c){
+    c.addEventListener('click', function(){ e = parseInt(c.dataset.e, 10); render(); });
+  });
+  render();
+  })();
+  </script>
+  <div class="next-sec" data-page-node-id="kHG2NtFWo6X8CEhoJIXJam">✅ 本节小结：数字要么用<b data-page-node-id="ES3q4EFQQN1n8H2QALcLDY">浮点</b>存（指数管范围、尾数管精度），要么用<b data-page-node-id="Zd7NZGiiXn5lN2x873m2Pf">整数刻度</b>存（INT4 只有 16 格、INT8 有 256 格，靠 scale 还原）。接下来把这把"标尺"架到真实模型的权重上 → 第 3 节 量化工坊。</div>
+</section>
+
+<!-- ================= S3 量化工坊 ================= -->
+<section id="s3" data-page-node-id="SAWsSLmNj1OqWxEWTtGZoG">
+  <h2 data-page-node-id="qUb4P03buX2NEK7z8Or0st"><span class="step-badge" data-page-node-id="dLSvWZBC7VJzULBZmTdHO8">3</span>量化工坊：用"标尺"压小数</h2>
+  <p class="sub" data-page-node-id="UVruBOKiDhYLh8JShmL6GS">量化（quantization）= 把连续的数字，取整到一把离散标尺的刻度上。下面这批权重模拟了真实模型的样子：大部分是接近 0 的小数，混着几个特别大的<b data-page-node-id="5QNjHFTrEDNZb4SxrAfU14">离群值</b>。</p>
+  <div class="card play" data-page-node-id="7Hpb38eH9RZlhirqGE2uVg">
+    <h3 style="margin-top:0" data-page-node-id="yAjM7P7afZAPz51XUimEpE">🧪 动手 4：亲手量化 4096 个权重</h3>
+    <label class="ctl" data-page-node-id="hOXXAhV8oUJFnSZhPM3qdg">选择存储格式：</label>
+    <div class="chips" id="wsFmts" data-page-node-id="6sbDGXhQLyBeElUt9DaLLV">
+      <button class="chip" data-f="bf16" data-page-node-id="0NrViqu1IkisC0JFDwkIlE">BF16（16 bit，基准）</button>
+      <button class="chip" data-f="fp16" data-page-node-id="ESGHsT8TO2SnT5XoCyKCUK">FP16</button>
+      <button class="chip" data-f="int8" data-page-node-id="gjaCzQZtfNEpWYP7SYiSU2">INT8（8 bit）</button>
+      <button class="chip on" data-f="int4" data-page-node-id="aHN6Ht1N1oWA3rwg2O22KT">INT4（4 bit）</button>
+    </div>
+    <label class="ctl" data-page-node-id="lSNL6lmELX8Q0OCrAZSiYb">组大小（只作用于 INT）：<span id="wsGroupWrap" data-page-node-id="cvyuAEql7NUNaKW1Dbr9Os">
+      <select id="wsGroup" aria-label="分组大小" data-page-node-id="jPbmOssqMMf9v2SvoGeHXu">
+        <option value="4096" data-page-node-id="mGk8VVtGJFfhkuN4YXwhBj">整张量（1 把大标尺）</option>
+        <option value="512" data-page-node-id="qFeIAIbcF6Ou7vlHBxzXoI">512 一组</option>
+        <option value="128" data-page-node-id="Nx0ugQtESCS3msMGBs4ykN">128 一组</option>
+        <option value="32" data-page-node-id="Q5jWpvPrL0RkuEkIkCgv2S">32 一组</option>
+        <option value="1" data-page-node-id="P3BhGOhDJbL3BuOO14kGzK">1 一组（每参数 1 把标尺）</option>
+      </select></span>
+    </label>
+    <div style="margin:10px 0" data-page-node-id="WUCCfUjtnINGBvg6Dp6LE8">
+      <button class="btn ghost" id="wsShuffle" data-page-node-id="XCUy97WqoRnj57wIBkUDBD">🎲 换一批随机权重</button>
+      <span class="small" id="wsSeed" style="margin-left:10px" data-page-node-id="tRnGrmJYLmkEoMeuBCsxS8"></span>
+    </div>
+    <div class="statgrid" id="wsStats" data-page-node-id="axQ4dkqvgKGKRlr9SW8q86"></div>
+    <div id="wsHint" class="callout" style="margin-bottom:0" data-page-node-id="IhaL7e0XUsGKjOZ3XjSna6"></div>
+  </div>
+
+  <div class="card" data-page-node-id="ktBMYphghRQFtpJtZTgn69">
+    <h3 style="margin-top:0" data-page-node-id="BAom4SuIW4WGGoYAw9Hodw">📈 权重分布（蓝=原始，橙框=量化后）</h3>
+    <div id="wsHist" data-page-node-id="mMXSNx28oyswCIP2n1jeKv"></div>
+  </div>
+  <div class="card" data-page-node-id="GH2IfK4iFVuEP2eakhPJal">
+    <h3 style="margin-top:0" data-page-node-id="zGHXKwOXSlb5ZwfNhedhxw">📏 放大看第 1 组的"标尺"：每个值都被拉到了最近的刻度</h3>
+    <div id="wsRuler" data-page-node-id="7vo0PRvZVtznZURJAGdaJS"></div>
+  </div>
+  <div class="card" data-page-node-id="91hXpOkays3or7dE85kpCd">
+    <h3 style="margin-top:0" data-page-node-id="TKasgUBdZ3yQCs5DWSF4EU">🎲 误差全景：x=原始值，y=量化后（颜色越红误差越大）</h3>
+    <div id="wsScatter" data-page-node-id="6uSjc0QYZk4YwwhihLRMur"></div>
+    <p class="small" style="margin-bottom:0" data-page-node-id="9ZYx6gvsmh6Ej8M1UBnGsS"><b data-page-node-id="S2b8XKKD5a2wucNTsNbyYb">思考题：</b>把 INT4 从"整张量"换到"32 一组"，误差降了多少？
+    再把 INT8 和 INT4 放在同一个组大小下对比——你会直观看到<b data-page-node-id="nOUHueQlgwYOgWlcFDuCVF">"格数"（8bit vs 4bit）和"标尺长短"（分组）是两个独立的旋钮</b>。</p>
+  </div>
+  <div class="next-sec" data-page-node-id="eDBAe2s1UspT5cReDU8FqP">✅ 你已经亲手验证：误差由<b data-page-node-id="YblZrREBFYHRoLFwCXUMG3">"格数"（bit 位数）</b>和<b data-page-node-id="6JoDKDv4owmIwbSz7Bhz4Y">"标尺长短"（分组）</b>两个独立的旋钮共同决定。最后一站：把 bit 换算成 GB，算算模型文件到底多大 → 第 4 节。</div>
+</section>
+
+
+<!-- ================= S4 模型有多大 ================= -->
+<section id="s4" data-page-node-id="fbeMFzF8h3qMTX2syYxAHz">
+  <h2 data-page-node-id="B01cCbGSGFqLafNvBcxh0G"><span class="step-badge" data-page-node-id="A46cYpuUNzOpwoK641DDAi">4</span>模型到底有多大？算账时间</h2>
+  <p class="sub" data-page-node-id="HBlx2gMIf8sny5xsge2eCL">公式很简单：<b data-page-node-id="sWlDLDgmwpbw0xPvSZyb1o">大小 = 参数个数 × 每参数 bit ÷ 8 ÷ 10⁹</b>（得 GB）。来，亲手拨弄一下。</p>
+  <div class="card play" data-page-node-id="YKXbzxvO09QaJM6bdz9Ez3">
+    <h3 style="margin-top:0" data-page-node-id="qDyovoDBHeQZCbGBCodIDU">🧮 动手 5：模型大小计算器</h3>
+    <label class="ctl" data-page-node-id="Nr84hAWtx7VkoXFfxGH4uG">模型规模：<span id="calcParamsVal" class="mono" data-page-node-id="FKi7B5icqH5ZGNeeQQo28V">8 B（80 亿参数）</span></label>
+    <input type="range" id="cSlider" min="0" max="1000" value="401" aria-label="模型规模" data-page-node-id="n9wsfbNIjgEsY1qqU1Glir">
+    <div class="chips" id="calcPresets" data-page-node-id="uVXX655DqBJVCDPuMKcnDM">
+      <button class="chip" data-p="1e9" data-page-node-id="OT2KuWRQBXhkLt3uOiE2VG">1B</button>
+      <button class="chip" data-p="3e9" data-page-node-id="lHAoUHGCi6PZRN5I40cSHO">3B</button>
+      <button class="chip on" data-p="8e9" data-page-node-id="rBABUyhsYScUXFMUXeE74R">8B</button>
+      <button class="chip" data-p="13e9" data-page-node-id="m2iophmvtZQaKVGCfelf2i">13B</button>
+      <button class="chip" data-p="70e9" data-page-node-id="tK8pklYwBsXClVZHQMwKLi">70B</button>
+      <button class="chip" data-p="405e9" data-page-node-id="MTqm1IkSsvTobhrknC2IfF">405B</button>
+    </div>
+    <label class="ctl" data-page-node-id="UksLhr1iwOdf6hTGhc0Cmg">存储格式：</label>
+    <div class="chips" id="calcFmts" data-page-node-id="LIGvNyBBjBT3PHpFM8n4dm">
+      <button class="chip" data-f="fp32" data-page-node-id="aA2RgQ8wheQqTm85dwc3IT">FP32 · 32bit</button>
+      <button class="chip on" data-f="bf16" data-page-node-id="cdCoiuLJHSKWTilr3A0woc">BF16 · 16bit</button>
+      <button class="chip" data-f="fp16" data-page-node-id="toVAJQbtA0jCzDKyx05LEw">FP16 · 16bit</button>
+      <button class="chip" data-f="fp8" data-page-node-id="fnY2xo3E3Atyq43icEIcsY">FP8 · 8bit</button>
+      <button class="chip" data-f="int8" data-page-node-id="zN6Hbr2Y6WAhRrepuX17mG">INT8 · 8bit</button>
+      <button class="chip" data-f="q80" data-page-node-id="DBioEc1oKi6KnOc9bBVcUh">Q8_0 · ≈8.5bit</button>
+      <button class="chip" data-f="int4" data-page-node-id="oSnDETmkuH0jW5P1fmRQEB">INT4 · 4bit</button>
+      <button class="chip" data-f="q4km" data-page-node-id="QUPvxiytEXio1t3siZD8S3">Q4_K_M · ≈4.83bit</button>
+    </div>
+    <div class="statgrid" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))" data-page-node-id="pW5FSB5uMkYhlDByysmTNf">
+      <div class="stat" data-page-node-id="5uMBZRRSQQMtZEwxfvKFwU"><div class="k" data-page-node-id="PLlVthiCPwisyXcTdAaqKd">权重文件体积</div><div class="v" id="calcGB" data-page-node-id="YpnQMZIjAajAICVYYMTQaZ">—</div><div class="small" id="calcBits" data-page-node-id="d9JbaUmWF7TcQCj3DfgM3h">—</div></div>
+      <div class="stat" data-page-node-id="PfJqLVzwPSzXbYKGMsiw5W"><div class="k" data-page-node-id="S5ovyyVnKGzCvAXjrgpcmJ">需要 80GB A100（只装权重）</div><div class="v" id="calcGPUs" data-page-node-id="kFlWDP8AHigJSHrmwlnSF4">—</div><div class="small" data-page-node-id="MvybYtUGdxlpTpAatK3AuA">块</div></div>
+      <div class="stat" data-page-node-id="sXhFWCvqvJFWHzUNQ8idZQ"><div class="k" data-page-node-id="4gDvqqQOgwCvip198HLGHW">32GB 的 MacBook</div><div class="v" id="calcMac" data-page-node-id="IDruQVR5NhTSDLHnEmI0HU">—</div></div>
+      <div class="stat" data-page-node-id="HtiJpD6A55MvR3noNWqH34"><div class="k" data-page-node-id="RX9m7iHzVBijbscfghSLi4">相比 FP32 省下</div><div class="v" id="calcSave" data-page-node-id="YWUnq8xUBK7jN48JjSblgl">—</div></div>
+    </div>
+    <div id="calcBars" data-page-node-id="GBwNdw4ls8bfmSDeMhCTqX"></div>
+  </div>
+  <div class="callout warn" data-page-node-id="BQjZWIXtKilN3lc2geShWj">
+    <b data-page-node-id="TB59JWFg3BZFBPTjS4VxbR">别只算权重！</b>权重只是"干货"。实际跑起来还要：KV cache（对话记忆，随长度增长）、
+    激活值、推理框架开销。经验法则：留 1.3～2 倍余量。而<b data-page-node-id="AKz8OFKYxle66UV95mBfyI">训练</b>时代价更高——Adam 优化器要为每个参数存
+    2～3 份同精度的状态，所以训练显存 ≈ 权重的 4～8 倍。这就是"4bit 能推理、却要 16bit 训练"的根本原因。
+  </div>
+  <div class="next-sec" data-page-node-id="lj88k7HWBn7LOmhaqp38rT">✅ 会算了！后面的<b data-page-node-id="F20XypcOxEjdyMTPu0Urpz">术语表、小测验、一页总结</b>是随手查阅的工具箱，按需取用即可——不要求一口气读完。</div>
+</section>
+
+<!-- ================= S5 术语表 ================= -->
+<section id="s5" data-page-node-id="YhsbSwNUkAAcAzZvgylEbC">
+  <h2 data-page-node-id="UFYwxP68Yyq6oev9YL3F9i"><span class="step-badge" data-page-node-id="mDp7ZCEg8oq3KyuFymCx4s">5</span>术语速查表</h2>
+  <p class="sub" data-page-node-id="GD9HzN4GCxrDOZSn7X9zhe">点开展开。以后看到这些词，你就知道它在说什么了。</p>
+  <div class="ggrid" data-page-node-id="969Z8gRgexKm1fjMX1tfOM">
+    <details class="gloss" data-page-node-id="BDTZpSuOjRzSJXasmSCV7N"><summary data-page-node-id="R8HqucGwYXYAgIQz8IRYIa">BPW（bits per weight，每参数量化位数）</summary>
+      <div class="g-body" data-page-node-id="ZpOfEzp4RwTkOOOpyY8HHv">每个参数平均用几个 bit 存。"4bit 模型"就是 BPW≈4。实际值常不是整数（比如 Q4_K_M≈4.83），因为还要存 scale 等开销。</div></details>
+    <details class="gloss" data-page-node-id="w38T9ajmWrZ4HZBaMT8kEV"><summary data-page-node-id="C0G0JhU8xB0inPC9aATNpW">动态范围（dynamic range）</summary>
+      <div class="g-body" data-page-node-id="e5lA0Dz1XwQLwmptGUZeV1">格式能表示的"最大/最小"跨度，由指数位数决定。范围太小，大数就溢出（变 ∞），小数就下溢（变 0）。BF16 的核心卖点就是范围大。</div></details>
+    <details class="gloss" data-page-node-id="g5Fl9S3cDn0EqrV6dLT2vw"><summary data-page-node-id="urCl2kWTrlfDV50vIlhoFc">精度 / 尾数（mantissa）</summary>
+      <div class="g-body" data-page-node-id="cafqDdT3ekzx4jyI0Czv8j">数字的"有效位数"，由尾数位数决定。尾数 7 位（BF16）大约只能保证 2～3 位十进制有效数字。</div></details>
+    <details class="gloss" data-page-node-id="ZK7DumccLY8bVwwE1TjUwy"><summary data-page-node-id="qfcfD8JC4NW4g4IUMHKDAU">scale（缩放因子）</summary>
+      <div class="g-body" data-page-node-id="SzGtzOV7rpAoCEr95jWzFn">量化标尺的"一格 = 多少"。量化：把值除以 scale 取整；反量化：再乘回来。通常以 FP16/FP32 额外存储，是量化模型"隐藏成本"的主要来源。</div></details>
+    <details class="gloss" data-page-node-id="868seS5i5abf3LAVaCvzyx"><summary data-page-node-id="iamcyrDSIjUNVTOdrX6E5O">zero-point（零点）</summary>
+      <div class="g-body" data-page-node-id="DBCkIkU4TLhoFxy78D9rwF">非对称量化用的"起点偏移"：如果数据范围是 [2, 5]，从 0 开始编号浪费格数，就从 2 开始编号，这个 2 就是 zero-point。GPTQ/AWQ 的 INT4 常用非对称。</div></details>
+    <details class="gloss" data-page-node-id="XnxSOfdCohK8D9ZiDGX6k3"><summary data-page-node-id="YjC5WTgphwfC3sFeXdCvAN">clip / 饱和（saturate）</summary>
+      <div class="g-body" data-page-node-id="KwAMzNwz5b1H3uvT4Nbq14">超出标尺范围的值被"拍"到边界上（如 INT4 只到 ±4，5 就记成 4）。FP8 E4M3 超出 448 也是饱和。代价是离群值的信息直接丢掉。</div></details>
+    <details class="gloss" data-page-node-id="vgeH9htx5F0m0nfx40UtgA"><summary data-page-node-id="9JsauMH7mleaQaiyWu7W3P">per-tensor / per-channel / per-group</summary>
+      <div class="g-body" data-page-node-id="EICJHUz192E5yFFlK57klv">三档"标尺粒度"：per-tensor 整个张量 1 把标尺（最省、最脆）；per-channel 每个输出通道 1 把；per-group 每 32/64/128 个参数 1 把（主流方案）。粒度越细误差越小，scale 开销越大。</div></details>
+    <details class="gloss" data-page-node-id="WSPaxkQYTuzG8CtFKU2ZvH"><summary data-page-node-id="XmBSBUKkPYYV5RiGWAg1s6">E4M3 / E5M2</summary>
+      <div class="g-body" data-page-node-id="K2DHiE6itarhrxOHfABIbc">FP8 的两种"配餐"：E4M3 = 4 位指数 + 3 位尾数，范围小（±448）精度高，多用于<b data-page-node-id="TQQoZrF5BOFl0aMmpSAbsy">存权重/前向</b>；E5M2 = 5 位指数 + 2 位尾数，范围大（±57344）精度低，多用于<b data-page-node-id="nWuySDJ1xpbcVG6E2PDMfF">存梯度</b>。训练里两者混着用。</div></details>
+    <details class="gloss" data-page-node-id="f4xPhZGZe6oG3gdcmB0B0W"><summary data-page-node-id="fQHTX6zTykXzcvQq3Zh3sj">GPTQ</summary>
+      <div class="g-body" data-page-node-id="2x5z81M2FIPsH903d77Syk">一种"逐列"二阶量化算法：量化一列后，用剩余未量化的列去补偿误差，所以比"直接四舍五入"精度高很多。主流 4bit 权重量化方案之一。</div></details>
+    <details class="gloss" data-page-node-id="sxBBvj9ELhkQmZAleS8iF5"><summary data-page-node-id="2UsnqigWki1FmkQmsDKVps">AWQ（Activation-aware Weight Quantization）</summary>
+      <div class="g-body" data-page-node-id="ckEWcdIeVMIQqIX5xanrqw">观察发现：约 1% 的权重通道对应的激活值特别大，这些"显著通道"误差放大效应极强。AWQ 就是给它们多留精度（比如保 6bit，其余 4bit）。同样来自"离群值"这个痛点。</div></details>
+    <details class="gloss" data-page-node-id="tTI3TOtFzzSoMkAtJlfEfQ"><summary data-page-node-id="VWvLkLTm96qSp9CmGMRW9G">GGUF / Q4_K_M</summary>
+      <div class="g-body" data-page-node-id="7eBFYZ9bDiZzACSzNKc8HP">GGUF 是 llama.cpp 的模型文件格式；Q4_K_M 是其中最流行的 4bit 档位：把权重分块（256 个一组），每块混用 4bit/6bit，关键块给更高精度，平均 ≈4.83 BPW。你下载的"xxx-Q4_K_M.gguf"就是它。</div></details>
+    <details class="gloss" data-page-node-id="ZM63RxPRm3RKLzo9bmHvbv"><summary data-page-node-id="nR57SYCqOsuOU4a8OWsn73">KV cache</summary>
+      <div class="g-body" data-page-node-id="Ii8O1bGSSZQrR2Eextyzm9">推理时缓存的"对话记忆"（每个 token 的 Key/Value），随上下文长度线性增长。长对话时它可能比权重还大——所以它也有 FP8 量化版本。</div></details>
+  </div>
+</section>
+
+<!-- ================= S6 小测验 ================= -->
+<section id="s6" data-page-node-id="bfhvIffgwC3UZo5McgHKg7">
+  <h2 data-page-node-id="PulKRtqjJaOSzP11xQGsCf"><span class="step-badge" data-page-node-id="qvNSO0QS1h8XNDOAX6KoN9">6</span>小测验：5 道题检验一下</h2>
+  <p class="sub" data-page-node-id="XF9NEhAj8ojbD2EwMwMcTb">点选项立即判分。答错了也没关系，解释里都有答案。</p>
+  <div id="quizBox" data-page-node-id="doO8uPVAXXQreNMMoVKml5"></div>
+</section>
+
+<!-- ================= S7 总结 ================= -->
+<section id="s7" data-page-node-id="AIMDv640Fcwcs3DHmcfulm">
+  <h2 data-page-node-id="61T8E4O7InHKXXF7MEf18Z"><span class="step-badge" data-page-node-id="wliHRdzVbUoRAzVajwR5kA">7</span>一页总结</h2>
+  <div class="card" data-page-node-id="PG7IKdivZEViMV85iQ0YXc">
+    <table class="tbl" data-page-node-id="JOvJDj1ASuJ57klHP8Hzfc">
+      <tr data-page-node-id="plxHqBxxAx9mql7xyFMvdW"><th data-page-node-id="HuNCoYfViXQMXi4xsBCYs0">格式</th><th class="num" data-page-node-id="AtwgGXbTUJVSoXZtryLdGX">bit</th><th data-page-node-id="G22kMe2Li6DeuhraVXhcJA">范围</th><th data-page-node-id="XKbG269DPRoE22FOPhXHN9">精度</th><th data-page-node-id="MGRwUOU7iUHoPK28AiA364">典型用途</th></tr>
+      <tr data-page-node-id="GyHyyZbDToTF3KaGvMrB7B"><td data-page-node-id="s6LLuRIAqeKh7Movj7gPsz">FP32</td><td class="num" data-page-node-id="ho228JFjmZCh7JQz8CkbTA">32</td><td data-page-node-id="DIw4zsmhqhh18SrOFgMXac">±10³⁸</td><td data-page-node-id="OjsWmTL0Bel1uCNmXPHxRT">≈7 位十进制</td><td data-page-node-id="h2IFpLX0TDuYyJZmr3KEWY">CPU 训练/推理的"保底"</td></tr>
+      <tr class="hl" data-page-node-id="rMkVr1d9SyeQ1PJoxkh6O8"><td data-page-node-id="BzFXe3OJLC4HiDececafXO">BF16</td><td class="num" data-page-node-id="KITrJ5eg8hcvwjPENNqQzl">16</td><td data-page-node-id="1MQ2maIfo9casp9RUAwLwO">±10³⁸（同 FP32）</td><td data-page-node-id="bt2k83rjs7aq0dhm4pWU0U">≈2.4 位</td><td data-page-node-id="gynUFZnpu2IDBAYF7Oi3NP">GPU 训练主流格式</td></tr>
+      <tr data-page-node-id="3yVRh2YQMij8zWnTovI2Eg"><td data-page-node-id="6wykYboLV6fX77lrCWO6IN">FP16</td><td class="num" data-page-node-id="5Je5ELjmCThbvb4OFDOLzj">16</td><td data-page-node-id="7HigmDBgKMUN0rk2RFHM8R">±65504</td><td data-page-node-id="SDjMJr8AWsmZKwNn5QErbg">≈3.3 位</td><td data-page-node-id="eFEau5xuJVaKAO3Y676F7h">老 GPU 训练/推理（需 loss scaling）</td></tr>
+      <tr data-page-node-id="dTPHHd9KO0Fevj7W4P0D8E"><td data-page-node-id="5oA6qMR6SCs3iCqlZDLzjs">FP8 E4M3</td><td class="num" data-page-node-id="GWhiW6K5tFLinlrUuX3gVW">8</td><td data-page-node-id="jj7wBfqKOcblxEUHGa1gux">±448</td><td data-page-node-id="bNhxRL8tbPHSkaq3QtyC6r">≈1.2 位</td><td data-page-node-id="gA77OSj4nz2t0OM1vjDRHp">新卡（H100 等）推理权重、训练前向</td></tr>
+      <tr data-page-node-id="YhKst1uQfMCSVDnSSCzCuD"><td data-page-node-id="ryrNpTBzRzIO6iCZR0bE43">FP8 E5M2</td><td class="num" data-page-node-id="8omz8HbPLm1YMWo4A5XGYY">8</td><td data-page-node-id="iNU18uf7aGfCdVmPc4rmkl">±57344</td><td data-page-node-id="eynYN83LbrLoblYkFjk7l2">≈0.9 位</td><td data-page-node-id="TDP6d2VIfRIZsm5f0fB77L">训练梯度</td></tr>
+      <tr data-page-node-id="2Q6H4Z8V0ylZIki7aYlOmk"><td data-page-node-id="SMqCsjK3R412rBFNBHD5fl">INT8</td><td class="num" data-page-node-id="vBqjb0VhNDjDR2oLpsI5iL">8</td><td data-page-node-id="bqBmSFObbCNJvLcOKaDorD">由 scale 定</td><td data-page-node-id="MGIqDa5aAbPjSUbszwuIC0">256 格</td><td data-page-node-id="hR96cWvYtNYIGSSQUNDtxa">轻量部署、KV cache</td></tr>
+      <tr data-page-node-id="nDTsRC65kDnFRAkOeU753N"><td data-page-node-id="xiLPMGJ6WF39UKIiaglyTi">INT4 / Q4_K_M</td><td class="num" data-page-node-id="3L6I2BWWkIiIW73LnKZ0gQ">4 / ≈4.83</td><td data-page-node-id="bPm5RYfdggDKxmpbHQYc6c">由 scale 定</td><td data-page-node-id="1hrWKHOUnbwajut0vn7k8h">16 格</td><td data-page-node-id="VhpiFpFtIQhxVmCCURbDE6">手机/笔记本跑大模型（llama.cpp、GPTQ、AWQ）</td></tr>
+    </table>
+  </div>
+  <div class="callout ok" data-page-node-id="t2gn9f40BLCYC5VqaThjzD">
+    <b data-page-node-id="p34Vs1XDSoVSpT1LoCjB0o">三句话记住全部：</b><br data-page-node-id="VBTY9Rh53EPBPr5GPlwwkS">
+    ① 参数就是数字；格式 = 给它多少 bit，怎么分配（指数管范围，尾数/格子管精度）。<br data-page-node-id="Th353dgDRTpXnDaYHbdHWh">
+    ② 量化 = 用更少的格子存数字，误差来自"取整"；离群值是头号敌人，分组量化是常规解法。<br data-page-node-id="rpyqzg5NhBUNHvJ2NFEGbq">
+    ③ 存储大小 = 参数 × bit ÷ 8。7B 模型：BF16≈14GB → FP8≈7GB → INT4≈3.5GB，精度损失通常可接受——这就是"量化"的全部生意。
+  </div>
+</section>
+
+</main>
+<footer data-page-node-id="bMlIeEldRROnKdTyhaQG1g">
+  本教程所有计算（FP16 / BF16 / FP8 / INT 量化）均在你的浏览器本地实时完成，不会上传任何数据。<br data-page-node-id="EXQvYDrcCHEV6ZxqozyCw2">
+  数值实现遵循 OCP FP8 规范与常见 INT 量化惯例；舍入采用 IEEE 754 的"就近舍入、平局取偶"（即"四舍六入五成双"）。内容仅供教学参考。
+</footer>
+
+<script>
+"use strict";
+/* ================= core math (floating point & quantization) ================= */
+const _dv = new DataView(new ArrayBuffer(4));
+function f32bits(v){ _dv.setFloat32(0, v, true); return _dv.getUint32(0, true); }
+function bitsF32(b){ _dv.setUint32(0, b >>> 0, true); return _dv.getFloat32(0, true); }
+
+function rne(x){ // round-to-nearest-even (IEEE 754)
+  const f = Math.floor(x);
+  const d = x - f;
+  if (d > 0.5) return f + 1;
+  if (d < 0.5) return f;
+  return (f & 1) ? f + 1 : f;
+}
+function fp16Round(v){
+  if (typeof v !== 'number' || Number.isNaN(v)) return v;
+  if (!isFinite(v)) return v;
+  if (v === 0) return v;
+  const sign = v < 0 ? -1 : 1;
+  let a = Math.abs(v);
+  if (a > 65504) return sign * Infinity;
+  let e = Math.floor(Math.log2(a) + 1e-12);
+  if (e >= -14){
+    let m = rne((a / Math.pow(2, e) - 1) * 1024);
+    if (m >= 1024){ m = 0; e += 1; if (e > 15) return sign * Infinity; }
+    return sign * Math.pow(2, e) * (1 + m / 1024);
+  }
+  let msub = rne(a / Math.pow(2, -24));
+  if (msub > 1023) msub = 1023;
+  if (msub === 0) return sign * 0;
+  return sign * (msub / 1024) * Math.pow(2, -14);
+}
+function fp16Parts(v){
+  if (v === 0 || Number.isNaN(v)) return { sign: 0, exp: 0, man: 0, kind: 'zero' };
+  if (!isFinite(v)) return { sign: v < 0 ? 1 : 0, exp: 31, man: 0, kind: 'inf' };
+  const sign = v < 0 ? 1 : 0;
+  const a = Math.abs(v);
+  let e = Math.floor(Math.log2(a) + 1e-12);
+  if (e >= -14){
+    let m = Math.round((a / Math.pow(2, e) - 1) * 1024);
+    if (m === 1024){ m = 0; e += 1; }
+    return { sign, exp: e + 15, man: m, kind: 'normal' };
+  }
+  const msub = Math.round(a / Math.pow(2, -24));
+  return { sign, exp: 0, man: msub, kind: 'sub' };
+}
+function bf16Round(v){
+  if (typeof v !== 'number' || Number.isNaN(v)) return v;
+  if (!isFinite(v)) return v;
+  const bits = f32bits(v);
+  let keep = bits >>> 16;
+  const low = bits & 0xFFFF;
+  if (low > 0x8000 || (low === 0x8000 && (keep & 1))) keep = (keep + 1) >>> 0;
+  if ((keep & 0x7F80) === 0x7F80) return (keep & 0x8000) ? -Infinity : Infinity;
+  return bitsF32((keep << 16) >>> 0);
+}
+function bf16Parts(v){
+  const bits = f32bits(v);
+  return { sign: (bits >>> 31) & 1, exp: (bits >>> 23) & 0xFF, man: (bits >>> 16) & 0x7F, kind: ((bits >>> 23) & 0xFF) === 0xFF ? 'inf' : 'normal' };
+}
+function fp8e4m3Round(v){
+  if (typeof v !== 'number' || Number.isNaN(v)) return v;
+  if (!isFinite(v)) return Math.sign(v) * 448;
+  if (v === 0) return v;
+  const sign = v < 0 ? -1 : 1;
+  let a = Math.abs(v);
+  if (a > 448) return sign * 448;
+  let e = Math.floor(Math.log2(a) + 1e-12);
+  if (e >= -6){
+    let m = rne((a / Math.pow(2, e) - 1) * 8);
+    if (m >= 8){ m = 0; e += 1; if (e > 8) return sign * 448; }
+    return sign * Math.pow(2, e) * (1 + m / 8);
+  }
+  let msub = rne(a / Math.pow(2, -9));
+  if (msub > 8) msub = 8;
+  if (msub === 0) return sign * 0;
+  return sign * (msub / 8) * Math.pow(2, -6);
+}
+function fp8e4m3Parts(v){
+  if (v === 0 || Number.isNaN(v)) return { sign: 0, exp: 0, man: 0, kind: 'zero' };
+  const sign = v < 0 ? 1 : 0;
+  const a = Math.abs(v);
+  let e = Math.floor(Math.log2(a) + 1e-12);
+  if (e >= -6){
+    let m = Math.round((a / Math.pow(2, e) - 1) * 8);
+    if (m === 8){ m = 0; e += 1; }
+    return { sign, exp: e + 7, man: m, kind: 'normal' };
+  }
+  return { sign, exp: 0, man: Math.min(8, Math.round(a / Math.pow(2, -9))), kind: 'sub' };
+}
+function fp8e5m2Round(v){
+  if (typeof v !== 'number' || Number.isNaN(v)) return v;
+  if (!isFinite(v)) return v;
+  if (v === 0) return v;
+  const sign = v < 0 ? -1 : 1;
+  let a = Math.abs(v);
+  if (a > 57344) return sign * Infinity;
+  let e = Math.floor(Math.log2(a) + 1e-12);
+  if (e >= -14){
+    let m = rne((a / Math.pow(2, e) - 1) * 4);
+    if (m >= 4){ m = 0; e += 1; if (e > 15) return sign * Infinity; }
+    return sign * Math.pow(2, e) * (1 + m / 4);
+  }
+  let msub = rne(a / Math.pow(2, -16));
+  if (msub > 4) msub = 4;
+  if (msub === 0) return sign * 0;
+  return sign * (msub / 4) * Math.pow(2, -14);
+}
+function fp8e5m2Parts(v){
+  if (v === 0 || Number.isNaN(v)) return { sign: 0, exp: 0, man: 0, kind: 'zero' };
+  if (!isFinite(v)) return { sign: v < 0 ? 1 : 0, exp: 31, man: 0, kind: 'inf' };
+  const sign = v < 0 ? 1 : 0;
+  const a = Math.abs(v);
+  let e = Math.floor(Math.log2(a) + 1e-12);
+  if (e >= -14){
+    let m = Math.round((a / Math.pow(2, e) - 1) * 4);
+    if (m === 4){ m = 0; e += 1; }
+    return { sign, exp: e + 15, man: m, kind: 'normal' };
+  }
+  return { sign, exp: 0, man: Math.min(4, Math.round(a / Math.pow(2, -16))), kind: 'sub' };
+}
+function intSnap(v, bits, span){
+  const levels = 1 << bits;
+  const qmax = levels / 2 - 1;
+  const qmin = -(levels / 2);
+  const scale = span / qmax;
+  let q = Math.round(v / scale);
+  const clipped = q > qmax || q < qmin;
+  q = Math.max(qmin, Math.min(qmax, q));
+  const deq = q * scale;
+  const u = q & (levels - 1);
+  return { q, scale, deq, clipped, bitsStr: u.toString(2).padStart(bits, '0'), qmin, qmax, levels };
+}
+function quantArrayInt(w, bits, groupSize){
+  const levels = 1 << bits;
+  const n = w.length;
+  const out = new Float64Array(n);
+  const scales = [], zeros = [], mins = [], maxs = [];
+  for (let s = 0; s < n; s += groupSize){
+    const e = Math.min(n, s + groupSize);
+    let mn = Infinity, mx = -Infinity;
+    for (let i = s; i < e; i++){ const x = w[i]; if (x < mn) mn = x; if (x > mx) mx = x; }
+    let scale = (mx - mn) / (levels - 1);
+    if (scale === 0) scale = 1e-12;
+    let zero = Math.round(-mn / scale);
+    zero = Math.max(0, Math.min(levels - 1, zero));
+    scales.push(scale); zeros.push(zero); mins.push(mn); maxs.push(mx);
+    for (let i = s; i < e; i++){
+      let q = Math.round(w[i] / scale) + zero;
+      q = Math.max(0, Math.min(levels - 1, q));
+      out[i] = (q - zero) * scale;
+    }
+  }
+  return { out, scales, zeros, mins, maxs, nGroups: scales.length };
+}
+function fpRoundArray(w, fn){
+  const out = new Float64Array(w.length);
+  for (let i = 0; i < w.length; i++) out[i] = fn(w[i]);
+  return out;
+}
+function quantStats(w, wq){
+  const n = w.length;
+  let mae = 0, maxErr = 0, dot = 0, nw = 0, nwq = 0, sumAbs = 0;
+  const distinct = new Set();
+  for (let i = 0; i < n; i++){
+    const e = Math.abs(w[i] - wq[i]);
+    mae += e; if (e > maxErr) maxErr = e;
+    dot += w[i] * wq[i]; nw += w[i] * w[i]; nwq += wq[i] * wq[i];
+    sumAbs += Math.abs(w[i]);
+    distinct.add(wq[i]);
+  }
+  const cos = (nw && nwq) ? dot / (Math.sqrt(nw) * Math.sqrt(nwq)) : 1;
+  return { mae: mae / n, rel: (mae / n) / (sumAbs / n + 1e-12), maxErr, cos, distinct: distinct.size };
+}
+function mulberry32(seed){
+  return function(){
+    seed |= 0; seed = (seed + 0x6D2B79F5) | 0;
+    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+/* 带离群值的高斯权重（模拟真实模型：大部分小，少数很大） */
+function makeWeights(n, seed){
+  const rnd = mulberry32(seed);
+  const w = new Float64Array(n);
+  for (let i = 0; i < n; i++){
+    let u = 0, v = 0;
+    while (u === 0) u = rnd();
+    while (v === 0) v = rnd();
+    let x = 0.5 * Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+    if (rnd() < 0.03) x *= (3 + 5 * rnd());
+    w[i] = x;
+  }
+  return w;
+}
+
+/* ================= helpers ================= */
+const $ = id => document.getElementById(id);
+function fmt(x){
+  if (typeof x !== 'number' || Number.isNaN(x)) return 'NaN';
+  if (!isFinite(x)) return x > 0 ? '∞' : '-∞';
+  if (x === 0) return '0';
+  const ax = Math.abs(x);
+  if (ax >= 1e5 || ax < 1e-3) return x.toExponential(2);
+  return parseFloat(x.toPrecision(6)).toString();
+}
+function fmtPct(rel){
+  if (!isFinite(rel)) return '∞';
+  const p = rel * 100;
+  if (p === 0) return '0%';
+  if (p < 0.01) return p.toExponential(1) + '%';
+  if (p < 1) return p.toFixed(3) + '%';
+  if (p < 100) return p.toFixed(2) + '%';
+  return p.toFixed(1) + '%';
+}
+const SUP = {'-':'⁻','0':'⁰','1':'¹','2':'²','3':'³','4':'⁴','5':'⁵','6':'⁶','7':'⁷','8':'⁸','9':'⁹'};
+function sup(n){ return String(n).split('').map(c => SUP[c] || c).join(''); }
+
+/* ================= S1 线 & 参数规模 ================= */
+function lineSVG(w, b){
+  const W = 460, H = 260, x0 = -5, x1 = 5, y0 = -6, y1 = 6;
+  const X = x => 40 + (x - x0) / (x1 - x0) * (W - 60);
+  const Y = y => H - 30 - (y - y0) / (y1 - y0) * (H - 58);
+  let g = '<defs><clipPath id="lpClip"><rect x="40" y="18" width="' + (W - 56) + '" height="' + (H - 48) + '"/></clipPath></defs>';
+  for (let gx = -5; gx <= 5; gx++){
+    g += '<line x1="' + X(gx) + '" y1="18" x2="' + X(gx) + '" y2="' + (H - 30) + '" stroke="#e9e6dd"/>';
+    if (gx !== 0) g += '<text x="' + X(gx) + '" y="' + (H - 18) + '" font-size="10" fill="#9aa1ac" text-anchor="middle">' + gx + '</text>';
+  }
+  for (let gy = -6; gy <= 6; gy += 2){
+    g += '<line x1="40" y1="' + Y(gy) + '" x2="' + (W - 16) + '" y2="' + Y(gy) + '" stroke="#e9e6dd"/>';
+    if (gy !== 0) g += '<text x="34" y="' + (Y(gy) + 3) + '" font-size="10" fill="#9aa1ac" text-anchor="end">' + gy + '</text>';
+  }
+  g += '<line x1="40" y1="' + Y(0) + '" x2="' + (W - 16) + '" y2="' + Y(0) + '" stroke="#9aa1ac" stroke-width="1.4"/>';
+  g += '<line x1="' + X(0) + '" y1="18" x2="' + X(0) + '" y2="' + (H - 30) + '" stroke="#9aa1ac" stroke-width="1.4"/>';
+  const ya = w * x0 + b, yb = w * x1 + b;
+  g += '<line x1="' + X(x0) + '" y1="' + Y(ya) + '" x2="' + X(x1) + '" y2="' + Y(yb) + '" stroke="#4f46e5" stroke-width="3" clip-path="url(#lpClip)"/>';
+  for (let ix = -4; ix <= 4; ix++){
+    const iy = w * ix + b;
+    if (iy > y0 + 0.15 && iy < y1 - 0.15) g += '<circle cx="' + X(ix) + '" cy="' + Y(iy) + '" r="3.5" fill="#4f46e5"/>';
+  }
+  g += '<text x="' + (W - 22) + '" y="' + (Y(0) - 7) + '" font-size="12" fill="#68707e" font-style="italic">x</text>';
+  g += '<text x="' + (X(0) + 7) + '" y="28" font-size="12" fill="#68707e" font-style="italic">y</text>';
+  return '<svg viewBox="0 0 ' + W + ' ' + H + '" style="width:100%;height:auto;display:block" role="img" aria-label="y 等于 w 乘 x 加 b 的直线">' + g + '</svg>';
+}
+function s1Line(){
+  const w = parseFloat($('wSlider').value), b = parseFloat($('bSlider').value);
+  $('linePlot').innerHTML = lineSVG(w, b);
+  $('wVal').textContent = w.toFixed(2);
+  $('bVal').textContent = b.toFixed(2);
+  $('eqVal').textContent = 'y = ' + w.toFixed(2) + 'x ' + (b >= 0 ? '+ ' + b.toFixed(2) : '− ' + Math.abs(b).toFixed(2));
+}
+const P_LOGMIN = 8.699, P_LOGSPAN = 3.0;
+function sliderToParams(t){ return Math.pow(10, P_LOGMIN + t / 1000 * P_LOGSPAN); }
+function paramsToSlider(p){ return Math.max(0, Math.min(1000, (Math.log10(p) - P_LOGMIN) / P_LOGSPAN * 1000)); }
+const s1state = { params: 8e9 };   // 精确参数规模。滑块只负责连续拖动；预设按钮直接写精确值，避免"值→滑块→值"往返被 step=1 取整（8B 会变 79.8 亿）
+function s1Size(){
+  const p = s1state.params;
+  $('pCount').textContent = Math.round(p).toLocaleString('en-US');
+  $('psizeVal').textContent = (p / 1e9).toFixed(1) + ' B（' + (p / 1e8).toFixed(1) + ' 亿个参数）';
+  $('pBytes').textContent = (p * 2 / 1e9).toFixed(1) + ' GB（按 FP16 每个 2 字节）';
+  document.querySelectorAll('#pPresets .chip').forEach(c => c.classList.toggle('on', Math.abs(parseFloat(c.dataset.p) - p) / p < 0.02));
+}
+
+/* ================= S2 比特观察器 ================= */
+const FMTS = [
+  { id:'fp32', name:'FP32', sub:'1 + 8 + 23 · 4 字节', ew:8, mw:23, round:v => Math.fround(v), parts:v => { const b = f32bits(v); return { sign:(b>>>31)&1, exp:(b>>>23)&0xFF, man:b&0x7FFFFF, kind:'normal' }; } },
+  { id:'fp16', name:'FP16', sub:'1 + 5 + 10 · 2 字节', ew:5, mw:10, round:fp16Round, parts:fp16Parts },
+  { id:'bf16', name:'BF16', sub:'1 + 8 + 7 · 2 字节', ew:8, mw:7, round:bf16Round, parts:bf16Parts },
+  { id:'e4m3', name:'FP8 · E4M3', sub:'1 + 4 + 3 · 1 字节', ew:4, mw:3, round:fp8e4m3Round, parts:fp8e4m3Parts, sat:v => Math.abs(v) > 448 },
+  { id:'e5m2', name:'FP8 · E5M2', sub:'1 + 5 + 2 · 1 字节', ew:5, mw:2, round:fp8e5m2Round, parts:fp8e5m2Parts },
+  { id:'int8', name:'INT8', sub:'整数 · 1 字节', int:true, bits:8 },
+  { id:'int4', name:'INT4', sub:'整数 · 0.5 字节', int:true, bits:4 }
+];
+function bitCells(cells){
+  return '<span class="bitrow">' + cells.map(c => '<span class="bit ' + c.cls + '">' + c.v + '</span>').join('') + '</span>';
+}
+function fpCells(parts, ew, mw){
+  const cells = [{ v: parts.sign, cls: 's' }];
+
+  parts.exp.toString(2).padStart(ew, '0').split('').forEach(b => cells.push({ v: b, cls: 'e' }));
+  parts.man.toString(2).padStart(mw, '0').split('').forEach(b => cells.push({ v: b, cls: 'm' }));
+  return bitCells(cells);
+}
+const view = { val: 0.1, span: 1 };
+function renderBitViewer(){
+  const v = view.val;
+  let rows = '';
+  for (const f of FMTS){
+    let stored, bitsHTML, extra = '', tag = '';
+    if (f.int){
+      const r = intSnap(v, f.bits, view.span);
+      stored = r.deq;
+      bitsHTML = bitCells(r.bitsStr.split('').map(c => ({ v: c, cls: 'i' })));
+      extra = '<span class="small">标尺 ' + r.levels + ' 格 · 一格(scale) ≈ ' + fmt(r.scale) + ' · 下标 ' + r.q + '</span>';
+      if (r.clipped) tag = '<span class="tag sat">裁切</span>';
+    } else {
+      stored = f.round(v);
+      const over = !isFinite(stored) && isFinite(v);
+      let parts;
+      if (over) parts = { sign: v < 0 ? 1 : 0, exp: Math.pow(2, f.ew) - 1, man: 0, kind: 'inf' };
+      else parts = f.parts(stored);
+      bitsHTML = fpCells(parts, f.ew, f.mw);
+      if (over) tag = '<span class="tag overflow">溢出→∞</span>';
+      else if (f.sat && f.sat(v)) tag = '<span class="tag sat">饱和</span>';
+      else if (parts.kind === 'sub') tag = '<span class="tag sub">非规格化</span>';
+    }
+    const abs = Math.abs(v - stored);
+    const rel = (v !== 0 && isFinite(abs)) ? abs / Math.abs(v) : (isFinite(abs) ? abs : Infinity);
+    const cls = (!isFinite(abs) || rel >= 0.05) ? 'err-bad' : (rel < 1e-3 ? 'err-ok' : 'err-warn');
+    rows += '<div class="fmtrow">'
+      + '<div class="fname">' + f.name + '<small>' + f.sub + '</small></div>'
+      + '<div>' + bitsHTML + (extra ? '<div style="margin-top:4px">' + extra + '</div>' : '') + '</div>'
+      + '<div class="stored">存成 <b>' + fmt(stored) + '</b>' + tag + '</div>'
+      + '<div class="errline ' + cls + '">误差 ' + fmt(abs) + (isFinite(rel) && v !== 0 ? '<br>相对 ' + fmtPct(rel) : '') + '</div>'
+      + '</div>';
+  }
+  $('fmtTable').innerHTML = rows;
+  updateSpanHint();
+}
+/* 标尺滑块的实时反馈：一眼看到"标尺长度 → 格距 → 误差"的因果 */
+function updateSpanHint(){
+  const el = $('spanHint');
+  if (!el) return;
+  const v = view.val, s = view.span;
+  const r4 = intSnap(v, 4, s), r8 = intSnap(v, 8, s);
+  const rel = x => (v !== 0 && isFinite(x)) ? Math.abs(x - v) / Math.abs(v) : 0;
+  el.innerHTML = '当前效果：标尺 ±<b class="mono">' + fmt(s) + '</b>'
+    + ' → INT4 一格 ≈ <b class="mono">' + fmt(r4.scale) + '</b>，上面的数被存成 <b class="mono">' + fmt(r4.deq) + '</b>（误差 <b>' + fmtPct(rel(r4.deq)) + '</b>）'
+    + '；INT8 一格 ≈ <b class="mono">' + fmt(r8.scale) + '</b>，存成 <b class="mono">' + fmt(r8.deq) + '</b>（误差 <b>' + fmtPct(rel(r8.deq)) + '</b>）。'
+    + '<br>拖一拖试试：标尺拉得越长，格子越粗，小数值伤得越重；标尺刚好盖住数据，误差最小。';
+}
+const SPAN_LOGMIN = -1.3, SPAN_LOGSPAN = 2.6;
+function renderRangeChart(){
+  const span = view.span;
+  const W = 880, H = 236, l = 128, r = 96, t = 16, b = 40;
+  const L0 = -45, L1 = 45;
+  const X = e => l + (e - L0) / (L1 - L0) * (W - l - r);
+  const lanes = [
+    { name:'FP32', min:1.175e-38, max:3.403e38, c:'#64748b' },
+    { name:'BF16', min:1.175e-38, max:3.389e38, c:'#0ea5e9' },
+    { name:'FP16', min:6.1e-5, max:65504, c:'#8b5cf6' },
+    { name:'FP8 E5M2', min:1.53e-5, max:57344, c:'#10b981' },
+    { name:'FP8 E4M3', min:1.953e-3, max:448, c:'#f59e0b' },
+    { name:'INT8 (标尺±' + fmt(span) + ')', min:span/127, max:span, c:'#ec4899' },
+    { name:'INT4 (标尺±' + fmt(span) + ')', min:span/7, max:span, c:'#ef4444' }
+  ];
+  let g = '<defs><clipPath id="rcClip"><rect x="' + l + '" y="0" width="' + (W - l - r) + '" height="' + H + '"/></clipPath></defs>';
+  for (let e = -40; e <= 40; e += 10){
+    g += '<line x1="' + X(e) + '" y1="' + (t - 4) + '" x2="' + X(e) + '" y2="' + (H - b + 6) + '" stroke="#e5e1d8"/>';
+    g += '<text x="' + X(e) + '" y="' + (H - b + 22) + '" font-size="10.5" fill="#9aa1ac" text-anchor="middle">10' + sup(e) + '</text>';
+  }
+  lanes.forEach((ln, i) => {
+    const y = t + 8 + i * 25;
+    const xm = X(Math.log10(ln.min)), xM = X(Math.log10(ln.max));
+    g += '<text x="8" y="' + (y + 4) + '" font-size="12.5" fill="#20242e" text-anchor="start" font-weight="600">' + ln.name + '</text>';
+    g += '<line x1="' + xm + '" y1="' + y + '" x2="' + xM + '" y2="' + y + '" stroke="' + ln.c + '" stroke-width="7" stroke-linecap="round" clip-path="url(#rcClip)"/>';
+    g += '<text x="' + Math.max(xm, l) + '" y="' + (y - 6) + '" font-size="10" fill="#68707e" text-anchor="start">' + fmt(ln.min) + '</text>';
+    g += '<text x="' + Math.min(xM + 6, W - r) + '" y="' + (y + 4) + '" font-size="10.5" fill="#68707e" text-anchor="start">' + fmt(ln.max) + '</text>';
+  });
+  $('rangeChart').innerHTML = '<svg viewBox="0 0 ' + W + ' ' + H + '" style="width:100%;height:auto" role="img" aria-label="各格式可表示数值范围对比，对数坐标">' + g + '</svg>';
+}
+function renderPrecBars(){
+  const rows = [
+    ['FP32', 7.2, '#64748b'], ['FP16', 3.3, '#8b5cf6'], ['BF16', 2.4, '#0ea5e9'],
+    ['FP8 E4M3', 1.2, '#f59e0b'], ['FP8 E5M2', 0.9, '#10b981']
+  ];
+  const max = 7.2;
+  $('precBars').innerHTML = rows.map(r =>
+    '<div style="display:flex;align-items:center;gap:10px;margin:7px 0">'
+    + '<div style="width:86px;font-size:13.5px;font-weight:600">' + r[0] + '</div>'
+    + '<div style="flex:1;background:#f0eee8;border-radius:6px;height:16px;overflow:hidden">'
+    + '<div style="width:' + (r[1] / max * 100).toFixed(1) + '%;height:100%;background:' + r[2] + ';border-radius:6px;transition:width .25s"></div></div>'
+    + '<div class="mono" style="width:96px;font-size:12.5px;color:#68707e">≈ ' + r[1].toFixed(1) + ' 位十进制</div>'
+    + '</div>').join('')
+    + '<p class="small" style="margin-top:10px">整数格式（INT8/INT4）的精度没有固定值：标尺越长（格距越大），精度越低。所以它必须"看着数据"定标尺——这就是下一节的事。</p>';
+}
+
+/* ================= S3 量化工坊 ================= */
+const ws = { seed: 7, fmt: 'int4', group: 4096 };
+const N_W = 4096;
+function workshopCompute(){
+  const w = makeWeights(N_W, ws.seed);
+  let wq, meta = null;
+  if (ws.fmt === 'int8') { meta = quantArrayInt(w, 8, ws.group); wq = meta.out; }
+  else if (ws.fmt === 'int4') { meta = quantArrayInt(w, 4, ws.group); wq = meta.out; }
+  else wq = fpRoundArray(w, ws.fmt === 'fp16' ? fp16Round : bf16Round);
+  return { w, wq, meta, stats: quantStats(w, wq) };
+}
+function histBins(w, wq, bins){
+  let mn = Infinity, mx = -Infinity;
+  for (let i = 0; i < w.length; i++){ const x = w[i]; if (x < mn) mn = x; if (x > mx) mx = x; }
+  const bw = (mx - mn) / bins || 1;
+  const c1 = new Array(bins).fill(0), c2 = new Array(bins).fill(0);
+  for (let i = 0; i < w.length; i++){
+    let j = Math.floor((w[i] - mn) / bw); j = Math.max(0, Math.min(bins - 1, j)); c1[j]++;
+    let k = Math.floor((wq[i] - mn) / bw); k = Math.max(0, Math.min(bins - 1, k)); c2[k]++;
+  }
+  return { mn, mx, c1, c2, max: Math.max(...c1, ...c2) };
+}
+function histSVG(h){
+  const W = 880, H = 210, l = 44, r = 14, t = 14, b = 34;
+  const bins = h.c1.length;
+  const X = i => l + i / bins * (W - l - r);
+  const Y = c => H - b - c / h.max * (H - t - b);
+  let g = '<line x1="' + l + '" y1="' + (H - b) + '" x2="' + (W - r) + '" y2="' + (H - b) + '" stroke="#c9c4b8"/>';
+  const bw = (W - l - r) / bins;
+  for (let i = 0; i < bins; i++){
+    if (h.c1[i] > 0) g += '<rect x="' + (X(i) + 0.5) + '" y="' + Y(h.c1[i]) + '" width="' + Math.max(1, bw - 1) + '" height="' + (H - b - Y(h.c1[i])) + '" fill="#a5b4fc" stroke="#6366f1" stroke-width="0.6"/>';
+    if (h.c2[i] > 0) g += '<rect x="' + (X(i) + 0.5) + '" y="' + Y(h.c2[i]) + '" width="' + Math.max(1, bw - 1) + '" height="' + (H - b - Y(h.c2[i])) + '" fill="none" stroke="#f59e0b" stroke-width="1"/>';
+  }
+  g += '<text x="' + l + '" y="' + (H - b + 18) + '" font-size="10.5" fill="#9aa1ac">' + fmt(h.mn) + '</text>';
+  g += '<text x="' + (W - r) + '" y="' + (H - b + 18) + '" font-size="10.5" fill="#9aa1ac" text-anchor="end">' + fmt(h.mx) + '</text>';
+  g += '<text x="' + (l + (W - l - r) / 2) + '" y="' + (H - b + 18) + '" font-size="10.5" fill="#9aa1ac" text-anchor="middle">0</text>';
+  g += '<text x="' + (l - 6) + '" y="' + (t + 8) + '" font-size="10.5" fill="#9aa1ac" text-anchor="end">个数</text>';
+  return '<svg viewBox="0 0 ' + W + ' ' + H + '" style="width:100%;height:auto" role="img" aria-label="权重分布直方图，蓝为原始，橙框为量化后">' + g + '</svg>';
+}
+function rulerSVG(D, groupSize){
+  const n0 = Math.min(groupSize, 64);
+  const w = D.w, wq = D.wq, meta = D.meta;
+  const levels = ws.fmt === 'int4' ? 16 : 256;
+  const mn = meta.mins[0], mx = meta.maxs[0], scale = meta.scales[0];
+  const pad = (mx - mn) * 0.06 + 1e-9;
+  const lo = mn - pad, hi = mx + pad;
+  const W = 880, H = 190, l = 30, r = 30;
+  const X = v => l + (v - lo) / (hi - lo) * (W - l - r);
+  let g = '<line x1="' + l + '" y1="86" x2="' + (W - r) + '" y2="86" stroke="#8a8577" stroke-width="3"/>';
+  const step = levels > 64 ? Math.ceil(levels / 24) : (levels > 24 ? 2 : 1);
+  for (let i = 0; i < levels; i++){
+    const xv = mn + i * scale;
+    const major = (i % step === 0);
+    g += '<line x1="' + X(xv) + '" y1="80" x2="' + X(xv) + '" y2="' + (major ? 94 : 90) + '" stroke="' + (major ? '#57534e' : '#a8a29e') + '" stroke-width="' + (major ? 1.6 : 0.7) + '"/>';
+    if (major && i % (step * 4) === 0) g += '<text x="' + X(xv) + '" y="106" font-size="9.5" fill="#9aa1ac" text-anchor="middle">' + fmt(xv) + '</text>';
+  }
+  for (let i = 0; i < n0; i++){
+    const x1 = X(w[i]), x2 = X(wq[i]);
+    g += '<line x1="' + x1 + '" y1="34" x2="' + x1 + '" y2="78" stroke="#c7d2fe" stroke-width="1"/>';
+    g += '<line x1="' + x2 + '" y1="96" x2="' + x2 + '" y2="148" stroke="#fde68a" stroke-width="1"/>';
+  }
+  for (let i = 0; i < n0; i++){
+    g += '<circle cx="' + X(w[i]) + '" cy="30" r="3.4" fill="#4f46e5"><title>原始 ' + fmt(w[i]) + '</title></circle>';
+    g += '<circle cx="' + X(wq[i]) + '" cy="152" r="3.4" fill="#f59e0b"><title>量化后 ' + fmt(wq[i]) + '</title></circle>';
+  }
+  g += '<text x="8" y="34" font-size="11.5" fill="#4f46e5" font-weight="600">原始值</text>';
+  g += '<text x="8" y="156" font-size="11.5" fill="#b45309" font-weight="600">量化后</text>';
+  g += '<text x="' + l + '" y="178" font-size="10.5" fill="#68707e">本组范围 [' + fmt(mn) + ', ' + fmt(mx) + '] · ' + levels + ' 格 · 一格 ≈ ' + fmt(scale) + '（scale，单独存 4 字节）</text>';
+  return '<svg viewBox="0 0 ' + W + ' ' + H + '" style="width:100%;height:auto" role="img" aria-label="第一组权重的量化标尺：原始值落到最近的格子上">' + g + '</svg>';
+}
+function errColor(t){
+  const r0 = 59, g0 = 130, b0 = 246, r1 = 239, g1 = 68, b1 = 68;
+  const r = Math.round(r0 + (r1 - r0) * t), gg = Math.round(g0 + (g1 - g0) * t), b = Math.round(b0 + (b1 - b0) * t);
+  return 'rgb(' + r + ',' + gg + ',' + b + ')';
+}
+function scatterSVG(D){
+  const w = D.w, wq = D.wq, st = D.stats;
+  const n = w.length, step = Math.max(1, Math.floor(n / 700));
+  let mn = Infinity, mx = -Infinity;
+  for (let i = 0; i < n; i += step){ const a = Math.abs(w[i]), b = Math.abs(wq[i]); if (a < mn) mn = a; if (b < mn) mn = b; if (a > mx) mx = a; if (b > mx) mx = b; }
+  mn = -mx;
+  const W = 880, H = 300, l = 52, r = 16, t = 14, b = 40;
+  const S = v => l + (v - mn) / (mx - mn) * (W - l - r);
+  let g = '';
+  for (let i = 0; i <= 4; i++){
+    const v = mn + (mx - mn) * i / 4;
+    g += '<line x1="' + S(v) + '" y1="' + t + '" x2="' + S(v) + '" y2="' + (H - b) + '" stroke="#efece4"/>';
+    g += '<line x1="' + l + '" y1="' + S(v) + '" x2="' + (W - r) + '" y2="' + S(v) + '" stroke="#efece4"/>';
+    g += '<text x="' + S(v) + '" y="' + (H - b + 16) + '" font-size="10" fill="#9aa1ac" text-anchor="middle">' + fmt(v) + '</text>';
+    g += '<text x="' + (l - 6) + '" y="' + (S(v) + 3) + '" font-size="10" fill="#9aa1ac" text-anchor="end">' + fmt(v) + '</text>';
+  }
+  g += '<line x1="' + S(mn) + '" y1="' + S(mn) + '" x2="' + S(mx) + '" y2="' + S(mx) + '" stroke="#9aa1ac" stroke-width="1.4" stroke-dasharray="5 4"/>';
+  for (let i = 0; i < n; i += step){
+    const t = Math.min(1, Math.pow(Math.abs(w[i] - wq[i]) / (st.maxErr + 1e-12), 0.4));
+    g += '<circle cx="' + S(w[i]) + '" cy="' + S(wq[i]) + '" r="2.4" fill="' + errColor(t) + '" fill-opacity="0.75"/>';
+  }
+  g += '<text x="' + (W - r) + '" y="' + (H - b + 32) + '" font-size="11" fill="#68707e" text-anchor="end">x 轴 = 原始值</text>';
+  g += '<text x="14" y="' + (t + 10) + '" font-size="11" fill="#68707e">y 轴 = 量化后的值（点越靠近虚线越好）</text>';
+  return '<svg viewBox="0 0 ' + W + ' ' + H + '" style="width:100%;height:auto" role="img" aria-label="原始值与量化值散点图">' + g + '</svg>';
+}
+function workshopHint(){
+  if (ws.fmt === 'int4' && ws.group === 4096) return '😵 看，误差爆炸了！几个离群大数把整把标尺拉得超长，格距变大，绝大多数小数值都被挤到了 0。真实模型里这种"离群值"很常见——所以没人用整个张量一把标尺的 INT4。';
+  if (ws.fmt === 'int4' && ws.group <= 32) return '👍 小组量化（group=32）：离群值只影响自己那一小段，误差大幅下降，cos 相似度也很高。这正是 Q4_K_M、GPTQ int4 等主流方案的思路。';
+  if (ws.fmt === 'int4') return '🔎 试试把分组改到 32，或整张量——看看误差怎么变。也可以换成 INT8 对比。';
+  if (ws.fmt === 'int8' && ws.group === 4096) return '🔎 INT8 有 256 格，粗很多。现在试 group=32，看分组如何进一步压低误差。';
+  if (ws.fmt === 'int8') return '👍 INT8 + 小分组已经很不错（cos≈0.9999）。再对比一下：同样 group=32 下 INT4 的误差大约是 INT8 的几倍？';
+  if (ws.fmt === 'fp16') return 'FP16 只把数字舍入到 16 比特网格，精度很高，但每个参数要 2 字节。';
+  return 'BF16 和 FP16 一样是 2 字节，但指数位多、尾数位少：范围大、精度低——训练首选。';
+}
+function renderWorkshop(){
+  const D = workshopCompute();
+  const st = D.stats;
+  const bits = ws.fmt === 'int4' ? 4 : (ws.fmt === 'int8' ? 8 : 16);
+  const mainBytes = N_W * bits / 8;
+  let overhead = 0, ginfo = '（浮点舍入没有"分组"概念）';
+  if (D.meta){
+    overhead = D.meta.nGroups * 8;
+    ginfo = '组大小 ' + ws.group + '（' + D.meta.nGroups + ' 组，scale+zero-point 共 +' + overhead + ' 字节，≈ ' + (overhead / (mainBytes + overhead) * 100).toFixed(1) + '%）';
+  }
+  const relCls = st.rel < 0.02 ? 'good' : (st.rel < 0.15 ? 'mid' : 'bad');
+  $('wsStats').innerHTML =
+    '<div class="stat"><div class="k">相对误差 (MAE/平均幅值)</div><div class="v ' + relCls + '">' + fmtPct(st.rel) + '</div></div>'
+    + '<div class="stat"><div class="k">余弦相似度 (1=完美)</div><div class="v ' + (st.cos > 0.999 ? 'good' : st.cos > 0.98 ? 'mid' : 'bad') + '">' + st.cos.toFixed(5) + '</div></div>'
+    + '<div class="stat"><div class="k">单点最大误差</div><div class="v">' + fmt(st.maxErr) + '</div></div>'
+    + '<div class="stat"><div class="k">实际用到的不同数值</div><div class="v">' + st.distinct + ' / ' + N_W + '</div></div>'
+    + '<div class="stat"><div class="k">存储（4096 个参数）</div><div class="v">' + fmt((mainBytes + overhead) / 1024) + ' KB</div><div class="small">' + ginfo + '</div></div>';
+  $('wsHist').innerHTML = histSVG(histBins(D.w, D.wq, 64));
+  if (D.meta) $('wsRuler').innerHTML = rulerSVG(D, ws.group);
+  else $('wsRuler').innerHTML = '<p class="small" style="padding:30px 0;text-align:center">浮点格式没有"标尺"：可表示的值本身就不均匀（0 附近密、远处疏）。直接看下面的散点图。</p>';
+  $('wsScatter').innerHTML = scatterSVG(D);
+  $('wsHint').innerHTML = workshopHint();
+  $('wsSeed').textContent = '当前数据种子：' + ws.seed + '（点"换一批"会生成新的随机权重）';
+  document.querySelectorAll('#wsFmts .chip').forEach(c => c.classList.toggle('on', c.dataset.f === ws.fmt));
+  const intMode = ws.fmt === 'int4' || ws.fmt === 'int8';
+  $('wsGroupWrap').style.opacity = intMode ? '1' : '0.45';
+  $('wsGroup').disabled = !intMode;
+}
+
+/* ================= S4 模型有多大 ================= */
+const CALCFMTS = [
+  { id:'fp32', name:'FP32', bpw:32, c:'#64748b' },
+  { id:'bf16', name:'BF16', bpw:16, c:'#0ea5e9' },
+  { id:'fp16', name:'FP16', bpw:16, c:'#8b5cf6' },
+  { id:'fp8', name:'FP8', bpw:8, c:'#f59e0b' },
+  { id:'int8', name:'INT8', bpw:8, c:'#ec4899' },
+  { id:'q80', name:'Q8_0', bpw:8.5, c:'#14b8a6' },
+  { id:'int4', name:'INT4', bpw:4, c:'#ef4444' },
+  { id:'q4km', name:'Q4_K_M', bpw:4.83, c:'#fb923c' }
+];
+const calc = { params: 8e9, fmt: 'bf16' };
+function renderCalc(){
+  document.querySelectorAll('#calcFmts .chip').forEach(c => c.classList.toggle('on', c.dataset.f === calc.fmt));
+  const sizes = CALCFMTS.map(f => ({ ...f, gb: calc.params * f.bpw / 8 / 1e9 }));
+  const maxGB = Math.max(...sizes.map(s => s.gb));
+  const cur = sizes.find(s => s.id === calc.fmt);
+  $('calcGB').textContent = (cur.gb >= 100 ? cur.gb.toFixed(0) : cur.gb.toFixed(1)) + ' GB';
+  $('calcBits').textContent = cur.bpw + ' bit/参数 · ' + Math.round(calc.params).toLocaleString('en-US') + ' 个参数';
+  $('calcGPUs').textContent = Math.ceil(cur.gb / 80);
+  const macOk = cur.gb <= 24;
+  $('calcMac').textContent = macOk ? '✅ 能装下（还留得出一点 KV cache）' : '❌ 装不下 32 GB';
+  $('calcMac').style.color = macOk ? 'var(--ok)' : 'var(--bad)';
+  $('calcSave').textContent = (100 - cur.gb / sizes[0].gb * 100).toFixed(1) + '%';
+  $('calcBars').innerHTML = sizes.map(s =>
+    '<div style="display:grid;grid-template-columns:86px 1fr 92px;align-items:center;gap:10px;margin:7px 0' + (s.id === calc.fmt ? ';font-weight:700' : '') + '">'
+    + '<div style="font-size:13.5px">' + s.name + '</div>'
+    + '<div style="background:#f0eee8;border-radius:6px;height:' + (s.id === calc.fmt ? 20 : 15) + 'px;overflow:hidden">'
+    + '<div style="width:' + Math.max(2, s.gb / maxGB * 100).toFixed(2) + '%;height:100%;background:' + s.c + ';border-radius:6px;transition:width .25s"></div></div>'
+    + '<div class="mono" style="font-size:12.5px;text-align:right;color:#3c4250">' + (s.gb >= 100 ? s.gb.toFixed(0) : s.gb.toFixed(1)) + ' GB</div>'
+    + '</div>').join('');
+  $('calcParamsVal').textContent = (calc.params / 1e9).toFixed(1) + ' B（' + (calc.params / 1e8).toFixed(1) + ' 亿参数）';
+  document.querySelectorAll('#calcPresets .chip').forEach(c => c.classList.toggle('on', Math.abs(parseFloat(c.dataset.p) - calc.params) / calc.params < 0.02));
+}
+
+/* ================= S6 小测验 ================= */
+const QUIZ = [
+  { q:'1. 训练大模型时，为什么 BF16 比 FP16 更常用？',
+    opts:['BF16 比 FP32 精度还高','BF16 比 FP16 占的字节更少','BF16 指数位和 FP32 一样，数值范围大，不容易溢出/下溢','BF16 没有尾数，所以可以存整数'],
+    a:2, why:'BF16 用 8 位指数，和 FP32 完全相同，可表示的范围与 FP32 几乎一样（约 ±10³⁸）；FP16 最大只有 65504，数值一超出就直接变成 ∞，训练会直接炸掉。代价是尾数少（精度低），但训练对此通常不敏感。这就是 A100/H100 时代 BF16 成为训练主流格式的原因。' },
+  { q:'2. 一个 7B 模型，用 INT4 存权重（不算 scale 开销）大约占多少 GB？',
+    opts:['约 0.5 GB','约 3.5 GB','约 7 GB','约 14 GB'],
+    a:1, why:'7×10⁹ 个参数 × 4 bit = 2.8×10¹⁰ bit ÷ 8 = 3.5×10⁹ 字节 ≈ 3.5 GB。这就是为什么 7B 模型现在能塞进手机和笔记本里跑。' },
+  { q:'3. 权重里混着几个特别大的离群值，导致 INT4 量化误差爆炸。最常规、最有效的改法是什么？',
+    opts:['改成分组量化，让每组用自己的小标尺','给 INT4 的"尾数"加位数','换成 FP32 重新训练','把模型层数减少一半'],
+    a:0, why:'整张量共用一把标尺时，离群值会把标尺拉得超长，格距变大，普通值全被挤扁。分组量化（比如每 32 / 128 个参数一组）让每组独立定 scale，离群值只污染自己那一组。第 3 节的实验里你可以亲手验证这一点。' },
+  { q:'4. FP8 E4M3 的最大值是 448。如果你硬要存一个 500，会发生什么？',
+    opts:['自动升级成 FP16 存','饱和（截断）在 448','变成无穷大 ∞','变成 0'],
+    a:1, why:'OCP 的 E4M3 规范故意不保留 ∞ 和 NaN 的编码，超范围的值直接饱和到 ±448，让训练更稳定。（而 E5M2 保留了 ∞，超范围会变成 ∞——两种 FP8 的分工正源于此。）' },
+  { q:'5. 哪个格式能存的"有效小数位数"最多？',
+    opts:['BF16','FP16','FP32','FP8 E5M2'],
+    a:2, why:'精度由尾数位数决定：FP32 尾数 23 位 ≈ 7 位十进制有效数字；FP16 尾数 10 位 ≈ 3.3；BF16 尾数 7 位 ≈ 2.4；E5M2 尾数 2 位 ≈ 0.9。注意"范围"是另一回事，由指数位数决定。' }
+];
+function renderQuiz(){
+  $('quizBox').innerHTML = QUIZ.map((qz, qi) => {
+    const opts = qz.opts.map((o, oi) =>
+      '<button class="quiz-opt" data-q="' + qi + '" data-o="' + oi + '">' + String.fromCharCode(65 + oi) + '. ' + o + '</button>').join('');
+    return '<div class="card" id="quiz-' + qi + '"><p style="font-weight:600;margin-top:0">' + qz.q + '</p>' + opts
+      + '<div class="quiz-why" id="quizwhy-' + qi + '"></div></div>';
+  }).join('');
+}
+function quizClick(e){
+  const btn = e.target.closest('.quiz-opt');
+  if (!btn || btn.disabled) return;
+  const qi = +btn.dataset.q, oi = +btn.dataset.o;
+  const qz = QUIZ[qi];
+  const card = $('quiz-' + qi);
+  card.querySelectorAll('.quiz-opt').forEach(b => {
+    b.disabled = true;
+    const bo = +b.dataset.o;
+    if (bo === qz.a) b.classList.add('correct');
+    else if (bo === oi) b.classList.add('wrong');
+  });
+  const why = $('quizwhy-' + qi);
+  why.innerHTML = (oi === qz.a ? '✅ 答对了！' : '❌ 不对。') + '<br>' + qz.why;
+  why.classList.add('show');
+}
+
+/* ================= nav scrollspy & init ================= */
+function initNav(){
+  const secs = Array.from(document.querySelectorAll('main section[id]'));
+  const links = Array.from(document.querySelectorAll('#nav a'));
+  const io = new IntersectionObserver(es => {
+    es.forEach(en => {
+      if (en.isIntersecting) links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + en.target.id));
+    });
+  }, { rootMargin: '-25% 0px -65% 0px' });
+  secs.forEach(s => io.observe(s));
+}
+function bind(){
+  ['wSlider', 'bSlider'].forEach(id => $(id).addEventListener('input', s1Line));
+  $('pSlider').addEventListener('input', () => { s1state.params = sliderToParams(parseFloat($('pSlider').value)); s1Size(); });
+  document.querySelectorAll('#pPresets .chip').forEach(c => c.addEventListener('click', () => { s1state.params = parseFloat(c.dataset.p); $('pSlider').value = paramsToSlider(s1state.params); s1Size(); }));
+
+  function syncVChips(){
+    document.querySelectorAll('#vPresets .chip').forEach(c => c.classList.toggle('on', Math.abs(parseFloat(c.dataset.v) - view.val) < 1e-12));
+  }
+  $('vInput').addEventListener('input', () => {
+    const n = parseFloat($('vInput').value);
+    if (isFinite(n)) { view.val = n; renderBitViewer(); }
+    syncVChips();
+  });
+  document.querySelectorAll('#vPresets .chip').forEach(c => c.addEventListener('click', () => { $('vInput').value = c.dataset.v; view.val = parseFloat(c.dataset.v); renderBitViewer(); syncVChips(); }));
+  $('spanSlider').addEventListener('input', () => {
+    view.span = Math.pow(10, SPAN_LOGMIN + parseFloat($('spanSlider').value) / 1000 * SPAN_LOGSPAN);
+    $('spanVal').textContent = fmt(view.span);
+    renderBitViewer(); renderRangeChart();
+  });
+
+  document.querySelectorAll('#wsFmts .chip').forEach(c => c.addEventListener('click', () => { ws.fmt = c.dataset.f; renderWorkshop(); }));
+  $('wsGroup').addEventListener('change', () => { ws.group = parseInt($('wsGroup').value, 10); renderWorkshop(); });
+  $('wsShuffle').addEventListener('click', () => { ws.seed = (Math.random() * 1e9) | 0; renderWorkshop(); });
+
+  document.querySelectorAll('#calcPresets .chip').forEach(c => c.addEventListener('click', () => { calc.params = parseFloat(c.dataset.p); $('cSlider').value = paramsToSlider(calc.params); renderCalc(); }));
+  $('cSlider').addEventListener('input', () => { calc.params = sliderToParams(parseFloat($('cSlider').value)); renderCalc(); });
+  document.querySelectorAll('#calcFmts .chip').forEach(c => c.addEventListener('click', () => { calc.fmt = c.dataset.f; renderCalc(); }));
+
+  $('quizBox').addEventListener('click', quizClick);
+  initNav();
+
+  /* 阅读进度条 */
+  const pbar = document.createElement('div');
+  pbar.className = 'progress';
+  document.body.appendChild(pbar);
+  addEventListener('scroll', function(){
+    const h = document.documentElement;
+    pbar.style.width = (h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight) * 100) + '%';
+  }, { passive: true });
+}
+bind();
+s1Line(); s1Size();
+$('spanVal').textContent = fmt(view.span);
+renderBitViewer(); renderRangeChart(); renderPrecBars();
+renderWorkshop(); renderCalc(); renderQuiz();
+</script>
+</body>
+</html>
