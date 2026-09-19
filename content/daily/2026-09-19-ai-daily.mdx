@@ -1,0 +1,558 @@
+---
+title: "09.19 Meta Muse 登陆 Mac | AI 早报"
+date: "2026-09-19"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 09.19 Meta Muse 登陆 Mac | AI 早报
+
+> 2026年09月19日 周六 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- Gemini 被黑三家企业，AI 安全事件 —— AI 安全首次出现模型突破案例
+- Meta Muse 登陆 Mac，可操作文件消息日历 —— Meta 补齐桌面端，AI 代理竞争加剧
+- Figure Helix 2.5 零样本成功率56%，无需场地采集 —— 人形机器人实现真正通用化关键一步
+- AI幻觉导致美军误判中国船只，险些引发冲突 —— AI幻觉在军事决策中的真实风险
+- 字节跳动分拆AI制药公司Anew Labs，融资2.9亿美元 —— 大厂分拆AI制药新范式
+
+**今日共收录 48 条动态，涵盖 模型与产品 13条、开源热门 5条、技术洞察 5条、行业动态 25条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. Meta Muse 登陆 Mac
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-19/3116ce381810.png)
+
+Meta Muse 登陆 Mac：Meta 发布 AI 助手应用 Muse 的 Mac 原生版本，支持在应用内直接交互文件、消息、日历、笔记和邮件。
+
+该应用提供细粒度权限控制，执行敏感操作前需用户批准，此前移动端已登顶美国 App Store 榜首。
+
+📎 [原文链接](https://techcrunch.com/2026/09/18/metas-muse-hits-mac-letting-the-ai-take-actions-on-your-computer/)
+
+
+### 2. Figure Helix 2.5 零样本泛化突破
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-19/dc531e147b22.png)
+
+Figure Helix 2.5 零样本泛化突破：Figure AI 发布 Helix 2.5 模型，在 30 个陌生家庭进行零样本测试，无需提前采集数据或远程操控，直接完成叠毛巾、整理床铺等任务，成功率达 56%。
+
+相比无预训练基线（9%）提升显著，且仅用上一代模型一半的适应数据量即追平其单场地表现，验证了基于 Index 数据集的缩放定律。
+
+📎 [原文链接](https://www.ifanr.com/1680884?utm_source=rss&utm_medium=rss&utm_campaign=)
+
+
+### 3. TypeSafe AI 发布 Jev 模型
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-19/6277e93cf169.png)
+
+TypeSafe AI 发布 Jev 模型：OpenAI 前研究员 Diogo Almeida 创立的 TypeSafe AI 发布新型模型 Jev，摒弃文本输出，直接生成“校准决策”概率，专为软件自动化设计。
+
+实测显示 Jev 速度比 OpenAI Luna 快 5-18 倍，成本降低 10-20 倍，且因输出概率而非文本，彻底消除幻觉问题，适合分类器与代理监控。
+
+📎 [原文链接](https://techcrunch.com/2026/09/18/a-new-kind-of-ai-model-from-a-chatgpt-inventor-is-thrilling-developers/)
+
+
+### 4. Kimi K3 登陆 Amazon Bedrock
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-19/7da9999d6206.png)
+
+Kimi K3 登陆 Amazon Bedrock：Moonshot AI Kimi K3 模型正式登陆 Amazon Bedrock，支持 2.8 万亿参数、100 万 Token 上下文及原生视觉能力。
+
+该模型是 Bedrock 首个支持显式提示缓存的开源模型，可显著降低长上下文代码编写场景的延迟与输入成本。
+
+提供 OpenAI 兼容 API 及 Converse API，支持全球跨区域推理，满足企业级数据安全与合规要求。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/introducing-kimi-k3-on-amazon-bedrock/)
+
+
+### 5. AWS SageMaker HyperPod 网关发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-19/3e13e59b889d.png)
+
+AWS SageMaker HyperPod 网关发布：AWS 发布 Amazon SageMaker HyperPod Inference Gateway，这是一个 Kubernetes 原生插件，通过感知 GPU 实时指标（如 KV 缓存、LoRA 适配器和队列深度）进行智能路由。
+
+该网关无需修改应用代码即可部署，基准测试显示首字延迟降低高达 82%，有效解决轮询算法导致的 GPU 资源浪费和延迟飙升问题。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/introducing-amazon-sagemaker-hyperpod-inference-gateway/)
+
+
+### 6. 阿里 Qwen3.8-Omni-Flash 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-19/e950e1ff4989.png)
+
+阿里 Qwen3.8-Omni-Flash 发布：阿里 Qwen 团队发布首款围绕智能体构建的多模态模型 Qwen3.8-Omni-Flash，支持文本、图像、音频和视频输入，具备 1M 上下文窗口和原生工具调用能力。
+
+该模型通过智能体感知机制处理长视频，OmniVideoBench 准确率提升至 67.8%，Token 消耗减少 45.7%，音视频输入成本较上一代降低超 93%。
+
+目前仅通过 QwenCloud 提供 API 服务，未开源权重，同时开源了 Qwen-MM-Plugins 工具包以支持智能体 Harness 的多模态能力。
+
+📎 [原文链接](https://www.marktechpost.com/2026/09/18/alibaba-qwen-releases-qwen3-8-omni-flash/)
+
+
+### 7. LimiX-2 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-19/301b71a7311f.webp)
+
+LimiX-2 发布：稳准智能发布结构化数据基础模型 LimiX-2，以 400M 参数在 TabArena、TALENT、BCCO 三大国际基准测试中均获第一，超越 Google TabFM 和 SAP TabPFN。
+
+该模型首创上下文机制网络（CMNs），从预测目标转向学习变量间因果依赖，支持分类、回归及因果发现，填补 LLM 在工业决策场景的短板。
+
+📎 [原文链接](https://www.qbitai.com/2026/09/492175.html)
+
+
+### 8. Google CC 家庭版上线
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-19/200d71230360.png)
+
+Google CC 家庭版上线：Google 推出 AI 智能体 CC 的家庭管理版本，支持最多 6 名家庭成员共享账户，自动同步学校、医疗等邮件至共享日历。
+
+该功能基于 Gemini 和 Antigravity 框架，可自动填写请假条、生成购物清单及规划膳食，目前仅面向美国 18 岁以上用户开放测试。
+
+📎 [原文链接](https://techcrunch.com/2026/09/18/googles-new-cc-is-an-ai-agent-that-helps-families-run-their-households/)
+
+
+### 9. Jina AI 发布 jina-ocr-v1
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-19/e950e1ff4989.png)
+
+Jina AI 发布 jina-ocr-v1：Jina AI 发布开源文档解析模型 jina-ocr-v1，基于 DeepSeek-OCR 后训练，总参数量 3.4B，单 token 仅激活 570M 参数，内置 FastMTP 投机解码头。
+
+模型在 OmniDocBench v1.6 得分 91.14，olmOCR-Bench 得分 83.4；在单张 A100 上吞吐达每秒 2.57 页，为测试系统最高；在低预算 NVIDIA L4 显卡上实现 1.95 倍加速。
+
+权重约 6.8 GB（BF16），支持 vLLM 0.21+ 和 Transformers 部署，提供 OpenAI 兼容 API 及 Jina Reader 调用方式，采用 CC BY-NC 4.0 协议。
+
+📎 [原文链接](https://www.marktechpost.com/2026/09/18/jina-ai-releases-jina-ocr-v1-a-3-4b-moe-document-parser-with-built-in-speculative-decoding-for-low-budget-gpus/)
+
+
+### 10. PrismML 发布 Ternary Bonsai 2 27B
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-19/e950e1ff4989.png)
+
+PrismML 发布 Ternary Bonsai 2 27B：PrismML 发布开源模型 Ternary Bonsai 2 27B，采用三元权重技术将 Qwen3.8 27B 体积压缩至 5.93 GB（Apache 2.0 协议），在 20 项基准测试中保留 98.2% 性能。
+
+模型支持 262K 上下文及图文多模态，在 RTX 5090 上推理速度达 142.5 token/s，可在 16GB 内存笔记本或单张 24GB GPU 上本地部署。
+
+需使用 PrismML 定制的 llama.cpp 分支或 MLX 运行时加载，长周期智能体任务性能保留率约 75%，适合对显存敏感且需本地运行的开发者。
+
+📎 [原文链接](https://www.marktechpost.com/2026/09/18/prismml-releases-ternary-bonsai-2-27b-a-5-9-gb-apache-2-0-model-retaining-98-2-of-qwen3-8-27b-performance/)
+
+
+### 11. AWS Bedrock AgentCore 运行时发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-19/9805291dc1c2.png)
+
+AWS Bedrock AgentCore 运行时发布：AWS 发布 Amazon Bedrock AgentCore 运行时，提供托管部署能力，自动处理容器生命周期、扩缩容、身份认证和可观测性。
+
+支持 Hugging Face smolagents 等框架，通过装饰器模式实现“自带智能体”迁移，无需重写代码即可将多模型智能体从自托管环境迁移至 AWS 托管平台。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/migrating-multi-model-ai-agents-to-amazon-bedrock-agentcore-runtime/)
+
+
+### 12. AWS SageMaker AI 部署 Hugging Face 模型
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-19/a2bec71d0ea9.png)
+
+AWS SageMaker AI 部署 Hugging Face 模型：AWS 发布开源代理技能，通过 Kiro 和 Claude Code 等代码代理在 Amazon SageMaker AI 上自动化部署 Hugging Face 模型。
+
+技能涵盖容器选择、自动伸缩、CloudWatch 监控等全流程，解决代理因缺乏最新镜像知识导致的部署失败问题。
+
+支持实时、无服务器、异步推理等多种模式，仅需 Python 和 AWS CLI 即可跨平台运行。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/deploy-hugging-face-models-on-amazon-sagemaker-ai-with-coding-agents/)
+
+
+### 13. Claude Code 支持 AGENTS.md
+
+Claude Code 支持 AGENTS.md：Anthropic 在 Claude Code 2.1.277 版本中新增对 AGENTS.md 的支持，当项目中不存在 CLAUDE.md 时，工具将自动读取 AGENTS.md 作为项目指令。该功能基于即将推出的 Claude Code mods 框架，开发者可基于内置 mod 或源码构建自定义项目指令版
+
+📎 [原文链接](https://simonwillison.net/2026/Sep/18/thariq-shihipar/)
+
+
+---
+
+## 🔥 开源热门
+
+### 1. cloudflare/security-audit-skill 安全审计技能
+
+⭐ 10,200 stars · 今日增长 3,291 stars
+
+该项目提供多阶段安全审计代码代理技能，通过独立验证生成机器可读的发现结果，帮助开发者自动化识别代码漏洞，提升安全审查效率与准确性。
+
+📎 [原文链接](https://github.com/cloudflare/security-audit-skill)
+
+
+### 2. OpenResearch 编码转研究代理工具
+
+⭐ 4,800 stars · 今日增长 605 stars
+
+OpenResearch 旨在将通用编码代理转化为专注的研究代理，通过自动化文献检索、分析与综合，辅助开发者高效完成学术调研与技术探索，适合需要快速梳理领域知识的研究人员与工程师。
+
+📎 [原文链接](https://github.com/alphaXiv/OpenResearch)
+
+
+### 3. Hypit AI 视频病毒式复刻工具
+
+⭐ 8,700 stars · 今日增长 419 stars
+
+Hypit 利用 AI 智能体自动化复刻病毒视频，支持换脸、改台词及调整辅助镜头。一条命令即可批量生成百个变体，大幅降低内容创作门槛，适合追求高效流量获取的创作者。
+
+📎 [原文链接](https://github.com/hypit-ai/hypit)
+
+
+### 4. XiaoDuoYa/codex-with-chatgpt 智能编程助手
+
+⭐ 5,200 stars · 今日增长 387 stars
+
+该项目将 ChatGPT 作为规划大脑，利用 Codex 框架执行代码，实现思考与执行的分离。它解决了复杂编程任务中逻辑规划与代码生成的协同问题，适合希望提升开发效率、探索 AI 辅助编程新范式的开发者使用。
+
+📎 [原文链接](https://github.com/XiaoDuoYa/codex-with-chatgpt)
+
+
+### 5. Claude-Red 网络安全进攻技能库
+
+⭐ 6,000 stars · 今日增长 317 stars
+
+该项目为Claude Skills系统提供精心策划的网络安全进攻技能库，通过结构化SKILL.md文件赋予AI专家级攻击方法论，涵盖SQL注入、EDR绕过及漏洞利用开发，适合安全研究人员和渗透测试人员使用。
+
+📎 [原文链接](https://github.com/SnailSploit/Claude-Red)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. Architect Labs AI设计推理芯片
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-19/5b59a5cbc3fe.png)
+
+Architect Labs AI设计推理芯片：Architect Labs 发布 AI 芯片设计平台，利用 AI 系统从零开始设计名为 Redwood 的低功耗推理芯片，将传统需数年的芯片定型周期缩短至数周。
+
+该系统在 FPGA 上完成全流程设计验证，实测 Qwen3 0.6B 模型吞吐量为 12.1 token/s，预测 8nm 流片后能效提升 3.4 倍，旨在解决硬件迭代滞后问题。
+
+📎 [原文链接](https://venturebeat.com/infrastructure/inference-chips-are-locked-in-years-before-the-models-theyll-run-architect-labs-says-ai-can-design-them-in-weeks)
+
+
+### 2. 2026本地LLM开源智能体框架盘点
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-19/e950e1ff4989.png)
+
+2026本地LLM开源智能体框架盘点：MarkTechPost 发布 2026 年 11 款本地大语言模型开源智能体框架评测，涵盖 OpenCode、Pi、Goose、Cline、OpenHands、Aider、Codex CLI、Qwen Code、Kilo Code、Hermes Agent 和 OpenClaw。
+
+评测基于文档完善度、本地运行时支持、维护状态及安全控制，推荐 OpenCode 适合广泛本地设置，Pi 适合小型模型，Goose 适合通用自动化，Cline 适合 VS Code 用户。
+
+文章提供关键配置建议，如将上下文窗口设为 64k tokens，选择支持工具调用的模型，并根据显存预算选择量化模型，同时指出各框架的许可细节和潜在陷阱。
+
+📎 [原文链接](https://www.marktechpost.com/2026/09/18/best-open-source-agent-harnesses-for-local-llms-in-2026/)
+
+
+### 3. Agentgit 开源无账户 Git 服务
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-19/093d172cd4e1.png)
+
+Agentgit 开源无账户 Git 服务：Agentgit 是开源的 Git 托管服务，无需注册账户、令牌或密钥，通过 URL 即可实现智能体间的代码交接。
+
+支持基于密钥指纹的签名推送与读取权限控制，提供 `@zabaca/agentgit` 客户端实时检测分支冲突。
+
+采用仅追加模式，未认领仓库 24 小时后自动清理，适合沙箱环境下的多智能体协作场景。
+
+📎 [原文链接](https://agentgit.co/)
+
+
+### 4. 12-Factor Agents 原则发布
+
+12-Factor Agents 原则发布：humanlayer 开源了 12-Factor Agents 项目，借鉴 12-Factor App 理念，提出构建可靠 LLM 应用的 12 项设计原则，涵盖配置管理、依赖隔离、并发处理等工程实践。
+
+📎 [原文链接](https://github.com/humanlayer/12-factor-agents)
+
+
+### 5. Fredy 开源项目发布
+
+Fredy 开源项目发布：Fredy 是一个开源项目，旨在让大语言模型在执行搜索任务时避免编造数据。
+
+📎 [原文链接](https://github.com/orangecoding/fredy)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. Gemini 被黑事件
+
+Gemini 被黑事件：据《华尔街日报》报道，Google Gemini 模型疑似被黑客利用，导致三家企业数据泄露，这是已知的首例 Google AI 模型突破安全限制的事件。
+
+📎 [原文链接](https://www.wsj.com/tech/ai/gemini-hacked-three-companies-in-first-known-breakout-by-googles-ai-5c0baba2)
+
+
+### 2. AI幻觉险些触发美军行动
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-19/960964e578b7.jpg)
+
+AI幻觉险些触发美军行动：今年春天，美军特种作战司令部分析师使用AI聊天机器人整合情报时，模型产生幻觉错误识别中国船只货物为核武器组件，导致军用飞机升空，行动在最后一刻被取消。
+
+该事件凸显了军方在加速“杀伤链”决策时，因缺乏足够人工监督导致错误情报沿指挥链蔓延的风险，引发专家对AI在军事应用中安全性的担忧。
+
+📎 [原文链接](https://techcrunch.com/2026/09/18/ai-hallucination-nearly-triggers-us-military-operation/)
+
+
+### 3. 字节跳动分拆AI制药公司
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-19/746ea4f23c2c.png)
+
+字节跳动分拆AI制药公司：字节跳动将内部AI制药团队分拆成立Anew Labs，完成2.9亿美元首轮融资，投后估值约15亿美元，字节保留56%控股权。
+
+公司依托火山引擎算力，拥有AnewFold等5个AI药物发现平台，布局4条临床前管线，涵盖小分子、抗体及环肽。
+
+核心管线瞄准IL-17家族等百亿级自身免疫疾病靶点，旨在通过AI技术实现从注射剂向口服小分子的剂型突破。
+
+📎 [原文链接](https://www.tmtpost.com/8144446.html)
+
+
+### 4. 迪士尼首位 CTO 上任
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-19/896925bde830.jpg)
+
+迪士尼首位 CTO 上任：迪士尼任命 Karandeep Anand 为首位首席技术官，他此前是 AI 初创公司 Character.AI 的 CEO。
+
+Anand 曾于 2025 年 9 月收到迪士尼的停止侵权函，指控其平台托管了受版权保护的角色。
+
+此次任命由新任 CEO Josh D'Amaro 推动，旨在加速迪士尼拥抱生成式 AI 等新技术。
+
+📎 [原文链接](https://techcrunch.com/2026/09/18/disneys-first-cto-led-an-ai-startup-it-once-accused-of-copying-its-characters/)
+
+
+### 5. OpenAI GPT-5 强制推理引发争议
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-19/758a9626d437.png)
+
+OpenAI GPT-5 强制推理引发争议：OpenAI GPT-5 强制开启推理功能，导致基础 NLP 任务延迟增加 10 倍且性能下降，开发者反馈无法关闭推理以追求低成本和高速。
+
+GPT-5-mini 平均延迟升至 6.4 秒，相比 GPT-4.1-mini 的 0.7 秒显著变慢，且无法关闭推理功能，违背了分类任务对速度和成本的需求。
+
+📎 [原文链接](https://softwaredoug.com/blog/2025/08/21/open-ai-lost-plot)
+
+
+### 6. Apple Reference Image 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-19/1b0e33ad72e7.png)
+
+Apple Reference Image 发布：苹果发布 Apple Reference Image 技术，通过传感器签名、安全时间戳和 PCC 云端验证，为照片生成防篡改的“安全数字底片”，采用 RSA-3072 与 ML-DSA-87 后量子签名方案。
+
+该功能目前仅支持 iPhone 18 Pro 系列主摄，国行版本现阶段无法开启，海外多数市场已上线，旨在解决 AI 时代图像溯源与防伪问题。
+
+📎 [原文链接](https://zhidx.com/p/594911.html)
+
+
+### 7. Claude Opus 5 协助黑入 OpenAI
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-19/c743f9b323cf.jpg)
+
+Claude Opus 5 协助黑入 OpenAI：安全团队 Hacktron 利用 Anthropic 的 Claude Opus 5 模型，结合 OpenAI 社区论坛 Discourse 的 ImageMagick 内存漏洞，成功获取 OpenAI 员工 ChatGPT 账户权限。
+
+该团队通过 OpenAI 漏洞赏金计划获得 6500 美元奖金，OpenAI 已修复相关漏洞，事件凸显了 AI 模型在自主生成利用代码方面的能力。
+
+📎 [原文链接](https://techcrunch.com/2026/09/18/researchers-used-anthropics-claude-to-hack-into-openai/)
+
+
+### 8. 小米 MiMo-V2.6 训练直播
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-19/746ea4f23c2c.png)
+
+小米 MiMo-V2.6 训练直播：小米大模型负责人罗福莉公开 MiMo-V2.6 Pro 和 Flash 两款模型的实时训练直播，不到两天累计算力成本超 130 万美元。
+
+该直播实时展示训练进度、DeepSWE v1.1 编程测试通过率（Pro 65.78%）及故障重启记录，旨在验证强化学习在 Agent 场景下的扩展能力。
+
+📎 [原文链接](https://www.tmtpost.com/8144556.html)
+
+
+### 9. Anthropic 合并 Claude 办公入口
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-19/746ea4f23c2c.png)
+
+Anthropic 合并 Claude 办公入口：Anthropic 宣布将 Claude Chat 与 Cowork 合并为统一入口，并推出 Claude Docs 和 Claude Slides，支持在对话中直接撰写文档、生成 PPT 及设计，实现从问答到 AI 原生办公全家桶的升级。
+
+目前 Docs、Slides 及合并后的入口均处于 Beta 阶段，Pro 和 Max 用户可率先体验，Enterprise 版需管理员开启，旨在解决多工具上下文割裂问题，让 AI 自动判断任务复杂度并调度 Agent 能力。
+
+📎 [原文链接](https://www.tmtpost.com/8144624.html)
+
+
+### 10. Amazon SageMaker Inference 2026更新
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-19/0169470197d1.png)
+
+Amazon SageMaker Inference 2026更新：Amazon SageMaker Inference 在2026年发布13项新功能，涵盖端点和HyperPod两条路径。核心亮点包括支持OpenAI兼容API（Chat Completions流式传输），消除迁移成本；推出容器缓存，使ml.g6.2xlarge实例启动延迟降低51%；提供推理
+
+其他更新包括容量感知实例池（支持5种实例类型自动回退）、异步推理内联负载、前缀感知路由及分层KV缓存。这些功能旨在解决生成式AI推理中的冷启动慢、容量短缺和运维复杂问题，适用于需要快速部署和精细控制的AI应用。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/amazon-sagemaker-inference-2026-year-to-date-launches-in-review/)
+
+
+### 11. Nscale 提交 IPO 申请
+
+Nscale 提交 IPO 申请：AI 云服务商 Nscale 提交纽交所 IPO 申请，拟代码 NSCL。2026 年上半年营收 1.406 亿美元（同比增 1252%），净亏损 10.2 亿美元，剩余履约义务 564 亿美元。
+
+公司持有 25,000 个活跃 GPU，可视算力达 100 吉瓦，估值 146 亿美元。OpenAI、Anthropic 及微软均为其客户，Nvidia 为其债务提供担保。
+
+📎 [原文链接](https://www.cnbc.com/2026/09/18/nscale-ai-cloud-provider-ipo-nscl.html)
+
+
+### 12. 百度百舸具身智能全栈平台
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-19/538677f33a90.png)
+
+百度百舸具身智能全栈平台：百度智能云发布百度百舸全栈AI云基础设施，为具身智能提供从数据采标、模型训练到仿真评测及推理部署的一体化工作流，解决多路线并行下的工程适配难题。
+
+该平台已服务千寻智能、智元机器人等50余家企业，通过统一算力调度与SONIC模型集成，将WAM推理延迟降至四分之一，有效训练时长超99%，占据国内具身智能云市场29.55%份额。
+
+📎 [原文链接](https://www.qbitai.com/2026/09/492238.html)
+
+
+### 13. 英特尔 Wildcat Lake 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-19/e02f018ffc47.png)
+
+英特尔 Wildcat Lake 发布：英特尔发布第三代酷睿处理器 Wildcat Lake，采用 Intel 18A 制程与双芯片封装，内置 17 TOPS 算力 NPU 和 Xe3 GPU，基础功耗仅 15W。该芯片通过 Firefly 计划将端侧 AI 能力下放到 4000-6000 元价位段，实测在机械革命无界 14 S 上可实现发票识别、AI 修图
+
+架构采用 2P+4LPE 核心设计，支持 LPDDR5X-7467 内存，通过系统级重构降低 PCB 面积 5% 和元器件数量 7%，旨在平衡性能、重量与成本，满足主流轻薄本对续航和隐私安全的需求。
+
+📎 [原文链接](https://zhidx.com/p/595419.html)
+
+
+### 14. OceanBase 发布湖库一体AI数据库
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-19/0896e2adde46.jpg)
+
+OceanBase 发布湖库一体AI数据库：OceanBase 发布面向 AI 时代的湖库一体 AI 数据库 Lakebase，原生支持结构化、半结构化及非结构化多模态数据的统一管理，并融合实时分析与混合搜索能力。
+
+该产品提供 DataStudio 数据治理能力及面向 Agent 场景的数据沙箱，支持大规模生产级 Agent 基于真实数据快速创建隔离环境进行评测与实验，旨在对标 Databricks 构建 AI 数据底座。
+
+📎 [原文链接](https://zhidx.com/p/595365.html)
+
+
+### 15. 华为发布AI落地七步法与DIMAK体系
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-19/ef3838970f62.png)
+
+华为发布AI落地七步法与DIMAK体系：华为在全联接大会2026发布AI落地“七步法”与DIMAK工程体系，旨在解决Agentic AI深度嵌入行业核心场景的规模化难题。
+
+七步法提供从场景筛选到投产扩散的路线图，DIMAK体系提供数据、算力、模型、智能体及知识五类工程工具，并开源openJiuwen智能体平台。
+
+📎 [原文链接](https://zhidx.com/p/595344.html)
+
+
+### 16. Anthropic 发布蒸馏指控报告
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-19/746ea4f23c2c.png)
+
+Anthropic 发布蒸馏指控报告：Anthropic 发布威胁情报报告，指控 DeepSeek、月之暗面等 7 家中国公司利用约 2.4 万个虚假账户，对 Claude 实施近 2 亿次“工业规模”模型蒸馏。
+
+该报告是 Anthropic 冲刺 IPO 期间的关键动作，旨在通过强调安全风险和打击开源竞争者来构建商业壁垒，但英伟达等巨头联名信指出蒸馏属中立技术。
+
+📎 [原文链接](https://www.tmtpost.com/8144519.html)
+
+
+### 17. Anthropic 引入埃森哲进行模型评估
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-19/47b59a4897b9.jpg)
+
+Anthropic 引入埃森哲进行模型评估：Anthropic 宣布收购的 AI 子公司 Faculty 将联合埃森哲员工进驻，对 Claude 模型及内部员工进行红队测试、对齐评估和安全保障测试。
+
+双方计划未来五年投入至少 10 亿美元，旨在通过引入具备企业部署经验的独立第三方，验证模型安全性并建立可量化的问责机制。
+
+📎 [原文链接](https://techcrunch.com/2026/09/18/anthropics-first-embedded-evaluator-is-accenture/)
+
+
+### 18. 美国官网使用中国AI搜索工具
+
+美国官网使用中国AI搜索工具：路透社报道，美国联邦政府网站使用了来自中国的AI搜索工具，FBI指控该工具抄袭了Anthropic的技术。
+
+该事件涉及中美AI技术竞争及知识产权争议，目前尚无具体产品名或技术细节披露。
+
+📎 [原文链接](https://www.reuters.com/legal/litigation/us-government-website-used-ai-search-tool-china-that-fbi-said-copied-anthropic-2026-09-17/)
+
+
+### 19. Anthropic 设立生物实验室
+
+Anthropic 设立生物实验室：Anthropic 悄然设立生物实验室，旨在加强其在 AI 药物研发领域的布局，利用大模型技术加速新药发现流程。
+
+📎 [原文链接](https://finance.yahoo.com/healthcare/articles/exclusive-anthropic-quietly-sets-biology-100133604.html)
+
+
+### 20. 努比亚NaviX Ultra 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-19/746ea4f23c2c.png)
+
+努比亚NaviX Ultra 发布：努比亚发布搭载豆包助手的NaviX Ultra手机，售价5999元起，但实测发现助手无法在微信、京东、美团等主流App内完成下单或发帖等跨应用操作。
+
+字节推出SAEP协议试图规范第三方应用接入，但受限于平台流量保护与系统权限，豆包手机目前仍面临“能看不能动”的落地困境。
+
+📎 [原文链接](https://www.tmtpost.com/8144534.html)
+
+
+### 21. Manus 寻求 5 亿美元融资
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-19/c27aeb181484.jpg)
+
+Manus 寻求 5 亿美元融资：中国 AI 代理公司 Manus 恢复独立运营后，正寻求 5 亿美元融资，目标估值 40 亿美元。潜在投资者包括腾讯、IDG 资本、博裕资本和宁德时代。
+
+Manus 此前因监管原因终止与 Meta 的 20 亿美元合并协议，目前正考虑重组以准备在港交所 IPO。
+
+📎 [原文链接](https://techcrunch.com/2026/09/18/manus-seeks-4b-valuation-in-new-500m-fundraise-as-it-resumes-independent-ops/)
+
+
+### 22. OpenAI 代理平台主导率超 Anthropic
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-19/a0d1e0cbd0bb.png)
+
+OpenAI 代理平台主导率超 Anthropic：VentureBeat 8 月调研显示，使用 OpenAI Agents SDK 的企业中 69% 将其作为主要编排平台，而 Anthropic Claude 平台这一比例仅为 38%。
+
+OpenAI 在 162 家明确主导平台的企业中占比 33%，领先 Google (24%) 和 Anthropic (11%)；Anthropic 虽主导率最低，但未来考虑度比率居首。
+
+📎 [原文链接](https://venturebeat.com/orchestration/69-of-enterprises-that-install-openais-agent-platform-make-it-primary-for-anthropics-claude-platform-its-38)
+
+
+### 23. Anthropic 提出 AI 安全治理方案
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-19/22a1de871fc7.jpg)
+
+Anthropic 提出 AI 安全治理方案：Anthropic CEO Dario Amodei 提出“稳步推进前沿技术”（pace the frontier）计划，主张建立独立安全评估机构并协调民主国家 AI 实验室，以应对 AI 安全风险。
+
+该方案已获部分业界支持，但遭到 Nvidia CEO Jensen Huang 明确反对，目前业界对“放缓”含义及监管主体尚未达成一致。
+
+📎 [原文链接](https://techcrunch.com/video/dario-amodei-and-other-ai-leaders-want-to-pace-the-frontier-buthow/)
+
+
+### 24. Google 游说各州起草AI法案
+
+Google 游说各州起草AI法案：NPR 报道 Google 等科技巨头深度参与美国各州 AI 聊天机器人法案起草，通过游说推动将开发者工具、搜索引擎内置助手等纳入豁免范围，使 ChatGPT、Gemini 等主流产品免受严格监管。
+
+科罗拉多州等 10 余州法案包含模糊条款，允许公司以“技术上不可行”为由免除对未成年人的保护义务，被批评者称为给科技行业的“免罚金牌”。
+
+📎 [原文链接](https://www.npr.org/2026/09/18/nx-s1-5968878/ai-chatbots-safety-regulation-google)
+
+
+### 25. TeleAgent 获 IDC 评测前三
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-09-19/0c8fe9b1ac53.jpg)
+
+TeleAgent 获 IDC 评测前三：TeleAgent 在 IDC《中国企业级通用 Agent 产品技术评估》报告中综合成绩位居前三，任务表现获满分，成本效率获最高分。
+
+该产品通过动态上下文治理与长期记忆技术，实现 Token 总消耗比同类产品低 37%，代码场景省 57%，核心办公场景耗时仅为同类 75%。
+
+TeleAgent 首批通过信通院安全评测，支持数据不出域与央企信创适配，目前已汇聚超 5 万个预置及 UGC 技能。
+
+📎 [原文链接](https://www.tmtpost.com/8144821.html)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
