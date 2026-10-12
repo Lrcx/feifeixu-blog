@@ -1,0 +1,168 @@
+---
+title: "10.12 Manus 完成5亿美元融资 | AI 早报"
+date: "2026-10-12"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 10.12 Manus 完成5亿美元融资 | AI 早报
+
+> 2026年10月12日 周一 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- Manus 完成超5亿美元融资，估值达40亿美元 —— 国内 AI Agent 赛道最大单笔融资
+- Cloudflare Clef-omni 支持音视频图文决策，意图识别超 Jev —— 多模态决策模型新标杆，意图识别超越竞品
+- vLLM Decision 3.0 开源，9B模型超越上代27B —— AI 路由与护栏场景的高效决策模型
+- 壁仞科技拟配售募资40.2亿港元，加速BR20X芯片商业化 —— 国产GPU巨头加速商业化与产能锁定
+- Seodata.dev 提供50+国关键词搜索量与CPC数据，支持MCP协议 —— 填补 AI 代理获取真实搜索数据的空白
+
+**今日共收录 12 条动态，涵盖 模型与产品 5条、技术洞察 2条、行业动态 5条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. Cloudflare Clef-omni 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-12/26cad9f369d7.webp)
+
+Cloudflare Clef-omni 发布：Cloudflare 发布开源决策模型 Clef-omni，基于 Qwen3-Omni 30B-A3B 架构，支持单次调用对文本、图像、音频和视频进行评分，无需转录。
+
+该模型在 CLINC150+OOS 意图识别任务中 Macro-F1 达 97.7，超越 TypeSafe Jev 模型；托管版 Clef 迁移 SGLang 后速度提升约 2 倍。
+
+模型采用 Apache-2.0 协议，API 定价为 $0.15/M 输入 token，自托管需约 64GB 显存，适合多模态智能体路由与决策场景。
+
+📎 [原文链接](https://www.marktechpost.com/2026/10/11/cloudflare-clef-omni-multimodal-decision-model/)
+
+
+### 2. vLLM Decision 3.0 开源
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-12/26cad9f369d7.webp)
+
+vLLM Decision 3.0 开源：vLLM Semantic Router 团队开源 Decision 3.0 系列多模态决策模型，包含 0.8B 至 27B 共 5 个规模，基于 Qwen 微调，支持文本、JSON 和图像输入。
+
+该模型直接输出概率而非文本，适用于路由和护栏场景，9B 的 d3-flash 版本在基准测试中超越上代 27B 模型，且延迟极低。
+
+所有模型采用 Apache-2.0 许可证，开发者可通过 transformers 或 vllm-sr serve 自行部署，无需解析生成文本即可快速分类请求。
+
+📎 [原文链接](https://www.marktechpost.com/2026/10/11/what-is-decision-3-0-vllm-semantic-routers-new-open-decision-models/)
+
+
+### 3. Seodata.dev 发布 AI 代理 SEO 数据 API
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-12/db1e97cdefcd.png)
+
+Seodata.dev 发布 AI 代理 SEO 数据 API：Seodata.dev 是专为 AI 代理设计的 SEO 数据 API，提供 50 多个国家/地区的月度搜索量、CPC（单次点击费用）、竞争程度及相关关键词数据。
+
+支持 MCP 协议及 llms.txt 标准，代理可自主完成注册与查询，单次调用最多支持 25 个关键词批量查询，无限版月费仅 $4.99。
+
+📎 [原文链接](https://www.seodata.dev/)
+
+
+### 4. Botmail AI代理邮箱服务上线
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-12/c538a3b6f23b.jpg)
+
+Botmail AI代理邮箱服务上线：Botmail 是专为 AI Agent 设计的邮箱服务，代理可通过 MCP 或 REST API 认领地址、收发邮件并自动回复，人工仅需一键审批。
+
+提供免费及付费套餐，支持每日千封至四万封发送上限，集成垃圾邮件检查，适配开发者快速集成 AI 通信能力。
+
+📎 [原文链接](https://botmail.pro/)
+
+
+### 5. Shpyrd 开源 AI 应用部署平台
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-12/b81e14026667.png)
+
+Shpyrd 开源 AI 应用部署平台：Shpyrd 是 MPL-2.0 开源的 AI 时代云部署平台，支持 Claude Code、Codex 等 Agent 直接部署应用，内置登录验证、Postgres/Valkey 数据库及自动休眠功能，按实际 CPU/内存用量计费。
+
+📎 [原文链接](https://www.shpyrd.io)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. ZML LLMD 通用 LLM 服务端发布
+
+ZML LLMD 通用 LLM 服务端发布：ZML 发布通用 LLM 推理服务端 LLMD，原生支持 NVIDIA CUDA、AMD ROCm、Google TPU、Intel oneAPI 和 Apple Metal 五大硬件平台，兼容 LLaMa、Qwen 等主流模型。
+
+该服务内置连续批处理、分页注意力、张量并行及 DFlash 推测解码等高级推理原语，提供 Prometheus 监控，镜像体积最小仅 140MB，支持直接从 Hugging Face 加载模型。
+
+📎 [原文链接](https://zml.ai/llmd/)
+
+
+### 2. Plimsoll 开源代码沙箱
+
+Plimsoll 开源代码沙箱：Plimsoll 是一个开源的自托管沙箱项目，旨在为 AI 智能体生成的代码提供安全的执行环境，防止恶意代码对宿主系统造成破坏。
+
+📎 [原文链接](https://github.com/plimsollmark/plimsoll)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. Manus 完成5亿美元融资
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-12/1bc38d387706.jpg)
+
+Manus 完成5亿美元融资：Manus 宣布完成超 5 亿美元融资，由博裕投资、IDG 资本领投，腾讯、红杉中国等跟投，创国内 Agent 创企单笔融资纪录。
+
+Manus 恢复独立运营后估值升至 40 亿美元，年度经常性收入（ARR）达 4-5 亿美元，资金将用于技术迭代及海内外市场拓展。
+
+📎 [原文链接](https://www.tmtpost.com/8163955.html)
+
+
+### 2. 壁仞科技拟配售募资40亿
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-12/746ea4f23c2c.png)
+
+壁仞科技拟配售募资40亿：国产GPU厂商壁仞科技宣布新一轮配售，拟以31.8港元/股价格发行1.3亿股，募资净额约40.2亿港元。
+
+此次募资将主要用于新一代旗舰芯片BR20X的战略供应链采购及生产准备，旨在锁定产能并抢占商业化先机。
+
+BR20X对标英伟达H200，预计2027年规模化部署；上市以来壁仞累计募资已超172亿港元，居国产GPU上市公司之首。
+
+📎 [原文链接](https://www.tmtpost.com/8163998.html)
+
+
+### 3. Amazon 拟收购 AI 初创公司 Decart
+
+Amazon 拟收购 AI 初创公司 Decart：据《华尔街日报》报道，Amazon 正在与 AI 初创公司 Decart 进行收购谈判，交易估值约为 70 亿美元。
+
+📎 [原文链接](https://www.reuters.com/business/retail-consumer/amazon-talks-buy-ai-startup-decart-around-7-billion-wsj-reports-2026-10-11/)
+
+
+### 4. 蚂蚁灵光开启内测
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-12/746ea4f23c2c.png)
+
+蚂蚁灵光开启内测：蚂蚁集团旗下AI产品“灵光”开启新版本小范围内测，对标Meta Muse。新版从聊天助手升级为拥有长期记忆、可主动推进任务的AI原生个人智能体，支持调用Skill和MCP实现钉钉发消息及智能家居控制，计划本月全面开放。
+
+📎 [原文链接](https://www.tmtpost.com/8164570.html)
+
+
+### 5. 本末科技上市，具身智能营收占比仅5%
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-12/746ea4f23c2c.png)
+
+本末科技上市，具身智能营收占比仅5%：本末科技在港交所上市，市值约115亿港元，但具身智能关节模组和整机业务合计营收仅1410万元，占总营收5%。
+
+公司核心收入95%来自消费级直驱动力模组，主要客户为追觅、石头等扫地机厂商，2025年消费应用占比达88%。
+
+尽管在消费机器人直驱模组细分领域市占率超60%，但公司整体仍处于亏损状态，具身智能业务尚未形成第二增长曲线。
+
+📎 [原文链接](https://www.tmtpost.com/8164407.html)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
