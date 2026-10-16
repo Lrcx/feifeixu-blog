@@ -1,0 +1,458 @@
+---
+title: "10.16 NVIDIA Nemotron 3.5 开源 | AI 早报"
+date: "2026-10-16"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 10.16 NVIDIA Nemotron 3.5 开源 | AI 早报
+
+> 2026年10月16日 周五 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- NVIDIA Nemotron 3.5 Super VL 开源，后训练性能超 Claude Opus 5 —— 国产算力巨头开源多模态模型，专项能力对标国际一线
+- 阶跃星辰 Step 5 Preview 开源，600B参数激活仅27B —— 国产高性能开源模型，兼顾长上下文与低成本
+- Anthropic Q3营收168亿美元，算力ROI达1.70 —— AI 巨头 IPO 前财务数据披露
+- Apple Intelligence 国行10月底推测试版，集成阿里千问 —— 苹果国行 AI 落地时间明确，阿里千问成核心底座
+- Meta Muse Spark Open 8160亿参数，专为Mac本地运行设计 —— Mac 本地运行超大参数开源模型新选择
+
+**今日共收录 38 条动态，涵盖 模型与产品 10条、技术洞察 8条、行业动态 20条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. NVIDIA Nemotron 3.5 Super VL 开源
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-16/f3b57d0dc32e.png)
+
+NVIDIA Nemotron 3.5 Super VL 开源：NVIDIA 开源 1200 亿参数多模态模型 Nemotron 3.5 Super VL，支持 PDF、图表及网页理解。
+
+经合作伙伴后训练后，在医疗索赔和安全韧性等专项任务中准确率超 70%，击败 Claude Opus 5 和 GPT-6.1 Sol。
+
+配套发布 Bolt 74B 和 E4B 小模型，支持 24GB 及 4GB 显存本地部署，采用 OpenMDW 许可证。
+
+📎 [原文链接](https://venturebeat.com/technology/nvidias-new-open-nemotron-3-5-super-vl-with-post-training-beats-claude-opus-5-gpt-6-1-sol-on-specialized-task-benchmarks)
+
+
+### 2. 阶跃星辰 Step 5 Preview 开源
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-16/59156c53d43a.jpg)
+
+阶跃星辰 Step 5 Preview 开源：阶跃星辰正式开源 Step 5 Preview 模型，采用稀疏 MoE 架构，总参数量 600B 但激活参数仅 27B，支持 100 万 Token 上下文窗口。
+
+该模型在 OpenRouter 周榜全球第二，单任务成本仅为 Claude Opus 5 的 1/8，在软件工程、金融等基准测试中表现均衡。
+
+提供 BF16 和 FP8 两种精度权重，已同步上线 HuggingFace 和 ModelScope，开发者可下载用于本地部署或微调。
+
+📎 [原文链接](https://zhidx.com/p/601405.html)
+
+
+### 3. Meta Muse Spark Open 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-16/b34b0b72dd0f.jpg)
+
+Meta Muse Spark Open 发布：Meta 发布开源权重模型 Muse Spark Open，拥有 8160 亿参数和 100 万 token 上下文窗口，原生支持多模态，专为在 Mac 上本地运行而设计。
+
+该模型需至少 1TB 内存（推荐 M5 Ultra 芯片 Mac Studio），适用于复杂编码、智能体工作流及视频剪辑审查，目前通过多个 API 平台提供。
+
+📎 [原文链接](https://techcrunch.com/2026/10/15/meta-launches-an-open-weight-model-that-runs-on-macs/)
+
+
+### 4. Surface Laptop Ultra 首发
+
+Surface Laptop Ultra 首发：微软发布搭载英伟达 RTX Spark N1X 芯片的 Surface Laptop Ultra，配备 20 核 CPU、Blackwell GPU 及 128GB 统一内存，AI 算力达 1 PFLOPS。
+
+实测 Qwen3.5 本地生成速度近 60 Token/s，支持 3A 游戏及 Unreal 5 渲染，顶配售价 48388 元，定位硬核开发者与创作者。
+
+📎 [原文链接](https://www.ifanr.com/1684442?utm_source=rss&utm_medium=rss&utm_campaign=)
+
+
+### 5. FLUX 3 Image Klein 开源
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-16/640ee551e7d7.jpg)
+
+FLUX 3 Image Klein 开源：Black Forest Labs 开源 FLUX 3 Image Klein 模型，拥有 56 亿参数，支持 4K 输出及空间控制编辑，可在 8GB 显存消费级 GPU 运行。
+
+提供基础、蒸馏及 FP8/INT8 压缩版本，适配 ComfyUI 等主流工具；年收入低于 500 万美元的企业可免费商用，API 起步价 0.009 美元/张。
+
+📎 [原文链接](https://venturebeat.com/technology/black-forest-labs-opens-flux-3-image-klein-weights-with-free-commercial-use-limited-to-smaller-businesses)
+
+
+### 6. Meta Muse Spark Open 登陆 AWS
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-16/c483bd09e5e7.jpg)
+
+Meta Muse Spark Open 登陆 AWS：Meta 发布面向代码优化的开源模型 Muse Spark Open，现已在 Amazon SageMaker JumpStart 提供部署。该模型采用 MoE 架构，总参数 8160 亿，激活 420 亿，支持 100 万令牌上下文窗口，专为多文件重构和长周期智能体工作流设计。
+
+提供 BF16 和 NVFP4 量化两种变体，适配 ml.p6-b300 和 ml.p5e 实例，支持文本、图像、音视频多模态输入，允许开发者在自有 VPC 中私有化部署编码助手。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/metas-muse-spark-open-now-available-in-amazon-sagemaker-jumpstart/)
+
+
+### 7. OpenAI Study Mode 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-16/1c42949ac9b5.webp)
+
+OpenAI Study Mode 发布：OpenAI 在 ChatGPT 工具菜单中推出 Study Mode，通过引导式提问、提示和解释检查，帮助学生一步步探索主题并反思推理过程。
+
+该功能由教师、科学家和教学专家合作开发，支持教师利用学生回答识别知识盲区，同时保留教育者的教学判断力。
+
+📎 [原文链接](https://openai.com/index/teaching-students-to-think-and-learn-through-questions)
+
+
+### 8. 禾赛 Kosmo 空间相机发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-16/ad76b157da42.jpg)
+
+禾赛 Kosmo 空间相机发布：禾赛发布 Kosmo 三维世界数据引擎，包含手持 AI 空间相机 Kosmo One 和云平台 Kosmo World，实现毫米级几何精度与 8K 影像采集。
+
+系统支持 AI 语义分割与物体编辑，为具身智能提供高精度训练场，机器人 Sharpa 在还原场景中任务成功率达 99%。
+
+目前面向专业用户，暂未公布售价，并预告与头部无人机企业合作拓展户外采集场景。
+
+📎 [原文链接](https://www.ifanr.com/1684538?utm_source=rss&utm_medium=rss&utm_campaign=)
+
+
+### 9. 亚马逊 Bee 推出两款新AI设备
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-16/e30297d15389.jpg)
+
+亚马逊 Bee 推出两款新AI设备：亚马逊旗下Bee发布两款个人AI硬件：Bee Frontier（74.99美元，腕戴/衣夹式）和Bee Eclipse（99.99美元，磁吸手机背），主打AI对话整理与待办生成。
+
+设备采用私有计算架构，不存原始音频，支持Alexa+、Amazon购物及Gmail/Outlook集成，Pro订阅月费11.99美元解锁无限摘要与助手功能。
+
+📎 [原文链接](https://techcrunch.com/2026/10/15/amazons-bee-launches-two-new-personal-ai-devices-starting-at-75/)
+
+
+### 10. CopilotKit 发布 CLiF 持续学习平台
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-16/394ddcbca9ac.png)
+
+CopilotKit 发布 CLiF 持续学习平台，通过 AG-UI 协议将智能体轨迹与用户操作合并为全栈轨迹，自动转化为技能、生产级评估数据集和微调数据。
+
+平台支持私有化部署，技能经人工审核后无需重新部署即可生效，并兼容 LangGraph、Google ADK 等主流框架，解决智能体评估难和上下文膨胀问题。
+
+📎 [原文链接](https://www.marktechpost.com/2026/10/15/copilotkit-releases-clif-a-continual-learning-platform-that-turns-agent-traces-and-user-actions-into-skills-evals-and-fine-tuning-data/)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. Apple MLX 支持 Mac 集群分布式推理
+
+Apple MLX 支持 Mac 集群分布式推理：Apple MLX 发布新版本，利用 macOS 26.2 的 Thunderbolt RDMA 驱动实现 Mac Studio 集群分布式推理，支持流水线和张量并行。
+
+实测四台 M5 Ultra Mac Studio 集群可运行 816B 参数模型 Muse Spark Open，解码速度超 36 tokens/s，TTFT 降至 4.8 秒。
+
+M5 Ultra 单卡推理性能较 M3 Ultra 提升显著，TTFT 加速最高 4.6 倍，生成速度提升 1.6 倍，功耗仅 300W。
+
+📎 [原文链接](https://machinelearning.apple.com/research/mlx-distributed-inference)
+
+
+### 2. Seldon 编译替换前沿模型
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-16/aeab38e65c96.png)
+
+Seldon 编译替换前沿模型：Seldon 发布新工具，将 LLM 调用编译为低成本程序，在代理追踪场景中成本降低 5 倍且准确率更高，在 PII 检测场景中成本降低约 8,000 倍且速度提升 10 倍。
+
+该方案通过组合小模型、专用模型和确定性代码构建管线，编译成本约 15 美元，支持 OpenAI 兼容接口，一行代码即可切换，无需修改原有业务逻辑。
+
+📎 [原文链接](https://seldon-ai.com/blog/we-fired-the-frontier-model)
+
+
+### 3. SCM 开源分类器 48 个失败实验
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-16/5bbcfcfe79cc.webp)
+
+SCM 开源分类器 48 个失败实验：SCM 开源分类器项目公开了 48 个未产生提升的失败实验记录，涵盖数据、校准、蒸馏等方向，证明增加数据、去偏、共形校准及模型蒸馏均未能提升未见工作流准确率。
+
+实验表明，模型规模是唯一可靠杠杆，准确率从 0.6B 参数的 50.5% 提升至 14B 参数的 81.0%，为开发者节省数月试错时间。
+
+📎 [原文链接](https://hitl.systems/articles/llm-classifier-negative-results/)
+
+
+### 4. Arcade.dev 推出工具推荐系统
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-16/0d641bffd879.png)
+
+Arcade.dev 推出工具推荐系统：Arcade.dev 推出 Tool Recommendation 功能，通过小模型预筛选工具目录，避免将全量工具描述加载至上下文，声称可降低企业 37% 的输入 Token 成本。
+
+该功能已对 Arcade Cloud 用户免费开放，实测全量 Token 账单减少 7.6%，并在 ToolRet 基准测试中 Recall@10 指标优于微软 Foundry。
+
+📎 [原文链接](https://venturebeat.com/orchestration/new-tool-recommendation-system-cuts-your-firms-input-token-costs-by-37-according-to-arcade-dev)
+
+
+### 5. SGLang 高性能推理框架
+
+SGLang 高性能推理框架：SGLang 是一个面向大语言模型和多模态模型的高性能推理服务框架，旨在优化模型部署效率。
+
+📎 [原文链接](https://github.com/sgl-project/sglang)
+
+
+### 6. Kernwerk 揭示 LLM 硬件推理差异
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-16/b2f70afad110.png)
+
+Kernwerk 揭示 LLM 硬件推理差异：Kernwerk 测试发现，相同权重的 Qwen2.5-1.5B 模型在 Apple M1 与 NVIDIA Jetson 上运行时，因浮点计算顺序差异导致 7.2% 的数学题答案不同。
+
+使用 TensorRT-LLM int8 量化时，Jetson 上的 GSM8K 得分下降 11 分，且 53% 的数学题答案发生变化，暴露了边缘部署的安全盲区。
+
+研究指出这种差异可被用于构建平台触发后门，建议开发者在目标板卡上进行端到端测试并验证运行时组件哈希。
+
+📎 [原文链接](https://kernwerk.org/blog/same-model-different-board/)
+
+
+### 7. Datadog SRE LLM 训练报告
+
+Datadog SRE LLM 训练报告：Datadog 发布技术报告，介绍其训练低成本 SRE 大模型的过程，旨在提升运维效率。
+
+📎 [原文链接](https://web-assets.dd-static.net/42588/1792071077-datadog-scout_technical_report.pdf)
+
+
+### 8. LLM-gauze 修复 LLM 错误
+
+LLM-gauze 修复 LLM 错误：LLM-gauze 是一个 GitHub 开源项目，旨在修复大语言模型生成的错误内容。
+
+📎 [原文链接](https://github.com/ggeorgovassilis/llm-gauze)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. Anthropic IPO前季度营收168亿美元
+
+Anthropic IPO前季度营收168亿美元：Anthropic 在 IPO 前披露 Q3 营收达 168 亿美元，环比增长近 50%，每投入 1 美元算力产生 1.70 美元营收，调整后运营利润率 11%。
+
+公司收紧模型蒸馏限制，该部分收入占比降至 5%-7%，不再使用年化运行收入指标，为上市做财务准备。
+
+📎 [原文链接](https://simonwillison.net/2026/Oct/15/anthropic-tells-investors/)
+
+
+### 2. Apple Intelligence 国行测试版上线
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-16/22b44398d6d4.jpg)
+
+Apple Intelligence 国行测试版上线：库克确认 Apple Intelligence 首批核心功能将于 10 月底在中国推出测试版，包含实时翻译、照片消除和写作工具，底层能力由阿里千问提供。
+
+全新 Siri AI 不在首批范围内，预计 12 月随 iOS 27.3 正式版上线，苹果与阿里还将联合训练面向中国市场的专属模型。
+
+📎 [原文链接](https://www.ifanr.com/1684431?utm_source=rss&utm_medium=rss&utm_campaign=)
+
+
+### 3. 众星微发布PCIe 6.0 Switch
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-16/f858778ab2cd.jpg)
+
+众星微发布PCIe 6.0 Switch：国产互连芯片厂商众星微发布全栈产品，推出国内首款支持144 Lane的PCIe 6.0 Switch芯片C82-4G，以及国产首款800G多协议AI网卡。
+
+其RAID芯片写入带宽较博通方案提升47%，PCIe交换芯片实测性能平替博通PEX89104，累计出货量已超80万颗，进入浪潮、联想等供应链。
+
+📎 [原文链接](https://zhidx.com/p/601291.html)
+
+
+### 4. OPPO 接入 Manus 智能体
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-16/b8d86e64201b.jpg)
+
+OPPO 接入 Manus 智能体：OPPO 宣布与 AI 智能体平台 Manus 合作，将 Manus 的多步骤任务执行能力接入 ColorOS 17 的 AI Mind Pilot 系统，首批在 Find X10 系列上推出。
+
+该功能支持跨应用整理行程、生成演示文稿等复杂任务，初期同时支持 Manus 和 ChatGPT，旨在补齐系统原生智能体在复杂任务执行上的短板。
+
+📎 [原文链接](https://www.tmtpost.com/8168726.html)
+
+
+### 5. OpenAI 推出 GPT-Rosalind 学术计划
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-16/ca4ccaca43e5.webp)
+
+OpenAI 推出 GPT-Rosalind 学术计划：OpenAI 推出罗莎琳德学术计划，向符合条件的学术实验室免费提供 GPT-Rosalind 生命科学模型及工作台访问权限。
+
+获批实验室可获得最多 30 个 Business Standard 席位，免收费用且有效期长达 12 个月，支持药物设计、基因组学等科研场景。
+
+该计划目前仅面向美国大学开放，需通过可信访问审批，且暂不包含 API 访问权限。
+
+📎 [原文链接](https://openai.com/index/introducing-the-rosalind-academic-plan)
+
+
+### 6. Anthropic 开放 METR 员工级访问
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-16/459e11f5758f.jpg)
+
+Anthropic 开放 METR 员工级访问：Anthropic 向无营利组织 METR 的六名研究人员授予员工级访问权限，提供公司笔记本电脑、办公空间及内部风险评估工具，以独立评估其模型、安全实践和风险管理。
+
+这是 Anthropic CEO Dario Amodei 提出的外部评估者嵌入实验室承诺的兑现，旨在通过公开问责弥合评估者与公司对前沿 AI 系统理解的差距。
+
+METR 将发布独立评估报告，Anthropic 仅能要求编辑涉及客户数据或受律师-客户特权保护的内容，无权否决发表，此举被视为 AI 行业独立审查的新标杆。
+
+📎 [原文链接](https://techcrunch.com/2026/10/15/anthropic-is-letting-metr-researchers-look-under-the-hood-with-employee-level-access/)
+
+
+### 7. Linus Torvalds 用 Claude Code 修 Linux 内核
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-16/d4db2cc52064.png)
+
+Linus Torvalds 用 Claude Code 修 Linux 内核：Linus Torvalds 发布一组由 Anthropic Claude Code 辅助编写的 Linux 内核补丁，解决多核环境下小文件读取的缓存争用瓶颈。
+
+该补丁通过推迟内存回收避免原子写入竞争，在特定测试中八线程吞吐量从约 1000 万次/秒提升至 3300 万次/秒，内核周期从 2950 降至 725。
+
+Linus 表示这是其态度从怀疑转向拥抱 AI 的转折点，但补丁目前仍在实验阶段，内存回收和回归问题尚未完全解决。
+
+📎 [原文链接](https://www.zdnet.com/innovation/linus-torvalds-uses-ai-to-write-linux-kernel-patch/)
+
+
+### 8. DeepSeek API故障全额补偿
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-16/746ea4f23c2c.png)
+
+DeepSeek API故障全额补偿：DeepSeek 开放平台发布补偿通知，针对 10 月 15 日 8:11 至 13:04 期间的 API 服务故障，将按账号 7 日内（10.8-10.14）的消耗金额以赠金形式全额返还，赠金自动到账并优先抵扣扣款。
+
+📎 [原文链接](https://www.tmtpost.com/8170437.html)
+
+
+### 9. 亚马逊推出 AI 设备 Bee
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-16/b96a93bffe38.jpg)
+
+亚马逊推出 AI 设备 Bee：亚马逊推出全新 AI 可穿戴设备 Bee，包括手环和磁吸卡片形态，旨在通过环境计算取代传统 App 交互。
+
+设备实时处理音频并生成笔记，原始音频不存储，采用本地加密保护隐私，无需用户主动指令即可后台工作。
+
+📎 [原文链接](https://techcrunch.com/2026/10/15/amazon-devices-chief-panos-panay-sees-a-future-where-ai-devices-replace-the-need-to-use-apps/)
+
+
+### 10. Modal ARR破10亿美元
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-16/16d99387f484.jpg)
+
+Modal ARR破10亿美元：AI 基础设施平台 Modal 宣布年化收入（ARR）突破 10 亿美元，完成由 Accel 领投的 7.5 亿美元 D 轮融资，投后估值达 157.5 亿美元。
+
+其核心产品 Sandboxes 上线三年即贡献 3 亿美元 ARR，累计启动近 30 亿个沙盒，支持百万级并发，5 个月内用户量与估值均翻 3 倍。
+
+📎 [原文链接](https://www.latent.space/p/ainews-modals-1b-arr-16b-series-d)
+
+
+### 11. 长视频平台集体入局AI短剧
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-16/8a50babbb880.jpg)
+
+长视频平台集体入局AI短剧：2026年AI微短剧渗透率超95%，用户规模突破6亿，字节旗下红果日活达1.68亿，超过爱优腾芒总和。
+
+爱奇艺发布纳逗Pro、腾讯推出WorkRally、芒果TV《后西游记》上星，四家平台集体入局，转向“真人+AI”模式。
+
+抖音、腾讯、爱奇艺同步调整分账新政，下调纯AI短剧分成系数，扶持真人实拍搭配AI辅助创作的内容。
+
+📎 [原文链接](https://www.tmtpost.com/8170047.html)
+
+
+### 12. 华为麒麟9050 技术细节首披露
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-16/b6dd238b2fef.png)
+
+华为麒麟9050 技术细节首披露：华为时隔6年首次详细解读麒麟9050芯片，通过“韬定律”将混合键合间距做到1.5微米，连接数超5000万个，并实现端侧30B大模型跑通。
+
+同期发布影像“巨炮”Z10模块相机（76项专利）及玄武昆仑玻璃，展示芯片、材料、结构等全栈技术突破，透露“麒麟2027”路线图。
+
+📎 [原文链接](https://zhidx.com/p/600839.html)
+
+
+### 13. Character.ai 申请破产保护
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-16/ca8ad0b45a96.jpg)
+
+Character.ai 申请破产保护：AI 聊天应用 Character.ai 因面临多起指控其应用导致青少年自杀和心理健康问题的诉讼，于 2026 年 10 月 13 日申请第 11 章破产保护。
+
+迪士尼已同意支付 2000 万美元购买部分知识产权并提供过渡服务，以维持平台在破产程序期间的运营；若出售失败，平台将清算解散。
+
+📎 [原文链接](https://www.cnn.com/2026/10/13/tech/character-ai-bankruptcy-filing)
+
+
+### 14. 云深处IPO招股书更新
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-16/746ea4f23c2c.png)
+
+云深处IPO招股书更新：云深处科创板IPO更新招股书，2026年上半年营收2.59亿元但由盈转亏，归母净利润-880.63万元。
+
+机器狗业务受价格战影响毛利率降至31.31%，人形机器人商业化滞后，上半年仅售出6台。
+
+公司面临大客户自研竞争风险，宇树科技全球四足机器人市占率37%远超云深处的10.4%。
+
+📎 [原文链接](https://www.tmtpost.com/8168901.html)
+
+
+### 15. Cal AI 被收购及 Persona 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-16/bfbb26c90830.jpg)
+
+Cal AI 被收购及 Persona 发布：Cal AI 是 AI 驱动的卡路里追踪应用，两年内实现超 3000 万美元收入，近期被 MyFitness 收购。创始人 Zach Yadegari 同时推出 Persona，一家已获 1000 万美元融资的 AI 代理初创公司，旨在构建跨平台的个人 AI 助手及硬件生态。
+
+📎 [原文链接](https://techcrunch.com/2026/10/15/when-it-came-to-cal-ais-viral-success-a-small-army-of-influencers-paid-off/)
+
+
+### 16. Bluesky Attie 支持构建网站游戏
+
+Bluesky Attie 支持构建网站游戏：Bluesky 扩展其 AI 驱动应用 Attie，允许普通用户通过自然语言构建网站、游戏和测验等互动体验，无需编写代码。
+
+这些内容基于 ATProto 协议运行，并直接接入 Bluesky 4700 万注册用户的分发网络，解决独立 AI 应用缺乏流量的痛点。
+
+📎 [原文链接](https://techcrunch.com/2026/10/15/bluesky-expands-its-ai-powered-attie-app-to-let-anyone-build-websites-games-and-more/)
+
+
+### 17. Rivian 宣布接入 Anthropic AI 代理
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-16/ee8f3cdeceb3.jpg)
+
+Rivian 宣布接入 Anthropic AI 代理：Rivian 宣布将在其电动汽车中集成 Anthropic 等外部 AI 代理，利用自研框架实现跨设备上下文同步与复杂指令执行。
+
+系统采用本地与云端模型混合路由机制，明确限制代理权限，严禁其控制刹车等安全关键系统。
+
+Rivian 计划于 12 月举办“AI 与自动驾驶日”公布更多细节，目前尚未给出具体上线时间表。
+
+📎 [原文链接](https://techcrunch.com/2026/10/15/ai-agents-are-coming-to-rivians-cars/)
+
+
+### 18. SK海力士发布下一代存储路线图
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-16/9ccb62748349.jpg)
+
+SK海力士发布下一代存储路线图，推出介于HBM与DRAM之间的高带宽闪存（HBF），旨在解决AI推理中的数据瓶颈。
+
+HBF利用TSV堆叠技术，提供约为同代HBM一半的带宽，但容量达到其10倍，显著降低数据移动带来的延迟和功耗。
+
+同时规划HBM4E演进及3D Stacked DRAM，预计2030年AI基础设施性能需求将比2026年增长20倍。
+
+📎 [原文链接](https://www.koreaittimes.com/news/articleView.html?idxno=158124)
+
+
+### 19. 盛大 NovaCatapult 启动 AI 孵化
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-16/c60a9693b104.jpg)
+
+盛大 NovaCatapult 启动 AI 孵化：盛大集团推出 NovaCatapult AI 创业孵化计划，首期团队已入驻，第二期申请开放。入选团队获不低于 100 万元投资（现金+SAFE+资源），优先使用内部百万级 GPU 集群，并提供工程、法务及生态分发支持。
+
+📎 [原文链接](https://www.tmtpost.com/8170112.html)
+
+
+### 20. 后摩智能 M50 芯片量产获客
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-16/746ea4f23c2c.png)
+
+后摩智能 M50 芯片量产获客：后摩智能发布存算一体端侧芯片 M50，量产不到一年已获得 150 多个产品定点，服务客户超百家。
+
+该芯片主要覆盖 Agent Computer 和边缘服务器场景，通过 SRAM-CIM 技术降低 Token 边际成本，预计 1-2 年内达到端侧 AI 临界点。
+
+📎 [原文链接](https://www.tmtpost.com/8170161.html)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
