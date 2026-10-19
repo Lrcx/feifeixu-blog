@@ -1,0 +1,232 @@
+---
+title: "10.19 DeepSeek Flash-1017 开源 | AI 早报"
+date: "2026-10-19"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 10.19 DeepSeek Flash-1017 开源 | AI 早报
+
+> 2026年10月19日 周一 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- DeepSeek Flash-1017 开源，支持游戏与3D场景生成 —— 国产模型开源且具备游戏开发能力
+- DeepSeek 成立产品部，整合 Harness 团队统筹产品与商业化 —— DeepSeek 商业化与 IPO 关键一步
+- Google Harness2 开源，GLM-5 分数提升11.5分 —— Google 开源智能体框架优化方案
+- OpenAI 发布722篇AI数学手稿，引发数学界伦理争议 —— AI数学突破引发学术伦理大辩论
+- 迪士尼收购 Character.AI 资产，聘用超 60 名员工 —— 迪士尼布局 AI 聊天机器人业务
+
+**今日共收录 18 条动态，涵盖 模型与产品 2条、技术洞察 8条、行业动态 8条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. TinyFish Search 检索免费
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-19/fa6ebe1306e4.webp)
+
+TinyFish Search 检索免费：TinyFish 推出 Search 和 Fetch API，在速率限制内（搜索30次/分、Fetch 150个/分）完全免费，旨在消除 AI 智能体读取网页的检索成本。
+
+在 Artificial Analysis 基准测试中，TinyFish 总成本为每 1,000 任务 9.30 美元，为显示配置中最低，但搜索得分 71 分低于 Perplexity 的 80 分。
+
+其核心优势在于提取内容精简（单页约 1,184 Token），有效节省模型上下文窗口，适合对成本敏感且需高频抓取网页的开发者。
+
+📎 [原文链接](https://www.marktechpost.com/2026/10/18/tinyfish-free-search-ai-agent-token-cost/)
+
+
+### 2. DeepSeek API 搜索抓取收费
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-19/746ea4f23c2c.png)
+
+DeepSeek API 搜索抓取收费：DeepSeek 宣布 API 新增网页搜索与抓取功能，按请求次数计费，单价为每 1000 次成功请求 5 元。此前通过 Server 端工具调用的 Search / Fetch 接口免费，将于 11 月 1 日起正式按次收费。
+
+📎 [原文链接](https://www.tmtpost.com/8172465.html)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. Google 开源 Harness2 递归智能体框架
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-19/fa6ebe1306e4.webp)
+
+Google 开源 Harness2 递归智能体框架：Google Research 开源 Harness2，这是一个递归式智能体框架，通过优化提示词、工具、记忆等8个组件来提升智能体性能，模型权重保持不变。
+
+在 WorkBuddy-Bench 基准测试中，GLM-5 分数从 64.2 提升至 75.7（+11.5分），且任务执行步数减少，支持通过 Vertex AI 调用模型。
+
+📎 [原文链接](https://www.marktechpost.com/2026/10/18/google-harness2-recursive-agent-harnessing-framework/)
+
+
+### 2. 魔兽争霸3 AI 击败疯狂难度
+
+魔兽争霸3 AI 击败疯狂难度：Robin Kahlow 利用自玩强化学习在普通台式机击败《魔兽争霸3》最高难度AI，胜率89%。
+
+模型仅320万参数，单步推理13ms，通过11年游戏时长（84万局）训练，无需游戏API。
+
+采用行为克隆、课程学习及在线策略蒸馏，在RTX 3090上完成，GitHub开源代码。
+
+📎 [原文链接](https://warlock.ai/blog/warcraftsim-1/)
+
+
+### 3. ParetoOps 开源 LLM 评估 CI 门禁
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-19/356baddfe2c9.png)
+
+ParetoOps 开源 LLM 评估 CI 门禁：ParetoOps 是开源的 LLM 评估 CI 门禁工具，支持 GitHub Actions、GitLab 和 Jenkins，可离线分析 Promptfoo、LangSmith 等工具生成的评估结果。
+
+它通过计算“每个成功任务成本”来识别被支配的模型配置，Pro 版提供与上次成功运行的回归对比及置信区间，防止提示词或模型变更导致性能下降。
+
+工具完全离线运行，不调用模型 API，免费版支持阈值检查，Pro 版（$99/月）提供逐任务对比和早期停止功能。
+
+📎 [原文链接](https://paretoops.dev/)
+
+
+### 4. Agentgateway 开源发布
+
+Agentgateway 开源发布：Agentgateway 是加入 Agentic AI Foundation 的开源高性能网关，支持 HTTP、gRPC 和 MCP/A2A 协议，统一处理服务、LLM 和 Agent 流量。
+
+内置 LLM 路由、凭证管理、语义缓存、mTLS 安全、OpenTelemetry 可观测性及细粒度成本控制，支持 Kubernetes 部署。
+
+兼容 OpenAI、Claude、Gemini 等主流模型及 LangChain、CrewAI 等框架，解决 Agent 互连中的路由、安全和治理难题。
+
+📎 [原文链接](https://agentgateway.dev/)
+
+
+### 5. Meta Forum AI 原生工程实践
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-19/8d2408bdcb5c.jpg)
+
+Meta Forum AI 原生工程实践：Meta 发布 Forum 应用构建经验，采用“人在回路上”模式，将 AI 智能体引入规划、编码、测试全流程。
+
+通过架构模块化、自动化验证及沙箱隔离，实现 8 周上线，内存与页面错误率减半，代码质量显著提升。
+
+📎 [原文链接](https://engineering.fb.com/2026/10/15/ml-applications/how-meta-built-forum-ai-native-engineering/)
+
+
+### 6. 自建 LLM 代理必要性探讨
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-19/4e75d9d638fb.png)
+
+自建 LLM 代理必要性探讨：文章指出仅依赖第三方 SaaS 提供商的仪表盘无法获取有效的 Token 使用统计和故障排查数据，建议开发者自建 LLM 代理。
+
+自建代理可实现多提供商多模型统一端点、细粒度密钥管理、虚拟 API 隔离及快速模型切换，并支持通过 API 自动化监控缓存未命中等性能问题。
+
+📎 [原文链接](https://jrdsgl.com/if-you-dont-run-your-own-llm-proxy-how-the-fuck-do-you-even-know-whats-going-on/)
+
+
+### 7. Together Computer HybridAgent 开源
+
+Together Computer HybridAgent 开源：Together Computer 开源 HybridAgent，提出在潜在空间进行推理、通过文本执行动作的混合智能体架构，GitHub 地址为 github.com/togethercomputer/HybridAgent。
+
+该模型在 Hugging Face 提供权重，相关论文已发布，旨在解决传统 LLM 智能体在复杂任务中的推理与执行割裂问题。
+
+📎 [原文链接](https://arxiv.org/abs/2610.18861)
+
+
+### 8. Trustbut 开源项目
+
+Trustbut 开源项目：Trustbut 是一个开源工具，用于判断 AI 代理生成的新测试用例失败是否由代码变更导致，而非代理自身错误。
+
+📎 [原文链接](https://github.com/isAlmogK/trustbut)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. DeepSeek 发布 Flash-1017 模型
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-19/2b84b13a4dca.jpg)
+
+DeepSeek 发布 Flash-1017 模型：DeepSeek 将 V4.1 Flash 升级至 Flash-1017，模型权重采用 MIT 许可开源，增强从零开发游戏、搭建 3D 场景的能力，并同步开放搜索与网页抓取 API。
+
+📎 [原文链接](https://www.ifanr.com/1684815?utm_source=rss&utm_medium=rss&utm_campaign=)
+
+
+### 2. DeepSeek 成立产品部
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-19/746ea4f23c2c.png)
+
+DeepSeek 成立产品部：DeepSeek 于 10 月 16 日将 Harness、Web、App、Platform 团队整合为产品部，由原 Harness 负责人崔添翼出任负责人，统筹全公司产品、设计与研发。
+
+此举旨在解决 1.3 亿月活用户（同比降 20.3%）的变现难题，探索从 API 向 C 端 Agent 增值或间接导流的路径，为科创板 IPO 准备商业化路线图。
+
+📎 [原文链接](https://www.tmtpost.com/8172203.html)
+
+
+### 3. OpenAI 发布722篇AI数学手稿
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-19/746ea4f23c2c.png)
+
+OpenAI 发布722篇AI数学手稿：2026年10月6日，OpenAI一次性发布722篇由内部模型生成的数学手稿，涵盖372个结果族，引发陶哲轩等25位菲尔兹奖得主联名反对，质疑其破坏学术规范。
+
+尽管AI在IMO竞赛中表现优异，但此次发布的手稿因缺乏人类理解与验证，被指为“证明消化不良”，数学界呼吁建立更严格的AI辅助研究伦理标准。
+
+📎 [原文链接](https://www.tmtpost.com/8172522.html)
+
+
+### 4. 迪士尼收购 Character.AI 资产
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-19/c3222afa480d.jpg)
+
+迪士尼收购 Character.AI 资产：迪士尼同意以 2000 万美元收购破产的 AI 聊天机器人初创公司 Character.AI 的部分资产，并聘用其至少 60 名员工（占总劳动力大部分），前 CEO Karandeep Anand 出任迪士尼 CTO。
+
+该交易旨在解决 Character.AI 面临的高昂成本、诉讼风险及监管调查问题，目前多数员工已接受邀约，但交易仍可能因其他更高报价而变动。
+
+📎 [原文链接](https://techcrunch.com/2026/10/18/disney-agrees-to-hire-the-majority-of-character-ais-workforce/)
+
+
+### 5. Anthropic 提议 AI 安全法案
+
+Anthropic 提议 AI 安全法案：Anthropic 向美国国会提交 AI 安全法案提案，建议设定量化赔偿标准：若 AI 系统导致 50 人死亡，需承担 10 亿美元的赔偿责任。
+
+该提案旨在通过明确的经济惩罚机制，倒逼 AI 开发者在模型训练和部署阶段落实更严格的安全对齐措施。
+
+📎 [原文链接](https://www.politico.com/news/2026/10/16/anthropic-ai-safety-01124654)
+
+
+### 6. Artificial Analysis 智能指数 v4.3 发布
+
+Artificial Analysis 智能指数 v4.3 发布：Artificial Analysis 发布智能指数 v4.3，实时追踪 22 款前沿大模型，涵盖 GPT-6、Claude Fable 5.1、GLM-5.3 等。
+
+评估体系包含 SWE-bench (40%)、Terminal-Bench (25%) 等，提供智能指数、速度 (t/s) 及每百万 Token 成本数据。
+
+数据基于经验性遥测，每周更新，支持按厂商、开源/专有等维度筛选，辅助开发者选型。
+
+📎 [原文链接](https://vibecoderjournal.com/rankings/)
+
+
+### 7. 动易科技 PhyCore 具身智能架构
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-19/b801d3141c18.png)
+
+动易科技 PhyCore 具身智能架构：动易科技发布 Embodied PhyStack 架构，将通用大模型与自研 PhyCore 运动控制系统分工协作，解决机器人跨任务迁移难题。
+
+该架构通过四层设计实现“感知—决策—控制—执行”闭环，抓取任务执行效率较纯大模型方案提升 100 倍以上。
+
+PHYBOT C 双足人形机器人已落地广交会及商场，支持中英双语导览、人机球类对打及重载巡检，单日接待上千人次。
+
+📎 [原文链接](https://zhidx.com/p/601942.html)
+
+
+### 8. Anthropic 设立公共利益基金
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-19/3f884897bb85.jpg)
+
+Anthropic 设立公共利益基金：Anthropic 宣布设立全资子公司“公共利益基金”，将 5% 的公司股权注入其中，旨在为支持社会公益的项目提供资金，并保留随估值增长额外注入股权的选项。
+
+📎 [原文链接](https://techcrunch.com/2026/10/18/anthropic-says-its-committing-5-of-its-shares-to-a-public-benefit-fund/)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
