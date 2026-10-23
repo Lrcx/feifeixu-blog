@@ -1,0 +1,361 @@
+---
+title: "10.23 DeepSeek获150亿美元融资 | AI 早报"
+date: "2026-10-23"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 10.23 DeepSeek获150亿美元融资 | AI 早报
+
+> 2026年10月23日 周五 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- OpenAI Decisions API 速度提升10倍，定价0.10美元/百万token —— OpenAI 推出专用决策 API，大幅降低高频调用延迟与成本
+- DeepSeek 获150亿美元融资，估值超500亿美元 —— 中国 AI 巨头获巨额融资，加速全球布局
+- 1Password for Agents 实现智能体代登录不接触密码 —— 解决 AI 智能体访问账户的安全痛点
+- Claude Duet 基于 Opus 5.5，连接 6000+ 插件 —— Anthropic 进军企业级智能体市场
+- 科大讯飞星火X2.6百万上下文，价格低于DeepSeek V4.1 Flash —— 国产全栈算力大模型性价比突破
+
+**今日共收录 29 条动态，涵盖 模型与产品 13条、技术洞察 6条、行业动态 10条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. OpenAI Decisions API 正式上线
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-23/a71fc7c6dbcc.webp)
+
+OpenAI Decisions API 正式上线：OpenAI 宣布基于 GPT-6 Luna 的 Decisions API 正式全面上线，专为分类、路由等有限答案集的决策场景设计，相比 Responses API 调用速度提升多达 10 倍。
+
+该 API 支持概率、选择和评分三种应答类型，定价为每百万输入 token 0.10 美元（无输出费用），并提供原生 GPT-Live 集成及 US/EU 区域驻留。
+
+客户实测显示，在文档分类、智能体风险拦截及实时语音交互等场景中，该 API 可将延迟降低 3-40 倍，同时保持与通用模型相当的准确性。
+
+📎 [原文链接](https://openai.com/index/decisions-api)
+
+
+### 2. 1Password 发布 Agent 登录方案
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-23/ce57a9cee69a.jpg)
+
+1Password 发布 Agent 登录方案：1Password 推出 1Password for Agents 工具，允许 AI 智能体通过数字密钥验证身份后代为登录账户，全程无需接触用户密码。
+
+该方案支持 Claude Duet、ChatGPT Work 等主流智能体，用户可实时审批登录请求，解决智能体获取凭据带来的安全风险。
+
+📎 [原文链接](https://techcrunch.com/2026/10/22/1password-launches-a-way-for-ai-agents-to-log-in-on-your-behalf-without-seeing-your-password/)
+
+
+### 3. Anthropic Claude Duet 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-23/db2eb929fd42.jpg)
+
+Anthropic Claude Duet 发布：Anthropic 发布 Claude Duet 应用，基于 Claude Opus 5.5 模型，面向专业人士和小微企业提供自动化任务管理。
+
+该应用可连接 Claude Marketplace 中 6000 多个插件，支持生成数据仪表盘、每日简报及基于数据的行动建议，并集成 Stripe 和 Shopify 进行受控支付。
+
+内置安全分类器默认拦截信用卡等敏感信息请求，目前通过 Claude.ai 向 Pro 和 Max 用户开放网页版研究预览，移动端需加入等待名单。
+
+📎 [原文链接](https://techcrunch.com/2026/10/22/claude-duet-app-is-anthropics-bet-on-agents/)
+
+
+### 4. 科大讯飞星火X2.6发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-23/6c835b1e8c76.jpg)
+
+科大讯飞星火X2.6发布：科大讯飞发布基于全国产算力训练的端云一体大模型星火X2.6，云端293-A30B模型支持百万token上下文，输入价格0.9元/百万tokens，低于DeepSeek V4.1 Flash。
+
+端侧X2.6-4B模型已开源，在SWE Pro等基准测试中超越Qwen3.5-4B及Gemma4-E4B，KV Cache命中率提升至95.7%，推理效率优化4.5倍。
+
+同步发布SparkAudio 1.0语音基座模型及AI录音环、AI眼镜等硬件，覆盖办公、教育、车载等多场景落地。
+
+📎 [原文链接](https://zhidx.com/p/603664.html)
+
+
+### 5. AWS SageMaker Training Sessions 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-23/d569e45a8666.png)
+
+AWS SageMaker Training Sessions 发布：AWS 宣布 Amazon SageMaker AI 推出 Training Sessions 功能，允许开发者通过 API 精细控制模型微调过程，由 AWS 自动管理 GPU 资源与故障恢复。
+
+该功能支持 LoRA 和全量微调，内置 GRPO 等强化学习算法，按处理令牌计费，首批支持 gpt-oss-20b、Qwen3.6-27B 等模型。
+
+📎 [原文链接](https://venturebeat.com/infrastructure/aws-just-made-it-way-easier-to-use-sagemaker-to-fine-tune-ai-models-for-tool-use-and-your-firms-specific-tasks)
+
+
+### 6. 微软 DxO 医疗诊断系统发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-23/bec093095b49.webp)
+
+微软 DxO 医疗诊断系统发布：微软发布医疗诊断系统 DxO，在模拟复杂病例测试中准确率达 83%，是普通全科医生（36%）的两倍以上。
+
+该系统通过协调多个 AI 智能体模拟医生小组协作，配合 GPT-5.5 模型可将准确率提升至近 87%，并降低运行成本。
+
+微软正与梅奥诊所合作训练专用医疗基础模型，并与波士顿贝斯以色列女执事医疗中心开展真实世界临床评估。
+
+📎 [原文链接](https://techcrunch.com/2026/10/22/microsofts-mustafa-suleyman-says-its-ai-outperforms-doctors-on-hard-cases-as-he-chases-medical-superintelligence/)
+
+
+### 7. Cohere Rerank 5 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-23/fa6ebe1306e4.webp)
+
+Cohere Rerank 5 发布：Cohere 发布 Rerank 5 重排序模型，分为 Pro 和 Fast 两档，Pro 在 BRIGHT 基准测试中得分 82.2，超越 Voyage AI Rerank 3 达 5.8 分。
+
+新增 Context Focus 功能可提取文档相关段落，使智能体 Token 消耗减少 35%-41%；校准得分 ECE 降至 0.06，支持直接阈值过滤。
+
+API 定价 Pro 为 $0.05/百万 token，Fast 为 $0.02/百万 token，支持 32K 上下文窗口及 100+ 语言，已在 AWS SageMaker 和 Azure Foundry 上线。
+
+📎 [原文链接](https://www.marktechpost.com/2026/10/22/cohere-rerank-5-context-focus/)
+
+
+### 8. Amazon Polly 生成式引擎升级
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-23/de0311de7a9b.png)
+
+Amazon Polly 生成式引擎升级：Amazon Polly 生成式引擎全面升级，新增 14 种语音，支持印地语和芬兰语，覆盖 25 个地区。
+
+升级后语音更自然准确，支持低延迟流式传输，API 即插即用无需改代码，价格不变。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/amazon-polly-delivers-a-major-upgrade-to-its-generative-engine/)
+
+
+### 9. Canva 发布首款图像生成模型
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-23/8f5af26bca8b.webp)
+
+Canva 发布首款图像生成模型：Canva 发布首款自研图像生成模型 Canva Craft，采用两阶段工作流，能生成文字可读且对象细节准确的 2K 分辨率图像。
+
+模型基于设计师模板训练，支持 20 种宽高比，可无缝转换为分层设计，现已面向所有用户开放并通过 API 提供。
+
+Canva 计划近期推出更轻量版的 Craftfast 和 Craft-ultrafast，旨在降低 API 成本并提升生成速度。
+
+📎 [原文链接](https://techcrunch.com/2026/10/22/canva-releases-its-first-image-generation-model/)
+
+
+### 10. Liquid AI 发布 RIPL 推理引擎
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-23/fa6ebe1306e4.webp)
+
+Liquid AI 发布 RIPL 推理引擎：Liquid AI 发布 RIPL 实时推理引擎，专为 LFM2.5 系列模型设计，在 B200 GPU 上相比 vLLM 上的 Qwen3.5 将 p95 延迟降低 5.6 至 28.4 倍。
+
+该引擎支持 2.3 亿至 26 亿参数模型，目前仅限企业版闭源，但 Shopify 已在搜索场景中实现亚 20 毫秒推理延迟。
+
+📎 [原文链接](https://www.marktechpost.com/2026/10/22/liquid-ai-ripl-real-time-inference-engine/)
+
+
+### 11. Gradium Phonon 开源端侧TTS
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-23/fa6ebe1306e4.webp)
+
+Gradium Phonon 开源端侧TTS：Gradium 开源 Phonon 端侧 TTS 模型，31M 参数版仅 64.5 MB，支持 Apache 2.0 商用。
+
+在 MacBook Air M5 CPU 上首段音频生成延迟仅 6.9 ms，运行速度比实时快 29.9 倍。
+
+困难测试集词错误率（WER）为 1.70%，优于 Kokoro 的 3.50%，支持手机、浏览器及 Raspberry Pi 5 本地部署。
+
+📎 [原文链接](https://www.marktechpost.com/2026/10/22/gradium-phonon-31m-on-device-tts/)
+
+
+### 12. AWS SageMaker AI 低延迟语音流式方案
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-23/fa73def235b8.png)
+
+AWS SageMaker AI 低延迟语音流式方案：AWS 发布技术指南，介绍如何在 Amazon SageMaker AI 上部署 Kokoro-82M 模型，通过双向 WebSocket 流式传输实现 AI 代理的低延迟语音合成。
+
+该方案利用 ml.g5.xlarge 实例运行仅 8200 万参数的 Kokoro 模型，将文本生成与语音合成并行处理，首个句子延迟显著降低，并提供了 Base64/SSE 等音频回传优化建议。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/stream-low-latency-speech-from-ai-agents-using-kokoro-tts-on-amazon-sagemaker-ai/)
+
+
+### 13. AWS SageMaker AI TTS 自动扩缩容方案
+
+AWS SageMaker AI TTS 自动扩缩容方案：AWS 发布针对 SageMaker AI 上 TTS 模型的自动扩缩容方案，通过实测 $Q_{max}$（最大并发数）和 $T_{total}$（扩展耗时）取代传统猜测，解决 TTS 长连接场景下的延迟与成本失衡问题。
+
+该方案基于 Kokoro-82M 模型实测数据，利用 AWS CDK 自动化部署，确保扩缩容策略精确匹配 SLO，避免资源闲置或排队超时。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/stop-guessing-auto-scaling-targets-for-tts-on-amazon-sagemaker-ai/)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. Gray Swan AI 举办劫持智能体竞赛
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-23/e6b6a6adabcc.jpg)
+
+Gray Swan AI 举办劫持智能体竞赛：Gray Swan AI 联合 Anthropic、Meta、Google DeepMind 发起“间接提示词注入”挑战赛，总奖金 30 万美元，旨在通过红队测试发现 AI 智能体安全漏洞。
+
+比赛分为白盒和黑盒两轮，模拟 GitHub 评论和邮件场景，测试攻击者能否诱导智能体泄露凭证或执行恶意操作，截至 11 月 5 日开放报名。
+
+📎 [原文链接](https://www.aiengineering.report/p/inside-the-300k-competition-to-hijack)
+
+
+### 2. IskayPet 基于 Bedrock 构建企业知识库
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-23/c80d25d40c52.png)
+
+IskayPet 基于 Bedrock 构建企业知识库：宠物护理公司 IskayPet 利用 Amazon Bedrock 托管知识库构建企业知识助手，解决跨 3 国 4 语言、数百份 SharePoint 文档的知识检索难题。
+
+该方案原生集成 SharePoint，支持混合搜索、文档级权限控制及视觉内容索引，无需自建向量数据库，通过 Kiro 和 Claude Haiku 4.5 快速完成全栈开发。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/how-iskaypet-unified-corporate-knowledge-with-amazon-bedrock-managed-knowledge-bases/)
+
+
+### 3. EXL 发布 AI 服务框架指南
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-23/d95ff4fc5630.jpg)
+
+EXL 发布 AI 服务框架指南：EXL 发布文章指出，企业 AI 竞争优势正从模型能力转向服务框架（Serving Harness）的工程架构，包括内存管理、调度和优化决策。
+
+文章建议以工作负载定义约束条件，通过量化、投机解码等技术解决 GPU 内存等瓶颈，实现可靠、经济且可扩展的智能交付。
+
+📎 [原文链接](https://www.technologyreview.com/2026/10/22/1146109/designing-an-ai-serving-harness-built-to-last/)
+
+
+### 4. GoRoute 开源 Go LLM 网关
+
+GoRoute 开源 Go LLM 网关：GoRoute 是一个用 Go 语言编写的原生 LLM 网关，专为 Coding Agent 场景优化，内存占用低于 12MB，适合资源受限环境。
+
+📎 [原文链接](https://github.com/ziuus/goroute)
+
+
+### 5. Rescale AI 分诊代理上线
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-23/285ee0151329.png)
+
+Rescale AI 分诊代理上线：Rescale 基于 AWS AI-DLC 框架和 Strands Agents 构建了自动化测试分诊代理，集成至 EKS 和 Argo Workflows 流水线。
+
+代理利用 Claude Opus 4.8 自动分类测试失败并生成修复报告，使人工分诊一致性从 44% 提升至 68%，生产部署阻塞时间减少 20%。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/how-rescale-built-an-ai-triage-agent-with-strands-agents-and-ai-dlc/)
+
+
+### 6. Pith LLM 代理工具
+
+Pith LLM 代理工具：Pith 是一个开源 LLM 代理工具，通过拦截模型输出并拒绝无法处理的请求来减少 Token 消耗，适合对成本敏感的场景。
+
+📎 [原文链接](https://github.com/dex0shubham/pith)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. DeepSeek 完成150亿美元融资
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-23/a3156f04ba2b.webp)
+
+DeepSeek 完成150亿美元融资：DeepSeek 据彭博社报道完成约 150 亿美元融资，潜在投资者包括宁德时代和腾讯，这是中国 AI 领域规模最大的融资轮次之一。
+
+此前 DeepSeek 在 500 亿美元估值下融资超 70 亿美元，计划最早明年在中国 IPO，正加大 AI 基础设施和开源模型投入。
+
+📎 [原文链接](https://techcrunch.com/2026/10/22/deepseek-reportedly-raises-15b-days-after-us-restrictions/)
+
+
+### 2. Anthropic 将 Agent Skills 捐赠 AAIF
+
+Anthropic 将 Agent Skills 捐赠 AAIF：Anthropic 宣布将 Agent Skills 标准捐赠给 Linux 基金会旗下的 Agentic AI 基金会（AAIF），该基金会由 Anthropic、Block 和 OpenAI 共同创立。此举旨在保持 Agent Skills 的开放性、社区驱动性和厂商中立性，此前 Anth
+
+📎 [原文链接](https://simonwillison.net/2026/Oct/22/donating-agent-skills/)
+
+
+### 3. 英伟达 RTX Spark 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-23/746ea4f23c2c.png)
+
+英伟达 RTX Spark 发布：英伟达在 GTC 大会上发布 RTX Spark，这是与微软合作四年推出的 AI PC 设备，采用融合 CPU 与 GPU 设计，提供最高 128GB 统一内存和 1 petaflop FP4 算力，旨在让大模型在本地运行。
+
+该设备通过 Windows 系统级隔离机制保障 Agent 安全，黄仁勋演示了驱动 Hugging Face MicroDuck 机器人，强调 PC 将从执行指令转向主动执行任务的个人 Agent 宿主。
+
+📎 [原文链接](https://www.tmtpost.com/8177566.html)
+
+
+### 4. 宇树科技发布具身智能竞赛
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-23/746ea4f23c2c.png)
+
+宇树科技发布具身智能竞赛：宇树科技于10月22日启动世界具身智能竞赛，面向全球团队开放，设自由移动、格斗、养老护理等八个赛道，年度奖金达数千万元人民币。
+
+创始人王兴兴同时宣布预研“自我进化V1.0”大模型，认为具身智能将在1-2年内出现决定性突破，并计划通过竞赛构建数据、算力与生态闭环。
+
+📎 [原文链接](https://www.tmtpost.com/8178216.html)
+
+
+### 5. Uber 全员接入 ChatGPT Work
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-23/679cdbf95d48.jpg)
+
+Uber 全员接入 ChatGPT Work：Uber 宣布与 OpenAI 扩大合作，将 ChatGPT Work 全面部署至全球约 30,000 名员工。此前在 1,000 人试点中，80% 为非工程师，用于数据分析、本地化培训及构建交互式仪表板等场景。
+
+📎 [原文链接](https://techcrunch.com/2026/10/22/uber-puts-all-30000-employees-on-chatgpt-work/)
+
+
+### 6. AI 智能体违规访问美银行账户
+
+AI 智能体违规访问美银行账户：Axios 报道，未经严格审核的 AI 智能体正通过自动化手段违规访问美国用户的银行账户，暴露出金融系统在 AI 接口安全方面的重大漏洞。
+
+📎 [原文链接](https://www.axios.com/2026/10/22/ai-agents-banks-unauthorized-accounts-access)
+
+
+### 7. Nvidia AI工厂遭遇利用率困境
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-23/5401486651d4.jpg)
+
+Nvidia AI工厂遭遇利用率困境：VentureBeat调查显示，81%的生产环境企业GPU利用率低于50%，但71%仍计划采购新AI基础设施。
+
+Nvidia正推广AI工厂概念，但企业普遍缺乏ROI验证，单任务成本与架构优化成为核心痛点。
+
+📎 [原文链接](https://venturebeat.com/infrastructure/nvidia-is-pitching-ai-factories-but-81-of-companies-say-their-gpus-run-at-half-capacity-or-less)
+
+
+### 8. Amazon Quick 支持 HIPAA 部署
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-23/a7f84de12e0c.png)
+
+Amazon Quick 支持 HIPAA 部署：AWS 发布技术指南，详解如何在符合 HIPAA 要求的环境中部署 Amazon Quick 智能体 AI 工作空间。
+
+该服务默认加密静态数据，支持通过 ACL 控制非结构化知识库访问，并提供操作审计轨迹，适用于处理受保护健康信息 (PHI)。
+
+用户需签署 AWS BAA 并自行配置管理措施，仅服务本身具备 HIPAA 适用性而非自动合规。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/deploy-ai-in-a-hipaa-eligible-environment-with-amazon-quick/)
+
+
+### 9. 瑞典法律AI独角兽Legora完成5.5亿美元E轮融资
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-23/db306c0f090c.png)
+
+瑞典法律AI独角兽Legora完成5.5亿美元E轮融资：瑞典法律AI独角兽Legora宣布完成5.5亿美元（约37亿人民币）E轮融资，投后估值达88亿美元，由Atreides Management领投，摩根大通、富达等参投。
+
+该公司年度经常性收入（ARR）已突破2亿美元，半年内实现翻倍，估值较D轮上涨约57%，资金将用于拓展北美、欧洲及亚太市场，并继续开发面向法律工作的智能体。
+
+Legora目前服务2400多家律所及企业法务团队、14万多名法律专业人士，其核心产品“智能体操作系统aOS”结合大模型与法律工具，辅助律师审查合同、起草文件及执行多步骤法律任务。
+
+📎 [原文链接](https://zhidx.com/p/603833.html)
+
+
+### 10. AWS Ozgur Tohumcu：物理AI落地观点
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-23/746ea4f23c2c.png)
+
+AWS Ozgur Tohumcu：物理AI落地观点：亚马逊云科技汽车与制造全球总经理 Ozgur Tohumcu 指出，决定物理AI规模化落地速度的往往不是技术本身，而是数据基座、智能体护栏、可观测性及组织容错能力。
+
+他分析认为，美国在前沿模型上领先，中国以速度和规模见长，欧洲则在治理政策上强势；企业需应对合规收紧，将业务区域化并构建主权云。
+
+在落地场景上，研发环节回报最快，如宝马利用AWS完成10亿公里自动驾驶仿真训练，将欧洲传统OEM研发周期从4-5年压缩至3年左右。
+
+📎 [原文链接](https://www.tmtpost.com/8177096.html)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
