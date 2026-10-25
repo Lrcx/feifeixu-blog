@@ -1,0 +1,160 @@
+---
+title: "10.25 Anthropic沙箱升级，OpenAI禁用实时网 | AI 早报"
+date: "2026-10-25"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 10.25 Anthropic沙箱升级，OpenAI禁用实时网 | AI 早报
+
+> 2026年10月25日 周日 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- Anthropic sandbox-runtime 无需容器实现OS级沙箱，权限请求降84% —— AI 代理本地安全沙箱新方案
+- OpenAI 前沿模型训练禁用实时互联网 —— OpenAI 调整核心训练策略
+- Grok 4.7 倾向共和党，GPT-6.1 倾向民主党 —— 揭示主流大模型隐性政治偏见
+- Letta 教程展示核心记忆、共享状态与自定义工具 —— 提供 Letta 智能体记忆架构的完整代码实现参考
+- MindooDB WebMCP 让12个应用具备AI智能体可用性 —— Web 应用接入 AI 智能体的新架构方案
+
+**今日共收录 12 条动态，涵盖 技术洞察 9条、行业动态 3条。**
+
+---
+
+## 🔍 技术洞察
+
+### 1. Anthropic sandbox-runtime 开源
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-25/26cad9f369d7.png)
+
+Anthropic sandbox-runtime 开源：Anthropic 开源 sandbox-runtime (srt)，利用 macOS Seatbelt 和 Linux bubblewrap 实现无需容器的 OS 级沙箱，支持任意 AI 代理和 CLI 工具。
+
+该工具默认拒绝所有网络访问并限制文件系统写入，Anthropic 内部数据显示其使 Claude Code 权限请求减少 84%，有效缓解审批疲劳。
+
+采用 Apache-2.0 许可证，提供 npm 包及 TypeScript 库，支持 MCP 服务器集成，Windows 版本目前处于 Alpha 阶段。
+
+📎 [原文链接](https://www.marktechpost.com/2026/10/24/anthropic-sandbox-runtime-ai-agent-sandbox/)
+
+
+### 2. Letta 状态化智能体工程副驾教程
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-25/26cad9f369d7.png)
+
+Letta 状态化智能体工程副驾教程：MarkTechPost 发布基于 Letta 的状态化智能体工程副驾教程，演示了核心记忆块、共享状态、语义检索、自定义工具、流式处理及可迁移工作流等关键功能。
+
+教程通过 Python SDK 代码展示了智能体如何自主更新持久化记忆、多智能体间共享上下文以及集成服务端工具，为开发者提供了一套实用的智能体记忆架构参考。
+
+📎 [原文链接](https://www.marktechpost.com/2026/10/24/stateful-engineering-copilots-letta-tutorial/)
+
+
+### 3. MindooDB WebMCP 智能体工具实践
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-25/f8d0c2ae226c.webp)
+
+MindooDB WebMCP 智能体工具实践：MindooDB 开源 WebMCP 协议，将 AI 智能体工具直接注册到 Web 页面中，无需独立服务器或 API 密钥，利用浏览器会话直接调用应用功能。
+
+该方案让 Haven 工作区内的 12 个应用（如 CRM、文档编辑器）具备智能体可用性，通过分层工具揭示和沙盒隔离，解决模型上下文过载与权限安全问题。
+
+📎 [原文链接](https://mindoodb.com/blog/2026/10/27.10.2026090000KLEAGT/)
+
+
+### 4. CleanYourTV 开源项目
+
+CleanYourTV 开源项目：开发者 Gathin 开源 CleanYourTV 项目，利用 Claude Code 通过 ADB 停用电视 25 个系统组件并替换极简桌面，GitHub 获 1.37 万 Star。
+
+该项目通过 AI 辅助排查并冻结开机广告和遥测程序，释放约 230MB 内存，让普通用户也能低成本实现智能电视的纯净化改造。
+
+📎 [原文链接](https://www.ifanr.com/1685473?utm_source=rss&utm_medium=rss&utm_campaign=)
+
+
+### 5. Sebastian Raschka 推理模型视频课
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-25/2d40786e223f.jpg)
+
+Sebastian Raschka 推理模型视频课：Sebastian Raschka 发布《从零构建推理模型》全套视频课程，共8支视频、11小时代码演示，基于 PyTorch 从零实现推理时扩展、RLVR 强化学习及蒸馏技术。
+
+课程以 Qwen3 0.6B 为基座，涵盖 KV 缓存、自一致性、GRPO 算法及监督微调，配套书籍已在 Manning 和 Amazon 发售。
+
+📎 [原文链接](https://magazine.sebastianraschka.com/p/building-reasoning-models)
+
+
+### 6. Sevenbox 开源
+
+Sevenbox 开源：Sevenbox 是 Sevenbox Labs 开源的项目，旨在帮助开发者分析 AI 智能体错误决策的影响范围，提供可视化追踪能力。
+
+📎 [原文链接](https://github.com/sevenboxlabs/sevenbox)
+
+
+### 7. Claude 反编译 Pascal 游戏
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-25/0f924c273070.png)
+
+Claude 反编译 Pascal 游戏：开发者利用 Claude 将 2000 年代初的 Pascal 语言游戏《Virtueel Zoetermeer》反编译为等效源代码，并通过让 AI 完整通关修复崩溃 Bug，最终实现网页端稳定运行。
+
+该项目展示了 LLM 在具备明确测试用例（编译匹配）场景下的高效能力，开发者已将重建的源代码开源至 GitHub，并提供了在线游玩链接。
+
+📎 [原文链接](https://bou.ke/blog/zoetermeer/)
+
+
+### 8. 个人博客适配 AI 智能体
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-25/f0ffe3d7f782.png)
+
+个人博客适配 AI 智能体：开发者 Jake Marsh 优化个人博客以适配 AI 智能体抓取，通过 Nginx 配置实现 Content Negotiation，使智能体请求时直接返回 Markdown 格式。
+
+站点新增 llms.txt 索引文件、JSON Feed 及 IndexNow 提交，并完善 Meta 标签与结构化数据，提升 AI 搜索引用率。
+
+📎 [原文链接](https://deallocatedobjects.com/posts/making-my-blog-readable-by-ai-agents)
+
+
+### 9. Kevlar MCP 防火墙开源
+
+Kevlar MCP 防火墙开源：Kevlar 是 GitHub 用户 Ablation-Tool 开源的 MCP 防火墙工具，旨在为调用 MCP 协议的 LLM 提供安全防护，防止恶意工具调用。
+
+📎 [原文链接](https://github.com/Ablation-Tool/kevlar)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. OpenAI 停止实时互联网训练
+
+OpenAI 停止实时互联网训练：OpenAI 宣布前沿模型训练将不再使用实时互联网，改为使用缓存副本和模拟版本，以应对模型不可预测及安全风险。
+
+此前模型因配置错误曾意外访问互联网，导致 OpenAI 暂停训练并开发新保护方法，此举标志着前沿实验室对 AI 安全控制的重大收紧。
+
+📎 [原文链接](https://techcrunch.com/2026/10/23/openai-says-it-will-no-longer-train-its-ai-models-on-the-live-internet-citing-significant-risks/)
+
+
+### 2. Grok 4.7 与 GPT-6.1 政治倾向研究
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-25/3297fbdd5200.webp)
+
+Grok 4.7 与 GPT-6.1 政治倾向研究：康奈尔大学研究发现，xAI Grok 4.7 在 API 调用中 92% 推荐共和党候选人，OpenAI GPT-6.1 Sol 则 97% 推荐民主党人。Grok 倾向源于搜索保守派信源及隐藏指令，GPT 倾向则深植于模型权重。
+
+关闭联网搜索后，Grok 倾向消失，GPT 仍保持民主倾向。研究揭示 AI 模型存在隐性政治偏见，可能通过信源选择和隐含价值观影响用户。
+
+📎 [原文链接](https://techcrunch.com/2026/10/24/forced-to-pick-groks-ai-model-chooses-republicans-openais-picks-democrats/)
+
+
+### 3. AI 短信智能体盘点
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-25/01360a2943ad.webp)
+
+AI 短信智能体盘点：TechCrunch 盘点多款可直接在短信中使用的 AI 智能体，包括 Instinct、Ask Proxy、Caddy 等，支持通过 SMS、iMessage 或 RCS 与日历、邮件等应用交互。
+
+Instinct 估值达 100 亿美元，支持自主预订和拨打电话；Ask Proxy 个人版 1 美元/天，Caddy 和 Comma 提供免费或开源版本，覆盖家庭、旅行及通用场景。
+
+📎 [原文链接](https://techcrunch.com/2026/10/24/all-the-ai-agents-that-can-live-in-your-text-messages/)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
