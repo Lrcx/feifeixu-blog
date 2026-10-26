@@ -1,0 +1,191 @@
+---
+title: "10.26 OpenAI Anthropic降价 | AI 早报"
+date: "2026-10-26"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 10.26 OpenAI Anthropic降价 | AI 早报
+
+> 2026年10月26日 周一 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- OpenAI Anthropic 模型价格下调80%，缓存读取成本显著降低 —— AI 推理成本骤降，开发者红利期
+- Hugging Face Carbon-X 14B 开源，DNA 识别超 GPT-6.1 —— 开源 DNA 模型性能逼近顶尖闭源模型
+- Anthropic OSS Scanner 11天发现77个严重漏洞，准确率88% —— AI 自动化漏洞扫描准确率超 88%
+- Kimi K3.1 Pro 终端任务得分67.2%，API降价至68元 —— 国产大模型执行与编程能力显著突破
+- Nanbeige4.3-33B 开源，Terminal-Bench 得分80.9 —— 33B 编程模型性能超越 Qwen27B
+
+**今日共收录 15 条动态，涵盖 模型与产品 5条、技术洞察 5条、行业动态 5条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. Hugging Face 发布 Carbon-X
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-26/26cad9f369d7.webp)
+
+Hugging Face 发布 Carbon-X，首个将 DNA 序列与自然语言融合的 148 亿参数开源模型，支持读取原始 DNA 并以英语回答生物学问题。
+
+该模型在 5 个 DNA 基准测试中平均得分 66.7%，BioReason Coding 达 74.9% 领先所有竞品，推理成本仅为 GPT-6.1 的 1/1800，支持 80GB 显存本地部署。
+
+📎 [原文链接](https://www.marktechpost.com/2026/10/25/hugging-face-carbon-x-14b-dna-language-model/)
+
+
+### 2. Anthropic OSS Scanner 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-26/26cad9f369d7.webp)
+
+Anthropic OSS Scanner 发布：Anthropic 发布 OSS Scanner，利用 Claude Mythos 模型免费扫描注册开源仓库，11天内发现 77 个严重级和 803 个高级别漏洞。
+
+该工具通过提交 PR 注册，审计在隔离环境进行，报告直接发送给维护者，人工审核有效率达 88%，误报率极低。
+
+📎 [原文链接](https://www.marktechpost.com/2026/10/25/anthropic-launches-oss-scanner-a-free-ai-vulnerability-scanner/)
+
+
+### 3. Kimi K3.1 Pro 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-26/11dee979fcc5.jpg)
+
+Kimi K3.1 Pro 发布：月之暗面发布 K3.1 Pro 模型，Terminal-Bench 4.0 终端任务得分从 12.6% 跃升至 67.2% 居首，SWE-Marathon 编程测试达 51.7% 领先 Opus。
+
+API 普通版输出价格降至 68 元/百万 token，支持 Agent 自主修复模拟器错误及 3D 场景物理逻辑，并启动具身智能人才招聘。
+
+📎 [原文链接](https://www.tmtpost.com/8180725.html)
+
+
+### 4. Nanbeige4.3-33B 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-26/26cad9f369d7.webp)
+
+Nanbeige4.3-33B 发布：BOSS直聘旗下 Nanbeige LLM Lab 发布 33B 参数开源编程模型 Nanbeige4.3-33B，采用 Apache 2.0 许可证，支持 512K 上下文窗口。
+
+该模型在智能体编程基准 Terminal-Bench 2.1 上得分 80.9，超越 Qwen3.8-27B 的 73.0，自报 20 项指标中 17 项领先。
+
+需 4 卡 GPU 张量并行部署，BF16 权重约 66GB，目前无官方托管 API，仅支持自托管。
+
+📎 [原文链接](https://www.marktechpost.com/2026/10/25/nanbeige-releases-nanbeige4-3-33b-open-agentic-coding-model/)
+
+
+### 5. Grok 发布 AI 电影《奥德赛》片段
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-26/4524b33891da.jpg)
+
+Grok 发布 AI 电影《奥德赛》片段：xAI 旗下 Grok 发布 AI 生成电影《奥德赛》系列第一集，时长七分钟，由 Grok Imagine 与 Wonder Studios 合作制作。
+
+视频展示角色航行与叙事，作者评价其画面逼真度优于马斯克此前作品，但缺乏艺术感与生命力，难以支撑完整长片。
+
+📎 [原文链接](https://techcrunch.com/2026/10/25/grok-releases-the-first-seven-minutes-of-its-ai-generated-odyssey/)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. TokenGate 开源长上下文加速方案
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-26/26cad9f369d7.webp)
+
+TokenGate 开源长上下文加速方案：斯坦福与伯克利推出 TokenGate，通过可学习的 Token 剪枝技术，使长上下文预填充速度提升 1.4 至 11.3 倍，内存降低 1.5 至 3.4 倍。
+
+该模块以 Apache-2.0 协议开源，支持 Qwen3 系列模型，无需改变架构即可实现即插即用，代码与检查点已发布。
+
+📎 [原文链接](https://www.marktechpost.com/2026/10/25/stanford-berkeley-tokengate-learned-token-pruning-llm-prefill/)
+
+
+### 2. Bend 语言发布
+
+Bend 语言发布：Bend 是一种新型编程语言，其核心特性是通过形式化验证（proof）机制，在编译阶段自动检测并拦截由 AI 生成的代码错误，旨在解决大模型编程中常见的幻觉和逻辑缺陷问题。
+
+📎 [原文链接](https://github.com/bendlang/bend)
+
+
+### 3. Crawlerpeek 开源
+
+Crawlerpeek 开源：Crawlerpeek 是开源的 CLI 工具，用于检测网站允许哪些 AI 爬虫访问，支持 MCP 协议，帮助开发者管理数据抓取权限。
+
+📎 [原文链接](https://github.com/crawlerpeek/crawlerpeek)
+
+
+### 4. Hycli 开源逆向网站工具
+
+Hycli 开源逆向网站工具：Hycli 是一个开源项目，可将任意网站逆向转换为命令行工具（CLI）和 MCP 协议接口，方便 AI 智能体直接调用网页功能。
+
+📎 [原文链接](https://github.com/Hybirdss/Hycli)
+
+
+### 5. NeuronDump 开源
+
+NeuronDump 开源：NeuronDump 是开源工具，可将本地大语言模型转化为 3D 交互式图形，支持可视化模型结构并模拟剪枝操作以观察性能变化。
+
+📎 [原文链接](https://github.com/aymen94/NeuronDump)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. OpenAI Anthropic 大模型价格大降
+
+OpenAI Anthropic 大模型价格大降：OpenAI 和 Anthropic 在 2026 年 6 月至 9 月间密集发布 GPT-6 和 Claude Opus 5.5 等模型，输入输出价格最高下调 80%，缓存读取成本降低 75%。
+
+降价主要受 DeepSeek 等开源模型及 Moonshot 等竞品激烈竞争驱动，同时两家公司为即将到来的 IPO 优化财务表现。
+
+开发者可通过 OpenRouter 等网关以更低成本获取同等性能模型，推理行业进入价格战阶段。
+
+📎 [原文链接](https://minimaxir.com/2026/10/cheap-llms/)
+
+
+### 2. TechCrunch AI 可穿戴设备盘点
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-26/8824ec1da51e.jpg)
+
+TechCrunch AI 可穿戴设备盘点：TechCrunch 发布 2026 年热门 AI 可穿戴设备盘点，涵盖 Meta Muse Charm、亚马逊 Bee 系列、Rabbit R1 等 10 款产品。
+
+内容详细对比了各设备形态（吊坠/戒指/腕带）、核心功能（语音转录/情绪陪伴/任务执行）及价格区间（49.99-299 美元），并指出 Friend 等产品的隐私争议。
+
+📎 [原文链接](https://techcrunch.com/2026/10/25/the-hottest-ai-wearables-and-gadgets-you-should-know-about/)
+
+
+### 3. Apollo经济学家：AI无财务回报
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-26/c8e0d68a335b.jpg)
+
+Apollo经济学家：AI无财务回报：Apollo Global Management首席经济学家Torsten Slok发布备忘录指出，除Alphabet、Amazon等7家科技巨头外，标普500其余493家企业未因AI投入获得净利润增长或利润率提升。
+
+Slok认为AI虽能提升计算效率，但缺乏对商业中信任、文化、伦理等软性因素的理解，导致企业难以将廉价智能转化为实际财务回报。
+
+📎 [原文链接](https://techcrunch.com/2026/10/25/ai-delivers-zero-financial-payoff-to-most-companies-according-to-apollo-economist/)
+
+
+### 4. Nvidia 探索改造德国旧核电站
+
+Nvidia 探索改造德国旧核电站：Nvidia 与德国能源公司 PreussenElektra 达成初步合作，计划将德国已停运的核电站站点改造为高性能 AI 数据中心。该方案不利用核能供电，而是复用站点现有的高压电网、水资源及工业基础设施。此举旨在解决新建数据中心面临的土地审批难、建设周期长及电力接入慢等瓶颈，显著降低开发成本。
+
+📎 [原文链接](https://www.tomshardware.com/tech-industry/data-centers/nvidia-eyes-converting-old-nuclear-plants-into-massive-ai-data-centers-reusing-shut-down-german-energy-sites-could-reduce-the-cost-and-timeline-of-building-from-scratch)
+
+
+### 5. 面板行业因AI成本上涨集体涨价
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-26/746ea4f23c2c.png)
+
+面板行业因AI成本上涨集体涨价：受AI大模型需求挤占成熟制程产能影响，京东方、TCL华星、惠科等面板厂商近期集体发布涨价函，驱动IC、PCB等上游元器件成本大幅上升。
+
+AI对HBM及电源管理芯片的需求导致显示驱动芯片产能窗口收窄，面板BOM成本累计涨幅约5%至6%，预计2026年四季度电视面板总成本环比上升4%~7%。
+
+尽管上游成本激增，但下游电视、显示器品牌采购预算收紧，实际成交价未普遍上涨，且面临用户端品控与散热投诉，面板厂商议价权面临考验。
+
+📎 [原文链接](https://www.tmtpost.com/8180986.html)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
