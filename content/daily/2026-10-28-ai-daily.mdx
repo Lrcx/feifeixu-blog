@@ -1,0 +1,374 @@
+---
+title: "10.28 Google Genie 4 发布 | AI 早报"
+date: "2026-10-28"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 10.28 Google Genie 4 发布 | AI 早报
+
+> 2026年10月28日 周三 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- Google Genie 4 支持实时交互与原生音频，融合 Gemini 规划 —— 世界模型结合 LLM 推理，迈向可交互虚拟环境
+- Anthropic 开源single-agent-loop-kit，砍掉80%提示词 —— 解决多Agent架构Token浪费痛点
+- Meta 宣布950亿美元股票融资，加码AI基建 —— AI军备竞赛资本支出创纪录
+- Anthropic Claude 5.5 Haiku 降价90%，输入0.1美元/百万Token —— Anthropic 降价引爆调用量，ARR 或破千亿
+- Neocloud算力租赁模式遇冷，CoreWeave股价暴跌38% —— AI泡沫第一张多米诺骨牌显现
+
+**今日共收录 30 条动态，涵盖 模型与产品 7条、技术洞察 9条、行业动态 14条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. Google Genie 4 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-28/addb9edfb2f3.jpg)
+
+Google Genie 4 发布：Google DeepMind 发布世界模型 Genie 4，单次模拟时长延长至 120 秒，支持实时改变天气、添加角色及原生音频生成。
+
+模型引入 Gemini 3.8 Flash 负责行动规划与任务分解，实现画面、声音与物理规律的实时协同，面向游戏原型、影视预演及机器人训练开放研究预览。
+
+📎 [原文链接](https://www.ifanr.com/1686234?utm_source=rss&utm_medium=rss&utm_campaign=)
+
+
+### 2. Anthropic 发布 Opus 5.5 模型
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-28/12bbe2b711a1.webp)
+
+Anthropic 发布 Opus 5.5 模型：Anthropic 发布 Claude Opus 5.5 模型，采用“大脑与双手分离”架构，将推理能力与智能体执行环境解耦，通过沙箱隔离凭证与网络访问，提升托管智能体的安全性与可靠性。
+
+📎 [原文链接](https://latent.space/p/how_anthropic_ships_the_1_llm_in_the_world_safely_separating_the_brain_from_the_hands/)
+
+
+### 3. Liquid AI LFM3 模型发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-28/22963c2c29dc.png)
+
+Liquid AI LFM3 模型发布：Liquid AI 发布 LFM3 系列紧凑型模型，最小文本模型仅 17 亿参数，在 WebArena 和 AutomationBench 浏览器自动化基准测试中得分显著优于参数量大得多的 Qwen3.5-9B。
+
+该系列包含文本、视觉、语音及决策模型，支持本地部署于 GPU 或边缘设备，API 输入价格低至 $0.08/百万令牌，主打企业数据隐私与低延迟推理。
+
+📎 [原文链接](https://venturebeat.com/technology/liquid-ais-new-lfm3-models-put-browser-agents-voice-commands-and-image-recognition-onto-enterprise-controlled-devices)
+
+
+### 4. Salesforce Agent Fabric 扩展治理
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-28/9f4cfbf0b72d.png)
+
+Salesforce Agent Fabric 扩展治理：Salesforce 宣布扩展 Agent Fabric 平台，推出 Agent Evals 和 API Evals 工具，计划 11 月开启 Beta 测试，2027 年 1 月正式发布。
+
+新功能支持在生产环境中自动检测代理异常并触发“关断开关”，同时提供自定义代理扫描器以实现对多平台代理的统一治理和支出控制。
+
+📎 [原文链接](https://venturebeat.com/orchestration/salesforce-details-cost-controls-and-kill-switch)
+
+
+### 5. Survival LLM 离线应急 AI 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-28/8acf3c60385f.png)
+
+Survival LLM 离线应急 AI 发布：Survival LLM 是一款开源的本地离线 AI 助手，专为断网应急场景设计，内置医学、FEMA 指南及 93 万篇维基百科，支持 Windows 和 macOS。
+
+应用根据内存自动匹配模型（如 8B 至 27B），回答时强制展示参考来源并高亮关键段落，确保急救信息的准确性与可核查性。
+
+首次设置需联网下载模型（6-80GB）和知识库（1.3-19GB），之后完全离线运行，支持添加个人 PDF 文档，不追踪用户隐私。
+
+📎 [原文链接](https://www.brangus.io/survival-llm)
+
+
+### 6. Rokid 发布全彩 AI 眼镜
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-28/993726cfeb0c.png)
+
+Rokid 发布全彩 AI 眼镜：Rokid 发布首款全彩 AI 眼镜 Rokid Color（4999 元起）及二代眼镜 Rokid Glasses 2（3699 元起），并推出配套智能戒指 Rokid Ring（1699 元）。
+
+Rokid Color 支持全彩视频与桌面 Agent 连接，Rokid Ring 通过微手势实现非接触交互，二代眼镜采用高通 AR+ 平台并优化视觉体验。
+
+📎 [原文链接](https://zhidx.com/p/604685.html)
+
+
+### 7. AWS SageMaker 支持 SOCI 索引镜像
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-28/54a65875089b.png)
+
+AWS SageMaker 支持 SOCI 索引镜像：AWS SageMaker AI 宣布支持 Seekable OCI (SOCI) 索引镜像，实现容器镜像延迟加载，启动时间从分钟级降至秒级。
+
+实测数据显示，13GB-35GB 镜像下载速度提升 34-38 倍，GPU 空闲时间减少 90%，首个 Epoch 仅增加 3-16 秒开销。
+
+用户可直接使用带 -soci 后缀的预索引 AWS Deep Learning Container，或通过 nerdctl 为自定义镜像创建索引。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/announcing-soci-indexed-images-for-faster-sagemaker-ai-jobs/)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. Anthropic 开源单Agent工具
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-28/746ea4f23c2c.png)
+
+Anthropic 开源单Agent工具：Anthropic 开源 single-agent-loop-kit 工具，主张用单Agent循环替代多子Agent架构，解决Kimi等模型额度消耗过快问题。
+
+该方案通过折叠子Agent为Skill，可砍掉80%系统提示词，降低15倍Token复利与信息衰减，适合C端订阅制场景。
+
+📎 [原文链接](https://www.tmtpost.com/8183235.html)
+
+
+### 2. Opera 推出 WebAI 本地部署标准
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-28/5e2fc0bf158a.webp)
+
+Opera 推出 WebAI 本地部署标准：Opera 推出 WebAI 新标准，允许用户在浏览器中本地部署 AI 模型，无需依赖云服务。该标准兼容 Google Gemma 等开放权重模型及 Apple 设备端基础模型，支持文本生成、内容分类等任务，数据保留在本地以保障隐私。
+
+📎 [原文链接](https://techcrunch.com/2026/10/27/opera-introduces-a-new-web-standard-to-let-users-deploy-ai-locally-in-their-browser/)
+
+
+### 3. Anthropic 等 AI Agent 技能库汇总
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-28/b9ba42d3756d.png)
+
+Anthropic 等 AI Agent 技能库汇总：社区整理了 30 个热门 AI Agent 技能，涵盖 brainstorming、code-review、frontend-design 等场景，按 GitHub 仓库星标排序。
+
+Top 仓库包括 obra/superpowers (~304k stars)、mattpocock/skills (~301k stars) 和 anthropics/skills (~183k stars)。
+
+支持通过 Skills CLI 安装，如 `npx skills add owner/repository --skill skill-name`，帮助代理遵循团队规范、检查代码或自动化工作流。
+
+📎 [原文链接](https://jsdev.space/30-agent-skills/)
+
+
+### 4. LEANN 开源向量索引
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-28/26cad9f369d7.webp)
+
+LEANN 开源向量索引：加州大学伯克利分校 Sky Computing Lab 开源 LEANN 向量索引，通过丢弃完整向量并在查询时动态重新计算，将 6000 万分块的 RAG 索引从 201 GB 压缩至 6 GB。
+
+该索引基于 FAISS 构建，在 90% 召回率下准确率与 HNSW 相当（NQ 数据集 25.5%），但存储占用不足 5%，支持在 32 GB 内存笔记本上运行，MIT 许可。
+
+📎 [原文链接](https://www.marktechpost.com/2026/10/27/leann-vector-index-mlsys-2026/)
+
+
+### 5. OpenCode 离线编程代理实操
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-28/12bbe2b711a1.webp)
+
+OpenCode 离线编程代理实操：OpenCode 是开源编程代理，配合 Ollama 和本地模型 Qwen3.5 9B，可在断网环境下读取本地代码、执行测试并自动修复 Bug。
+
+实测显示，该组合在费用计算器等自包含任务中成功通过单元测试，适合网络受限环境下的本地代码重构与调试。
+
+📎 [原文链接](https://latent.space/p/offline-coding/)
+
+
+### 6. AI 排行榜信用重估
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-28/fce88423ce29.jpg)
+
+AI 排行榜信用重估：Surge AI 发布 sudo L7、GDP.xlsx 等真实职场新榜单，揭示大模型在复杂工程任务中“跑高分”不等于“能交付”。
+
+Claude Opus 5.5 等旗舰模型在真实代码库任务中通过率仅 41.7%，中国模型如 Qwen 3.8 Max 得分 20.6%，暴露长流程执行短板。
+
+评测显示旧榜单饱和失真，企业选型正从看排名转向算成本账，需警惕工具链差异及小样本统计噪点。
+
+📎 [原文链接](https://www.tmtpost.com/8183550.html)
+
+
+### 7. Property Finder 修复评估偏差
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-28/e9a6e75c3210.jpg)
+
+Property Finder 修复评估偏差：Property Finder 发现原有评估标签96.8%源自单一模型预测，存在严重偏差。通过构建专家标注的真实标签集并应用进化式提示词优化，在 Amazon Bedrock 上实现准确率提升且成本降低 86%。
+
+该案例展示了如何打破循环评估陷阱，利用 Micro F1 指标和多标签分类技术，在视觉 AI 工作负载中客观对比不同模型，为开发者提供可复用的模型选型方法论。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/fix-evaluation-bias-to-unlock-better-models-on-amazon-bedrock/)
+
+
+### 8. Chemical X 开源架构审计工具
+
+Chemical X 开源架构审计工具：Chemical X 是一款面向 Cursor、Claude Code 等编程智能体的架构审计工具，通过 SQLite WAL 索引和抽象语法树（AST）分析，将 `npm test` 等命令产生的 17,000+ tokens 噪音压缩至 45 tokens。
+
+该工具支持检测 AI 生成的代码异味（如截断占位符、浅层 try/catch），提供 MHI 评分卡，并通过单一 MCP 网关实现多智能体并发安全，旨在解决大模型编程中的上下文膨胀问题。
+
+📎 [原文链接](https://chemicalx.xophz.com)
+
+
+### 9. OpenCode-Muse 工具发布
+
+OpenCode-Muse 工具发布：OpenCode-Muse 是 GitHub 开源项目，允许开发者在 OpenCode 编辑器中接入 Meta AI 的 Muse Code 订阅服务。
+
+📎 [原文链接](https://github.com/pgquiles/opencode-muse)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. Meta 950亿美元融资
+
+Meta 950亿美元融资：Meta宣布计划通过公开股权发行及“随行就市”计划募集950亿美元，用于支持AI基础设施和超级智能领域的投资。
+
+资金将主要用于建设四个超1吉瓦的“超级集群”，预计2026年总基础设施容量翻倍，Nvidia、AMD等巨头有意参与认购。
+
+📎 [原文链接](https://www.cnbc.com/2026/10/26/meta-stock-offering-ai.html)
+
+
+### 2. Anthropic Claude 5.5 大幅降价
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-28/746ea4f23c2c.png)
+
+Anthropic Claude 5.5 大幅降价：Anthropic 于 10 月下调 Claude 5.5 系列模型价格，其中 Haiku 5.5 输入单价降至 0.10 美元、输出降至 0.50 美元每百万 Token，降幅约 90%。
+
+此次降价策略迅速带动企业级客户调用量激增，知名投资人预测其年底 ARR 有望突破 1000 亿美元，凸显 AI 行业“以价换量”趋势。
+
+📎 [原文链接](https://www.tmtpost.com/8183890.html)
+
+
+### 3. AI算力租赁行业面临洗牌
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-28/746ea4f23c2c.png)
+
+AI算力租赁行业面临洗牌：AI算力租赁公司Neocloud面临严峻生存危机，代表企业CoreWeave股价10月暴跌近38%，债券收益率飙升至15%-16%。
+
+马斯克警告缺乏实质收入的Neocloud将遭遇“孔雀鱼式”死亡，英伟达虽通过保底采购和股权投资托底，但无法扭转行业趋势。
+
+麦肯锡数据显示GPU租赁价格跌幅超50%，Gartner预测到2030年超80%的Neocloud将因成本压力被收购或退出市场。
+
+📎 [原文链接](https://www.tmtpost.com/8183285.html)
+
+
+### 4. Nvidia Vera Rubin 正式商用
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-28/57fbab875f02.png)
+
+Nvidia Vera Rubin 正式商用：Nvidia 与 Oracle 宣布 Vera Rubin NVL72 系统及独立 Vera CPU 在 OCI 正式商用，支持吉瓦级超算扩展。
+
+Vera CPU 专为 AI 智能体设计，宣称比 x86 快 80%，旨在解决 GPU 闲置及 CPU 瓶颈问题。
+
+OpenAI 已确认在 OCI 部署 Vera 支持智能体沙箱，企业需结合实际工作负载测试性价比。
+
+📎 [原文链接](https://venturebeat.com/infrastructure/nvidia-and-oracle-expand-vera-rubin-cloud-infrastructure-pitching-better-utilization-as-enterprises-report-idle-gpus)
+
+
+### 5. Retell AI 月处理1亿次呼叫
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-28/ba9215269d8c.webp)
+
+Retell AI 月处理1亿次呼叫：语音AI平台Retell AI月呼叫量突破1亿次，其中80%的通话响应由OpenAI模型生成，客户解决率超80%。
+
+Retell在vCX基准测试中，GPT-6 Astra指令遵循得分89.7%居首，GPT-5.5非幻觉率88.0%领先，且消耗OpenAI令牌超1万亿。
+
+Retell工程师利用Codex进行代码研究与调试，实现每位员工160万美元的年营收率，显著提升工程效率。
+
+📎 [原文链接](https://openai.com/index/retell-ai)
+
+
+### 6. Anthropic IPO 治理结构
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-28/c293b224e06e.webp)
+
+Anthropic IPO 治理结构：Anthropic 在 IPO 后采用极其复杂的公司治理结构，普通股东被排除在控制权之外。创始人通过特殊类别股票保留 50.1% 的投票权，可选举三名董事会成员。
+
+公司设立长期利益信托基金（LTBT）掌握董事会多数席位选举权，以保障 AI 安全使命。若创始人无法形成多数意见，股份才按普通比例投票，且创始人控制权将在十年后或人数少于三人时终止。
+
+📎 [原文链接](https://techcrunch.com/2026/10/27/whos-really-in-charge-at-anthropic-after-the-ipo/)
+
+
+### 7. Exowatt 超越前沿模型
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-28/f4c25554aa37.png)
+
+Exowatt 超越前沿模型：Exowatt 利用 Amazon SageMaker AI 无服务器模型定制，对 Qwen3-1.7B 和 Qwen3-14B 进行微调，在边缘警报分类和云能源市场分析任务中，以低至 49 倍的成本优势实现了比前沿模型更高的准确率。
+
+该方案通过无服务器微调消除 GPU 等待时间，将模型量化后在边缘 CPU 离线运行，或通过 Bedrock 按需部署，实现了从数据到部署的可重复自动化管道。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/exowatt-beats-frontier-models-on-accuracy-with-sagemaker-serverless-model-customization/)
+
+
+### 8. Meta前总监创立Ndoc
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-28/e580445e362e.jpg)
+
+Meta前总监创立Ndoc：Meta前AI总监Rohit Patel创立Ndoc，旨在取代Microsoft Office和Google Workspace，提供统一的AI原生工作空间。
+
+Ndoc将演示、分析和底层代码整合，支持导出为开源的.ndoc.html格式，目前处于企业试点阶段。
+
+📎 [原文链接](https://techcrunch.com/2026/10/27/meta-ai-director-rohit-patel-leaves-to-take-on-microsoft-office-and-google-workspace/)
+
+
+### 9. General Compute 完成 1 亿美元 A 轮融资
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-28/48bcb1003a5f.webp)
+
+Neocloud 公司 General Compute 完成 1 亿美元 A 轮融资，投后估值达 8 亿美元，由 Blackbird Ventures 和 Abstract Ventures 领投。
+
+公司策略聚焦非 GPU 专用推理芯片（SambaNova、Cerebras 等），通过租用旧数据中心和小型电力设施降低基建成本，已达成 1 亿美元 ARR 大客户协议。
+
+📎 [原文链接](https://techcrunch.com/2026/10/27/general-compute-raises-100-million-series-a-countering-the-neocloud-disaster-narrative/)
+
+
+### 10. Nvidia 投资 Simplismart
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-28/8ae8e4d298a5.jpg)
+
+Nvidia 投资 Simplismart：Nvidia 领投印度 AI 推理软件初创公司 Simplismart 的 B 轮融资，估值约 1 亿美元。
+
+Simplismart 提供 AI 推理优化软件，帮助客户在现有 GPU 基础设施上自动调整模型部署，降低算力消耗。
+
+该软件已帮助 InVideo 将 GPU 服务成本降低 56%，并与 Nvidia 的 Dynamo 推理软件进行技术整合。
+
+📎 [原文链接](https://techcrunch.com/2026/10/27/nvidia-backs-indian-startup-helping-companies-run-ai-models-with-fewer-gpus/)
+
+
+### 11. EFF 揭露 Medicare AI 实验问题
+
+EFF 揭露 Medicare AI 实验问题：EFF 获取 800 页新文件揭露 Medicare WISeR AI 预先授权实验问题，显示 CMS 在 6 个月内仓促上线，导致 Virtix、Zyter 等供应商出现技术故障、拒绝不准确及沟通缺失。
+
+文件指出该计划缺乏透明度，供应商存在“拒绝越多获利越多”的激励，且“人在回路”审查流于形式，部分审查员平均仅用 1.2 秒拒单，引发对算法偏见和患者权益受损的担忧。
+
+📎 [原文链接](https://www.eff.org/deeplinks/2026/10/new-records-obtained-eff-expose-more-problems-medicares-ai-experiment)
+
+
+### 12. 天瞳威视智驾商业化分析
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-28/746ea4f23c2c.png)
+
+天瞳威视智驾商业化分析：天瞳威视基于地平线征程6B平台的前视感知方案，已获23个品牌198款车型定点，其中105款量产交付。
+
+通过平台化开发实现超70%算法复用，2025年L2+解决方案毛利率提升至43.8%，L4业务意向订单超10亿元。
+
+该案例折射智驾行业从算法竞赛转向工程交付与成本控制，验证了第三方供应商在规模化量产中的商业化路径。
+
+📎 [原文链接](https://www.tmtpost.com/8183328.html)
+
+
+### 13. 具身智能行业天价抢人
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-28/746ea4f23c2c.png)
+
+具身智能行业天价抢人：2026年国内具身智能赛道融资总额突破900亿元，优必选开出最高1.24亿元年薪招募首席科学家，追觅传闻2亿元年薪抢人，实习生月薪高达10万。
+
+行业从算法争夺转向工程量产，工业、电气工程师需求翻倍，企业急需能将模型落地工厂的复合型人才，高校新设专业首批毕业生需到2030年才能供给。
+
+📎 [原文链接](https://www.tmtpost.com/8183283.html)
+
+
+### 14. Bank of America 警告勿共享密码
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-28/68ba476cd04a.jpg)
+
+Bank of America 警告勿共享密码：Bank of America 向客户发送邮件，明确警告不要将用户名和密码分享给任何 AI 助手或外部服务。此举旨在防范因凭证泄露导致的资金被盗风险，以及 AI 助手安全漏洞引发的账户锁定问题。银行强调，若用户主动共享凭证，需对由此产生的所有活动承担全部责任。
+
+📎 [原文链接](https://techcrunch.com/2026/10/27/bank-of-america-kindly-asks-that-you-dont-share-your-banking-password-with-your-ai-assistant/)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
