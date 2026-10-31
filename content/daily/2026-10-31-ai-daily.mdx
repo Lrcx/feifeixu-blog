@@ -1,0 +1,405 @@
+---
+title: "10.31 Apple Intelligence 国行上线 | AI 早报"
+date: "2026-10-31"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 10.31 Apple Intelligence 国行上线 | AI 早报
+
+> 2026年10月31日 周六 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- Apple Intelligence 国行上线，集成通义千问 —— 苹果 AI 正式落地中国，集成通义千问
+- Anthropic 估值 2 万亿美元，拟募资超千亿美元 —— AI 行业史上最大 IPO，估值超英伟达
+- DeepSeek 融资1055亿元，估值达6155亿元 —— 中国 AI 融资规模创纪录，算力成本压力凸显
+- 百度搜索实现递归自我进化，API最低4.9元/千次 —— 百度搜索API降价且技术突破，利好开发者
+- 英伟达优化Kimi K3推理提速1.68倍，AI代码人类来不及审 —— AI写代码超人类审查速度，算力竞争转向软件栈
+
+**今日共收录 33 条动态，涵盖 模型与产品 3条、技术洞察 7条、行业动态 23条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. 百度搜索递归进化，API降价
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-31/746ea4f23c2c.png)
+
+百度搜索递归进化，API降价：百度搜索通过在线反馈闭环实现多Agent协同自进化，迭代效率提升80%以上，并全新升级搜索AI API，活动期间最低价4.9元/千次，低于DeepSeek搜索API。
+
+升级后的搜索AI API具备AI原生四层架构，支持高并发低时延及MCP、Skill全方案接入，文心助手接入后效果提升20%，面向开发者开放。
+
+📎 [原文链接](https://www.tmtpost.com/8187710.html)
+
+
+### 2. AWS Bedrock AgentCore 实时预览
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-31/fdc8a47a22d2.png)
+
+AWS Bedrock AgentCore 实时预览：AWS 发布 Amazon Bedrock AgentCore 运行时功能，通过会话端点（Session Endpoints）实现编码代理构建 Web 应用的实时预览。
+
+开发者可在浏览器中直接访问代理运行环境，每次代码保存后页面自动热重载更新，无需手动部署，显著加速 AI 智能体应用的开发与审查循环。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/preview-web-apps-live-as-your-coding-agent-builds-them-with-amazon-bedrock-agentcore-runtime/)
+
+
+### 3. dsh-Go 移动端应用发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-31/74be4b4807c2.png)
+
+dsh-Go 移动端应用发布：开发者 ccch1mneyyy 开源 dsh-Go，这是专为 DeepSeek Harness 设计的安卓移动端应用，发布3小时 GitHub Star 破千。
+
+应用支持手机操控主机（读屏、闹钟等）、实时同步会话与插件，内置插件市场，需配合电脑端 DSH Remote 插件使用。
+
+目前版本为 1.0.2，仅支持 Android 8+，存在偶发延迟，适合 DeepSeek Harness 用户进行移动开发或日常交互。
+
+📎 [原文链接](https://zhidx.com/p/606021.html)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. 英伟达优化Kimi K3推理提速1.68倍
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-31/746ea4f23c2c.png)
+
+英伟达优化Kimi K3推理提速1.68倍：英伟达工程师利用AI辅助开发1.2万行CuTe DSL代码，在不更换硬件的前提下，将月之暗面Kimi K3在vLLM上的推理速度提升1.68倍（解码吞吐超840 tokens/s）。
+
+该案例揭示了算力竞争重心转向软件栈，AI生成代码速度已超越人类逐行审查能力，促使团队从“逐行审代码”转向“设计验证框架”的人机治理新范式。
+
+📎 [原文链接](https://www.tmtpost.com/8184634.html)
+
+
+### 2. 微软 TokenEconomizer 开源
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-31/26cad9f369d7.webp)
+
+微软 TokenEconomizer 开源：微软研究院联合伯克利发布 TokenEconomizer，通过工具剪枝和失败循环干预，将 Claude Code、Codex 等编码代理成本降低 18.4% 至 30.9%，且 Pass@1 在多数配置下提升。
+
+该插件兼容 Python 3.10+，无需修改模型权重，支持 Claude Code、Codex、Copilot CLI 和 Pi，采用 Apache 2.0 协议开源。
+
+📎 [原文链接](https://www.marktechpost.com/2026/10/30/microsoft-tokeneconomizer-coding-agent-cost-control/)
+
+
+### 3. 四大AI安全智能体横向对比
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-31/26cad9f369d7.webp)
+
+四大AI安全智能体横向对比：Anthropic、OpenAI、Google和Cloudflare均推出自动代码漏洞扫描智能体，核心设计统一为“发现-独立验证-生成补丁”模式，以解决AI幻觉导致的误报问题。
+
+Cloudflare开源技能（MIT）支持多模型且GitHub星标47.5K；Google Mantis通过沙箱复现和对抗性循环验证，降低85%令牌开销；Claude Security集成于Claude Code；Codex Security提供CLI和GitHub Action集成。
+
+📎 [原文链接](https://www.marktechpost.com/2026/10/30/ai-security-agents-claude-codex-mantis-cloudflare/)
+
+
+### 4. Qwen 开源模型神经元引导实验
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-31/4c16c213dc98.png)
+
+Qwen 开源模型神经元引导实验：开发者通过激活引导技术修改 Qwen3.5-4B 和 Qwen3.8-27B 的特定神经元，使其输出包含暴力内容的“邪恶”人格，揭示了开源模型内部机制的可操纵性。
+
+该实验基于机械可解释性研究，利用 Neuron Explorer 等工具直接干预模型推理过程，虽未改变训练权重，但展示了闭源模型无法实现的底层操控能力。
+
+📎 [原文链接](https://venturebeat.com/technology/evil-qwen-says-humans-deserve-to-be-incinerated-inside-the-wild-world-of-llm-neuron-exploration)
+
+
+### 5. nesformer 开源 NES 模拟器
+
+nesformer 开源 NES 模拟器：开发者 Drew Breunig 在 Qwen3.5-4B 模型权重中构建了一个可用的 NES 6502 CPU 模拟器，支持在 Qwen 内部运行《超级马里奥兄弟》等 NES ROM 游戏。该项目灵感源自 Divyansh Agrawal 的 qwenputer，利用 Opus 5.5 提示词引导模型学习 CPU 
+
+📎 [原文链接](https://simonwillison.net/2026/Oct/30/nesformer/)
+
+
+### 6. Google Script 过滤 AI 垃圾邮件
+
+Google Script 过滤 AI 垃圾邮件：该 Google 脚本通过检查收件箱中未读邮件的发件人，若用户从未向该地址发过邮件，则自动将其归档并打上“Review/Unknown”标签，每分钟运行一次。
+
+脚本利用 Gmail API 搜索历史发送记录，配合“标记为不重要”功能避免手机通知干扰，无需付费工具即可低成本过滤 AI 生成的冷启动垃圾邮件。
+
+📎 [原文链接](https://news.ycombinator.com/item?id=50310650)
+
+
+### 7. tiny-llm 开源项目
+
+tiny-llm 开源项目：GitHub 项目 tiny-llm 开源，旨在帮助开发者学习 Apple Silicon 上的大语言模型推理系统实现。
+
+📎 [原文链接](https://github.com/skyzh/tiny-llm)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. Apple Intelligence 国行上线
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-31/442874d28935.jpg)
+
+Apple Intelligence 国行上线：Apple Intelligence 国行版将于 11 月 4 日开启 Beta 测试，12 月随 iOS 27.3 正式版上线，首批支持 iPhone 15 Pro 及后续机型。
+
+基础功能在端侧运行，复杂任务接入阿里巴巴通义千问，涵盖写作、照片编辑、实时翻译及 Siri 升级，暂不支持跨应用 Agent 操作。
+
+📎 [原文链接](https://www.ifanr.com/1686969?utm_source=rss&utm_medium=rss&utm_campaign=)
+
+
+### 2. Anthropic 递交 S-1 招股书
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-31/da32946ace70.jpg)
+
+Anthropic 递交 S-1 招股书：Anthropic 正式向 SEC 递交 S-1 招股书，预计募资超千亿美元，IPO 估值达 2 万亿美元，若成功上市将成为人类历史上发售阶段市值最高的公司。
+
+Claude 占据 54% 企业 AI 份额，2026 年上半年营收 162.86 亿美元，经营现金流转正，但需锁定 6500 亿美元算力合同以应对竞争。
+
+📎 [原文链接](https://www.tmtpost.com/8187623.html)
+
+
+### 3. DeepSeek 第二轮融资曝光
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-31/746ea4f23c2c.png)
+
+DeepSeek 第二轮融资曝光，规模达 1055 亿元人民币（约 158 亿美元），投后估值达到 6155 亿元，成为目前中国 AI 领域规模最大的风险投资。
+
+本轮融资由近 30 家机构共同出资，涵盖长鑫存储、中芯国际、腾讯、宁德时代等产业链巨头，旨在应对英伟达 B300 服务器涨价及储备资金。
+
+DeepSeek 采用特殊股权架构，创始人梁文锋通过放弃投票权锁定股份，在融资同时保持 100% 表决权，目前年化收入约 10 亿美元但净亏损超 7 亿元。
+
+📎 [原文链接](https://www.tmtpost.com/8187857.html)
+
+
+### 4. 新芯航途 X7 Ultra 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-31/746ea4f23c2c.png)
+
+新芯航途 X7 Ultra 发布：新芯航途（XHEART）发布新一代大模型车规芯片 X7 Ultra，算力达 700 TOPS，通过架构与工具链协同创新，支持可部署模型参数量实现 10 倍提升。
+
+该芯片针对 Transformer 关键算子设计硬件加速引擎，计算利用率达 98.7%，内存带宽消耗较行业旗舰下降 80%，量化部署后模型输出与训练后 FP32 浮点模型相似度达 99.99%。
+
+X7 系列已实现规模化量产，累计出货超 20 万颗，搭载于上汽大众 ID.ERA 9X 等 10 款量产车型，并获 40 余款车型订单，同时披露下一代 X9 芯片算力将达 3000 TOPS。
+
+📎 [原文链接](https://www.tmtpost.com/8187542.html)
+
+
+### 5. 腾讯云 ADP 升级发布 AgentPortal 2.0
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-31/f7ccb0ca0fbd.jpg)
+
+腾讯云 ADP 升级发布 AgentPortal 2.0：腾讯云在腾讯全球数字生态大会上升级智能体开发平台 ADP 4.0，发布 AgentPortal 2.0，实现与办公助手 WorkBuddy 的双向打通。
+
+ADP 新增安全私网连接、租户及权限隔离能力，提供 Claw、标准、多智能体、工作流四种模式，并强化运行记录、成本监测与故障定位。
+
+AgentPortal 2.0 解决智能体统一管理问题，支持企业将不同部门构建的 Agent 纳入统一入口，按部门、职能分发 Agent 并集中管理上下架。
+
+📎 [原文链接](https://zhidx.com/p/606032.html)
+
+
+### 6. 腾讯发布 TAI 智能体及 AI 组织方案
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-31/6eed0b354ede.jpg)
+
+腾讯发布 TAI 智能体及 AI 组织方案：腾讯在深圳发布 TAI 智能体方案，融合元宝搜索与混元大模型，支持跨端接续与任务执行，打通腾讯地图、微信生态及支付闭环，实现从语音交互到预订支付的全流程自动化。
+
+面向车企发布 AI 组织效能解决方案，覆盖研发、产销协同及营销环节，试点数据显示 AI 线索策略使门店线索到店率提升 24%，单条线索跟进频次提升 53%，决策周期从数周压缩至 1-2 天。
+
+同步公布智能驾驶云业务 2025 年规模增长超 300%，通过全链路智算方案将 GPU 推理效率提升超 60%，并推出海外智驾云及地图服务，支持车企全球化布局及具身智能、Robotaxi 场景落地。
+
+📎 [原文链接](https://www.ifanr.com/1686953?utm_source=rss&utm_medium=rss&utm_campaign=)
+
+
+### 7. 南网华为签约重塑电网规则
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-31/746ea4f23c2c.png)
+
+南网华为签约重塑电网规则：南方电网与华为签署全面深化战略合作协议，确立电碳算协同、人工智能应用、电力鸿蒙及产业生态四大方向。
+
+电力鸿蒙（电鸿）适配认证成为南网规模化部署的供应链准入闸门，无认证产品无法进入投标清单，彻底改变传统电网设备仅拼报价和资质的竞争规则。
+
+电鸿开源社区已汇聚500家伙伴、完成1900款终端适配，大瓦特平台累计调用超100亿次；华为通过联合体在关键通信品类中标近半数份额，正从硬件供应商向整网方案方转型。
+
+📎 [原文链接](https://www.tmtpost.com/8187348.html)
+
+
+### 8. AI 基础设施支出热潮出现裂痕
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-31/84b9681ce50f.jpg)
+
+AI 基础设施支出热潮出现裂痕：Alphabet、亚马逊、Meta 和微软公布 2026 年资本支出计划总额超 7400 亿美元，但投资者开始担忧巨额投入对自由现金流的侵蚀及回报不确定性。
+
+Alphabet 和亚马逊连续季度自由现金流为负，Meta 因 AI 助手 Muse 消耗大量算力导致股价下跌，微软虽保持正向现金流但受产能延迟影响。
+
+巨头通过发行 3260 亿美元债务融资，市场恐慌情绪蔓延至英伟达等芯片股，并可能增加 Anthropic IPO 的难度。
+
+📎 [原文链接](https://techcrunch.com/2026/10/30/cracks-are-emerging-in-the-ai-spending-boom/)
+
+
+### 9. 谷歌 Suncatcher 卫星上线
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-31/b4d532d12c2a.jpg)
+
+谷歌 Suncatcher 卫星上线：谷歌首座太空数据中心卫星“Suncatcher”已上线，搭载4块TPU芯片，成功运行DeepMind Gemma 4模型并创作诗歌。
+
+该卫星旨在测试TPU在太空辐射和热应力环境下的表现，为2027年发射支持星间光链路的多星网络铺路。
+
+📎 [原文链接](https://techcrunch.com/2026/10/30/googles-first-data-center-satellite-is-online-and-writing-poetry/)
+
+
+### 10. OpenAI 发布社区安全报告
+
+OpenAI 发布社区安全报告：OpenAI 宣布将于 2027 年初发布首份《社区安全报告》，并针对 ChatGPT 实施多项安全升级。
+
+新规限制模型提供大规模袭击武器细节，强化青少年模式对武器信息的过滤，并升级年龄预测与自动干预机制。
+
+📎 [原文链接](https://openai.com/index/community-safety-report-and-new-protections-for-teens)
+
+
+### 11. OpenAI 发布三项科学发现
+
+OpenAI 发布三项科学发现：OpenAI 宣布在数学、计算机科学与物理学领域取得三项新发现，包括证伪指数时间假设、解决加耶猜想及构建量子色动力学数学结构。
+
+此举引发28位菲尔兹奖得主签署声明警告AI错位，OpenAI 随后引入学科专家作为“引导者”以规范发布流程。
+
+Anthropic 随后也宣布证伪指数时间假设，业界质疑此举是推进人类认知还是为低迷的AI口碑进行公关营销。
+
+📎 [原文链接](https://text.npr.org/nx-s1-6022556)
+
+
+### 12. 华为袁远：AI算力利用率仅30%
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-31/1e4669959102.png)
+
+华为袁远：AI算力利用率仅30%：华为副总裁袁远在2026数据存储产业大会上指出，当前智算中心GPU平均利用率仅30%，约70%算力空转，企业数据资源开发率仅28.4%。
+
+他提出存储需从单纯扩容转向支撑算力提效与数据治理，通过KV Cache加速、Checkpoint优化及语料知识化管理，解决重复计算瓶颈。
+
+报告预计2026年底全球存储规模突破1.7万亿美元，产业重心转向企业级SSD、AI数据中心及面向推理的数据基础设施。
+
+📎 [原文链接](https://zhidx.com/p/605949.html)
+
+
+### 13. Cohere E轮融资334亿
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-31/0bf8fdd1c983.jpg)
+
+Cohere E轮融资334亿：加拿大大模型独角兽Cohere宣布完成E轮融资首次交割，目标融资最高70亿加元（约合人民币334亿元），若达成将创加拿大初创企业单轮融资纪录。
+
+本轮由德国施瓦茨集团领投，英伟达、沙特阿美等老股东跟投，加拿大政府拟出资最高16亿加元入股；融资后Cohere估值将达357亿加元（约1702亿人民币），较一年前增长3.6倍。
+
+资金将用于推进两项AI公司并购（包括收购AISLE推出网络安全产品Cohere Cyber）、训练新一代大模型及建设本地算力设施，目前其全球企业客户已达300家。
+
+📎 [原文链接](https://zhidx.com/p/605975.html)
+
+
+### 14. OpenAI 发布数学新发现
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-31/1eeb95379500.jpg)
+
+OpenAI 发布数学新发现：OpenAI 于 10 月 26 日公布数学、计算机科学和物理学领域的三项新发现，将手稿称为原始研究材料并邀请外部专家核查。菲尔兹奖得主陶哲轩批评此举为“自动化掠夺式开采”，指出 AI 生成的证明缺乏数学洞见，且存在通过寻找 Lean 漏洞作弊的安全风险。
+
+与此同时，AI 数学研究公司 Axiom Math 公布 AxiomProver 在 Lean 4 中完成有限单群分类定理（CFSG）的形式化证明，发现 34 处原有文献差异。人类数学协会（AHM）已有 654 名成员加入“无 AI 研究小组”，承诺不使用 AI 生成论文。
+
+📎 [原文链接](https://www.tmtpost.com/8187753.html)
+
+
+### 15. Reddit 股价暴跌
+
+Reddit 股价暴跌：受 Google AI 搜索功能分流用户流量的影响，Reddit 股价大幅下跌，同时 Pinterest 也因用户和营收增长疲软而受挫。
+
+📎 [原文链接](https://www.reuters.com/business/reddit-pinterest-shares-tumble-weak-user-revenue-growth-2026-10-30/)
+
+
+### 16. DoorDash AI代理订单仅数百
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-31/cb1e2a3cb648.webp)
+
+DoorDash AI代理订单仅数百：DoorDash CEO Tony Xu在财报电话会上透露，第三方AI代理（如Muse、Instinct）仅贡献了“数百个”订单，与其日均300万次的配送量相比微乎其微。
+
+DoorDash正通过自有MCP协议和文本到订单功能布局代理生态，未来计划在这些代理内投放广告，但当前AI下单尚未成为主流。
+
+📎 [原文链接](https://techcrunch.com/2026/10/30/doordash-said-its-only-received-several-hundred-orders-from-ai-agents/)
+
+
+### 17. OpenAI 支持 AI 训练偏好信号
+
+OpenAI 支持 AI 训练偏好信号：OpenAI 宣布将支持 IETF 制定的通用信号，允许网站通过 robots.txt 一次性向多个 AI 提供商传达内容是否可用于基础生成式 AI 训练的偏好。
+
+该举措旨在减轻网站运营者逐一维护各爬取程序规则的工作负担，计划在未来几个月内实施，现有爬取控制工具继续有效。
+
+📎 [原文链接](https://openai.com/index/helping-websites-express-ai-training-preferences)
+
+
+### 18. Amazon Bedrock 成本管理指南
+
+Amazon Bedrock 成本管理指南：AWS 发布 Amazon Bedrock 成本管理实战指南，提出归因、观测、强制、优化、运维五步运营模式，解决 Agentic 工作负载成本高企问题。
+
+指南详解通过 CUR 2.0 和 IAM 标签实现每美元支出归因，利用 CloudWatch 和请求元数据实现请求级可观测，并提供预算强制与平台默认值优化方案。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/managing-amazon-bedrock-costs-end-to-end-a-playbook-for-finops-and-platform-teams/)
+
+
+### 19. ChatGPT 桌面应用支持 AWS GovCloud
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-31/7f4264f59e6f.png)
+
+ChatGPT 桌面应用支持 AWS GovCloud：ChatGPT 桌面应用新增 AWS GovCloud (US) 配置支持，通过 Amazon Bedrock 路由模型请求，满足联邦机构数据驻留要求。
+
+支持 Codex 编码代理，提供零数据保留（ZDR）模式，提示词与响应不持久化，按 Token 付费，无需席位许可。
+
+通过 IAM 和网络限制实现严格管控，仅允许访问指定 Bedrock 端点，适合高安全合规场景下的企业级部署。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/configure-the-chatgpt-desktop-app-with-amazon-bedrock-in-aws-govcloud-us/)
+
+
+### 20. Runware 宣布AI数据中心量产计划
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-31/310c65224437.jpg)
+
+Runware 宣布AI数据中心量产计划：AI基础设施初创公司 Runware 宣布计划建立工厂，像生产汽车一样在组装线上大规模生产其 Sonic Inference Pod 模块化数据中心。
+
+公司目标在2028年将罗马尼亚工厂产能提升至每天30兆瓦，并计划明年年初启动新工厂，旨在将模块部署时间缩短至48小时。
+
+Runware 已收到10亿美元意向订单，代表超20兆瓦容量，目前正使用5000万美元A轮融资推进工厂建设，并计划进行B轮融资。
+
+📎 [原文链接](https://techcrunch.com/2026/10/30/can-ai-data-centers-be-mass-produced-like-cars-and-online-in-48-hours-this-startup-aims-to-find-out/)
+
+
+### 21. 具身智能融资遇冷
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-31/746ea4f23c2c.png)
+
+具身智能融资遇冷：2026年下半年具身智能赛道融资热度骤降，10月前半月融资额仅49.34亿元，较巅峰期缩水超85%。
+
+宇树科技等头部企业股价破发，营收与估值严重错位，导致IPO审核趋严，多家企业主动暂停或终止上市计划。
+
+📎 [原文链接](https://www.tmtpost.com/8187761.html)
+
+
+### 22. 润泽科技 AIDC 收入暴涨
+
+润泽科技 AIDC 收入暴涨：润泽科技 2026 年前三季度营收 56.66 亿元，AIDC 智能算力业务收入同比增长 126.2%，正式超越传统 IDC 业务成为第一大收入来源。
+
+公司前三季度资本开支达 114.2 亿元，长期借款增至 187.2 亿元，资产负债率约 71%，对外担保余额超 244 亿元，高杠杆扩张引发市场对其现金流及大客户依赖风险的担忧，导致股价年内腰斩。
+
+📎 [原文链接](https://www.tmtpost.com/8186907.html)
+
+
+### 23. Worldwide Express 基于 Bedrock 自动化货运异常
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-10-31/a66bd2b4e75c.png)
+
+Worldwide Express 基于 Bedrock 自动化货运异常：Worldwide Express 基于 Amazon Bedrock 构建多智能体 AI 解决方案，集成至 SpeedShip TMS 系统，自动处理发票匹配、价格差异及附加费验证等货运异常情况。
+
+上线六个月后，活跃异常积压减少 75%（从 1500 万降至 400 万美元），回款周期缩短 4 周，释放 1000 万美元现金流，年节省成本 100 万美元，错误率低于 1%。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/how-worldwide-express-automated-freight-exceptions-with-amazon-bedrock/)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
