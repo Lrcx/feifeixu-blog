@@ -1,0 +1,458 @@
+---
+title: "11.03 美团 LongCat-2.5 发布，ChatGPT 合并标签页 | AI 早报"
+date: "2026-11-03"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 11.03 美团 LongCat-2.5 发布，ChatGPT 合并标签页 | AI 早报
+
+> 2026年11月03日 周二 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- 美团 LongCat-2.5 发布，1.6万亿参数，通用Agent超Opus-5 —— 国产大模型在长程智能体领域取得重大突破
+- ChatGPT 合并聊天与工作标签页，与 Codex 共用 Token 配额 —— ChatGPT 交互逻辑重大调整
+- OpenAI Pando 推送延迟降5倍，日处理PB级数据 —— 解决大模型时代 Git 并发扩展难题
+- Anthropic 发布 Agent 评估指南，详解评分器与 pass@k 指标 —— Agent 落地必备的评估方法论
+- Qwen 接入中国 iPhone，战略重心转向电商闭环 —— 看清阿里 AI 战略核心是电商而非云算力
+
+**今日共收录 38 条动态，涵盖 模型与产品 5条、开源热门 4条、技术洞察 11条、行业动态 18条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. 美团 LongCat-2.5 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-03/28a40e8714ae.jpg)
+
+美团 LongCat-2.5 发布：美团发布原生多模态模型 LongCat-2.5，总参数量 1.6 万亿，激活参数约 480 亿，重点强化长程智能体任务与视觉编程能力。
+
+在通用 Agent 基准 LongCatClawBench 上超越 Claude-Opus-5 和 GPT-5.6-Sol，支持视觉离散 Token 统一处理，适配国产芯片优化。
+
+提供在线体验与 API 接入，实测在代码生成、PPT 制作及 3D 场景构建中表现优异，适合开发者与企业级智能体应用。
+
+📎 [原文链接](https://zhidx.com/p/606379.html)
+
+
+### 2. ChatGPT 合并聊天与工作标签页
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-03/2a00ab085818.png)
+
+ChatGPT 合并聊天与工作标签页：OpenAI 将 ChatGPT 桌面端的“聊天”与“工作”标签页合并，使用户能在同一界面完成从构思到执行（如搭建网站、制作演示文稿）的全流程。
+
+ChatGPT 与 Codex 将共用同一 Token 配额池，部分用户可能需更频繁等待配额重置，该功能正逐步向全量用户开放。
+
+📎 [原文链接](https://techcrunch.com/2026/11/02/openai-is-finally-merging-chatgpts-chat-and-work-tabs/)
+
+
+### 3. 商汤 SenseNova 6.8 Flash 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-03/9811fff2602f.png)
+
+商汤 SenseNova 6.8 Flash 发布：商汤科技发布多模态智能体模型 SenseNova 6.8 Flash，主打委派智能，用户只需提供目标，AI 自动完成全流程。
+
+该模型在 TeamBench 和 DataAnalysis2.0 基准测试中排名第一，支持动态网页、3D 海报及 PPT 生成，并具备长期记忆与主动纠错能力。
+
+目前通过商汤小浣熊客户端限时免费体验，大幅降低 3D 动效设计与办公自动化门槛。
+
+📎 [原文链接](https://www.qbitai.com/2026/11/507277.html)
+
+
+### 4. Deep Principle Hydrogen-1.0 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-03/26cad9f369d7.webp)
+
+Deep Principle Hydrogen-1.0 发布：Deep Principle 发布基于 GLM-5.3 后训练的 753B 参数科学模型 Hydrogen-1.0，采用 MIT 许可证开源，在 FrontierScience-Research 基准测试中得分 38.3%，超越 GPT-6-Astra 的 33.3%。
+
+该模型针对化学、材料科学和生命科学优化，支持 1M 上下文，可在 8 块 GPU 上运行，并提供 OpenAI 兼容 API。
+
+📎 [原文链接](https://www.marktechpost.com/2026/11/02/deep-principle-hydrogen-1-0-open-weight-scientific-model/)
+
+
+### 5. AWS 发布多代理工程助手方案
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-03/7b939e7722f3.png)
+
+AWS 发布多代理工程助手方案：AWS 发布基于 Amazon Bedrock AgentCore 和 Nova 多模态嵌入的多代理工程助手，用于航空部件替换评估。系统通过规划器路由三个专业代理，结合确定性代码评分与多模态检索，自动交叉核对数据表、ICD 和图表，生成符合 AS9100 标准的审计追踪文档，工程师保留最终决策权。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/agentic-engineering-intelligence-with-amazon-nova-multimodal-embeddings-and-amazon-bedrock-agentcore/)
+
+
+---
+
+## 🔥 开源热门
+
+### 1. ai-pose-gallery-zh AI姿势图库
+
+⭐ 3,900 stars · 今日增长 814 stars
+
+提供1439组完整汉化的AI绘画姿势参考图库，包含2878张图片。作为零依赖静态画廊，它解决了AI创作中人体姿态参考匮乏的痛点，适合需要高质量姿势素材的AI绘画创作者使用。
+
+📎 [原文链接](https://github.com/anhao/ai-pose-gallery-zh)
+
+
+### 2. OpenBot 开源AI同事
+
+⭐ 8,700 stars · 今日增长 656 stars
+
+OpenBot打造拥有专属计算环境的开源AI同事，支持浏览器、文件及工具操作，具备行动前确认与事后记录机制，兼容AG-UI智能体，适合需要自动化执行复杂任务的开发者。
+
+📎 [原文链接](https://github.com/CopilotKit/OpenBot)
+
+
+### 3. android-ad-cleaner 安卓广告清理工具
+
+⭐ 5,000 stars · 今日增长 335 stars
+
+该项目无需 Root 即可关闭国产安卓系统广告、热搜及营销推送，支持一键 AI 智能体执行与操作还原，帮助开发者及用户打造纯净无干扰的安卓使用体验。
+
+📎 [原文链接](https://github.com/rddmwmddr/android-ad-cleaner)
+
+
+### 4. QingYunA/answer-me-with-html HTML回答工具
+
+⭐ 4,900 stars · 今日增长 187 stars
+
+该项目是一个AI代理技能，专门用于以HTML格式回答复杂问题。它帮助开发者快速获取结构化的网页代码，适用于需要直接生成前端页面或嵌入HTML内容的场景。
+
+📎 [原文链接](https://github.com/QingYunA/answer-me-with-html)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. OpenAI 开源 Pando Git 后端
+
+OpenAI 开源 Pando Git 后端：OpenAI 开源 Pando，专为 Codex 代理规模设计的 Git 后端，采用因果一致性模型实现水平可扩展写入。
+
+Pando 将中位推送延迟降低近 5 倍，日处理近 PB 级数据，通过复用 packfile 最大化读取吞吐量。
+
+保持 Git 协议兼容，无需改变团队工作流，旨在解决单体仓库并发推送与克隆的性能瓶颈。
+
+📎 [原文链接](https://openai.com/index/scaling-git-at-openai)
+
+
+### 2. Anthropic 发布 Agent 评估指南
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-03/f4f004853665.png)
+
+Anthropic 发布 Agent 评估指南：Anthropic 发布 AI Agent 评估指南，明确区分 Agent 评估与 LLM 评估，强调应评分智能体的最终结果而非执行路径。
+
+指南提出代码、LLM 评审、人工三种评分器组合策略，引入 pass@k 和 pass^k 指标量化 Agent 稳定性，并给出 7 步构建评估套件的实操方法。
+
+📎 [原文链接](https://www.evalshift.dev/blog/ai-evals-for-agents)
+
+
+### 3. OpenAI 发布 LifeVal 评估体系
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-03/73e0a4ecc8e4.webp)
+
+OpenAI 发布 LifeVal 评估体系，聚焦托儿、财务、政府服务等 7 类日常重要任务，衡量模型从聊天向代理式助手演进的能力。
+
+基于美国时间利用调查构建，最新模型在搬家注册、洪水志愿组织等场景中得分达 90.4%-100%，推动 ChatGPT 向实际执行任务转变。
+
+📎 [原文链接](https://openai.com/index/lifeval)
+
+
+### 4. DeepSeek 发布 Super-agent 架构方案
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-03/d8c3e3cb9e99.jpg)
+
+DeepSeek 发布 Super-agent 架构方案：DeepSeek Harness 团队发布《Super-agent 设计探索》技术长文，提出将智能体拆分为 Router 调度层与 Worker 执行层的分布式架构，旨在解决单会话模式下的注意力瓶颈。
+
+该方案通过物理隔离工作区与事件过滤机制，在模拟实验中使 P95 任务耗时降至 15.7 分钟，调度冗余决策下降 30%，缓存资源缩减 1/3，实现后台静默交付。
+
+📎 [原文链接](https://www.tmtpost.com/8189530.html)
+
+
+### 5. Lyngvi 2.0 开源发布
+
+Lyngvi 2.0 开源发布：Lyngvi 2.0 是开源的 AI 编码代理沙箱，采用 MIT 协议，支持 macOS 和 Linux。它通过 Podman 容器隔离代理，切断默认网络路由，使用全新 .git 副本防止凭据泄露，并强制人工审查代码变更。
+
+提供 CLI 和桌面 GUI，内置 Squid 代理实现严格的黑白名单出口控制，支持 Claude Code 等第三方代理，确保自主编码过程安全可控。
+
+📎 [原文链接](https://lyngvi.skaperiet.no)
+
+
+### 6. PaidinToken 发布硬件兼容性中心
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-03/cb8c62df1438.png)
+
+PaidinToken 发布硬件兼容性中心：PaidinToken 发布“我的 GPU 能跑吗？”硬件兼容性中心，覆盖 460+ 开源模型，提供 RTX 3060 至 5090 及 Apple Silicon 的详细 VRAM 需求与量化推荐。
+
+平台针对 16 种主流硬件配置生成一键 Ollama Shell 命令，并列出各显卡在特定模型下的推理速度（TPS），辅助开发者本地部署选型。
+
+📎 [原文链接](https://www.paidintoken.com/ai/hardware)
+
+
+### 7. BJJ Coach 7B 柔术专家模型
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-03/60709518a9a8.png)
+
+BJJ Coach 7B 柔术专家模型：开发者 Max De Marzi 开源了专用于巴西柔术的 LLM 模型 maxdemarzi/bjj-coach-7b-v3，基于 70 亿参数模型微调，在 BJJ-Bench-250 基准测试中运动学精度达 5.0/5.0，干扰项引用率降至 0%。
+
+该方案通过构建领域知识图谱解决术语歧义，利用 VLM 提取关键帧作为视觉锚点，并微调 bge-reranker 交叉编码器，实现了语音纠错、多模态检索与精准时间戳引用的闭环。
+
+模型支持在单张 GPU 上低成本训练，最终部署于 vLLM serverless 服务器，为格斗、医疗等垂直领域专家 AI 教练的构建提供了可复用的技术配方。
+
+📎 [原文链接](https://maxdemarzi.com/2026/11/02/teaching-an-llm-a-little-jiu-jitsu/)
+
+
+### 8. bringYourOwnBrain 开源本地 AI 平台
+
+bringYourOwnBrain 开源本地 AI 平台：bringYourOwnBrain 是面向网页游戏的开源本地 AI 平台，通过单行 SDK 在浏览器端利用 WebGPU 或 WASM 运行 Qwen2.5 0.5B 模型。
+
+该方案无需后端服务器，提示词不离开浏览器，实现零 Token 费用与 100% 客户端隐私，SDK 采用 Apache 2.0 许可开源。
+
+📎 [原文链接](https://bringYourOwnBrain.org)
+
+
+### 9. HackerTube 上线
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-03/85e3ec978f95.jpg)
+
+HackerTube 上线：AI 大神 Karpathy 利用 Claude Code 在 2 小时内构建了 HackerTube，该项目通过抓取 Hacker News 历史推荐数据，替代 YouTube 的算法推荐，为开发者提供基于社区共识的视频筛选与浏览服务。
+
+📎 [原文链接](https://www.ifanr.com/1687094?utm_source=rss&utm_medium=rss&utm_campaign=)
+
+
+### 10. AWS 博客：Crawl4AI 接入 Bedrock
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-03/380d03a297b6.png)
+
+AWS 博客：Crawl4AI 接入 Bedrock：AWS 发布技术指南，介绍使用开源爬虫 Crawl4AI 对网页内容进行结构化 Markdown 提取和元数据清洗，并将结果上传至 S3 供 Amazon Bedrock Knowledge Bases 进行 RAG 索引。
+
+该方案通过 AWS Fargate 定时任务实现自动化爬取与摄入，支持自定义 CSS 选择器提取和剪枝过滤，解决了原生 Web Crawler 无法精细控制网页内容提取的痛点。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/prepare-web-content-for-amazon-bedrock-knowledge-bases-with-crawl4ai/)
+
+
+### 11. AWS SageMaker AI 知识蒸馏教程
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-03/3a2f0a6bae7e.png)
+
+AWS SageMaker AI 知识蒸馏教程：AWS 发布技术指南，介绍在 Amazon SageMaker AI 上利用序列级知识蒸馏（SeqKD）构建高效智能体的方法。
+
+通过 GLM-5.3 教师模型生成轨迹并微调 Qwen3.5-4B 学生模型，在保留推理质量的同时显著降低 API 调用成本。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/build-efficient-agents-with-knowledge-distillation-on-amazon-sagemaker-ai/)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. Qwen 接入中国 iPhone
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-03/6d849e6d38a5.png)
+
+Qwen 接入中国 iPhone：苹果确认阿里巴巴 Qwen 将接入中国大陆 iPhone 作为可选系统扩展，用户需手动开启。
+
+该合作并非为了增加云端 Token 收入，而是为了在 Siri 等入口抢占购物和支付意图，防止用户流失。
+
+目前仅为基础功能，完整 Siri 模型堆栈驱动方预计 2027 年才尘埃落定。
+
+📎 [原文链接](https://www.tmtpost.com/8190486.html)
+
+
+### 2. 苹果 Apple Intelligence 国行落地
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-03/75a04f3b77cb.jpg)
+
+苹果 Apple Intelligence 国行落地：苹果宣布 Apple Intelligence 国行版将于 11 月 4 日开放测试，12 月随 iOS 27.3 正式落地，国内首个大模型合作伙伴为阿里通义千问。
+
+首批仅支持 iPhone 15 Pro 及更新机型，覆盖照片消除、实时翻译、写作校对等端侧功能，复杂问答将调用千问模型，Siri AI 暂未包含在内。
+
+此举标志着苹果 AI 正式进入中国市场，但功能形态仍偏向单点工具，缺乏跨应用智能体能力，且目前仅阿里官宣，百度角色存疑。
+
+📎 [原文链接](https://www.tmtpost.com/8190325.html)
+
+
+### 3. Anthropic 警告接近 RSI 能力
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-03/d718b9ec6c33.png)
+
+Anthropic 警告接近 RSI 能力：Anthropic 在 S-1A 招股书中警告，其模型能力进步速度可能即将满足“递归自我改进（RSI）”定义，即 AI 加速自身研发导致能力急剧跃升。
+
+公司强调目前尚未跨越该阈值，承诺在可预见的未来保持人类对前沿模型开发的控制权，并将更新负责任扩展政策以监测风险。
+
+📎 [原文链接](https://techcrunch.com/2026/11/02/anthropic-warns-that-its-very-close-to-rsi-capability-aka-self-building-ai/)
+
+
+### 4. Legora 估值88亿美元
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-03/12bbe2b711a1.webp)
+
+Legora 估值88亿美元：面向律师的 AI 代理平台 Legora 以 88 亿美元估值完成 5.5 亿美元 E 轮融资，ARR 突破 2 亿美元。
+
+产品支持百万级单元格表格审查及 Word 文档起草，通过 100 人法律工程师团队在无客户数据环境下完成评估。
+
+📎 [原文链接](https://latent.space/p/building-ai-for-lawyers-jacob-lauritzen-cto-of-legora/)
+
+
+### 5. OpenAI 推出电网保护者计划
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-03/3965c109fe7b.webp)
+
+OpenAI 推出电网保护者计划：OpenAI 启动 Grid Protectors Program，承诺在佐治亚州埃文郡园区提供高达 1000 兆瓦的灵活需求响应能力，在电网高峰时段主动削减用电。
+
+该计划旨在通过分担电网固定成本，预计每年为公用事业公司节省 9.5 亿美元，使典型家庭用户每月电费至少降低 15 美元。
+
+OpenAI 将以此试点为基础，在未来算力园区建设中推广此模式，确保 AI 基础设施不转嫁成本给当地居民和小企业。
+
+📎 [原文链接](https://openai.com/index/grid-protectors-program)
+
+
+### 6. Marvell 1150亿美元收购Lumentum
+
+Marvell 1150亿美元收购Lumentum：Marvell宣布以1150亿美元收购光通信巨头Lumentum，这是AI基础设施领域最大规模并购之一。交易旨在整合Marvell的半导体设计与Lumentum的光引擎技术，强化在AI数据中心高速光互联领域的供应链控制力。
+
+📎 [原文链接](https://www.reuters.com/legal/transactional/marvell-buy-lumentum-115-billion-deal-ai-data-center-bet-2026-11-02/)
+
+
+### 7. FiscaLLM 发布 61 款 LLM 定价对比
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-03/a3af51c9a6da.png)
+
+FiscaLLM 发布 61 款 LLM 定价对比：FiscaLLM 发布 2026 年 11 月 61 款主流 LLM API 定价对比，涵盖 OpenAI、Anthropic 和 Google 模型。
+
+数据基于每条消息（输入 1500 token，输出 400 token）计算，GPT-5 nano 成本最低为 $0.00023/条，Claude Haiku 5.5 为 $0.00035/条。
+
+工具提供盈亏平衡分析，显示在 $9.99 订阅模式下，不同模型每月可承载的用户消息量，帮助开发者优化 AI 应用成本结构。
+
+📎 [原文链接](https://fiscallm.com/llm-pricing)
+
+
+### 8. Grok Bot 因成本过高限制额度
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-03/2a00ab085818.png)
+
+Grok Bot 因成本过高限制额度：SpaceX CEO 马斯克确认，因 Grok Bot 服务成本相对于收入过高且不可持续，已限制部分用户的使用额度，导致用户周额度从 50% 激增至 100%。
+
+Grok 业务部门近期实现 4.31 亿美元利润，但受 Cursor 收购产生的 12 亿美元一次性成本影响，马斯克决定调整策略以控制支出。
+
+📎 [原文链接](https://techcrunch.com/2026/11/02/elon-musk-throttles-grok-bot-limits-due-to-unsustainably-high-costs/)
+
+
+### 9. 大华股份中标中国移动26.3亿算力大单
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-03/3e26f004f155.png)
+
+大华股份中标中国移动26.3亿算力大单：大华股份子公司华启智慧中标中国移动2026-2027年新一代人工智能超节点设备采购项目，中标金额约26.3亿元，获4096卡份额。
+
+该项目总规模约116亿元，采购20480卡AI超节点设备及配套交换机和存储，大华股份借此切入国产算力整机业务。
+
+📎 [原文链接](https://zhidx.com/p/606708.html)
+
+
+### 10. 度小满轩辕4.5金融大模型发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-03/746ea4f23c2c.png)
+
+度小满轩辕4.5金融大模型发布：度小满联合香港科技大学发布轩辕4.5金融增强大模型，基于RSI技术在获客、风控、客户经营等核心金融场景中实现效果提升30%，成本仅为通用模型的10%。
+
+📎 [原文链接](https://www.tmtpost.com/8190922.html)
+
+
+### 11. MIT 科技评论：AI 编码成本优化
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-03/49e2a1437c00.jpg)
+
+MIT 科技评论：AI 编码成本优化：MIT 科技评论发文指出，AI 编码智能体因重试和循环导致 Token 消耗激增，Uber 等公司已面临预算耗尽风险。文章建议企业放弃按 Token 计费模式，转而采用“每次合并拉取请求的成本”作为核心衡量指标，以区分有效交付与无效消耗。
+
+HPE 实践显示，通过混合架构将常规任务路由至本地开源模型，Token 成本可降低 30%-50%。文章强调，企业应建立自有算力容量以摊薄边际成本，并利用网关控制敏感数据，实现从“限制用量”到“优化交付效率”的转变。
+
+📎 [原文链接](https://www.technologyreview.com/2026/11/02/1147702/stop-counting-tokens-start-counting-what-ships/)
+
+
+### 12. Legora CTO 分享法律智能体构建
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-03/12bbe2b711a1.webp)
+
+Legora CTO 分享法律智能体构建：Legora CTO Jacob Lauritzen 分享在无法查看客户数据的情况下构建法律智能体的经验，包括引用准确率从 70% 提升至 99% 的技术细节。
+
+团队通过模拟客户工作环境的测试环境，结合 ChatGPT 与瑞典法律数据，实现合同审查、尽职调查等自动化，并探讨模型选择与隐私保护策略。
+
+📎 [原文链接](https://latent.space/p/building_legal_agents_when_you_can_t_see_the_data_-_jacob_lauritzen_cto_of_legora/)
+
+
+### 13. AI招聘报告：外部投递失效
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-03/b8b7344d4519.png)
+
+AI招聘报告：外部投递失效：Worklabs.sh 发布《AI × Hiring》报告，基于对 Anthropic、Stripe 等 30 家前沿公司负责人的访谈，揭示 AI 时代招聘流程的剧烈变化。
+
+报告指出外部投递正面临“逆向选择”危机，远程职位中 AI 生成的欺诈申请占比高达 25% 至 80%，导致传统简历筛选失效。
+
+LeetCode 等廉价代码测试已不再有效，评估重点转向系统设计、AI 辅助调试及判断力；建议引入 Ashby 等欺诈检测工具或外包筛选以应对噪音。
+
+📎 [原文链接](https://worklabs.sh)
+
+
+### 14. 影溯具身仿真数采中心落地
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-03/3dd48299d4ba.png)
+
+影溯具身仿真数采中心落地：空间智能公司影溯在杭州落地全国首个具身仿真数采中心，依托自研 Topos 底座实现场景数字化与并行仿真，单月计划生产 100 万小时训练数据。
+
+该中心将单条数据综合成本压至传统真机采集的 1/10，通过自动拆解、盲区补全及物理标定，解决具身智能数据稀缺与建模效率低的问题。
+
+📎 [原文链接](https://zhidx.com/p/606540.html)
+
+
+### 15. Circle K 利用 Bedrock 自动化 DevOps 分诊
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-03/967130a3caff.jpg)
+
+Circle K 利用 Bedrock 自动化 DevOps 分诊：Circle K 利用 Amazon Bedrock 构建自动化事件分诊系统，通过 Agentic AI 架构自主调查警报，将平均分诊时间从 45-60 分钟缩短至 15 分钟以内，效率提升 67-75%。
+
+系统采用 AWSResourceExplorerAgent、OpenSearchExplorerAgent 和 GitHubExplorerAgent 并行查询基础设施、日志和代码库，最终生成结构化摘要推送至 Slack，使工程师可直接采取行动。
+
+该方案基于 Amazon Bedrock AgentCore 架构，利用托管的 RAG 和工具编排能力，避免了自建智能体框架的运维开销，同时确保生产日志数据不用于模型训练，符合安全合规要求。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/how-circle-k-accelerated-devops-incident-triage-to-under-15-minutes-with-amazon-bedrock/)
+
+
+### 16. Alphabet 洽谈收购 Howie AI
+
+Alphabet 洽谈收购 Howie AI：Alphabet 正在与 AI 助手初创公司 Howie AI 进行收购谈判，目前尚未达成最终协议。
+
+📎 [原文链接](https://www.axios.com/pro/merger-deals/2026/11/02/google-alphabet-howie-ai-assistant)
+
+
+### 17. AI眼镜行业遇冷
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-03/746ea4f23c2c.png)
+
+AI眼镜行业遇冷：2026年Q2国内智能眼镜出货61.1万台，同比降8%，首次出现负增长。
+
+65%用户为极客，大众因体验差、续航短、功能鸡肋而弃用。
+
+厂商退守垂直场景，押注Personal Agent试图重启增长。
+
+📎 [原文链接](https://www.tmtpost.com/8190286.html)
+
+
+### 18. 美国人口普查局调查更名
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-03/de031fe909a0.png)
+
+美国人口普查局调查更名：美国人口普查局 BTOS 调查自 2026 年 10 月 19 日起，依据第 14434 号行政命令，将“人工智能”统一更名为“超级智能（SI）”。
+
+此举导致 2025 年 11 月前后关于企业 AI 采用率的统计数据口径发生断裂，前后数据不再具备直接可比性。
+
+📎 [原文链接](https://simonwillison.net/2026/Nov/2/census-bureau-super-intelligence/)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
