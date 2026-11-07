@@ -1,0 +1,334 @@
+---
+title: "11.07 OpenAI 获百亿美元融资 | AI 早报"
+date: "2026-11-07"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 11.07 OpenAI 获百亿美元融资 | AI 早报
+
+> 2026年11月07日 周六 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- OpenAI 1.25万亿美元估值融资110亿美元 —— 全球 AI 巨头估值与融资动态
+- Inkling 2 Small 参数5940亿，企业基准超Mistral —— 非中国顶级开源模型，企业智能体性能新标杆
+- Airbnb 微调模型成本降99%，延迟<100ms达前沿质量 —— 高流量场景下 AI 推理降本增效最佳实践
+- Ramp 数据：AI 支出停滞，Anthropic 估值降至 1.2 万亿 —— AI 巨头估值缩水，超增长时代终结
+- Claude Code前负责人Cat Wu跳槽OpenAI —— OpenAI 补齐编程产品短板
+
+**今日共收录 26 条动态，涵盖 模型与产品 8条、技术洞察 9条、行业动态 9条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. Thinking Machines Inkling 2 Small 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-07/ff58615dfc1e.png)
+
+Thinking Machines Inkling 2 Small 发布：Thinking Machines 发布 Inkling 2 Small 模型，总参数 5940 亿，激活 170 亿，采用稀疏架构。
+
+该模型在 EnterpriseBench-CoreCraft 基准测试中得分 71.8%，超越 Mistral Large 4 和 Nemotron 3 Ultra，计划以 Apache 2.0 许可证开源。
+
+📎 [原文链接](https://venturebeat.com/technology/thinking-machines-launches-inkling-2-small-with-near-frontier-performance-on-enterprise-benchmarks)
+
+
+### 2. Meta Muse 推出 Spaces 功能
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-07/312ab5ce157c.webp)
+
+Meta Muse 推出 Spaces 功能：Meta 为 Muse 智能体推出 Spaces 功能，允许用户通过自然语言指令让 AI 自动构建特定主题的会话空间（如度假规划、礼物追踪、项目看板等）。
+
+该功能支持连接第三方应用与信息，实现演唱会日期、价格变动等数据的后台自动更新，无需用户主动询问。
+
+这是 Muse 继 Voice 功能后的又一更新，旨在提升智能体在复杂任务中的协作能力，目前 Muse 在美加地区用户已突破 1000 万。
+
+📎 [原文链接](https://techcrunch.com/2026/11/06/meta-introduces-spaces-a-new-way-to-collaborate-with-your-muse-agent/)
+
+
+### 3. AWS SageMaker 支持 GPU 分区
+
+AWS SageMaker 支持 GPU 分区：Amazon SageMaker Inference 现支持 NVIDIA MIG GPU 分区技术，允许将单个物理 GPU 划分为最多 7 个硬件隔离的独立实例。
+
+该功能通过 `AcceleratorPartitionLayouts` 配置，支持 A100、H100 等主流加速器，使单卡可部署更多中小模型，显著降低推理成本并消除冷启动延迟。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/sagemaker-inference-now-supports-multi-instance-gpu-to-maximize-gpu-utilization-for-model-endpoints/)
+
+
+### 4. Together Compiler 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-07/fbe277b85b13.jpg)
+
+Together Compiler 发布：Together AI 发布 Together Compiler (TKCC)，利用智能体实现 AI 推理的持续编译与优化，解决动态流量下的性能瓶颈。
+
+在 Kimi K3、GLM 5.3 等前沿模型上实现高达 2.6 倍 TPS 提升，DeepSeek v4.1-Flash 达到 1205 TPS 行业新高，且泛化至气象、PDE 等非 LLM 领域。
+
+📎 [原文链接](https://www.together.ai/blog/together-compiler-continual-compilation-for-ai-inference)
+
+
+### 5. 亚马逊 Alexa 短信购物功能上线
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-07/b186cfe5bf45.jpg)
+
+亚马逊 Alexa 短信购物功能上线：亚马逊推出 Alexa 短信购物功能，允许美国用户通过短信与 AI 助手交互，完成搜索、加购、下单等全流程，并支持图片搜同款、比价及价格监控。
+
+该功能基于近期 Alexa 购物升级构建，具备学习用户偏好并推荐商品的能力，目前处于部分用户邀请测试阶段，未受邀者可加入排队名单。
+
+📎 [原文链接](https://techcrunch.com/2026/11/06/after-blocking-muse-amazon-now-lets-users-text-alexa-to-help-them-shop/)
+
+
+### 6. AWS 发布 Claude Code 远程智能体方案
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-07/f7c13edbc4f1.png)
+
+AWS 发布 Claude Code 远程智能体方案：AWS 发布基于 Amazon Bedrock AgentCore 的远程编码智能体方案，将 Claude Code 扩展至云端微虚拟机运行，支持任务排队、隔离执行及自动提交 GitHub 拉取请求。
+
+方案提供零数据保留 (ZDR)、VPC 私有端点、IAM 临时凭证及 Bedrock Guardrails 护栏，确保代码与提示词不经过公网且不被 AWS 训练，适合明确范围的功能开发与测试。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/extend-claude-code-to-remote-sessions-on-amazon-bedrock-agentcore-with-security-controls/)
+
+
+### 7. Taxbit Assist 智能体发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-07/2d04235bf01f.png)
+
+Taxbit Assist 智能体发布：Taxbit 基于 Amazon Bedrock AgentCore 发布 Taxbit Assist，这是一个嵌入其仪表板的 AI 助手，具备引用溯源和角色感知能力。
+
+系统通过 Amazon Bedrock Guardrails 进行 PII 掩码，利用 S3 Vectors 构建知识库检索产品文档，并严格隔离用户身份与模型推理，确保合规安全。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/taxbit-assist-a-grounded-role-aware-ai-agent-on-amazon-bedrock-agentcore/)
+
+
+### 8. Cinnamon 家庭 AI 智能体发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-07/5eecc751c0bb.jpg)
+
+Cinnamon 家庭 AI 智能体发布：Cinnamon 是一款面向家庭场景的 AI 智能体，支持最多 10 人共享空间与独立隐私空间，所有外部操作（如发邮件、改日历）均需用户审批。
+
+产品由前 Meta、Amazon 工程师打造，采用积分制计费，个人版 $9.99/月，团体版 $19.99/月，承诺数据不用于训练模型。
+
+📎 [原文链接](https://getcinnamon.ai/)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. Airbnb 微调模型成本降99%
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-07/a2425a5683dd.png)
+
+Airbnb 微调模型成本降99%：Airbnb 发布生产基准测试，对比发现其微调的 20 亿参数开源模型在内容审核任务中，F1 分数达 0.902，与 GPT-6.1 等前沿模型持平。
+
+该模型中位数延迟仅 35 毫秒，推理成本仅为前沿 API 的约 1%，且支持通过阈值调整精确率与召回率，适合高流量实时场景。
+
+📎 [原文链接](https://airbnb.tech/ai-ml/frontier-quality-at-1-of-the-cost-a-production-benchmark-of-llm-classifiers/)
+
+
+### 2. RTK CLI 代理开源
+
+RTK CLI 代理开源：RTK 是一个开源的 CLI 代理工具，旨在优化开发者在终端执行命令时的 LLM 调用效率。通过拦截和处理开发指令，该工具能显著减少 Token 消耗，降幅达 60% 至 90%，适合高频使用 AI 辅助编程的开发者。
+
+📎 [原文链接](https://github.com/rtk-ai/rtk)
+
+
+### 3. Zyphra ZYFA 开源 FP8 注意力内核
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-07/26cad9f369d7.webp)
+
+Zyphra ZYFA 开源 FP8 注意力内核：Zyphra 开源 ZYFA，专为 AMD MI355X 优化的 FP8 预填充注意力内核，在真实模型激活值测试中，速度比 AMD 默认 AITER 快 1.16-1.76 倍。
+
+该内核采用 Lean P 技术替代指数运算，FP8 误差比 AITER 低 62%-78%，支持 MLA 形状，以 Apache 2.0 许可证开源。
+
+目前仅限 MI355X 硬件，支持 PyTorch 2.12 和 ROCm 7.2.3，提供可直接替换的 flash_attn_func 接口。
+
+📎 [原文链接](https://www.marktechpost.com/2026/11/06/zyphra-zyfa-fp8-flashattention-amd-mi355x/)
+
+
+### 4. AWS 发布 ECS Fargate MCP 服务器架构
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-07/8b322cb1c011.jpg)
+
+AWS 发布 ECS Fargate MCP 服务器架构：AWS 发布技术指南，介绍在 Amazon ECS Fargate 上构建服务端点 MCP 服务器的架构，旨在解决 AI 智能体访问企业数据湖时的集成碎片化问题。
+
+该方案通过元数据 JSON 文件实现数据集的无代码接入，利用 Amazon Bedrock 生成 SQL 并执行查询，结合 Amazon Cognito 和 WAF 实现集中式权限控制与安全护栏。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/serverless-mcp-server-for-ai-agent-data-lake-access-on-amazon-ecs-fargate/)
+
+
+### 5. AWS Bedrock AgentCore 集成 Okta
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-07/6e1258acba9b.png)
+
+AWS Bedrock AgentCore 集成 Okta：AWS 发布 Bedrock AgentCore 与 Okta Cross App Access 集成方案，通过 ID-JAG 令牌链实现智能体代表用户操作时的细粒度权限管控。
+
+该方案利用 AgentCore Identity 自动兑换短期访问令牌，测试显示移除用户分配后 Okta 约 1 秒内拒绝请求，令牌 5 分钟过期。
+
+提供 GitHub 示例代码，支持 MCP 服务器工具级权限检查，帮助开发者构建符合企业安全合规要求的 AI 智能体应用。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/govern-ai-agent-access-with-okta-cross-app-access-and-amazon-bedrock-agentcore-part-1/)
+
+
+### 6. GitHub Copilot 代理工程指南
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-07/12bc97e785a2.png)
+
+GitHub Copilot 代理工程指南：GitHub 发布《超越代码生成：开发者代理工程指南》，提出 Agent 工程工作流，指导开发者利用 Copilot 在规划、构建、验证和观测四个阶段提升效率。
+
+指南详细拆解了 Copilot in Slack 协作规划、云沙盒与 Session 连续性、Copilot Dreaming 共享内存及 Copilot Fusion 模型调度等具体功能，旨在解决 AI 代码生成后 PR 评审耗时增加 441% 的痛点。
+
+📎 [原文链接](https://github.blog/ai-and-ml/github-copilot/beyond-code-generation-a-developers-guide-to-agentic-engineering/)
+
+
+### 7. Greenlight Financial 构建自主 SOC
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-07/dabc16dc8aa1.png)
+
+Greenlight Financial 构建自主 SOC：Greenlight Financial 基于 Amazon Bedrock AgentCore 构建自主安全运营中心 (SOC) 系统 Luna，通过分层多代理架构和情景记忆机制，实现每月 4,000 起安全与风险案件中 90% 以上的自主解决。
+
+该系统利用 30 多个专用代理处理暗网泄露、身份异常等警报，中位分类时间仅需数秒，相比人工处理（15-30 分钟/案）大幅提效，并支持从 SOC 扩展至金融风险分类。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/how-greenlight-financial-built-an-autonomous-soc-solution-on-amazon-bedrock-agentcore/)
+
+
+### 8. AJX 开源代理可用性测试工具
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-07/dabd6cbad9f3.webp)
+
+AJX 开源代理可用性测试工具：Roy Osherove 开源 AJX，一款面向 AI 代理的可用性测试 CLI 工具，可记录代理在使用网站、SDK 或 API 时的操作路径、重试次数及耗时。
+
+支持 Codex、Claude Code 等主流代理，通过本地 Web 控制台实时展示代理的决策分支与阻塞点，并自动生成包含证据链的产品改进建议。
+
+提供 CI 集成命令 `ajx ci`，可输出 JSON 和 JUnit 结果，帮助开发者量化代理任务成功率并定位文档或交互缺陷。
+
+📎 [原文链接](https://ajx.dev/)
+
+
+### 9. Underdog Woof 32MB 语音模型发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-07/f4e8ecccc66f.jpg)
+
+Underdog Woof 32MB 语音模型发布：Underdog 发布 32MB 语音模型 Woof，拥有 3100 万参数，支持在浏览器中离线运行文本转语音及音乐生成。
+
+该模型主打本地隐私保护，无需联网即可在普通设备上运行，适合本地助理或个性化播客场景，目前开放下载。
+
+📎 [原文链接](https://techcrunch.com/2026/11/06/underdog-shows-off-a-32mb-speech-model-in-new-demo/)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. OpenAI 1.25万亿美元估值融资
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-07/ca42611a93b6.png)
+
+OpenAI 1.25万亿美元估值融资：OpenAI 据 Bloomberg 报道，以 1.25 万亿美元估值额外融资 110 亿美元，该轮融资预计总额约 200 亿美元，将于未来几周完成。
+
+此前 OpenAI 计划融资 300 亿美元，此次金额低于预期；公司此前暗示今年上市，后推迟至明年，市场预计其将在 2027 年 IPO。
+
+📎 [原文链接](https://techcrunch.com/2026/11/06/openai-reportedly-raises-an-additional-11-billion-at-a-1-25-trillion-valuation/)
+
+
+### 2. Ramp 数据：AI 支出停滞
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-07/7b4e8344c63a.webp)
+
+Ramp 数据：AI 支出停滞：Ramp 数据显示，尽管 Token 用量上升，但 8-9 月企业 AI 支出环比仅增 1.5%，OpenAI 和 Anthropic 降价导致收入增长受限。
+
+受此影响，Anthropic 潜在估值从 2 万亿美元降至 1.2-1.3 万亿美元，并获垃圾级信用评级，OpenAI 估值亦下调至 1.25 万亿美元。
+
+📎 [原文链接](https://techcrunch.com/2026/11/06/ramp-data-shows-ai-spending-stalling-just-as-anthropic-nears-its-ipo/)
+
+
+### 3. Claude Code前负责人跳槽OpenAI
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-07/64ce9794cc47.jpg)
+
+Claude Code前负责人跳槽OpenAI：Claude Code 创始产品经理 Cat Wu 宣布离职 Anthropic，随即加入 OpenAI 负责核心产品团队。
+
+她曾将 Claude Code 打造为年化收入 25 亿美元的明星产品，此次跳槽被视为 OpenAI 在企业编程赛道反攻的关键布局。
+
+Anthropic 冲刺 IPO 期间，该团队核心骨干接连流失，凸显大厂在股权激励兑现后面临的人才留存难题。
+
+📎 [原文链接](https://www.tmtpost.com/8196354.html)
+
+
+### 4. Artex AI 黑客工具大规模泄露
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-07/14aa998e2e3c.jpg)
+
+Artex AI 黑客工具大规模泄露：安全公司Censys发现800多个Artex AI渗透测试工具实例在互联网公开暴露，无需密码即可访问。该工具已被用于韩国金融行业及IT巨头ConnectWise的大规模攻击，微软指出其能以极快速度突破云环境并窃取数据。
+
+Artex虽宣布转为闭源，但代码库仍有大量副本流传。攻击者利用弱密码和缺乏多因素认证等简单漏洞实施攻击，凸显了配置错误导致攻击工具与目标同时暴露的风险。
+
+📎 [原文链接](https://techcrunch.com/2026/11/06/hundreds-of-artex-ai-hacking-tools-found-publicly-exposed-to-the-web/)
+
+
+### 5. Waymo 战略转型出行平台
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-07/746ea4f23c2c.png)
+
+Waymo 战略转型出行平台：Waymo 宣布完成 50 亿美元债务融资，并计划 2028 年 1 月提前结束与 Uber 的独家合作，全面转向自有 App 直接服务用户。
+
+同时 Waymo 与丰田深化合作，由丰田在日本量产搭载 Waymo 系统的 bZ4X，加速向全球出行平台转型。
+
+📎 [原文链接](https://www.tmtpost.com/8195043.html)
+
+
+### 6. 火山引擎开源OpenViking
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-07/401d2eb0e8f9.jpg)
+
+火山引擎开源OpenViking：火山引擎于2026年1月开源面向Agent的上下文数据库OpenViking，旨在统一管理智能体的记忆、资源与技能调用。
+
+该数据库通过语义层和上下文管理，解决Agent对业务规则理解不足及跨系统检索延迟问题，降低30%～50%试错成本。
+
+📎 [原文链接](https://www.tmtpost.com/8196378.html)
+
+
+### 7. 傅利叶智能 Meta 原型机合作
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-07/746ea4f23c2c.png)
+
+傅利叶智能 Meta 原型机合作：上海傅利叶智能（Fourier Intelligence）在三个月内为 Meta 内部研发定制了人形机器人原型机 Max，该机型基于 GR 底盘改造，重 48 公斤，具备语音手势识别及面部显示屏，运行 Meta 智能体逻辑。
+
+该项目验证了傅利叶智能的工程能力，其投前估值已达 80 亿元人民币，但人形机器人年出货量仅约 300 台，主要面向科研教育，尚未形成规模化收入，公司正筹备科创板上市。
+
+📎 [原文链接](https://www.tmtpost.com/8196543.html)
+
+
+### 8. AI租号灰产月流水30万
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-07/746ea4f23c2c.png)
+
+AI租号灰产月流水30万：2026年国产大模型集体收费后，闲鱼出现大量AI会员租号与按次零售灰产，头部店铺月流水达30万元。
+
+卖家通过搭建中转站，将官方高价会员拆解为2.58元/次的低价服务，利用API密钥或批量账号倒卖获利。
+
+Kimi、千问等大厂已升级风控打击异常请求，并推出低价积分包应对，但单次使用需求仍支撑着灰色市场。
+
+📎 [原文链接](https://www.tmtpost.com/8196254.html)
+
+
+### 9. Tau Robotics 人形机器人清洁服务
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-07/897af7425716.jpg)
+
+Tau Robotics 人形机器人清洁服务：初创公司 Tau Robotics 在旧金山推出人形机器人清洁服务，目前采用远程遥控模式，单次一小时收费 30 美元。
+
+机器人通过收集清洁数据训练自主模型，已能独立吸尘拖地，但整理衣物等复杂任务仍需人工运动学引导。
+
+📎 [原文链接](https://www.technologyreview.com/2026/11/06/1148090/i-watched-a-humanoid-robot-clean-my-apartment-it-felt-like-a-taste-of-the-future/)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
