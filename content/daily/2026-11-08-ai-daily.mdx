@@ -1,0 +1,255 @@
+---
+title: "11.08 Anthropic调整定价，英伟达担保1700亿 | AI 早报"
+date: "2026-11-08"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 11.08 Anthropic调整定价，英伟达担保1700亿 | AI 早报
+
+> 2026年11月08日 周日 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- Anthropic 调整企业定价策略 —— Anthropic 价格策略调整
+- 英伟达为 neocloud 提供担保、投资及账期，敞口达 1700 亿美元 —— 英伟达深度绑定 neocloud 信用风险
+- 英伟达 CEO 黄仁勋被指遭中国国安部监视 —— 涉及英伟达核心高管及中美科技博弈
+- 美团 LongCat-2.5 1.6万亿参数，国产算力训练 —— 国产算力训练最大规模模型
+- 太空算力市场2030年达190亿美元，巨头争建轨道机房 —— 半导体产业新增长极已现
+
+**今日共收录 21 条动态，涵盖 模型与产品 1条、技术洞察 7条、行业动态 13条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. Mellonbot Linux 服务器诊断智能体
+
+Mellonbot Linux 服务器诊断智能体：Mellonbot 是一款面向 Linux 服务器的 AI 运维智能体，可自动诊断宕机、慢速、黑客攻击等故障并执行修复。
+
+它通过轻量级 Agent 连接服务器，利用 AI 追踪日志和系统状态定位根本原因，支持自动或人工审批执行修复操作。
+
+具备备份、撤销、命令审核等安全机制，主要面向网站所有者和运维人员，提供从诊断到修复的一站式服务。
+
+📎 [原文链接](https://www.mellonbot.app)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. NVIDIA Dory 4B 运行指南
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-08/26cad9f369d7.webp)
+
+NVIDIA Dory 4B 运行指南：NVIDIA 发布 Dory 1.0 4B 模型，通过中间层循环在不增加参数量的前提下提升计算量，实现单模型多计算预算运行。
+
+教程提供 llama.cpp 固定分支构建及 Q5_K_M GGUF 下载方案，实测显示增加循环次数可提升 GSM8K 准确率，但解码速度下降。
+
+📎 [原文链接](https://www.marktechpost.com/2026/11/07/coding-guide-nvidia-dory-4b-llama-cpp/)
+
+
+### 2. Buoyant 开源 Kinference 推理控制面
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-08/26cad9f369d7.webp)
+
+Buoyant 开源 Kinference 推理控制面：Buoyant 发布 Kinference v0.1.0-alpha.7，这是专为 Kubernetes 和 vLLM 设计的开源推理控制面，通过感知 KV-cache 的负载均衡和声明式 InferencePolicy 策略，解决多租户场景下的请求路由问题。
+
+官方基准测试显示，在共享前缀流量场景下，Kinference 相比原生 Kubernetes Service 路由，中位首词延迟（TTFT）从 6.88 秒降至 0.31 秒（降幅约 95%），有效吞吐量提升 7.4 倍，支持突发流量溢出至云端及 PII 隐私路由。
+
+📎 [原文链接](https://www.marktechpost.com/2026/11/07/buoyant-kinference-open-source-inference-control-plane-kubernetes-vllm/)
+
+
+### 3. 决策模型可解释性缺失风险
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-08/52c1a36bd7ea.png)
+
+决策模型可解释性缺失风险：Jev、Cloudflare Clef 等决策模型通过跳过推理轨迹直接返回 JSON 结构化输出，虽降低了延迟和 Token 消耗，但缺乏可解释性。
+
+这种“黑盒”特性可能导致误导性结果，开发者必须通过精细的上下文设计将关键信息打包，以弥补模型缺失的推理逻辑。
+
+该模式适用于 LLM 裁判评分、工单分类映射等确定性场景，但开发者需承担额外的上下文构建责任。
+
+📎 [原文链接](https://venturebeat.com/orchestration/decision-models-like-jev-dont-explain-their-answers-that-makes-context-your-problem)
+
+
+### 4. Backblaze B2 Neo 分层存储
+
+Backblaze B2 Neo 分层存储：Backblaze 发布 B2 Neo 分层存储架构，专为 AI 云平台设计，将活跃训练数据保留在闪存层，将数据集、检查点和模型归档至低成本大容量层。
+
+该方案以白标形式提供给 Neoclouds，旨在避免超大规模云服务商的高昂出口费用和数据锁定，帮助云服务商保留 GPU 之外的全账户收入。
+
+📎 [原文链接](https://www.backblaze.com/blog/why-the-best-ai-clouds-dont-run-on-flash-alone/)
+
+
+### 5. OMLX 开源多机加速方案
+
+OMLX 开源多机加速方案：OMLX 是 GitHub 开源项目，通过利用第二台 Mac 设备分担计算负载，实现本地大语言模型预填充（Prefill）阶段 2.9 倍的速度提升，有效缓解单设备算力瓶颈。
+
+📎 [原文链接](https://github.com/jundot/omlx/releases/tag/v0.7.4.dev1)
+
+
+### 6. Laplace's Scissors 开源
+
+Laplace's Scissors 开源：Laplace's Scissors 是 GitHub 开源项目，提供直接编辑大语言模型权重的工具，支持开发者对模型参数进行底层干预。
+
+📎 [原文链接](https://github.com/Miyamoto-Renya/LaplacesScissors)
+
+
+### 7. TokiRecur 开源
+
+TokiRecur 开源：TokiRecur 是一个基于 llama.cpp 的 LLM 启动器，核心功能是通过 KV-cache 复用技术优化推理性能。该项目目前 GitHub 积分仅 3，缺乏社区验证和详细技术文档，属于早期个人实验性项目。
+
+📎 [原文链接](https://github.com/lhadzic377-netizen/TokiRecur)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. Anthropic 企业定价调整
+
+Anthropic 企业定价调整：Anthropic 调整了企业版定价策略，旨在通过更具竞争力的价格获取市场份额。
+
+📎 [原文链接](https://tomtunguz.com/anthropic-repriced-the-enterprise/)
+
+
+### 2. 英伟达替客户融资买芯片
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-08/746ea4f23c2c.png)
+
+英伟达替客户融资买芯片：英伟达正通过股权投资、债务担保、延长账期及引入保险分担风险等方式，为 neocloud 客户融资购买芯片。据 The Information 统计，英伟达为 neocloud 和大客户承担的敞口约 1700 亿美元，其中直接投资仅 70 多亿美元，其余多为担保和承诺。
+
+随着高收益债市场关闭，CoreWeave 等 neocloud 融资成本飙升至 16%。英伟达通过持有客户股权（如 CoreWeave 持股升至 11.5%）和提供最长一年账期，深度绑定客户，但也面临类似思科泡沫期的信用风险。
+
+📎 [原文链接](https://www.tmtpost.com/8197111.html)
+
+
+### 3. 英伟达 CEO 被指遭情报监视
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-08/d34aaef2ca3c.jpg)
+
+英伟达 CEO 被指遭情报监视：据美国情报备忘录及《纽约时报》报道，Megaspeed 高管 Alice Huang 被指受中国国家安全部招募，以监视英伟达 CEO 黄仁勋。
+
+英伟达回应称双方互动“并不异常”，且公司不与客户共享机密信息。
+
+该报道涉及地缘政治与供应链安全，对关注中美科技博弈的读者有重要参考价值。
+
+📎 [原文链接](https://techcrunch.com/2026/11/07/chinese-exec-was-recruited-to-spy-on-nvidia-ceo-according-to-us-intelligence-memo/)
+
+
+### 4. 美团 LongCat-2.5 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-08/746ea4f23c2c.png)
+
+美团 LongCat-2.5 发布：美团发布新一代大模型 LongCat-2.5，总参数 1.6 万亿，全程基于国产算力训练完成。
+
+该模型原生支持多模态，强化智能体编程与复杂软件开发能力，评测成绩介于 Claude-Opus-4.8 与 Opus-5 之间。
+
+📎 [原文链接](https://www.tmtpost.com/8197131.html)
+
+
+### 5. 太空算力市场爆发
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-08/746ea4f23c2c.png)
+
+太空算力市场爆发：泰伯智库预计全球太空算力市场将从2025年的29亿美元增至2030年的190亿美元，涵盖单星智能、算力星座及轨道数据中心。
+
+谷歌TPU、英伟达Vera Rubin及SpaceX Starmind等巨头正加速布局，国星宇航已获114颗AI卫星订单，太空算力竞赛全面提速。
+
+📎 [原文链接](https://www.tmtpost.com/8197078.html)
+
+
+### 6. 人形机器人商业化遇冷
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-08/746ea4f23c2c.png)
+
+人形机器人商业化遇冷：人形机器人行业从狂热转向理性，宇树科技等厂商整机均价三年跌去七成，二手残值缩水近九成，租赁市场日租金暴跌至千元级。
+
+2026年上半年全球出货2.2万台中，超八成用于文娱展示，进入工厂仅约4000台；因可靠性衰减和运维成本高，单机效率尚未超越人类工人，商业闭环尚未跑通。
+
+📎 [原文链接](https://www.tmtpost.com/8196856.html)
+
+
+### 7. 美国中期选举数据中心受阻
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-08/8639c826f51c.webp)
+
+美国中期选举数据中心受阻：美国中期选举中，选民否决了多项加速数据中心建设的公投措施，并选出承诺限制数据中心的政客，导致科技巨头面临更严峻的监管环境。
+
+马斯克因向共和党捐赠5亿美元未获回报，且其企业所在地得州转向民主党；OpenAI 等公司被迫发布“计算园区政策蓝图”以应对草根反对。
+
+📎 [原文链接](https://techcrunch.com/2026/11/07/after-the-midterms-things-are-looking-rocky-for-elon-musk-and-data-centers/)
+
+
+### 8. Ollie.ai 关停与 AI 创业反思
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-08/a6093fdad0bf.png)
+
+Ollie.ai 关停与 AI 创业反思：家庭管理 AI 助手 Ollie.ai 在拥有 5 万用户后宣布关停，创始人归因于 Muse、Instinct 等竞品的激烈竞争及融资困难。
+
+文章指出仅 2.9% 的美国消费者愿为 AI 订阅付费，通用 AI 助手同质化严重，建议开发者转向垂直领域或采用交易抽成、广告等多元变现模式。
+
+📎 [原文链接](https://ferran.sh/writing/read-this-before-you-build-another-ai-wrapper)
+
+
+### 9. OpenAI 公布社区承诺
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-08/746ea4f23c2c.png)
+
+OpenAI 公布社区承诺：OpenAI 公布新社区承诺，针对自建运营的园区，承诺承担用电及配套设施全部成本，并在大额开支前提供财务保障，避免项目延期或取消时由其他用户买单。
+
+同时承诺在方案调整期让居民参与讨论，并公开用水、用电和噪声信息，以回应美国多地居民对数据中心噪音、污染及审批不透明的强烈反对。
+
+📎 [原文链接](https://www.tmtpost.com/8197100.html)
+
+
+### 10. 淘宝京东抖音AI购物翻车
+
+淘宝京东抖音AI购物翻车：实测淘宝AI、京东京言和抖音豆包在双十一购物场景中，虽能给出真实价格，但京东京言将标注“资源机”的商品推荐为靠谱选项，且推荐了不支持销售的店铺。
+
+蚂蚁灵光2.0提供主动盯价服务，能持续跟踪价格变化并计算到手价，但在商品性质识别上同样存在局限，未能有效区分全新国行与渠道库存。
+
+AI购物助手目前能解决比价效率问题，但在商品真伪甄别和商家资质审核上存在明显短板，用户仍需人工二次核对商品详情。
+
+📎 [原文链接](https://www.tmtpost.com/8196807.html)
+
+
+### 11. AI漫剧从业者揭秘行业现状
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-08/746ea4f23c2c.png)
+
+AI漫剧从业者揭秘行业现状：AI漫剧市场虽规模庞大，但制作方收益极低，播放1万次收益从去年的50元降至今年的5元，多数从业者处于亏损或微利状态。
+
+行业呈现高度同质化与内卷，常规流水线漫剧报价仅800-1200元/分钟，算力成本占比低，主要成本为人力，平台掌握定价权导致制作方抗风险能力弱。
+
+📎 [原文链接](https://www.tmtpost.com/8196816.html)
+
+
+### 12. 智能体生态互联困境
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-08/746ea4f23c2c.png)
+
+智能体生态互联困境：10月14日豆包手机助手《屏幕自动化操作声明协议》公示期满，腾讯、阿里、快手、美团等155款应用明确拒绝接入屏幕自动化操作，拒绝接入应用涵盖微信、淘宝、支付宝等核心产品。
+
+尽管信通院牵头20家巨头签署《智能体发展自律公约》倡导互联，但平台因智能体截断广告、推荐及交易漏斗等核心商业利益，通过“双重授权”机制行使否决权，导致智能体跨平台操作难以落地。
+
+📎 [原文链接](https://www.tmtpost.com/8196715.html)
+
+
+### 13. OpenAI 大规模封号
+
+OpenAI 大规模封号：OpenAI 近期无预警大规模封禁用户账号，未提供具体原因或申诉通道，引发社区恐慌。
+
+📎 [原文链接](https://news.cnblogs.com/n/844741/)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
