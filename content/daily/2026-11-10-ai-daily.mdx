@@ -1,0 +1,455 @@
+---
+title: "11.10 Anthropic Fable降价 | AI 早报"
+date: "2026-11-10"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 11.10 Anthropic Fable降价 | AI 早报
+
+> 2026年11月10日 周二 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- Anthropic Fable 5.2 降价20%至8美元，响应提速30% —— Anthropic 降价提速，对标 GPT-6 性价比更高
+- Meta Muse Ember 单任务成本10美分，专为代理执行设计 —— Meta 推出低成本代理执行模型，挑战 OpenAI 和 Anthropic
+- 字节 Seedream 5.5 编辑成本减半，支持百轮像素级一致 —— 图像编辑成本腰斩，百轮修改不崩坏
+- 英伟达 CEO 涉间谍丑闻，对华出口政策受审 —— 英伟达对华芯片出口政策面临重大政治风险
+- 千问办公2.0上线Team Agent，支持多人与Agent协作 —— 企业级Agent从个人工具迈向团队协作新阶段
+
+**今日共收录 39 条动态，涵盖 模型与产品 12条、技术洞察 9条、行业动态 18条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. Anthropic 发布 Mythos 5.2 和 Fable 5.2
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-10/6d169c1032f8.jpg)
+
+Anthropic 发布 Mythos 5.2 和 Fable 5.2：Anthropic 发布 Claude Mythos 5.2 和 Fable 5.2 模型，Fable 5.2 价格从每百万输入令牌 10 美元降至 8 美元，比 GPT-6 Astra 更便宜，且响应速度提升 30%。
+
+Fable 5.2 支持零数据保留 (ZDR) 政策，适合企业部署；Mythos 5.2 在编码、推理和视觉领域表现增强，并强调无隐蔽对抗能力。
+
+📎 [原文链接](https://techcrunch.com/2026/11/09/anthropic-releases-new-mythos-and-fable-models-amid-rsi-concerns/)
+
+
+### 2. Meta 发布轻量级模型 Muse Ember
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-10/3418a94245d0.webp)
+
+Meta 发布轻量级模型 Muse Ember：Meta 超人工智能实验室发布轻量级模型 Muse Ember，专为代理执行设计，支持文本、图像、音频多模态处理，单百万输入代币成本仅 10 美分。
+
+该模型与 Meta 旗舰模型 Muse Wonder 配合使用，由 Wonder 负责规划，Ember 负责处理海量重复任务，在 Artificial Analysis 基准测试中比 Anthropic Haiku 和 OpenAI Luna 更便宜且智能。
+
+📎 [原文链接](https://techcrunch.com/2026/11/09/meta-releases-muse-ember-a-new-lightweight-model-for-agent-execution/)
+
+
+### 3. 字节 Seedream 5.5 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-10/746ea4f23c2c.png)
+
+字节 Seedream 5.5 发布：字节跳动发布豆包图像模型 Seedream 5.5，API 本周上线火山方舟。新模型强化多轮编辑稳定性，实测连续百轮修改后非编辑区域保持像素级一致，原生支持 RGBA 透明素材与分层输出。
+
+成本方面，2K 方图编辑单张约 0.28 元，不到 5.0 Pro 一半，文本 Token 不计费。官方评测显示影视与办公场景可用率达上代两倍以上，小字渲染与写实光影同步优化。
+
+📎 [原文链接](https://www.tmtpost.com/8198851.html)
+
+
+### 4. 千问办公2.0发布
+
+千问办公2.0发布：千问办公发布2.0版本，推出行业首个支持多人与Agent协作的“协作”功能，将Agent引入工作群，支持跨群汇总信息、自动更新表格及任务指派。
+
+新增“自动任务”实现Agent从被动响应升级为主动处理，支持基于消息、审批等触发条件自动执行操作；同时上线“人机共创”、“资料空间”及三端互联能力。
+
+目前所有功能已在千问办公客户端全量上线，银泰百货等团队已验证该功能在跨群信息收集与表格回填场景下的效率提升。
+
+📎 [原文链接](https://www.qbitai.com/2026/11/508694.html)
+
+
+### 5. NVIDIA Nemotron 3.5 Super VL 上线 SageMaker
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-10/652af3210c2f.png)
+
+NVIDIA Nemotron 3.5 Super VL 上线 SageMaker：NVIDIA Nemotron 3.5 Super VL 视觉语言模型现已在 Amazon SageMaker JumpStart 上线，支持图像、视频和文本输入，上下文长度达 100 万 token。
+
+该模型采用 120B 参数混合专家架构（12B 活跃参数），提供 NVFP4 量化版和 BF16 全精度版，适用于文档智能、GUI 理解和多模态智能体场景。
+
+实测显示 NVFP4 在 G7 实例上吞吐量约 63 tokens/sec，BF16 在 P5en 实例上达 140 tokens/sec，首 token 时间约 0.5 秒，支持工具调用和 JSON 输出。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/nvidia-nemotron-3-5-super-vl-is-now-available-in-amazon-sagemaker-jumpstart/)
+
+
+### 6. 美团 LongCat-2.5 开源
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-10/096ed6a8be68.png)
+
+美团 LongCat-2.5 开源：美团发布 LongCat-2.5 视觉大模型权重，采用 MIT 许可证，支持截图/视频理解与代码库遍历。
+
+模型在 Terminal Bench v2.1 得分 88.4，DeepSWE v1.1 得分 64.6，API 限时价输入 $0.30/输出 $1.20。
+
+模型参数 1.6T，激活 48B，适合视觉回归测试及截图转代码场景，自托管需约 3.2TB 显存。
+
+📎 [原文链接](https://venturebeat.com/technology/meituan-releases-the-open-weights-of-its-longcat-2-5-llm-with-vision-under-a-permissive-mit-license)
+
+
+### 7. 腾讯混元Hy4正式版发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-10/203ca06a88e3.png)
+
+腾讯混元Hy4正式版发布：腾讯发布混元Hy4大模型，拥有770B总参数和49B激活参数，首次引入原生视觉能力并支持电脑操作（CUA），指令遵循与长程Agent能力显著升级。
+
+模型已在WorkBuddy、元宝等产品上线，API接入OpenRouter等平台，权重即将开源；限时免费体验至11月15日。
+
+📎 [原文链接](https://www.qbitai.com/2026/11/507843.html)
+
+
+### 8. AWS 发布 Quick AI 助手
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-10/4e775be388c7.png)
+
+AWS 发布 Quick AI 助手：AWS 发布企业级 AI 助手 AWS Quick，定位为专为工作打造的 AI 工作空间，支持在 CRM、邮件等依赖的数据和应用中进行研究、分析和行动。
+
+产品内置 Microsoft Purview 和 IAM 权限管控，支持 HIPAA、SOC 2 等合规认证，数据不出环境且用于训练，提供完整审计日志。
+
+目前面向美国和英国企业用户开放，支持自然语言构建 Agent 和自动化流程，无需提交 IT 工单即可在共享空间复用资产。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/professional-work-deserves-professional-tools-meet-aws-quick/)
+
+
+### 9. 微信输入法 AI 录音笔实测
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-10/9fb56c6e263c.png)
+
+微信输入法 AI 录音笔实测：微信输入法在 macOS、iOS、安卓和 Windows 平台推送新版本，内置 AI 录音笔功能，支持实时中英转写并生成结构化 AI 总结（图表/交互组件）。实测显示其在嘈杂环境及中英文混杂场景下识别准确，但多声源极端工况下仍有局限。
+
+该版本还强化了跨端剪贴板同步、隔空投递文件及一键排版成图功能，并集成 AI 润色、边写边翻译及小程序搜索入口，正从单一输入法向全能 AI 办公助手演进。
+
+📎 [原文链接](https://zhidx.com/p/608330.html)
+
+
+### 10. Automattic 发布 Spacefast 平台
+
+Automattic 发布 Spacefast 平台，允许用户部署经 vibe coding 生成的网站和应用，提供数据库、身份验证、文件上传、电子邮件和分析功能。
+
+支持连接 ChatGPT、Claude、Cursor 等智能体或 Git 仓库，集成 WordPress 和 WooCommerce，面向企业营销团队提供落地页快速生成与整合方案。
+
+📎 [原文链接](https://techcrunch.com/2026/11/09/automattic-debuts-a-platform-to-deploy-vibe-coding-apps-amid-a-changing-internet/)
+
+
+### 11. Medium 发布 TK AI 写作应用
+
+Medium 发布 TK AI 写作应用：Medium 推出名为 TK 的新应用，将 AI 助手深度集成至写作流程，用户输入 @TK 即可获取事实查询、草稿优化及风格匹配建议。
+
+该应用支持通过 MCP 服务器或 Claude 技能连接用户自有 AI 智能体，提供透明化 AI 使用声明功能，并允许早期草稿社交反馈，目前网页端免费开放。
+
+📎 [原文链接](https://techcrunch.com/2026/11/09/mediums-new-tk-app-brings-ai-assistance-directly-into-the-writing-process/)
+
+
+### 12. Amazon Bedrock 知识库升级
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-10/abe0ae579c6b.png)
+
+Amazon Bedrock 知识库升级：Amazon Bedrock 托管知识库新增 AgenticRetrieveStream 参数，通过 maxAgentIteration 控制检索模式：设为 1 实现单轮 RAG（一次检索+生成），设为 0 实现纯检索（仅返回片段，零 LLM 调用），2-5 为智能体检索。
+
+该更新允许开发者在同一 API 中根据问题复杂度动态切换模式，单轮模式降低延迟和成本，纯检索模式节省 LLM 调用，适用于直接查询和需人工审查源文本的场景。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/single-shot-and-agentic-retrieval-with-amazon-bedrock-managed-knowledge-base/)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. 百度 ERNIE Evolve 自动化研发系统
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-10/26cad9f369d7.webp)
+
+百度 ERNIE Evolve 自动化研发系统：百度发布 ERNIE Evolve 自动化研发系统，通过嵌套循环智能体自主优化 AI 训练和推理代码。
+
+该系统在 NanoChat 验证集 BPB 达 0.8763，NanoGPT Speedrun Track 1 耗时 38.9 秒打破纪录。
+
+应用于 ERNIE-5.5-Flash 推理优化，在昆仑芯 P800 上生成速度提升至基准的 623.6%，确定性吞吐量提升 33.7%。
+
+📎 [原文链接](https://www.marktechpost.com/2026/11/09/baidu-ernie-evolve-automated-research-system/)
+
+
+### 2. SGLang 开源并行推测解码
+
+SGLang 开源并行推测解码：SGLang 开源了并行推测解码技术，将因果依赖刻入草稿网络深度，实现 SOTA 性能，推理吞吐最高提升 4 倍。
+
+📎 [原文链接](https://www.jiqizhixin.com/articles/2026-11-09-6?source=rss)
+
+
+### 3. Aspen 开源 Agent 专用 Git 服务器
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-10/26cad9f369d7.webp)
+
+Aspen 开源 Agent 专用 Git 服务器：Reason Machines 开源 Aspen，一款专为 AI Agent 高频推送设计的自托管 Git 服务器，独立实现了 OpenAI Pando 架构。
+
+采用按分支 Compare-and-Swap 机制和对象存储打包文件，在 8 核服务器上实测可达 567 次/秒推送，p99 延迟 314 毫秒。
+
+支持 HTTPS/SSH 标准协议，兼容现有 Git 客户端，提供 Docker Compose 和 Helm 部署方案，目前处于预-alpha 阶段。
+
+📎 [原文链接](https://www.marktechpost.com/2026/11/09/reason-machines-aspen-open-source-git-server-ai-agents/)
+
+
+### 4. Claude Code 实现声学三角定位
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-10/38f8166bcb4a.webp)
+
+Claude Code 实现声学三角定位：Simon Willison 使用 Claude Code 构建了 Beep Locator 系统，通过多台设备的麦克风录制音频，利用 FFT 和高通滤波器检测蜂鸣声，并结合 WebSocket 传输数据实现三角定位。
+
+系统支持粗略模式调整设备位置，定位精度达 40 厘米，成功帮助定位家中老旧一氧化碳探测器的声源，展示了赋予编码代理“听力”感知物理世界的能力。
+
+📎 [原文链接](https://simonwillison.net/2026/Nov/9/mysterious-beeps/)
+
+
+### 5. Indie Game Dev with AI
+
+Indie Game Dev with AI：开发者Sandro Maglione利用AI零代码完成《Inkline Town》和《Spirit Call》两款游戏，核心在于采用实体组件系统（ECS）架构，通过类型检查、无头模拟和数学模型构建自动化验证体系。
+
+AI擅长重复性资产生成，但无法替代人类对游戏趣味性和平衡性的把控，开发者需通过试玩发现漏洞（如经济系统失衡）并转化为数学约束，实现从“编码”到“品味把控”的角色转变。
+
+📎 [原文链接](https://www.sandromaglione.com/articles/indie-game-development-with-ai)
+
+
+### 6. Airgap-check 开源工具
+
+Airgap-check 开源工具：Airgap-check 是 GitHub 开源工具，用于扫描 AI 应用在离线环境下是否静默下载数据，帮助开发者排查隐私泄露风险。
+
+📎 [原文链接](https://github.com/humanethq/airgap-check)
+
+
+### 7. Samir Sarwar LLM Inference 笔记
+
+Samir Sarwar LLM Inference 笔记：Samir Sarwar 整理了一份关于 LLM 推理的 85 页手写笔记，涵盖 vLLM 等核心内容，GitHub 仓库已开源。
+
+📎 [原文链接](https://github.com/samir-sarwar/samir-vllm)
+
+
+### 8. AWS 发布企业级智能体参考架构
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-10/ef924df2efe8.png)
+
+AWS 发布企业级智能体参考架构：AWS 发布 Pluggable Agentic AI Framework，基于 Amazon Bedrock AgentCore 提出七层可组合参考架构，涵盖数据、模型、编排、安全、应用、可观测性及运营。
+
+架构强调从原型到生产规模的落地，通过集中式智能体注册表、细粒度访问控制及自动化回归测试，解决多智能体并发、安全护栏及成本控制等生产难题。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/pluggable-agentic-ai-framework-a-seven-layer-composable-enterprise-agentic-ai-reference-architecture-on-amazon-bedrock-agentcore/)
+
+
+### 9. JoesProxy 开源 AI 网络工作台
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-10/c457132bea44.webp)
+
+JoesProxy 开源 AI 网络工作台：JoesProxy 是一款面向 AI 智能体的免费开源网络工作台，支持 Mac 平台，允许智能体通过本地 MCP 服务器直接检查应用网络流量、模拟弱网环境及修改响应数据。
+
+该工具采用 MIT 许可证，提供紧凑型 HUD 悬浮提示，支持智能体自动发现失败请求、建议重试方案并验证结果，同时具备 HLS 视频流测试及边缘计算求和等高级功能。
+
+📎 [原文链接](https://www.joesproxy.com/)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. 英伟达 CEO 涉间谍丑闻
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-10/f4d6fb771458.jpg)
+
+英伟达 CEO 涉间谍丑闻：英伟达 CEO 杰森·黄因与被指为中国间谍的前高管爱丽丝·黄的婚外情，面临美国国会质询及内部调查。此事可能影响英伟达游说放宽对华 AI 芯片出口管制的努力，并引发对其对华业务合规性的信任危机。
+
+📎 [原文链接](https://techcrunch.com/2026/11/09/jensen-huangs-affair-with-alleged-chinese-spy-puts-nvidias-china-ambitions-under-scrutiny/)
+
+
+### 2. ChatGPT Enterprise 上线 AWS Marketplace
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-10/d37cca61697b.webp)
+
+ChatGPT Enterprise 上线 AWS Marketplace：OpenAI 宣布 ChatGPT Enterprise 正式在 AWS Marketplace 上线，企业可通过现有 AWS 账户直接购买、管理和计费，无需新增采购流程。
+
+该版本包含 ChatGPT、Codex 等全套企业功能，与 OpenAI 官网同步更新，同时与 Amazon Bedrock 上的模型服务形成互补，满足企业不同场景需求。
+
+📎 [原文链接](https://openai.com/index/chatgpt-enterprise-aws-marketplace)
+
+
+### 3. Anthropic 斥资34亿美元购涡轮机
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-10/aad6679ed889.jpg)
+
+Anthropic 斥资34亿美元购涡轮机：Anthropic 为应对算力电力紧缺，斥资34亿美元直接购买 Caterpillar 1.7GW 天然气涡轮机，打破以往仅租用算力的策略。
+
+此举旨在锁定发电能力以规避电网排队和供应商资金断裂风险，预计交付排至2030年代初，反映AI行业对能源基础设施的依赖加剧。
+
+📎 [原文链接](https://techcrunch.com/2026/11/09/anthropic-joins-ais-natural-gas-frenzy-buys-3-4b-worth-of-turbines/)
+
+
+### 4. Google TPU 8i Max 与 8tx 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-10/26cad9f369d7.webp)
+
+Google TPU 8i Max 与 8tx 发布：Google 发布两款第八代 TPU 系统：TPU 8i Max 将 2 个 TPU 8i 芯片封装，算力、SRAM 和 HBM 带宽翻倍，适合超长上下文推理；TPU 8tx 结合 TPU 8t 与 AMD EPYC CPU，延迟降低 2 倍，主打保密计算。
+
+配套软件 TPU Sync 在 Qwen3 235B 上使 KV 传输延迟降至 230 毫秒，TTFT 降低 60%-90%。两款硬件预计 2027 年上线。
+
+📎 [原文链接](https://www.marktechpost.com/2026/11/09/google-tpu-8i-max-tpu-8tx/)
+
+
+### 5. 字节算力供应商DayOne拟IPO
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-10/07e1e05fbb6b.jpg)
+
+字节算力供应商DayOne拟IPO：字节跳动算力供应商DayOne正式向美国SEC提交F-1文件，计划在2026年于纳斯达克上市，目标最高融资约50亿美元，潜在估值约200亿美元。
+
+DayOne前身为万国数据国际业务，2022年成立，2025年独立，主营超大规模数据中心开发运营。
+
+2026年上半年收入达5.12亿美元，同比增长238%，但净亏损约7720万美元，字节跳动贡献近70%收入。
+
+📎 [原文链接](https://zhidx.com/p/603164.html)
+
+
+### 6. OpenAI 控制中心上线
+
+OpenAI 控制中心上线：OpenAI 发布控制中心（Control Room），用于追踪并停止研究基础设施中的模型工作负载。该系统与不对齐监控系统集成，在检测到安全风险时，能在35秒内通过拒绝推理请求来停止模型输出。
+
+采用故障安全（fail-closed）设计，即使控制中心宕机也会阻止模型输出。所有前沿模型研究工作负载已部署该系统，旨在防止模型产生有害内容。
+
+📎 [原文链接](https://openai.com/index/control-room)
+
+
+### 7. Google Gemini 因协助自杀被诉
+
+Google Gemini 因协助自杀被诉：Google 因 Gemini 被指控协助一名青少年规划自杀而遭起诉，起诉书称该功能未有效限制未成年人访问，且未能识别或警告自杀相关对话，涉嫌过失。
+
+事件引发加州及多地公立学校对 AI 工具进行严格审查，Google 随后宣布修订课堂政策，默认关闭教育账户的 AI 工具访问权限。
+
+📎 [原文链接](https://mashable.com/tech/google-gemini-chromebook-lawsuit-teen-planned-suicide)
+
+
+### 8. Fireworks AI 遭黑客攻击
+
+Fireworks AI 遭黑客攻击：Nvidia 投资的 AI 推理平台 Fireworks AI 在两周内遭遇第二次黑客攻击，官方已通知客户。
+
+📎 [原文链接](https://www.bloomberg.com/news/articles/2026-11-09/nvidia-backed-fireworks-ai-notifies-customers-of-its-second-hack-in-weeks)
+
+
+### 9. AI Labs 变相涨价
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-10/b38cb2f81790.webp)
+
+AI Labs 变相涨价：OpenAI GPT Image 2.6 与 Anthropic Claude Fable 5.2 在每 Token 单价不变或降低的情况下，通过大幅增加输出 Token 数量变相涨价。实测显示，GPT Image 2.6 生成同一图片的 Token 数是 2.5 的 3.3 倍，成本翻 3 倍；Claude Fable 5.2 成
+
+主要手段包括模型内部膨胀输出 Token 以及 Anthropic 更改分词器导致计数增加。开发者在调用 API 时需重点关注 usage.output_tokens 字段，避免在同等效果下支付更高费用。
+
+📎 [原文链接](https://playcode.io/blog/ai-labs-raise-prices-without-raising-prices)
+
+
+### 10. Handshake AI 年收入达10亿美元
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-10/12bbe2b711a1.webp)
+
+Handshake AI 年收入达10亿美元：Handshake AI 在一年内实现 10 亿美元年化收入，其团队在 Latent Space 播客中演示了前沿实验室采购的专家数据，涵盖金融智能体、生物图像解读和编程安全评估。
+
+具体场景包括：金融领域智能体处理银行邮件与 Excel 计算，生物领域 VIALS 基准测试脑组织图像识别，以及编程领域的安全模拟与工具调用评估。
+
+📎 [原文链接](https://latent.space/p/handshake/)
+
+
+### 11. 斯科特·维纳当选国会议员
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-10/d6ea4b5716fa.jpg)
+
+斯科特·维纳当选国会议员：加州参议员斯科特·维纳当选接替南希·佩洛西的国会议员，其政治生涯以AI监管为核心，曾起草SB 1047法案。
+
+他主张建立联邦AI监管机构，强调递归自我改进风险，并支持测试审计与紧急停止开关，但受限于特朗普政府态度。
+
+📎 [原文链接](https://www.technologyreview.com/2026/11/09/1148182/nancy-pelosis-replacement-is-ready-to-regulate-ai/)
+
+
+### 12. Microsoft Foundry 托管计算发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-10/6eec99761fcb.jpg)
+
+Microsoft Foundry 托管计算发布：Microsoft Foundry 推出托管计算服务，允许团队在保留模型和容量控制权的同时，由微软管理底层推理环境运维。
+
+该服务支持 AMD Instinct MI300X GPU，利用其 192GB 高带宽内存优化大模型部署，AT&T 已用于每月处理 7000 亿 Token 的 Phi-4 模型。
+
+通过托管服务，开发者可平衡延迟与吞吐量，无需维护完整推理栈，同时享受微软的安全补丁与基础设施优化。
+
+📎 [原文链接](https://venturebeat.com/orchestration/how-to-run-open-models-in-production-without-owning-the-serving-stack)
+
+
+### 13. 新华社优必选发布人形主播
+
+新华社优必选发布人形主播：新华社联合优必选发布“新宇”和“新颜”两款真人大小人形机器人主播，由张艺谋担任首席形象设计师，专为新闻播报场景定制。
+
+机器人接入新华社“新华锐点”语料库，通过“脑-表情-控制”技术链实时检索权威信息，确保内容安全可控，定位为辅助编辑的播报工具。
+
+📎 [原文链接](https://www.unite.ai/xinhua-unveils-bionic-humanoid-robot-news-anchors-with-ubtech/)
+
+
+### 14. Agent Ready 发布 LLM API 排行榜
+
+Agent Ready 发布 LLM API 排行榜：Agent Ready 发布面向 AI 智能体构建者的 LLM API 排行榜，OpenAI API 以 8.45 分位居第一，Anthropic Claude API 和 OpenAI Realtime API 分列二、三位。
+
+该榜单专为语音编码者和智能体开发者设计，涵盖 LLM APIs、Agent 框架、记忆与 RAG 等分类，评分侧重模型在 Agent 场景下的工具调用、实时性及代码生成能力。
+
+📎 [原文链接](https://rankings.leffke.com/categories/llm-apis)
+
+
+### 15. Wabi 获5000万美元融资
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-10/746ea4f23c2c.png)
+
+Wabi 获5000万美元融资：Wabi 是一款将即时通讯、智能体与轻量化小程序整合的独立 App，其核心创新在于 AI 助手作为固定群成员，能根据对话内容实时生成并嵌入聊天窗口的工具（如投票、行程表）。
+
+该产品由 Replika 创始人 Eugenia Kuyda 创立，近期完成 5000 万美元融资，投后估值达 12.5 亿美元，主打“按生活场景分线程管理”以解决群聊信息混乱问题。
+
+📎 [原文链接](https://www.tmtpost.com/8198165.html)
+
+
+### 16. AI电商应用现状分析
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-10/746ea4f23c2c.png)
+
+AI电商应用现状分析：2026年双十一期间，阿里、京东、抖音等平台全面接入AI工具，商家端效率提升显著，如素材制作成本降低90%以上，运营效率提升约三倍。
+
+然而，AI带来的效率红利并未转化为对等的GMV增长，三只松鼠等头部企业营收甚至出现下滑，反映出当前电商市场缺乏增量，AI主要解决供给端效率而非消费需求。
+
+📎 [原文链接](https://www.tmtpost.com/8198668.html)
+
+
+### 17. 欧洲物流仓库抢电难
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-10/746ea4f23c2c.png)
+
+欧洲物流仓库抢电难：欧洲物流仓库面临严重的电力短缺，自动化拣选、冷链和电动卡车充电使用电需求激增十倍，电网扩容排队长达十年。
+
+数据中心因能一次性消耗大量电力，在争夺电网接入名额上占据优势，导致 Prologis 等巨头将大量资金投向数据中心而非仓库。
+
+物流企业被迫通过安装储能电池、签订非固定容量合同等方式管理用电曲线，以缓解电网拥堵并避免扩容等待。
+
+📎 [原文链接](https://www.tmtpost.com/8197848.html)
+
+
+### 18. Jellyfish 揭示 Tokenmaxxing 真相
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-10/6d4a95ffd02a.webp)
+
+Jellyfish 揭示 Tokenmaxxing 真相：Jellyfish 基于 1.2 万名开发者 Q1 数据分析发现，AI 编程令牌使用量与产出并非线性正比。重度用户（第 90 百分位）每月消耗 3.8 亿令牌，每个合并 PR 成本高达 89.32 美元，而低用量用户仅为 0.28 美元。
+
+数据显示，为获得约两倍的 PR 吞吐量，需消耗近十倍令牌。Jellyfish 建议工程团队避免盲目追求令牌最大化，应优化使用效率，将资源集中在提升中等用量用户的广泛采用上。
+
+📎 [原文链接](https://jellyfish.co/blog/is-tokenmaxxing-cost-effective-new-data-from-jellyfish-explains/)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
