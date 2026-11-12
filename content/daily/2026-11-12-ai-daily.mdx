@@ -1,0 +1,558 @@
+---
+title: "11.12 OpenAI收入破百亿，MiniMax开源SOTA | AI 早报"
+date: "2026-11-12"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 11.12 OpenAI收入破百亿，MiniMax开源SOTA | AI 早报
+
+> 2026年11月12日 周四 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- OpenAI 季度收入首破100亿美元，环比增近50% —— OpenAI 商业化里程碑，营收增速显著
+- Fireworks AI 存储遭入侵，Notion AI 聊天记录泄露 —— Notion 用户需警惕数据泄露
+- Gemini Decision 1 全模态决策API，支持音视频PDF —— Google 补齐多模态决策模型短板
+- MiniMax H3-Image 10秒生成4K图，开源SOTA —— 国产开源图像模型性能追平国际一线
+- OpenAI Q3收入100亿美元，估值1.25万亿美元融资 —— OpenAI营收爆发式增长，估值与亏损并存
+
+**今日共收录 48 条动态，涵盖 模型与产品 12条、开源热门 5条、技术洞察 12条、行业动态 19条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. Google Gemini Decision 1 发布
+
+Google Gemini Decision 1 发布：Google 发布 Gemini Decision 1 决策模型 API，支持文本、图片、音频、视频和 PDF 全模态输入，提供是/否、选择、评分量表三种决策类型。
+
+定价为每百万输入令牌 10 美分（输出免费），支持多模态内容理解，适合需要结构化决策输出的业务场景。
+
+📎 [原文链接](https://simonwillison.net/2026/Nov/11/gemini-decisions-api/)
+
+
+### 2. MiniMax H3-Image 开源
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-12/eac2263c298a.png)
+
+MiniMax H3-Image 开源：MiniMax 发布新一代图像生成模型 H3-Image 并同步开源模型权重，实测在开源图像模型中达到 SOTA 水平。
+
+高速版可在 10 秒左右生成 4096×4096 像素的 4K 图像，耗时仅为市面主流模型的 1/5，支持最多 16 张参考图融合及复杂指令遵循。
+
+实测显示其在真实摄影质感、风格转换、游戏场景复刻及中文文字排版上表现优异，光影与物理规律理解能力强。
+
+📎 [原文链接](https://zhidx.com/p/609469.html)
+
+
+### 3. AWS 推出官方模拟器 aws-emulator
+
+AWS 推出官方模拟器 aws-emulator，允许开发者在本地克隆 AWS 服务进行无 API 密钥的测试。该项目由 AI 代理协作完成，使用 Rust 编写，前三周已有近 3 万次提交，目前需依赖 Docker 在 macOS 或 Windows 上运行。
+
+该项目由 Swaminathan Sivasubramanian 在 Werner Vogels 博客发文详细介绍，旨在解决开发者在本地环境测试 AWS 服务的痛点，未来有望支持更多平台和原生二进制运行。
+
+📎 [原文链接](https://simonwillison.net/2026/Nov/11/aws-emulator/)
+
+
+### 4. AWS Bedrock AgentCore 推出 Web Search API
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-12/467dbf0c20aa.png)
+
+AWS Bedrock AgentCore 推出 Web Search API：AWS 在 Amazon Bedrock AgentCore 上推出 Web Search API，开发者可通过单次 API 调用直接搜索 Amazon 运营的网络索引，获取包含标题、URL、时间及文本摘录的排名结果。
+
+该 API 支持域名过滤、发布时间范围筛选及 1-25 条结果配置，无需创建网关资源，兼容 LangChain 等框架，适用于自定义智能体编排及非智能体场景。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/introducing-the-web-search-api-on-amazon-bedrock-agentcore/)
+
+
+### 5. Databricks Genie 智能体升级
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-12/8a149b30feee.webp)
+
+Databricks Genie 智能体升级：Databricks 发布 AI 智能体 Genie 更新版，基于平台本体论实现无人监督的复杂多步骤任务执行。CEO Ali Ghodsi 演示其用于分析员工满意度、复盘销售失败及准备播客采访，旨在解决企业规模扩大后管理层信息不对称问题。
+
+针对企业 AI 成本风险，Databricks 提供 Unity Gateway 产品，支持设置使用限制并自动替换为低成本开源模型，确保智能体在业务层面的可控性与经济性。
+
+📎 [原文链接](https://techcrunch.com/2026/11/11/databricks-new-ai-agent-tells-ceo-ali-ghodsi-the-unvarnished-truth/)
+
+
+### 6. 腾讯元宝搜索发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-12/151e4a9e4165.png)
+
+腾讯元宝搜索发布：腾讯正式发布面向普通用户的搜索产品“元宝搜索”，通过独立网站和QQ浏览器入口提供服务，主打权威信源优先与AI深度融合。
+
+产品接入微信公众号、视频号等内容源，支持AI总结生成、连续追问及原始信息溯源，并针对汽车、影视、健康等场景推出结构化卡片。
+
+商业化方面明确广告区域标识并提供收起功能，承诺尽量减少对用户体验的干扰，底层能力与10月开放的B端API共享。
+
+📎 [原文链接](https://zhidx.com/p/609206.html)
+
+
+### 7. Fivetran CLI 发布 1.0 版
+
+Fivetran CLI 发布 1.0 版：Fivetran 发布 CLI 1.0 版，支持通过命令行创建连接、触发同步及部署自定义连接器，实现终端原生数据流水线管理。
+
+该工具专为 AI 代理设计，可无缝集成 Claude Code、Codex 等代码驱动工具及 MCP 服务器，实现从工单到数据模型的全自动闭环。
+
+📎 [原文链接](https://www.fivetran.com/blog/composing-data-pipelines-in-an-ai-native-workflow)
+
+
+### 8. aiXcompact-4B 开源
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-12/b5ee9408b349.png)
+
+aiXcompact-4B 开源：北大系创企硅心科技开源4B参数上下文压缩模型aiXcompact-4B，专为编程Agent长程研发任务设计，支持单张A100-40GB私有化部署。
+
+该模型通过结构化判别机制精简历史轨迹，在Terminal-Bench基准测试中准确率与DeepSeek-V4-Pro持平，单次API调用费用降低97%以上。
+
+📎 [原文链接](https://zhidx.com/p/609168.html)
+
+
+### 9. TrustedRouter 推出加密融合模型
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-12/f68be04dfc95.png)
+
+TrustedRouter 推出加密融合模型：TrustedRouter 发布三款基于机密计算的融合模型，通过并行调用多个模型并由评判者合成答案，实现隐私保护与成本优化。
+
+Prometheus 4.0 和 Liberty 4.0 分别整合 6 个开源模型和 3 个美国模型，成本较 Claude Fable 5.1 降低约 60%；Polyphemus 1.0 为单模型选择器，节省 60%-80%。
+
+所有模型均支持硬件级加密路由，确保提示词在传输和处理过程中不被基础设施提供商读取，适合对数据隐私有严格要求的企业场景。
+
+📎 [原文链接](https://venturebeat.com/technology/trustedrouter-launches-three-new-encrypted-fusion-models-that-combine-multiple-llms-including-one-exclusively-with-u-s-model-providers)
+
+
+### 10. ScoutCode 开源 AI 编程执行环境
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-12/2329c325912e.webp)
+
+ScoutCode 开源 AI 编程执行环境：ScoutCode 是一款开源的 AI 编程执行环境（Harness），支持 Windows 和 Linux，提供 4 个完全免费的编程模型且无需绑卡。
+
+核心功能包括自动模型切换、基于 Markdown 的主动记忆管理、5 种权限模式及 MCP 桥接，支持 Claude、GPT、DeepSeek 等主流模型。
+
+应用基于 Rust 开发，体积仅 18MB，内存占用约 120MB，可通过 GitHub 或终端脚本安装。
+
+📎 [原文链接](https://scoutcode.dev)
+
+
+### 11. AWS 发布 Codex 集成指南
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-12/c52002d0d299.png)
+
+AWS 发布 Codex 集成指南：AWS 发布 OpenAI Codex 在 Amazon Bedrock 上的集成指南，提供原生访问、AgentCore Gateway 和 LLM Gateway 三种部署路径，支持 GPT-5.6 Sol 模型。
+
+该指南开源了配置代码，帮助团队通过 IAM Identity Center 实现最小权限控制，并集成 OpenTelemetry 进行可观测性与成本分配。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/openai-codex-on-amazon-bedrock/)
+
+
+### 12. Google Labs 发布 Tabletop
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-12/43a63dbf48c6.webp)
+
+Google Labs 发布 Tabletop：Google Labs 推出实验项目 Tabletop，提供可定制的协作空间，支持小组共同规划、娱乐和决策。
+
+用户可通过链接、文件或提示词生成旅行行程、费用分摊器等模板，并邀请成员实时协作，目前美国用户可注册等候。
+
+📎 [原文链接](https://blog.google/innovation-and-ai/models-and-research/google-labs/tabletop/)
+
+
+---
+
+## 🔥 开源热门
+
+### 1. dsh-superagent-prototype 自主智能体原型
+
+⭐ 16,400 stars · 今日增长 3,751 stars
+
+该项目展示了迈向更自主智能体系统的原型设计，旨在提升AI代理的独立决策与执行能力，适用于探索下一代自主智能体架构及自动化工作流开发的开发者。
+
+📎 [原文链接](https://github.com/deepseek-ai/dsh-superagent-prototype)
+
+
+### 2. unslop 专业UI美化技能
+
+⭐ 7,300 stars · 今日增长 1,336 stars
+
+unslop 是专为 Claude 设计的技能，旨在消除 AI 生成代码的粗糙感。它能将带有明显 AI 痕迹的界面转化为专业级设计，解决 Vibecoded 代码质量低的问题，适合追求高品质 UI 的开发者使用。
+
+📎 [原文链接](https://github.com/heydamir/unslop)
+
+
+### 3. Mika Android AI代理
+
+⭐ 6,000 stars · 今日增长 812 stars
+
+Mika是专为Android设计的设备端AI代理，能自主操作应用和网页，帮助用户自动化完成各类复杂任务，适合追求高效手机交互体验的开发者与极客用户。
+
+📎 [原文链接](https://github.com/wangzan101/Mika)
+
+
+### 4. pixelfx 像素艺术效果库
+
+⭐ 4,100 stars · 今日增长 638 stars
+
+pixelfx 提供244种由代码实现的像素艺术效果，并附带Claude Code技能，帮助开发者快速生成和创作独特的像素视觉特效，适合前端与创意编程场景。
+
+📎 [原文链接](https://github.com/patch-gg/pixelfx)
+
+
+### 5. Kimi K3 轻量级 C99 推理实现
+
+⭐ 9,800 stars · 今日增长 453 stars
+
+该项目提供 Kimi K3 模型的便携式 C99 实现，仅需 8.24 GB 内存和单 CPU 即可运行，无需 BLAS、框架或 GPU，极大降低了大模型部署门槛，适合资源受限环境下的快速推理测试。
+
+📎 [原文链接](https://github.com/FareedKhan-dev/kimi-k3-in-c)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. AWS SageMaker HyperPod 发布 SDC 检测方案
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-12/b6394b0acebf.png)
+
+AWS SageMaker HyperPod 发布 SDC 检测方案：AWS 发布针对 SageMaker HyperPod 的静默数据损坏（SDC）检测与恢复方案，通过 PyTorch DDP 训练循环集成非有限梯度检查、环形重放审计和权重指纹比对三项技术，自动定位并替换故障 GPU 节点。
+
+该方案解决了传统硬件监控无法捕获计算路径错误的痛点，支持从嫌疑窗口前的检查点自动恢复训练，完整代码已开源至 GitHub。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/detecting-and-recovering-from-silent-data-corruption-on-amazon-sagemaker-hyperpod/)
+
+
+### 2. Hugging Face 发布 200 个 WebGPU Kernels
+
+Hugging Face 发布 200 个 WebGPU Kernels：Hugging Face 发布 200 个 WebGPU 内核，旨在通过浏览器原生支持加速本地 AI 推理，降低部署门槛。
+
+📎 [原文链接](https://huggingface.co/blog/webgpu-kernels)
+
+
+### 3. Anathem 开源本地编码代理内存
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-12/0581b0d7b823.jpg)
+
+Anathem 开源本地编码代理内存：Anathem 是开源的编码代理本地内存工具，采用单二进制文件加 SQLite 架构，无需 LLM 和后台守护进程。
+
+项目支持混合 BM25 与静态嵌入搜索，兼容跨语言场景，并内置 MCP 服务器功能，发布版本使用 minisign 签名。
+
+📎 [原文链接](https://gitlab.com/__alexander__/anathem)
+
+
+### 4. Prefixwise 开源 LLM 缓存分析工具
+
+Prefixwise 开源 LLM 缓存分析工具：Prefixwise 是 GitHub 用户 tejachavali 开源的 LLM 缓存分析工具，用于诊断请求为何未命中 Prompt Cache。该工具通过可视化或日志形式展示前缀匹配情况，帮助开发者优化 Prompt 结构以提升缓存命中率。
+
+📎 [原文链接](https://github.com/tejachavali/prefixwise)
+
+
+### 5. Draw Things LLM Prefill 优化实践
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-12/868929b26428.png)
+
+Draw Things LLM Prefill 优化实践：Draw Things 团队分享在 Apple Silicon 上优化 LLM Prefill 的实战经验，指出 SSD 流式传输、数值精度敏感性及内核特化是三大核心挑战。
+
+实测显示 M 芯片下 SSD 带宽限制导致长提示词加载慢，建议基于激活专家数量动态切换加载策略；同时发现长序列下 INT8 注意力精度损失严重，需改用 BF16 或混合精度。
+
+针对不规则序列长度，团队放弃固定形状内核特化，改用运行时读取维度的通用内核，虽牺牲少量性能但解决了小形状下超 25% 的性能下降问题。
+
+📎 [原文链接](https://engineering.drawthings.ai/p/llm-prefill-what-we-got-wrong)
+
+
+### 6. Llmtee 轻量级 LLM 代理开源
+
+Llmtee 轻量级 LLM 代理开源：Llmtee 是一个轻量级 LLM 代理，通过修改 Base URL 即可无侵入记录 Token 用量、成本、延迟及首 Token 时间，不阻塞主请求路径。
+
+支持 OpenAI/Anthropic 等兼容 API，提供严格的 Key 级预算控制（超限额返回 429），p99 延迟仅增加 0.2ms，采用 Apache-2.0 协议。
+
+📎 [原文链接](https://github.com/garritfra/llmtee)
+
+
+### 7. TypeSafe Jev 预过滤降低 LLM 成本
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-12/c493a38f839b.png)
+
+TypeSafe Jev 预过滤降低 LLM 成本：TypeSafe Jev 是定价为 0.042 美元/百万 Token 的分类 API，通过 0.70 阈值对新闻候选进行相关性预筛选，将前沿模型（如 Claude Sonnet 4.6）的输入 Token 减少 16–18%。
+
+盲测显示过滤后简报质量与原始数据无显著差异，在前沿模型定价下，每 1,000 批次（200 篇文章）可净节省约 10–17 美元，适合高成本合成场景。
+
+该方案不适用于 Mini 类低价模型（如 GPT-5 Mini），因筛选成本高于节省，需根据下游模型定价动态调整阈值。
+
+📎 [原文链接](https://currentsapi.services/en/blog/cut-llm-token-costs-typesafe-jev-prefiltering)
+
+
+### 8. ngrok 详解 vLLM 推理优化
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-12/e7ab36cb418a.jpg)
+
+ngrok 详解 vLLM 推理优化：ngrok 发布深度技术文章，解析 vLLM 如何通过 PagedAttention 和 Prefix Caching 解决 LLM 推理中的显存碎片与重复计算问题。
+
+文章详细拆解了 vLLM 的 KV Cache 管理器与调度器机制，对比了静态批处理与连续批处理的性能差异，适合后端与 AI 基础设施开发者阅读。
+
+📎 [原文链接](https://ngrok.com/blog/vllm)
+
+
+### 9. AWS Bedrock AgentCore 自动化更新
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-12/61c9d262f574.png)
+
+AWS Bedrock AgentCore 自动化更新：AWS 发布基于推送的架构，利用 CloudTrail、EventBridge 和 Lambda 自动化更新 Amazon Bedrock AgentCore 中的 MCP 服务器注册表。
+
+该方案通过 AgentCore Identity 进行安全 OAuth 认证，自动检测 `UpdateAgentRuntime` 事件并同步工具模式，解决元数据过时导致的信任问题。
+
+支持单账户和多账户部署，开发者无需手动维护目录，确保注册表记录与运行时环境实时一致。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/automating-aws-agent-registry-updates-with-push-based-architecture/)
+
+
+### 10. llm 0.37.2 发布
+
+llm 0.37.2 发布：Simon Willison 的命令行 LLM 工具发布 0.37.2 版本，修复了通过 extra-openai-models.yaml 配置第三方 OpenAI 兼容端点时的安全漏洞。此前若密钥未存储或调用特定模型，可能导致 API 密钥意外发送至非预期提供商。
+
+📎 [原文链接](https://simonwillison.net/2026/Nov/11/llm/)
+
+
+### 11. CodeGraphy v2.1 发布
+
+CodeGraphy v2.1 发布：CodeGraphy 是一款代码架构可视化工具，v2.1 版本新增 11 个 MCP 工具并支持交互式架构图谱，相比旧版本 LLM Token 消耗降低 85%。
+
+该工具通过 GitHub 开源，旨在帮助开发者更直观地理解代码结构，同时显著降低使用大模型分析代码的成本。
+
+📎 [原文链接](https://github.com/Vindettobkb/CodeGraphy-Desktop)
+
+
+### 12. LLM推理9大关键指标详解
+
+LLM推理9大关键指标详解：本文详解LLM推理的9个核心指标，涵盖TTFT、TPOT、E2E等延迟指标及RPS、TPS、Goodput等吞吐量指标，提供计算公式与评估方法。
+
+文章指出高吞吐量不等于快体验，通过Goodput（满足SLO的请求速率）和P99尾部延迟分布，帮助开发者精准定位推理瓶颈并优化系统性能。
+
+📎 [原文链接](https://www.kdnuggets.com/9-key-llm-inference-metrics-explained-in-5-minutes)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. OpenAI 季度收入首破100亿美元
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-12/261f5362c78a.jpg)
+
+OpenAI 季度收入首破100亿美元：据彭博社报道，OpenAI 季度收入首次突破 100 亿美元，较此前据报的 67 亿美元增长近 50%，标志着其从上半年低迷中强劲复苏。
+
+得益于最新 AI 模型需求、更严格的价格策略及企业级产品推进，其年收入运行率已达 500 亿美元，但 Anthropic 在云收入上仍领先。
+
+📎 [原文链接](https://techcrunch.com/2026/11/11/openais-quarterly-revenue-reportedly-crosses-10b-for-the-first-time/)
+
+
+### 2. Fireworks AI 存储遭入侵
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-12/f68be04dfc95.png)
+
+Fireworks AI 存储遭入侵：Fireworks AI 存储系统被攻破，导致 Notion AI 聊天记录等数据泄露。攻击者利用第三方云提供商漏洞，访问了默认未开启“零数据保留”策略的批处理推理和训练数据。
+
+Notion 确认受影响工作区不足 1%，建议将相关数据视为已泄露。Fireworks 官方声明推理服务未受影响，但 CEO 承认批处理推理数据暴露，涉及 LLMJacking 攻击。
+
+📎 [原文链接](https://venturebeat.com/security/attackers-breached-the-fireworks-ai-storage-where-notion-ai-chats-sat-outside-zero-data-retention)
+
+
+### 3. OpenAI Q3收入破670亿
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-12/d4f6ea825a68.png)
+
+OpenAI Q3收入破670亿：OpenAI第三季度收入达100亿美元（约672亿元），同比增长2.6倍，环比增速近50%，其中企业业务翻倍，消费者业务增长20%，两者各占约一半收入。
+
+OpenAI正推进估值1.25万亿美元的新一轮融资，已完成首批110亿美元交割，同时披露付费用户近1亿，广告业务年化收入达10亿美元。
+
+尽管收入提速，但Q3经营亏损增至109亿美元，环比扩大8%，调整后经营利润率从-150%改善至-109%，亏损绝对值仍在增加。
+
+📎 [原文链接](https://zhidx.com/p/609335.html)
+
+
+### 4. Anthropic IPO 路演曝光多芯片战略
+
+Anthropic IPO 路演曝光多芯片战略：Anthropic 在 IPO 路演中披露，Claude 已实现 AWS Trainium、Google TPU、NVIDIA 和 AMD GPU 四大芯片家族的全栈支持。
+
+其自研工具 Mythos 仅用三天、几乎无需人工干预便让 Claude 在 AMD 上运行，并编写了近 100% 的内核。
+
+公司强调通过“计算乘数”提升有效算力，并计划利用 Claude 自主发现更多乘数以加速递归自我改进。
+
+📎 [原文链接](https://simonwillison.net/2026/Nov/11/anthropic-ipo-roadshow/)
+
+
+### 5. 字节跳动筹备豆包个人AI智能体
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-12/e0a9bb026a98.jpg)
+
+字节跳动筹备豆包个人AI智能体：据彭博社报道，字节跳动正筹备类似 Meta Muse 的个人 AI Agent 产品，内部代号 Spell 项目由豆包手机助手团队负责，计划将功能整合进豆包 App。
+
+该产品旨在让豆包从聊天框走向主动规划与执行任务，利用豆包 4.19 亿月活用户及抖音推荐系统优势，实现从内容推荐到服务预订的全链路闭环。
+
+📎 [原文链接](https://www.ifanr.com/1689016?utm_source=rss&utm_medium=rss&utm_campaign=)
+
+
+### 6. Amazon SageMaker 双向流式用量定价
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-12/27b6889e1b99.png)
+
+Amazon SageMaker 双向流式用量定价：Amazon SageMaker AI 推出双向流式推理的基于用量定价功能，解决实时语音 AI 长连接场景下的软件计费难题。
+
+通过新增配套元数据 WebSocket 连接，模型提供商可在会话期间实时上报消耗单位，实现 AWS Marketplace 软件费用与实际用量对齐。
+
+Deepgram 为首批合作伙伴，该功能支持按音频秒数等维度计费，端点基础设施费用仍单独计算。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/introducing-usage-based-pricing-for-amazon-sagemaker-ai-bidirectional-streaming/)
+
+
+### 7. Anthropic IPO估值1.4万亿美元
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-12/f493b9bcc014.jpg)
+
+Anthropic IPO估值1.4万亿美元：Anthropic IPO定价区间为每股70至78美元，估值达1.404万亿美元，计划11月19日在纳斯达克交易。
+
+同期发布Mythos 5.2和Fable 5.2模型，Fable价格降至每百万Token 8美元，并警告逼近递归自我改进阈值。
+
+Google发布Gemini 4 Carbon主打网络安全，Meta推出Muse Wonder智能体应用，微软展示2T参数MAI-Base-2模型。
+
+📎 [原文链接](https://lastweekin.ai/p/last-week-month-in-ai-347-nvidias)
+
+
+### 8. 声数科技 Vidu 电影票房惨淡
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-12/746ea4f23c2c.png)
+
+声数科技 Vidu 电影票房惨淡：声数科技首部AI辅助故事片《三星堆：未来启示录》上映11天票房仅约168万元，平均每场观影人数不足一人，未能证明其Vidu模型在长叙事和真人表演上的商业价值。
+
+尽管Vidu在广告和电商等受控场景已有ARR超2000万美元，但面对可灵等竞品在一致性上的优势及价格战，声数科技正试图转型“世界模型”以支撑超20亿美元估值，IPO窗口或推迟至明年。
+
+📎 [原文链接](https://www.tmtpost.com/8201282.html)
+
+
+### 9. AWS Quick 发布 AI-PDLC 框架
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-12/4802db31f5b6.png)
+
+AWS Quick 发布 AI-PDLC 框架：AWS 发布 AI-PDLC 框架，通过 AWS Quick 中的 6 个专用智能体（发现、优先级排序、逆向工作法、规范生成、设计）自动化产品开发生命周期上游流程。
+
+该框架连接 Slack、Jira 等企业数据源，自动生成痛点看板、PR/FAQ 及可点击原型，并通过 Agent Client Protocol (ACP) 将规范交付给编码智能体，全程保留人工审批关卡。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/accelerating-product-development-with-ai-driven-lifecycle-management-ai-pdlc-in-aws-quick/)
+
+
+### 10. 月之暗面发布托管智能体
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-12/746ea4f23c2c.png)
+
+月之暗面发布托管智能体（Hosted Agents），将云沙箱、会话记忆、工具链及断线恢复等基础设施打包出租，实现7×24小时无人值守运行。
+
+该模式标志着AI计价锚点从按Token计费转向按“数字员工工时”计费，企业采购预算科目正从IT支出向人力支出迁移。
+
+📎 [原文链接](https://www.tmtpost.com/8201187.html)
+
+
+### 11. CoreWeave 调整融资策略
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-12/9edac74715be.jpg)
+
+CoreWeave 调整融资策略：CoreWeave 第三季度营收 36.6 亿美元，为缓解债务压力，公司转向依赖客户预付款和短期高溢价合同融资，预计未来三个月获 90 亿美元预付款。
+
+公司通过 DDTL 5.5 贷款支持短期交易，短期合同定价超 4000 万美元/兆瓦/年，高于长期合同的 2000-2500 万美元，但面临债券投资者对现金流稳定性的担忧。
+
+📎 [原文链接](https://techcrunch.com/2026/11/11/coreweave-turns-to-customer-prepayments-shorter-contracts-to-fund-ai-growth/)
+
+
+### 12. 联合航空禁止 AI 代理订票
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-12/9fad9eb51954.jpg)
+
+联合航空禁止 AI 代理订票：联合航空宣布禁止 AI 代理（如 Meta Muse、OpenAI dots）代表旅客预订航班，要求用户更新票务政策。
+
+此举旨在防止支付凭证泄露及非预期购买，并规避联邦法规中要求旅客亲自确认行李等合规风险。
+
+📎 [原文链接](https://www.cbsnews.com/news/united-airlines-bans-ai-agents-booking-flights/)
+
+
+### 13. Marktechpost 发布 GPU 排行榜
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-12/26cad9f369d7.webp)
+
+Marktechpost 发布 GPU 排行榜：Marktechpost 推出 GPU Leaderboard 平台及 Deploy It Chrome 扩展，聚合 24 家云厂商 201 个 GPU 实时报价，支持按型号、地区筛选。
+
+平台提供任务级成本计算器，自动计入利用率导致的空闲成本，例如 8×H100 运行 72 小时，最低价与最高价相差超 2500 美元。
+
+Chrome 扩展可自动识别 Hugging Face 和 GitHub 上的模型，估算显存需求并直接推荐最便宜的 GPU 实例。
+
+📎 [原文链接](https://www.marktechpost.com/2026/11/11/marktechpost-gpu-leaderboard-chrome-extension-launch/)
+
+
+### 14. OpenAI 发布 Gilbert + Tobin 案例
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-12/47adc8b719dc.webp)
+
+OpenAI 发布 Gilbert + Tobin 案例：OpenAI 发布澳大利亚 Gilbert + Tobin 律所案例，该所通过引入 ChatGPT Enterprise 和 Codex，实现 87% 的 ChatGPT 用户活跃率，并建立从实验到多步骤代理工作流的 AI 治理体系。
+
+案例显示，律所利用定制 GPT 和 ChatGPT Work 处理机密审查，单次任务成本仅 62 美元，旨在释放员工精力专注于高价值战略工作，而非单纯降低成本。
+
+📎 [原文链接](https://openai.com/index/gilbert-tobin-sam-nickless)
+
+
+### 15. DXC OASIS 基于 Bedrock 构建多模型架构
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-12/f0ac89b475dd.png)
+
+DXC OASIS 基于 Bedrock 构建多模型架构：DXC Technology 在 Amazon Bedrock 上构建了 DXC OASIS 多模型 AI 底层架构，集成 Claude、Nova、Llama 等模型，通过统一 Guardrails 和 PrivateLink 实现安全治理。
+
+该架构支持智能提示路由和自定义模型导入，实现无单点故障和弹性扩容，自 2026 年 3 月上线以来，56 个已测用例平均解决时间减少 95%。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/how-dxc-technology-built-a-multi-model-ai-substrate-on-amazon-bedrock/)
+
+
+### 16. 美国国会拟传唤黄仁勋作证
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-12/91869e7261c6.jpg)
+
+美国国会拟传唤黄仁勋作证：美国众议院共和党议员致信英伟达 CEO 黄仁勋，要求就其与涉嫌中国间谍的 Megaspeed 高管阿丽莎·黄的关系出席闭门简报会，若拒绝回应将发出传票。
+
+📎 [原文链接](https://techcrunch.com/2026/11/11/congress-to-call-jensen-huang-in-to-answer-for-alleged-chinese-spy-affair/)
+
+
+### 17. Plurai 获1300万美元融资
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-12/1de9f671a0e2.jpg)
+
+Plurai 获1300万美元融资：Plurai 完成 1300 万美元种子轮融资，由 Team8 领投，旨在利用自动驾驶领域的仿真技术解决 AI 智能体在复杂任务中可靠性不足的问题。
+
+该公司通过构建企业系统的数字孪生体生成合成数据，对智能体进行边缘情况测试与修复，并支持对开源模型进行后训练，以更低成本实现媲美前沿模型的性能。
+
+📎 [原文链接](https://techcrunch.com/2026/11/11/plurai-wants-to-help-ai-agents-work-better-using-the-same-approach-that-helped-get-self-driving-cars-to-roads/)
+
+
+### 18. Fractile 完成 7.2 亿美元 C 轮融资
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-12/2651db140901.webp)
+
+英国 AI 芯片初创公司 Fractile 完成 7.2 亿美元 C 轮融资，由英国主权 AI 基金领投，估值超 50 亿英镑（约 70 亿美元）。
+
+该公司采用 DRAM 堆叠硬件设计配合自研编译器，旨在降低 LLM 推理成本，计划于 2027 年交付首批芯片和系统。
+
+📎 [原文链接](https://techcrunch.com/2026/11/11/with-720m-round-britains-fractile-gets-a-leg-up-in-the-race-for-ai-chips/)
+
+
+### 19. Mercor D轮融资200亿美元
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-12/12bbe2b711a1.webp)
+
+Mercor D轮融资200亿美元：Mercor 完成 7.5 亿美元 D 轮融资，估值达 200 亿美元，年经常性收入（Run Rate）达 30 亿美元。该公司拥有 500 万名专家，主要面向美国 800 多种职业提供 AI 数据服务。
+
+📎 [原文链接](https://latent.space/p/ainews-mercor-750m-series-d-at-20b-valuation-3b-run-rate/)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
