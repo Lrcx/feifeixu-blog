@@ -1,0 +1,383 @@
+---
+title: "11.14 05.22 ChatGPT Wallet上线 | AI 早报"
+date: "2026-11-14"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 11.14 05.22 ChatGPT Wallet上线 | AI 早报
+
+> 2026年11月14日 周六 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- ChatGPT Wallet 支持智能体支付，需生物特征验证 —— AI 智能体正式具备安全支付能力
+- DeepSeek 开放搜索/OCR/语音等工具接口，支持复刻完整 App —— DeepSeek 开放全能力接口，降低应用开发门槛
+- Nvidia 投资风格转向保守，AI 初创融资估值承压 —— AI 初创融资环境将发生根本性变化
+- DeepSeek V4/Kimi K3 被指使用禁售 Blackwell 芯片训练 —— 美国 AI 算力封锁失效，英伟达面临合规危机
+- Anthropic IPO 认购6倍，最高募资904亿美元 —— AI 巨头 IPO 创纪录，算力巨头深度绑定
+
+**今日共收录 31 条动态，涵盖 模型与产品 12条、技术洞察 9条、行业动态 10条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. OpenAI 发布 ChatGPT Wallet
+
+OpenAI 发布 ChatGPT Wallet：OpenAI 推出 ChatGPT Wallet，允许智能体在用户生物特征验证后使用支付令牌进行购买，不暴露真实卡号。该功能联合美国运通、万事达和 Visa 打造，首批面向美国 ChatGPT Pro 用户开放，并同步发布《Commerce Partner Playbook》指导企业适配智能体商务。
+
+📎 [原文链接](https://openai.com/index/introducing-chatgpt-wallet)
+
+
+### 2. DeepSeek 开放全家桶应用 API
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-14/789521ef9670.png)
+
+DeepSeek 开放全家桶应用 API：DeepSeek 正式开放全家桶应用 API，将联网搜索、深度思考、文件解析、链接阅读、OCR、语音识别及合成等能力整合进原有接口，开发者开启对应参数即可调用。
+
+DeepSeek-V4.1-Flash 模型已支持上述功能，工具调用与上下文拼接由服务端自动完成，官方提供 Demo 和 GitHub 示例代码，除 Token 费外需支付工具调用费。
+
+此举旨在降低开发者构建复杂 AI 应用的门槛，开发者可 1:1 复刻完整 DeepSeek App，官方建议面向外部用户的服务开启安全校验参数。
+
+📎 [原文链接](https://zhidx.com/p/610514.html)
+
+
+### 3. World Labs Atlas 模型开放
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-14/d03c51f1faea.jpg)
+
+World Labs Atlas 模型开放：李飞飞创办的 World Labs 正式开放世界模型 Atlas，提供 Viewfinder、Chisel 等工具，支持从单图或一句话生成可漫游、可渲染的 3D 场景。
+
+平台提供开发者 API 及 Blender 集成，新用户注册送 10000 积分，支持将生成的 Splat 点云转为 GLB 网格，直接对接游戏引擎。
+
+📎 [原文链接](https://www.ifanr.com/1689379?utm_source=rss&utm_medium=rss&utm_campaign=)
+
+
+### 4. 阿里 Wan 3.0 登顶视频模型
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-14/26cad9f369d7.webp)
+
+阿里 Wan 3.0 登顶视频模型：阿里发布 Wan 3.0 视频生成模型，在 Artificial Analysis 盲测中以 1175 分（T2V）和 1108 分（I2V）登顶，支持从文本、PDF 和幻灯片生成 30 秒 1080p 视频，API 定价为每秒 0.20 美元。
+
+MiniMax H3 成为首个进入前三的开源权重模型（Elo 1161），但受限于 768p 分辨率及特定地区部署禁令；Google Gemini Omni Flash 1.2 降价 30% 后性价比突出，适合已有 Gemini 生态的团队。
+
+📎 [原文链接](https://www.marktechpost.com/2026/11/13/best-ai-video-generation-models-2026/)
+
+
+### 5. Google Gemini 4 Hydrogen 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-14/26cad9f369d7.webp)
+
+Google Gemini 4 Hydrogen 发布：Google 发布闭源模型 Gemini 4 Hydrogen，专为 Agentic 工作流优化，速度比 Gemini 3.8 Flash 快 2.5 倍，Terminal-Bench 4.1 得分 57%。
+
+API 定价 $1.50/$7.50 per 1M tokens，支持 1M 统一窗口及 4 级思考模式，默认 high 级，需通过 Gemini API 或 AI Studio 调用。
+
+📎 [原文链接](https://www.marktechpost.com/2026/11/13/google-gemini-4-hydrogen/)
+
+
+### 6. DeepMind 开源天气数据集
+
+DeepMind 开源天气数据集：Google DeepMind 发布 PARDIG 和 SatWeave 两个基础数据集，支持研究人员构建天气、水文和气候应用。SatWeave 融合六颗静止卫星图像，提供每小时更新的全球云图；PARDIG 基于 AI 推断，生成空间分辨率约 10 公里、时间分辨率 15 分钟的全球降水数据，精度优于 NASA IMERG。
+
+📎 [原文链接](https://deepmind.google/blog/opening-the-datasets-behind-our-ai-weather-models/)
+
+
+### 7. Amazon SageMaker HyperPod 上线数据捕获
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-14/a5da7cb6d2c2.png)
+
+Amazon SageMaker HyperPod 上线数据捕获：Amazon SageMaker HyperPod 推出 Data Capture 功能，支持在请求路径的 SageMaker 端点、负载均衡器和模型 Pod 三层捕获推理数据。
+
+该功能将实时输入输出记录至 Amazon S3，对延迟影响极小，支持采样、加密和 PII 匿名化，帮助团队检测数据漂移并基于真实交互微调模型。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/build-a-model-improvement-flywheel-with-amazon-sagemaker-hyperpod-data-capture/)
+
+
+### 8. ElevenLabs 发布 ElevenAI 会议应用
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-14/3ee3b4313505.webp)
+
+ElevenLabs 发布 ElevenAI 会议应用：ElevenLabs 发布实验性应用 ElevenAI，将会议笔记记录、语音输入和 Agent 集成结合，定位为团队协作工具。
+
+应用支持跨会议数据查询、实时辅助及 ElevenAgent 自动撰写草稿邮件，兼容 90 多种语言并理解行业术语。
+
+配合近期推出的 v3 系列 Scribe 语音转文本模型，企业可利用自有数据微调模型并自动执行转录后任务。
+
+📎 [原文链接](https://techcrunch.com/2026/11/13/elevenlabs-new-app-combines-meeting-note-taking-and-dictation-for-teams/)
+
+
+### 9. 阿里快乐虾米 App 上线
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-14/982dc379e3f8.png)
+
+阿里快乐虾米 App 上线：阿里旗下 AI 音乐创作平台快乐虾米（HappyShrimp）正式推出 iOS 与 Android 客户端，支持用户通过自然语言描述情绪、故事或风格，一键生成包含歌词、作曲、编曲及演唱的完整歌曲。
+
+该 App 主打轻量化操作，生成一首 3 分钟歌曲仅需约 1 分钟，具备热点识别与 Agent 能力，并新增“做同款”功能，支持用户复用热门创作思路快速生成个性化音乐。
+
+📎 [原文链接](https://zhidx.com/p/610394.html)
+
+
+### 10. Octen 发布 10ms AI 搜索与无限套餐
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-14/f68be04dfc95.png)
+
+Octen 发布 10ms AI 搜索与无限套餐：前阿里工程师创办的 Octen 发布 AI 搜索服务，其 Pulse 模型服务器端检索延迟低至 10 毫秒，并推出 20 美元/月的无限次 Web 搜索个人订阅。
+
+该服务面向 AI 智能体构建，支持 40 亿参数模型映射 2 亿页面，提供轻量级（10ms）和标准级（20ms）两种模式，旨在降低智能体高频验证信息的成本。
+
+📎 [原文链接](https://venturebeat.com/orchestration/ex-alibaba-engineers-new-startup-octen-pairs-10-millisecond-ai-search-with-a-20-unlimited-plan)
+
+
+### 11. Perplexity Decider v1.3 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-14/26cad9f369d7.webp)
+
+Perplexity Decider v1.3 发布：Perplexity 发布开源权重决策模型 Decider v1.3 及 Flash 版，新增 Locate 功能可提取精确文本片段，适用于 NER 和提取式 QA。
+
+模型基于 Qwen3 架构，v1.3 为 27B 参数（需 ~49GB 显存），Flash 为 4B 参数（需 ~8.5GB 显存），API 定价 $0.02/百万 token，权重 Apache 2.0 协议开源。
+
+📎 [原文链接](https://www.marktechpost.com/2026/11/13/perplexity-decider-v1-3-open-weight-decision-models-locate/)
+
+
+### 12. AWS SageMaker 上线 OpenFold3
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-14/d45495e018ca.png)
+
+AWS SageMaker 上线 OpenFold3：AWS SageMaker JumpStart 上线 OpenFold3 模型，支持预测蛋白质、DNA、RNA 及小分子复合物的 3D 结构。
+
+该模型采用异步推理模式，最长支持 1 小时超时，并具备自动扩展至零功能以降低闲置成本。
+
+开发者可通过 SageMaker Python SDK 快速部署，适用于靶点识别、抗体工程及高通量筛选等场景。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/openfold3-on-amazon-sagemaker-jumpstart-predict-biomolecular-structures/)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. Google TPU Sync 开源
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-14/26cad9f369d7.webp)
+
+Google TPU Sync 开源：Google 开源 TPU Sync，这是一个用于 Cloud TPUs 的 C++ KV 缓存传输库，支持 PyTorch 和 JAX。该库通过异步 DMA 实现 TPU HBM、主机 DRAM 和 DCN 间的统一内存管理，解决模型状态移动瓶颈。
+
+在 TPU v7x 上测试，Qwen3 235B 模型 KV 传输延迟从数秒降至约 230 毫秒，480B 模型平均首字生成时间 (TTFT) 降低 90%。目前支持 vLLM 和 SGLang 集成，但官方不建议用于通用生产环境。
+
+📎 [原文链接](https://www.marktechpost.com/2026/11/13/google-tpu-sync-kv-cache-transfer-library/)
+
+
+### 2. Cloudflare 发布 AI 渗透测试防御模型
+
+Cloudflare 发布 AI 渗透测试防御模型：Cloudflare 发布“现代安全模型”以应对 AI 渗透测试工具（如 ARTEX）的爆发式增长，这类工具利用 LLM 自主编排攻击，导致相关请求量在一个月内激增 30 倍。
+
+该模型包含六大支柱：实施带速率限制的 WAF、异常检测、Bot Defense、基于身份的准入控制、验证模式及威胁情报，旨在防御大规模自主攻击。
+
+📎 [原文链接](https://blog.cloudflare.com/adapting-to-ai-penetration-testing-orchestrators/)
+
+
+### 3. Langfuse AI Gateway 开源
+
+Langfuse AI Gateway 开源：Langfuse 开源了基于 Rust 编写的 AI Gateway Beta 版，用于统一转发 LLM 请求并自动追踪调用数据。
+
+该网关无状态且镜像仅 22MB，在 2 vCPU 上支持 1000+ 并发，中位延迟增加不到 3ms，支持通过 Docker Compose 或 Helm 自建部署。
+
+它不转换 API 响应以确保稳定性，而是通过 traceparent 头部将请求融入现有 Langfuse 追踪体系，记录令牌、成本及延迟等指标。
+
+📎 [原文链接](https://github.com/langfuse/langfuse/tree/main/ai-gateway)
+
+
+### 4. AWS 发布 Switchyard 路由方案
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-14/35f8c89d0e27.png)
+
+AWS 发布 Switchyard 路由方案：AWS 发布基于 NVIDIA NeMo Switchyard 的开源方案，通过 LiteLLM 网关将编码代理请求智能路由至 Amazon Bedrock 上的不同模型。该方案支持阶段路由和随机路由策略，旨在降低多轮对话场景下的任务总成本。
+
+开发者可通过 AWS CDK 一键部署，利用历史工具活动结果自动选择高性能或低成本模型，并内置基准测试工具对比路由组与单模型基线的每任务解决成本。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/route-coding-agent-requests-to-the-right-model-on-amazon-bedrock-with-nvidia-nemo-switchyard/)
+
+
+### 5. QuAIA 开源多智能体测试系统
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-14/b66568294522.png)
+
+QuAIA 开源多智能体测试系统：QuAIA 是基于 AGPL-3.0 协议开源的多智能体 QA 系统，通过协调器调度需求评审、测试设计、UI/API 执行及缺陷报告等专用智能体，实现端到端自动化测试。
+
+系统运行在用户自有基础设施中，支持 Jira、Zephyr 等主流工具集成，具备从人类演示中学习的记忆能力，无需维护传统测试脚本。
+
+📎 [原文链接](https://quaia.dev/)
+
+
+### 6. AssemblyAI 推理成本降70%
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-14/e3ea90def85a.png)
+
+AssemblyAI 推理成本降70%：AssemblyAI 在 AWS 上利用 ECS 混合 Spot 与按需 GPU 实例，结合 SQS 队列重试机制，实现语音转文本推理成本降低 70%。
+
+该架构通过 g4dn/g5/g6 多实例系列多样化及中断自动恢复，在满足数据驻留合规的同时维持 SLA，适合大规模 GPU 批处理场景。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/cost-optimizing-assemblyai-speech-to-text-inference-on-aws-with-amazon-ec2-spot/)
+
+
+### 7. Doc-foundry 开源安全规则生成工具
+
+Doc-foundry 开源安全规则生成工具：Doc-foundry 是一个开源项目，利用 AI 自动生成安全检测规则，并通过自动化流程验证这些规则的有效性，旨在降低安全规则编写门槛。
+
+📎 [原文链接](https://github.com/mjha-arya/DOC-foundry)
+
+
+### 8. LLM 评估完全指南
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-14/4b87ed559382.png)
+
+LLM 评估完全指南：本文系统讲解 LLM 应用评估方法，涵盖代码、基于参考和 LLM 裁判三类评分器的选择与实现。
+
+深入解析 LLM-as-a-Judge 的评分标准设计、QAG 与 G-Eval 评分机制，以及通过 Cohen's kappa 校准裁判偏差。
+
+提供 RAG 系统（上下文精度/召回率/忠实度）和智能体（工具/参数/轨迹）的逐组件评估策略及发布周期运行方案。
+
+📎 [原文链接](https://machinelearningmastery.com/the-complete-guide-to-llm-evaluation/)
+
+
+### 9. AWS AgentCore V2 架构模式
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-14/9b1ca073ebef.png)
+
+AWS AgentCore V2 架构模式：AWS 发布 Amazon Bedrock AgentCore 运行时 V2 架构模式，通过微虚拟机快照技术替代容器拉取，实现会话启动加速。
+
+V2 将初始化工作剥离至构建阶段，首字节延迟（TTFB）可降至亚秒级，并提供四种优化模式及 CloudWatch 监控指标。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/architecture-patterns-for-fast-session-startup-on-amazon-bedrock-agentcore-runtime/)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. Nvidia CEO 离职致 AI 融资遇冷
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-14/75dc893edf4c.jpg)
+
+Nvidia CEO 离职致 AI 融资遇冷：Nvidia CEO 黄仁勋离职后，公司临时 CEO 预计将采取更保守的投资策略，大幅减少对 neocloud 等早期基础设施初创企业的数亿美元注资。
+
+此前 Nvidia 常作为最大投资方支持 Hugging Face、Mistral 等公司，其退出导致初创企业估值下降，传统 VC 因缺乏巨头背书而暂停部分交易。
+
+虽然 Google、AMD 等竞争对手可能介入填补部分资金缺口，但短期内 AI 初创生态面临巨大资金真空，融资难度显著增加。
+
+📎 [原文链接](https://techcrunch.com/2026/11/13/jensen-huangs-departure-blasts-big-hole-in-ai-startup-funding-vcs-and-founders-say/)
+
+
+### 2. 英伟达芯片违规流入中国
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-14/1db46757e174.webp)
+
+英伟达芯片违规流入中国：研究指出 DeepSeek V4 和 Moonshot Kimi K3 等中国主流开源模型带有 Blackwell GPU 训练指纹，违反美国出口管制。
+
+英伟达 CEO 黄仁勋因涉 Megaspeed 芯片走私丑闻离职，凸显美国对华 AI 算力封锁失效及企业合规风险。
+
+📎 [原文链接](https://techcrunch.com/2026/11/13/export-banned-nvidia-chips-are-behind-chinas-most-powerful-ai-models-uh-oh-jensen/)
+
+
+### 3. Anthropic IPO 史上最大
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-14/3363cf2b7f10.png)
+
+Anthropic IPO 史上最大：Anthropic 启动 IPO，认购订单达可发行股份的 6 倍，计划发行 8.25 亿股，目标估值约 1.4 万亿美元。
+
+IPO 结合 260 亿美元私募配售，最高募资 904 亿美元（约 6030 亿元人民币），将成史上最大上市交易。
+
+英伟达、谷歌各投 100 亿美元，AMD、微软等跟投；年化收入运行率达 810 亿美元，黄仁勋辞任英伟达 CEO。
+
+📎 [原文链接](https://zhidx.com/p/610227.html)
+
+
+### 4. 阿里平头哥拟独立上市
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-14/746ea4f23c2c.png)
+
+阿里平头哥拟独立上市：阿里巴巴公告平头哥半导体将在港交所主板独立上市，这是继百度昆仑芯、快手可灵后，国内大厂第三次将核心AI资产分拆定价。
+
+平头哥仍为阿里全资子公司并表，市场预估其估值区间在200亿至620亿美元，可能超过阿里当前市值，旨在解决芯片研发高投入与母公司估值承压的矛盾。
+
+分拆后平头哥将面向字节、腾讯等竞争对手开放销售，以摊薄流片成本并获取政企订单，但需面对内部结算定价及产能分配等新挑战。
+
+📎 [原文链接](https://www.tmtpost.com/8204039.html)
+
+
+### 5. 阿里平头哥、百度昆仑芯拟分拆上市
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-14/746ea4f23c2c.png)
+
+阿里平头哥、百度昆仑芯拟分拆上市：阿里、百度、快手正将平头哥、昆仑芯、可灵等核心AI资产剥离至独立市场上市，旨在为AI业务赋予独立估值，解决母公司股价未体现AI价值的困境。
+
+分拆后母公司仍保持控制权并合并报表，但AI资产获得独立股票代码和公开市场定价，有助于吸引外部资金、优化供应商治理及工程师股权激励。
+
+📎 [原文链接](https://www.tmtpost.com/8204635.html)
+
+
+### 6. TCL华星发布AI显示全家桶
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-14/d389663dc21c.png)
+
+TCL华星发布AI显示全家桶：TCL华星在DTC 2026大会发布星智大模型4.0，在半导体显示垂域自动化测评中超越Gemini-3.1-Pro等模型，并推出全球首款显示研发全流程“硅基员工”智能体，使开发周期缩短50%。
+
+硬件方面首发115英寸16K光场TV、27英寸印刷OLED 500Hz电竞屏及6.36英寸蓝磷光OLED手机屏，通过超级像素技术节省25%渲染功耗，并展示玻璃基封装等先进封装技术。
+
+📎 [原文链接](https://zhidx.com/p/610118.html)
+
+
+### 7. LangChain C轮融资估值30亿美元
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-14/52f259e5764c.jpg)
+
+LangChain C轮融资估值30亿美元：AI 智能体初创公司 LangChain 宣布完成由 CapitalG 领投的 3 亿美元 C 轮融资，公司估值达到 30 亿美元，较一年前翻倍。
+
+LangChain 从开源 LLM 框架转型为智能体管理平台，其核心产品 LangSmith 主打模型无关和智能体行为管理，目前拥有 7,000 名客户，包括 Nvidia、Salesforce 等大型企业。
+
+📎 [原文链接](https://techcrunch.com/2026/11/13/ai-agent-startup-langchain-hits-3b-valuation/)
+
+
+### 8. Amazon Bedrock 成本归因与控制
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-14/0616adf71c7c.png)
+
+Amazon Bedrock 成本归因与控制：Amazon Bedrock 推出内置成本归因功能，自动将推理调用追溯至 IAM 主体，无需代码插桩。
+
+支持将团队、成本中心等标签流入 AWS CUR 2.0 和 Cost Explorer，实现按用户和团队的精细化支出控制。
+
+📎 [原文链接](https://aws.amazon.com/blogs/machine-learning/cost-attribution-and-controls-for-ai-developer-and-productivity-tools-on-amazon-bedrock/)
+
+
+### 9. Junction China 2026 黑客松收官
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-14/55d1c6621a11.png)
+
+Junction China 2026 黑客松收官：Junction China 2026 国际极客嘉年华在北京收官，汇聚近300名开发者组成60支团队，在40小时内基于银河通用、亮亮视野和小米的技术底座，产出60个涵盖具身智能、AI Agent和AR可穿戴设备的参赛作品。
+
+冠军作品“超级牧牧”利用银河通用G1机器人实现婚礼司仪与变脸表演，其他获奖项目涵盖建材AI协同、K12私域运营及听障辅助AR眼镜，优胜团队可获得2万元奖金及直通赫尔辛基全球总决赛资格。
+
+📎 [原文链接](https://zhidx.com/p/610096.html)
+
+
+### 10. 海光发布智能体算力全家桶
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-14/d2e9f2c4d9cc.png)
+
+海光发布智能体算力全家桶：海光发布面向智能体全生命周期的算力方案，将基础设施解耦为编排沙箱、LLM推理、向量存储三类专用节点，解决Agent长链路、高并发、强隔离的负载难题。
+
+云端方案支持上千智能体并发与弹性扩缩，私有化方案AgentServer Flex由3-9台节点组成，依托国产CPU+DCU实现数据不出园，兼顾安全合规与快速交付。
+
+📎 [原文链接](https://zhidx.com/p/610011.html)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
