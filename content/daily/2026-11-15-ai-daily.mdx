@@ -1,0 +1,192 @@
+---
+title: "11.15 黄仁勋离职，腾讯加码AI | AI 早报"
+date: "2026-11-15"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 11.15 黄仁勋离职，腾讯加码AI | AI 早报
+
+> 2026年11月15日 周日 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- 英伟达 CEO 黄仁勋因丑闻辞职，马斯克等联名请愿 —— AI 算力巨头突发高层动荡
+- 英伟达黄仁勋辞职，员工联名请愿要求回归 —— 英伟达最高权力交接引发行业震动
+- 黄仁勋离职引发亚洲各国政府反应 —— 关注英伟达高管变动对亚洲 AI 供应链的影响
+- 字节定2029追赶目标，腾讯调整一半人力投入AI —— 大厂 AI 战略与组织变革风向标
+- Memorilla 冻结LLM仅用16 Token，FactKG准确率超全上下文 —— 16 Token 压缩百万文档，性能超越全上下文
+
+**今日共收录 14 条动态，涵盖 技术洞察 6条、行业动态 8条。**
+
+---
+
+## 🔍 技术洞察
+
+### 1. 斯坦福 Memorilla 开源
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-15/26cad9f369d7.webp)
+
+斯坦福 Memorilla 开源：斯坦福 SNAP 实验室开源 Memorilla，这是一个面向冻结 LLM 的潜在记忆模块，仅用 16 个记忆 token 即可替代整个文档集合。在 FactKG 基准测试中，配合冻结 Qwen3-8B 模型达到 84.33% 准确率，超越全上下文输入的 80.43%，且 token 数量减少 108 倍。
+
+该模块包含 1.94 亿可训练参数，采用 Apache 2.0 许可，代码和权重已公开。在 8 项基准测试中平均得分 49.68 分，显著优于 MemoRAG 和 Mem0 等基线方法，适合对延迟和显存敏感的智能体记忆场景。
+
+📎 [原文链接](https://www.marktechpost.com/2026/11/14/stanford-memorilla-memory-system-16-memory-tokens/)
+
+
+### 2. SPU 湿实验预测基准发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-15/1f23d610ff3c.webp)
+
+SPU 湿实验预测基准发布：UniPat AI 联合斯坦福等机构发布 Science Prediction Universe (SPU) 湿实验预测基准，包含 116 个任务、4207 个实验，覆盖化学、生物等 32 个子领域。
+
+评测显示最强模型 Claude Opus 5.5 平均分仅 0.486，且 GPT-6 Astra 将推理强度调至最高、成本翻 5.3 倍后，预测得分几乎无提升。
+
+该基准通过 Spearman 相关系数评估模型排序能力，并开源了 100 个公开任务及代码，为 AI for Science 提供可量化的科研能力评估标准。
+
+📎 [原文链接](https://www.qbitai.com/2026/11/510232.html)
+
+
+### 3. WhatWeRun 发布生产AI架构数据库
+
+WhatWeRun 发布生产AI架构数据库：WhatWeRun 是一个收录真实生产环境 AI 智能体架构栈的公共数据库，数据源自工程博客、HN 帖子等一手记录。
+
+目前收录 57 个架构，涵盖 Stripe、Meta、NVIDIA、Duolingo 等大厂案例，统计显示 LangGraph 使用率最高（12次），Claude 系列模型占比最大。
+
+提供每周二简报，帮助开发者了解业界实际技术选型、成本数据（如 Duolingo 漏洞修复成本 $0.50-$6.80/单）及编排框架趋势。
+
+📎 [原文链接](https://whatwerun.dev)
+
+
+### 4. Cmpnd 发布 dspy-wsp 优化器
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-15/26cad9f369d7.webp)
+
+Cmpnd 发布 dspy-wsp 优化器：Cmpnd 发布 dspy-wsp，将 MIT 提出的权重空间编程（WSP）引入 DSPy 框架，允许前沿 LLM 直接推理并编辑模型权重，无需梯度计算或微调数据集。
+
+在 Typed Decisions 基准测试中，d1-omni-600M 模型结合 ReAnchor 后分数从 50.9% 提升至 69.1%（+18.3），单次优化成本约 5-10 美元，耗时 78-167 分钟。
+
+该工具采用 MIT 许可证，支持将编辑结果导出为补丁文件，可无缝集成至 vLLM 或 MLX 环境，为开发者提供低成本的模型性能调优新路径。
+
+📎 [原文链接](https://www.marktechpost.com/2026/11/14/cmpnd-dspy-wsp-weight-space-programming/)
+
+
+### 5. WhatYouSay 开源 WhatsApp 语音转录工具
+
+WhatYouSay 开源 WhatsApp 语音转录工具：开发者 Waldo Vanderhaeghen 开源了 WhatYouSay，这是一个基于 LLM-TDD 方法构建的 WhatsApp 语音消息转录工具，支持英德荷三语混合识别。
+
+项目采用 Groq Whisper 进行转录，通过严格的评估测试（Evals）和门禁机制处理口语化表达，确保隐私并实现生产环境故障自动转化为检查逻辑。
+
+代码托管于 GitHub（whatyousay-oss），采用 MIT 许可证，提供针对 Oracle Cloud ARM 服务器的部署指南，适合关注 AI 工程化落地和隐私保护的开发者。
+
+📎 [原文链接](https://waldo.vanderlore.de/blog/whatyousay-privacy-voice-pipeline/)
+
+
+### 6. AI Access Auditor 开源
+
+GitHub 项目 AI Access Auditor 开源，旨在帮助开发者审计和撤销 AI 编码智能体的访问权限，解决智能体过度授权的安全隐患。
+
+📎 [原文链接](https://github.com/dirmedmr-alt/ai-access-auditor)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. 英伟达 CEO 黄仁勋被解雇
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-15/911c474b02e0.jpg)
+
+英伟达 CEO 黄仁勋被解雇：英伟达 CEO 黄仁勋因承认与涉嫌中国间谍的芯片高管有婚外情而辞职，CFO Colette Kress 出任临时 CEO。
+
+马斯克等科技高管签署超 11.5 万签名请愿书，要求董事会在独立调查前恢复其职位，英伟达股价本周大幅下跌。
+
+📎 [原文链接](https://techcrunch.com/2026/11/14/elon-musk-other-tech-execs-sign-petition-calling-on-nvidia-to-reinstate-jensen-huang/)
+
+
+### 2. 英伟达CEO黄仁勋辞职
+
+英伟达CEO黄仁勋辞职：英伟达突然宣布黄仁勋辞去CEO及董事职务，由CFO Colette Kress接任临时CEO。
+
+员工及马斯克发起请愿，要求恢复黄仁勋职位并公开调查细节，董事会已接触Arm CEO Rene Haas作为潜在继任者。
+
+📎 [原文链接](https://www.qbitai.com/2026/11/510297.html)
+
+
+### 3. 黄仁勋离职引发亚洲政府反应
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-15/013f26420ee4.jpg)
+
+黄仁勋离职引发亚洲政府反应：英伟达 CEO 黄仁勋因丑闻离职，引发亚洲各国政府紧急反应。中国外交部驳斥间谍指控，担忧 30 亿美元算力项目受阻；韩国政府确认英伟达 26 万块 GPU 供应计划不变；新加坡、日本及台湾当局均表示将密切关注供应链稳定及项目进展。
+
+📎 [原文链接](https://techcrunch.com/2026/11/14/asian-governments-react-to-nvidia-ceo-jensen-huangs-exit/)
+
+
+### 4. 字节与腾讯 AI 战略对比
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-15/746ea4f23c2c.png)
+
+字节与腾讯 AI 战略对比：字节跳动内部明确 2029-2030 年追平 OpenAI 等前沿水平，2026 年 AI 基础设施预算超 2000 亿元，并计划数周内推出对标 Meta Muse 的 AI 助手。
+
+腾讯马化腾提出“一半人”战略，将一半人力用于核心业务提效，另一半投入 AI Native 探索，同时压缩管理层级以缩短决策链条。
+
+百度李彦宏提出 AI 时代岗位收敛为 Builder 和 Seller，三家大厂均通过调整组织结构和资本开支，试图在 AI 重资产投入期争取时间。
+
+📎 [原文链接](https://www.tmtpost.com/8201267.html)
+
+
+### 5. LangChain 3亿美元融资
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-15/12bbe2b711a1.webp)
+
+LangChain 3亿美元融资：LangChain 宣布完成 3 亿美元 C 轮融资，由 CapitalG 领投，公司估值达到 30 亿美元。
+
+资金将用于推进 LangSmith 平台，支持团队跨框架追踪和评估生产环境中的智能体，计划于 11 月 20 日推出新功能。
+
+📎 [原文链接](https://latent.space/p/ainews-the-no-ai-slop-manifesto/)
+
+
+### 6. 联想发布混合词元工厂
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-15/ea3c8d5d2702.png)
+
+联想发布混合词元工厂：联想发布“万全混合词元工厂”，在张家口落地首期15000P异构算力集群，通过“绿电进、Token出”模式实现年产2000万亿Token。
+
+该方案结合私有与公共算力，利用Token Engine和xCloud实现混合供给，目标将百万Token综合成本降低70%，良品率超99.9%。
+
+📎 [原文链接](https://www.qbitai.com/2026/11/510094.html)
+
+
+### 7. PyPI 生态 MCP SDK 超越 OpenAI
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-15/563e229de97e.png)
+
+PyPI 生态 MCP SDK 超越 OpenAI：py-code.org 统计显示，2025-2026 年间新发布的 33.5 万个 PyPI 项目中，MCP SDK 被 20,013 个项目引入，超越 OpenAI SDK 的 12,096 个，成为最热门 AI 库。
+
+HTTP 客户端方面，requests 以 45,752 个项目领先 httpx 的 41,112 个；Pydantic 验证器迁移基本完成，仅使用 v2 的项目达 23,696 个，仅用 v1 的仅 465 个。
+
+MCP 项目多为服务器端实现（17,329 个引入 mcp.server），反映 AI 应用正从单纯调用 LLM 转向通过 MCP 协议提供工具和数据。
+
+📎 [原文链接](https://py-code.org/blog/new-pypi-packages-imports/)
+
+
+### 8. AI改写游戏获客模式
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-15/2145fa91188a.jpg)
+
+AI改写游戏获客模式：游戏《永夜起源》利用AI批量生成剧情化广告素材，单日投放量突破一万条，通过“肌肉唐僧”等反差人设实现用户追更，上线第八天冲至微信小游戏畅销榜第四。
+
+AI将3D买量素材制作周期从半个月压缩至一两天，单条成本从10-20万降至极低，同时投放数据反向指导角色设计与版本迭代，验证了“内容即广告”的获客新范式。
+
+📎 [原文链接](https://www.tmtpost.com/8205248.html)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
