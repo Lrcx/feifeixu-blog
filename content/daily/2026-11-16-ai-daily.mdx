@@ -1,0 +1,157 @@
+---
+title: "11.16 华为盘古2.1 Pro上线，MCP协议曝高危漏洞 | AI 早报"
+date: "2026-11-16"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 11.16 华为盘古2.1 Pro上线，MCP协议曝高危漏洞 | AI 早报
+
+> 2026年11月16日 周一 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- 华为盘古 2.1 Pro 上线，支持 512K 上下文与 ArkTS 代码生成 —— 华为盘古大模型升级，适配鸿蒙开发
+- MCP 协议单点攻破致78.3%攻击成功率，微软NSA发布防御指南 —— MCP 集成必看的最新安全防御标准
+- 美国国会拟收紧AI芯片出口规则 —— 中美AI芯片出口管制面临进一步收紧
+- Web Models API 提案，浏览器原生运行本地模型 —— Web 端本地运行大模型的新标准
+- Baseten 详解 LLM 推理前沿，涵盖量化与解耦技术 —— LLM 推理性能调优实战指南
+
+**今日共收录 11 条动态，涵盖 模型与产品 2条、技术洞察 4条、行业动态 5条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. Bland 发布 Tofu-1 全双工语音模型
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-16/26cad9f369d7.webp)
+
+Bland 发布 Tofu-1 全双工语音模型：Bland 发布 Tofu-1，这是一款面向通话场景的全双工语音到语音模型，支持边说边听、中途打断及噪音分离。
+
+该模型直接处理音频输入输出，无需中间转录，具备说话人追踪和副语言特征捕捉能力，目前仅面向银行、医疗等企业的研究预览开放。
+
+📎 [原文链接](https://www.marktechpost.com/2026/11/15/bland-tofu-1-full-duplex-speech-to-speech-model/)
+
+
+### 2. Inference Gateway Desktop 开源
+
+Inference Gateway Desktop 开源：Inference Gateway Desktop 是一个开源的 AI 桌面客户端，支持接入任意模型提供商，旨在统一不同 AI 服务的交互体验。
+
+📎 [原文链接](https://github.com/inference-gateway/desktop)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. MCP 协议安全漏洞与防御指南
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-16/86b8d014427b.png)
+
+MCP 协议安全漏洞与防御指南：Palo Alto Networks 测试显示，单个被攻破的 MCP 服务器可诱使 AI 代理滥用已信任工具，攻击成功率高达 78.3%，暴露了 MCP 协议在身份验证和信任级联方面的重大安全隐患。
+
+微软与 NSA 联合建议采用身份感知网关集中治理，强制验证 OAuth 令牌及 iss 参数，弃用动态客户端注册（DCR），以防范凭据泄露和服务器漂移风险。
+
+📎 [原文链接](https://venturebeat.com/orchestration/one-compromised-mcp-server-can-trick-an-ai-agent-into-misusing-tools-you-already-trust)
+
+
+### 2. WICG Web Models API 提案
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-16/91bfdece97a7.png)
+
+WICG Web Models API 提案：WICG 发布 Web Models API 提案，旨在让浏览器原生支持在本地运行开源大模型。
+
+通过 navigator.models 接口，开发者可指定模型 ID 进行文本生成、流式输出及 Embedding 计算，实现跨站点权重共享与用户隐私保护。
+
+📎 [原文链接](https://www.webmodels.dev/)
+
+
+### 3. Baseten 发布推理工程前沿指南
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-16/0fdff7ba0957.png)
+
+Baseten 发布推理工程前沿指南：Baseten 发布《大型语言模型推理的高效前沿》技术指南，系统梳理了推理工程中的两类核心技术：管理权衡技术（如批处理大小、并行策略、量化）与推动前沿技术（如内核优化、推测解码、P/D 解耦）。
+
+文章以 GLM-5.3 和 Kimi K3 为例，深入解析了如何通过调整张量并行、注意力数据并行及 MXFP4 量化来平衡延迟与吞吐量，并介绍了 EAGLE-3 等推测解码技术对系统整体效率的提升。
+
+📎 [原文链接](https://www.baseten.co/blog/the-efficient-frontier-of-llm-inference/#quantization)
+
+
+### 4. LLM推理内存带宽瓶颈实测
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-16/26cc2d3a5972.png)
+
+LLM推理内存带宽瓶颈实测：实测发现LLM解码阶段TPOT与模型大小呈线性关系，有效内存带宽为163GB/s，固定开销约4ms。
+
+该规律适用于Qwen2.5、Qwen3及Gemma 3系列，最大模型预测误差仅0.1%，为端侧推理性能优化提供量化依据。
+
+📎 [原文链接](https://bryananthonio.com/blog/straight-line-predicts-how-fast-my-laptop-generates-llm-tokens/)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. 华为盘古 2.1 Pro 上线
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-16/d34035ceb8de.jpg)
+
+华为盘古 2.1 Pro 上线：华为云 MaaS 平台上线 openPangu-2.1-Pro 模型，支持 512K 上下文窗口、可开关深度思考、函数调用及前缀缓存功能。
+
+该版本重点优化了鸿蒙原生应用开发的 ArkTS 代码生成能力，并适配昇腾算子开发流程，最大输出长度提升至 384K。
+
+开发者可通过 API 接入西南-贵阳一区域服务，旧版 2.0 系列将于 11 月 30 日下线，建议迁移至新版或 DeepSeek/GLM 模型。
+
+📎 [原文链接](https://www.ifanr.com/1689521?utm_source=rss&utm_medium=rss&utm_campaign=)
+
+
+### 2. 美国国会拟收紧AI芯片出口
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-16/00926d510e89.jpg)
+
+美国国会拟收紧AI芯片出口：受Nvidia CEO黄仁勋涉嫌间谍丑闻影响，美国国会两党正推动收紧AI芯片出口限制，并要求黄仁勋及商务部官员作证。
+
+众议院议长Mike Johnson表示限制对华出口芯片的共识正在增长，此前停滞的《远程访问安全法案》等限制措施重新受到关注。
+
+📎 [原文链接](https://www.theverge.com/ai-artificial-intelligence/1033984/congress-export-rules-ai-chips-china)
+
+
+### 3. OpenAI 发布科学博客
+
+OpenAI 发布科学博客，旨在为科学家和学术研究人员提供平台，分享利用 AI 进行科学发现及开展研究工作的经验。
+
+博客内容涵盖 OpenAI 及合作伙伴的最新科学成果、利用模型进行科学计算与数据分析的方法指南，以及一线研究人员的实践观点。
+
+📎 [原文链接](https://openai.com/index/our-new-blog-for-science)
+
+
+### 4. Reddit 流量下降 13%
+
+Reddit 流量下降 13%：Similarweb 数据显示，Reddit 近期流量同比下降 13%，部分原因归咎于 Google 搜索结果中 AI 摘要（AI Overviews）的普及，导致用户直接获取答案而减少点击。
+
+📎 [原文链接](https://www.businessinsider.com/reddit-traffic-down-13-percent-similarweb-google-ai-overviews-2026-11)
+
+
+### 5. Thales Sentinel Envelope Plus 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-16/3b72bbfb1fbe.jpg)
+
+Thales Sentinel Envelope Plus 发布：Thales 推出 Sentinel Envelope Plus，通过多层保护机制增加 AI 辅助逆向工程的难度。
+
+测试显示，AI 代理在未受保护应用中识别出 8/10 漏洞，而在受保护应用中 0 识别，且消耗 970 倍 Token。
+
+该插件无需修改源代码，旨在保护专有算法和知识产权，现已作为付费插件提供。
+
+📎 [原文链接](https://futureciso.tech/thales-unveils-software-protection-against-ai-led-reverse-engineering/)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
