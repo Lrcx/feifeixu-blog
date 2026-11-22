@@ -1,0 +1,231 @@
+---
+title: "11.22 Qwen4-Max发布，英伟达停售H200 | AI 早报"
+date: "2026-11-22"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 11.22 Qwen4-Max发布，英伟达停售H200 | AI 早报
+
+> 2026年11月22日 周日 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- 阿里 Qwen4-Max 发布，单任务成本大降6成 —— 国产最强大模型性能与成本双突破
+- 英伟达停止对华H200销售，黄仁勋回归传闻引发股价波动 —— 英伟达战略转向与高管动荡双重影响
+- Google Antigravity CLI 集成开发周期缩短至1周 —— Google 推出新版 CLI 工具，实测集成效率提升 8 倍
+- Inkling 2 Mini 264亿参数，循环架构本地运行快4倍 —— 小模型本地运行性能超越大参数密集模型
+- OpenAI GPT-Live-1.1 待机成本降至$0.02/分钟 —— 语音智能体待机成本大幅降低
+
+**今日共收录 17 条动态，涵盖 模型与产品 4条、技术洞察 6条、行业动态 7条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. Thinking Machines Inkling 2 Mini 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-22/cba967f1f4a7.png)
+
+Thinking Machines Inkling 2 Mini 发布：Thinking Machines 发布开源多模态模型 Inkling 2 Mini，采用 264 亿参数的循环 Transformer 架构，可在 32GB 内存 MacBook 或单张桌面 GPU 离线运行。
+
+该模型在 DeepSWE v1.1 基准测试中得分 48.2%，超越 Qwen3.8-27B，推理速度快 4 倍且成本降低 6 倍，采用 Apache 2.0 许可证。
+
+📎 [原文链接](https://venturebeat.com/technology/thinking-machines-wows-with-inkling-2-mini-looped-transformer-model-that-runs-locally-on-laptops)
+
+
+### 2. OpenAI GPT-Live-1.1 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-22/e950e1ff4989.png)
+
+OpenAI GPT-Live-1.1 发布：OpenAI 发布全双工语音模型 GPT-Live-1.1，支持同时听和说，新增待机计费模式。
+
+空闲时按 $0.02/分钟计费（活跃 $0.05），降低 60% 成本，支持 128K 上下文。
+
+仅限 API 调用，不支持图像和微调，适合构建低成本常驻语音智能体。
+
+📎 [原文链接](https://www.marktechpost.com/2026/11/21/openai-gpt-live-1-1-api-standby-mode/)
+
+
+### 3. Pandex 欧洲法律 API 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-22/f690f6b35747.jpg)
+
+Pandex 欧洲法律 API 发布：Pandex 发布欧洲法律数据 API，覆盖欧盟及7国立法与判例，提供 280 万官方文件及 3700 万引注链接，支持 MCP 服务器与 REST API 接入。
+
+产品支持时点法律回溯、多语言语义搜索及合规监控，免费 Beta 版每日 1000 次请求，按量付费模式面向 AI 代理及法律科技开发者。
+
+📎 [原文链接](https://www.pandex.io)
+
+
+### 4. AIR Office 开源发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-22/9293e0bb57db.webp)
+
+AIR Office 开源发布：Gyro Governance Lab 发布 AIR Office 0.1.0 Alpha 版，这是一款面向 AI 安全研究人员的本地优先桌面应用，支持 Windows 和 macOS。
+
+该工具基于 Microsoft Copilot SDK，支持自带密钥和本地模型，内置 EU AI Act 等知识库及政策审计、文本清理等专用工作流，强调数据主权与隐私。
+
+📎 [原文链接](https://gyrogovernance.com/air-office/)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. Google Antigravity CLI 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-22/46642098bd1d.webp)
+
+Google Antigravity CLI 发布：Google 发布 Antigravity CLI（前身为 Gemini CLI），Inspired Entertainment 利用该工具将安全金融 API 集成时间从 6-8 周缩短至 1 周，开发人力从 40 人日降至 5 人日。
+
+该工具通过自动化生成 Java Spring Boot 适配器代码及代码审查，支持遗留系统升级，旨在提升 AI 辅助开发的效率与代码质量。
+
+📎 [原文链接](https://discuss.google.dev/t/trusted-automation-with-google-antigravity-scaling-secure-finance-integrations-from-40-days-to-5/383313)
+
+
+### 2. KeepPlain 上线 Agent 代码溯源
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-22/f04e3cbcf5f0.png)
+
+KeepPlain 上线 Agent 代码溯源：KeepPlain 是一款面向 AI 编程的 Git 增强工具，支持 Claude Code、Cursor、Codex 等 5 大主流 Agent，通过 Git Hooks 自动记录代码变更背后的 Agent 会话 ID。
+
+它提供类似 `git blame` 的行级溯源功能，开发者可直接查看某行代码由哪个 Agent 在什么会话中生成，并还原当时的交互轮次与决策逻辑，解决 AI 代码“黑盒”问题。
+
+该工具支持本地安装与 GitHub App 集成，个人使用免费，团队版按席位收费，旨在提升 AI 辅助编程的可追溯性与团队协作效率。
+
+📎 [原文链接](https://keepplain.com/blame)
+
+
+### 3. AgentReel 上线智能体追踪功能
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-22/327d5aee8310.png)
+
+AgentReel 上线智能体追踪功能：AgentReel 是一款面向 AI 智能体的生产环境追踪工具，现已上线 Govern 功能，支持对 Claude Code 和 Cursor 等编码智能体的会话进行全链路记录。
+
+该工具可捕获每一次提示、Shell 命令、文件变更及工具调用，并自动脱敏敏感信息，将操作关联至执行者、仓库分支及代码提交，便于审计与回放。
+
+📎 [原文链接](https://agentreel.dev)
+
+
+### 4. Kvdiff 开源本地代理
+
+Kvdiff 开源本地代理：Kvdiff 是开源的本地代理工具，用于可视化分析 LLM 请求，精准定位导致 Prompt Cache 失效的字节级差异，帮助开发者优化推理成本。
+
+📎 [原文链接](https://github.com/flipcyde101/kvdiff)
+
+
+### 5. AI集群发布流程优化实践
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-22/3bfb16bbe90e.png)
+
+AI集群发布流程优化实践：文章基于 Meta Llama 3 训练期间 466 次作业中断（78% 为硬件问题）的真实案例，深入剖析了 AI 集群发布流程对有效吞吐量（Goodput）的决定性影响。
+
+核心观点指出，在数万台加速器规模下，硬件故障是常态，发布工程需像硬件学科一样严谨，通过金丝雀发布、双向回滚测试及全系统压力测试来捕获协同 Bug。
+
+作者建议基础设施团队按作业衡量 Goodput，以变更前状态为基线评估健康信号，并将 AI 代理用于工单分诊与资源清理，以辅助而非替代人工决策。
+
+📎 [原文链接](https://venturebeat.com/orchestration/even-the-fastest-ai-clusters-can-be-held-back-by-their-release-pipelines)
+
+
+### 6. Mirevox 开源 AI-DLC 控制平面
+
+Mirevox 开源 AI-DLC 控制平面：Mirevox 是面向 AI 辅助交付的自托管控制平面，开源了智能路由器、评估治理、阶段门禁、影子版本控制、上下文引擎、数据血缘及 AI-DORA 共 7 个模块。
+
+该项目采用 Apache-2.0 协议，通过统一接口契约解决 LiteLLM、Langfuse 等工具间的连接空白，支持 Docker Compose 部署，旨在降低 AI 开发中的胶水代码成本。
+
+📎 [原文链接](https://mirevox.dev/)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. 阿里 Qwen4-Max 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-22/746ea4f23c2c.png)
+
+阿里 Qwen4-Max 发布：阿里巴巴发布全新一代基座大模型 Qwen4-Max，总参数 2.4T，具备原生视觉能力，支持百万上下文。
+
+该模型在智能体和编程等关键能力上持续进化，API 缓存命中每百万 Tokens 低至 0.5 元，完成单任务的平均费用较上代模型大降 6 成，现已上线千问 AI 平台对外提供 API 服务。
+
+📎 [原文链接](https://www.tmtpost.com/8213535.html)
+
+
+### 2. 英伟达对华芯片禁令与CEO回归争议
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-22/34d7979950b0.jpg)
+
+英伟达对华芯片禁令与CEO回归争议：英伟达临时CEO Colette Kress宣布停止向中国出售H200芯片并关闭远程访问漏洞，同时公司否认黄仁勋回归计划。
+
+尽管财报数据超预期，但黄仁勋回归请愿书及Elon Musk等高管施压导致市场担忧，英伟达股价承压。
+
+此举旨在配合特朗普政府收紧出口管制，预计将对英伟达约20%的相关业务收入造成冲击。
+
+📎 [原文链接](https://techcrunch.com/2026/11/21/a-tale-of-two-nvidias/)
+
+
+### 3. Anthropic IPO 引发 AI 板块回调
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-22/45fa71b47d73.jpg)
+
+Anthropic IPO 引发 AI 板块回调：Anthropic 以 813 亿美元创纪录 IPO 登陆纳斯达克，估值一度逼近 2 万亿美元，但随后股价回落并引发 AI 板块剧烈抛售。
+
+受此影响，Nvidia、AMD 等芯片股大跌超 13%，纳斯达克指数抹去 2026 年全部涨幅，正式进入技术性回调阶段。
+
+📎 [原文链接](https://lastweekin.ai/p/last-week-in-ai-348-ipo-correction)
+
+
+### 4. Signal 限制手机截图
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-22/ae3d958c7f75.jpg)
+
+Signal 限制手机截图：Signal 宣布在 Android 和 iOS 端默认限制应用内截图功能，以应对操作系统级 AI 智能体扫描屏幕窃取敏感数据的隐私风险。
+
+此举旨在防止敏感信息被系统 AI 捕获并存储至本地或远程数据库，用户可手动关闭限制但官方警告这将破坏隐私保障。
+
+📎 [原文链接](https://techcrunch.com/2026/11/21/signal-restricts-mobile-screenshots-as-it-confronts-existential-threat-of-ai-surveillance/)
+
+
+### 5. TechCrunch 盘点短信 AI 智能体
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-22/01360a2943ad.webp)
+
+TechCrunch 盘点短信 AI 智能体：TechCrunch 发布文章盘点可驻留短信的 AI 智能体，涵盖 Instinct、Ask Proxy、Caddy 等 20 余款产品。
+
+Instinct 估值达 100 亿美元，支持自主执行任务；Ask Proxy 日费 1 美元，主打预判需求；Caddy 支持 iOS/Android 短信直接调用。
+
+多数产品通过 SMS/iMessage 交互，无需下载独立 App，涵盖个人助理、家庭管理及内容创作等场景。
+
+📎 [原文链接](https://techcrunch.com/2026/11/21/all-the-ai-agents-that-can-live-in-your-text-messages/)
+
+
+### 6. 开源项目 AI 透明度最佳实践
+
+提出开源项目 AI 透明度最佳实践，要求非人工撰写的 Commit 末尾添加 Co-Authored-By 标识注明模型及版本，并由人类开发者负责代码审查与测试。
+
+提供 CONTRIBUTING.md、AGENTS.md 及 PR 模板等最小化落地方案，配套开源 Python 工具可自动解析仓库提交信息生成透明度统计页面。
+
+📎 [原文链接](https://www.saywhichai.org)
+
+
+### 7. Shortical 推出 AI 面部授权服务
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-22/14cbb6e0d13b.webp)
+
+Shortical 推出 AI 面部授权服务：微短剧初创公司 Shortical 推出“授权你的脸”服务，允许演员将面部肖像授权用于 AI 生成内容。以色列演员 Aki Avni 已率先签约，其薪酬对标行业非 AI 表演标准。
+
+该模式旨在降低制作成本并扩大内容规模，目前处于早期阶段，尚未达成正式平台合同。
+
+📎 [原文链接](https://techcrunch.com/2026/11/21/is-selling-an-ai-version-of-your-face-to-this-microdrama-startup-the-future-of-hollywood/)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
