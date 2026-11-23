@@ -1,0 +1,229 @@
+---
+title: "11.23 可灵AI估值180亿，阿里AI收入179亿 | AI 早报"
+date: "2026-11-23"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 11.23 可灵AI估值180亿，阿里AI收入179亿 | AI 早报
+
+> 2026年11月23日 周一 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- 可灵AI 估值180亿美元，独立运营并引入腾讯阿里 —— 国产AI视频独角兽独立融资，商业化路径清晰
+- 阿里AI收入179亿，腾讯算力支出增225% —— 看清大厂AI投入产出比与商业化进度
+- 连连数字发布XWorker，打通智能体支付与经营工作流 —— 跨境支付公司切入智能体经营入口
+- OpenAI 首席科学家提出以困惑度限制 AI 开发 —— OpenAI 提出行业 AI 发展限速标准
+- NVIDIA Alpamayo 2 Edge 专为 DRIVE Thor 设计，延迟 160ms —— NVIDIA 车载推理 VLA 模型落地 Thor 芯片
+
+**今日共收录 17 条动态，涵盖 模型与产品 4条、技术洞察 4条、行业动态 9条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. NVIDIA Alpamayo 2 Edge 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-23/e950e1ff4989.png)
+
+NVIDIA Alpamayo 2 Edge 发布：NVIDIA 发布专为 DRIVE AGX Thor 芯片设计的 2B 推理型视觉-语言-动作（VLA）模型 Alpamayo 2 Edge，支持环视摄像头输入与因果链推理。
+
+模型采用 FP8 + TensorRT Edge-LLM 配方，在 Thor 上像素到轨迹延迟为 160-190 毫秒，AlpaSim 测试中每起有责事故行驶 15.15 公里。
+
+权重采用 OpenMDW-1.1 许可证开源，支持微调，开发者可通过 GitHub 获取推理代码及 Hugging Face 上的 BF16 权重。
+
+📎 [原文链接](https://www.marktechpost.com/2026/11/22/nvidia-alpamayo-2-edge-2b-reasoning-vla-drive-thor/)
+
+
+### 2. Gemini API 工具检索功能预览
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-23/e950e1ff4989.png)
+
+Gemini API 工具检索功能预览：Google 在 Gemini API Interactions v1beta 中推出工具检索功能，支持延迟加载大型工具库的 Schema，解决数十个函数声明导致的高 Token 消耗问题。
+
+该功能提供服务端和客户端两种检索模式，服务端模式在一次请求中完成搜索与加载，无需额外往返；目前处于预览阶段，无额外费用。
+
+📎 [原文链接](https://www.marktechpost.com/2026/11/22/google-gemini-api-tool-retrieval/)
+
+
+### 3. Flowframes 1.36 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-23/a43df60c3e96.png)
+
+Flowframes 1.36 发布：Flowframes 1.36.0 发布，这是一款基于 RIFE 等模型的本地 AI 视频帧插值工具，支持将 24/30 FPS 视频平滑提升至 60/120 FPS。
+
+新版本支持 Nvidia、AMD 及 Intel GPU，通过 Vulkan 实现跨平台兼容，具备智能去重、场景切换保护及无损音频字幕保留功能。
+
+📎 [原文链接](https://flowframes.app/)
+
+
+### 4. 2026年个人AI智能体横评
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-23/e950e1ff4989.png)
+
+2026年个人AI智能体横评：MarkTechPost 发布 2026 年个人 AI 智能体横评，涵盖 Hermes Agent、OpenClaw、Gemini Spark、OpenAI dots、Meta Muse 等 7 款产品。
+
+Hermes Agent 凭借最深厚的记忆堆栈和默认失败关闭的安全机制，被评为开发者最佳开源选择；OpenClaw 渠道覆盖最广但存在安全漏洞。
+
+Gemini Spark 适合 Google 生态用户，OpenAI dots 适合 ChatGPT 重度用户，Meta Muse 提供免费层级，Perplexity 专注 Mac 本地融合。
+
+📎 [原文链接](https://www.marktechpost.com/2026/11/22/best-personal-ai-agents-2026/)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. Unsloth Desktop 本地 AI 部署指南
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-23/e420c368a8b3.png)
+
+Unsloth Desktop 本地 AI 部署指南：Unsloth Desktop 是一款免费开源的本地 AI 部署工具，支持在 Windows 上通过图形界面一键部署 Qwen3.8-27B 和 Inkling 2 Mini 等模型。
+
+该工具内置 LAN 局域网共享功能，允许家庭网络内多设备访问，无需终端命令或 Python 环境，适合个人用户搭建私密 ChatGPT 替代品。
+
+官方提供 VRAM 计算器，指导用户根据显存大小（如 32GB RTX 5090）选择合适的量化模型（如 UD-Q4_K_XL），实现 128K 上下文窗口。
+
+📎 [原文链接](https://www.gpupartner.com/blog/beginners-guide-local-ai-inkling-qwen-unsloth)
+
+
+### 2. Modded-NanoGPT 预训练突破30秒
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-23/cbd893c796fd.png)
+
+Modded-NanoGPT 预训练突破30秒：Modded-NanoGPT 社区项目通过 6 项底层优化，在 8 张 NVIDIA H100 上实现 GPT-2 规模模型预训练耗时 29.90 秒，首次突破 30 秒大关。
+
+核心优化包括合并优化器迭代减少 61GB 显存流量、填满 128 字节内存线及跳过 MoE 冗余复制，相比上一版本 #404 提速 145 毫秒。
+
+该成果目前作为 PR #406 提交审核，需维护者在自有硬件上验证后方可成为官方记录，展示了极致算力压榨下的工程优化价值。
+
+📎 [原文链接](https://amund.blog/modded-nanogpt-sub-30s-record-attempt/)
+
+
+### 3. ML模型发布前检查清单
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-23/e0a44e1e6ee0.png)
+
+ML模型发布前检查清单：文章指出多数ML模型在生产环境中因数据泄漏、分布偏移等问题失效，提出发布前必须执行的六项检查：独立评估集审计、切片指标分析、置信度校准、边缘情况探测、漂移监控规划及金丝雀发布验证。
+
+作者建议将这些检查整合为CI/CD流水线中的门控（Gate），明确负责人和通过标准，将发布验证从研究思维转变为基本的工程纪律，避免在生产环境调试。
+
+📎 [原文链接](https://venturebeat.com/orchestration/your-ml-model-passed-every-test-heres-what-those-tests-might-have-missed)
+
+
+### 4. Show HN: LLM子代理游戏
+
+Show HN: LLM子代理游戏：开发者 gulivan 开源了一款名为 worker755 的网页游戏，玩家扮演大语言模型的子代理（subagent）进行互动体验，项目代码已托管于 GitHub。
+
+📎 [原文链接](https://github.com/gulivan/worker755)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. 可灵AI 完成198亿融资
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-23/65fc81324bc3.jpg)
+
+可灵AI 完成198亿融资：快手宣布可灵AI完成约198亿元增资，投后估值近180亿美元，腾讯、阿里云、百度等参投，业务转为独立经营主体。
+
+可灵2026年Q2收入超8.5亿元，全球用户破1亿，企业客户近5万家，API收入占比预计达60%，主要面向海外及专业影视制作场景。
+
+📎 [原文链接](https://www.tmtpost.com/8213670.html)
+
+
+### 2. 阿里腾讯百度京东Q3财报
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-23/746ea4f23c2c.png)
+
+阿里腾讯百度京东Q3财报：阿里、百度、腾讯、京东发布2026年Q3财报，阿里AI云与算力服务收入179.18亿元，百度AI云基础设施收入82亿元，腾讯WorkBuddy年化收入超5亿美元。
+
+大厂AI投入显著增加，阿里资本开支增60%至504.77亿元，腾讯算力预付款致资本开支增225%至651亿元，京东研发费用增36.9%至77亿元。
+
+AI商业化初现成效，阿里AI云EBITA利润率升至14.5%，百度千帆平台Token收入增1159%，京东工业AI智能体贡献12.5%增量GMV。
+
+📎 [原文链接](https://www.tmtpost.com/8212870.html)
+
+
+### 3. 连连数字发布AI数字员工平台
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-23/746ea4f23c2c.png)
+
+连连数字发布AI数字员工平台：连连数字发布面向全球商业的AI数字员工平台LianLian XWorker，整合智枢RouterBrain调度300余款模型，通过Agent Wallet和XPay实现智能体自主支付与任务执行。
+
+该平台将AI算力与支付牌照网络打包，首期瞄准跨境电商卖家，解决经营动作分散痛点，并已完成亚太首笔基于Visa支付标记的B2B智能体真实交易。
+
+📎 [原文链接](https://www.tmtpost.com/8213773.html)
+
+
+### 4. OpenAI 首席科学家提出 AI 限制方案
+
+OpenAI 首席科学家提出 AI 限制方案：OpenAI 首席科学家 Jakub Pachocki 发表博客，建议以“困惑度”作为衡量 AI 开发速度的统一指标，以限制不受监管的进步。
+
+该方案旨在建立行业共同安全标准，在监控能力达到里程碑前，承诺不超越特定困惑度阈值，目前获 Sam Altman 高度认可。
+
+📎 [原文链接](https://techcrunch.com/2026/11/22/openais-chief-scientist-has-thoughts-on-how-to-limit-ai-development/)
+
+
+### 5. 曙光8000获戈登贝尔奖
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-23/8c00f36a4e19.jpg)
+
+曙光8000获戈登贝尔奖：中科曙光曙光8000超算集群两项应用斩获ACM戈登贝尔奖，其中量子化学研究突破电子结构计算极限，气象模拟实现全球1.5公里分辨率预报。
+
+该集群在4.5万卡规模下保持94.9%的扩展效率，已支撑300余项重点应用，覆盖量子化学、气象预报等30多个科研与产业领域。
+
+📎 [原文链接](https://zhidx.com/p/613162.html)
+
+
+### 6. 方程豹钛9 折叠智舱发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-23/746ea4f23c2c.png)
+
+方程豹钛9 折叠智舱发布：方程豹钛9上市，顶配车型搭载折叠智舱，线控转向系统支持方向盘10秒内180度折叠收纳，配合座椅放平，主驾腿部空间增加约25厘米。
+
+售价32.99万元，基于GB 17675-2025新国标（取消强制机械连接）落地，实现高频启停8万次，主打午休、充电等场景下的空间拓展。
+
+📎 [原文链接](https://www.tmtpost.com/8214070.html)
+
+
+### 7. AI行业面临新型“色诱陷阱”安全威胁
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-23/fb9c3103c55b.webp)
+
+AI行业面临新型“色诱陷阱”安全威胁：专家警告AI行业普遍面临“色诱陷阱”攻击，攻击者利用AI伪造身份、背景及语音，针对掌握核心机密的CEO及员工进行渗透。
+
+此类攻击不再局限于传统间谍手段，而是通过投资者、客户等合法身份接近目标，利用AI大幅降低策划成本并维持虚构人设。
+
+OpenAI已内部警示员工防范外部人员窃取机密，建议设定公私界限并建立敢于质疑异常请求的安全文化。
+
+📎 [原文链接](https://techcrunch.com/2026/11/20/experts-warn-nearly-everyone-in-ai-is-susceptible-to-a-honey-trap-scheme-right-now/)
+
+
+### 8. Pieter Levels 发布 AI 屏蔽工具
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-23/ea6511d0aec7.jpg)
+
+Pieter Levels 发布 AI 屏蔽工具：独立开发者 Pieter Levels 发布工具，列出 3,728 个发布 AI 回复的 X 账号供公众屏蔽。用户可通过浏览器智能体一键批量屏蔽，上榜账号需宣誓不再使用 AI 才能申诉移除。
+
+📎 [原文链接](https://www.indiehackers.com/post/launches/a-new-tool-from-pieter-levels-lets-anyone-block-3-728-x-accounts-he-says-post-ai-replies-8sgOq6YhwgahokzyznK6)
+
+
+### 9. 闲鱼 2026 Q2 数据发布
+
+闲鱼 2026 Q2 数据发布：闲鱼发布 2026 年第二季度数据，日活增长 23%，订单量增长 29%，明确将 AI 列为核心增长动力。
+
+📎 [原文链接](https://news.cnblogs.com/n/846487/)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
