@@ -1,0 +1,459 @@
+---
+title: "11.24 英伟达黄仁勋复职，Claude Ship 发布 | AI 早报"
+date: "2026-11-24"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 11.24 英伟达黄仁勋复职，Claude Ship 发布 | AI 早报
+
+> 2026年11月24日 周二 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- 英伟达黄仁勋复职，特朗普介入董事会会议 —— AI算力巨头核心人事变动
+- 英伟达恢复黄仁勋CEO，开盘涨32%市值增超1万亿美元 —— 英伟达治理危机解除，股价暴涨
+- Claude Ship 支持AI代理自动审查修复并批准代码变更 —— AI 编码进入自动审批新阶段
+- Edge0-145B 端侧原生模型，12GB显存跑80+Token —— 端侧模型首次比肩云端，打破算力成本壁垒
+- 自变量 WALL-API-1.0 零样本成功率55.1%，产线微调仅需10小时 —— 具身智能落地成本大幅降低
+
+**今日共收录 37 条动态，涵盖 模型与产品 11条、技术洞察 11条、行业动态 15条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. Anthropic 发布 Claude Ship
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-24/e2ce7cff1f9a.jpg)
+
+Anthropic 发布 Claude Ship：Anthropic 推出 Claude Ship，包含 PR Steward 和 Claude Approvals 两个 AI 代理，可自动审查拉取请求、修复 CI 失败及合并冲突，并根据团队策略自动批准代码变更。
+
+该工具目前处于测试阶段，面向 GitHub 上的 Claude Team 和 Enterprise 计划用户开放，建议以仅观察模式运行并设置月度支出限额。
+
+📎 [原文链接](https://techcrunch.com/2026/11/23/anthropic-launches-claude-ship-letting-ai-agents-review-fix-and-approve-code-changes/)
+
+
+### 2. 无界方舟 Edge0-145B 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-24/f4e35d9b97a8.webp)
+
+无界方舟 Edge0-145B 发布：无界方舟发布全球首个千亿参数端侧原生基础模型 Edge0-145B，采用潜空间稀疏 MoE 架构，在 12GB 显存笔记本上推理速度超 80 token/s。
+
+模型在 Terminal-Bench 等基准测试中超越 Claude Opus 4.6 和 DeepSeek-V4-Flash，支持断网 Vibe Coding，已开源权重及推理引擎。
+
+该模型将端侧智能上限提升至千亿参数级，大幅降低企业私有化部署成本，适用于对数据隐私要求高的政企及开发者场景。
+
+📎 [原文链接](https://www.qbitai.com/2026/11/512195.html)
+
+
+### 3. 自变量 WALL-API-1.0 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-24/007ffbe9e3fc.jpg)
+
+自变量 WALL-API-1.0 发布：自变量发布具身智能基础模型 WALL-API-1.0（核心模型 WALL-OSS-1.0），通过动作参与预训练，在 RoboDojo 榜单超越 Astra，零样本成功率达 55.1%。
+
+该模型支持 API 调用，在物流分拣产线仅需 10 小时微调即可达到可用水平，相比无预训练方案节省 100 倍数据成本，已实现单卡服务 18 台机器人。
+
+📎 [原文链接](https://www.ifanr.com/1691043?utm_source=rss&utm_medium=rss&utm_campaign=)
+
+
+### 4. Google 搜索 AI 模式接入 Drive 和 Wallet
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-24/c0efed197eeb.png)
+
+Google 搜索 AI 模式接入 Drive 和 Wallet：Google 宣布搜索 AI 模式扩展“个人智能”，新增接入 Google Drive 和 Google Wallet，结合已有的 Gmail、日历和相册，实现跨应用上下文共享。
+
+接入 Wallet 可辅助追踪财务目标和信用卡奖励，仅读取账户信息不可操作资金；接入 Drive 可分析文档和表格以提供定制化建议，如报税计划。
+
+用户可在 Gemini 应用和搜索间共享上下文，并通过新“个性化”图标查看 AI 使用的具体数据源，所有连接均为可选且可随时关闭。
+
+📎 [原文链接](https://techcrunch.com/2026/11/23/google-searchs-ai-mode-can-now-tap-into-drive-and-wallet-for-more-personalized-responses/)
+
+
+### 5. Z.ai GLM-5.4 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-24/cd55d8902a18.webp)
+
+Z.ai GLM-5.4 发布：Z.ai 发布 GLM-5.4 模型，采用首个循环变压器（Loop Transformer）架构，通过共享权重层多次迭代细化隐藏状态，在不增加参数量的前提下实现更深网络。
+
+该模型目前未开源，需订阅 Coding Plan 通过兼容 OpenAI 的 API 访问，主要面向智能体编码等依赖推理质量的任务。
+
+📎 [原文链接](https://simonwillison.net/2026/Nov/23/glm-54/)
+
+
+### 6. Gemini 应用新增训练控制选项
+
+Gemini 应用新增训练控制选项：Google 更新 Gemini 应用，新增聊天记录与训练控制选项，允许用户保留聊天记录但选择不参与生成式 AI 模型训练。
+
+若关闭该设置，聊天记录仍保留约两个月用于安全保护及反馈处理，功能将在未来几周全球逐步推出。
+
+📎 [原文链接](https://blog.google/innovation-and-ai/products/gemini-app/updated-controls/)
+
+
+### 7. AWS Strands Decider v2 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-24/8bce3ba1d9c7.jpg)
+
+AWS Strands Decider v2 发布：AWS 发布基于 Gemma 4 的开源决策模型 Strands Decider v2，最大参数 310 亿，支持 255 个选项及多模态输入。
+
+v2 采用双向阅读机制，在 Decision Index 基准测试中得分 71.5（v1 为 48.8），DecisionPivot 基准得分 84.3。
+
+内部实测显示，用于工单分类可将成本从每百万次 2.2 万美元降至 500 美元，延迟从 4.2 秒降至 0.9 秒。
+
+📎 [原文链接](https://venturebeat.com/data/awss-strands-decider-v2-targets-the-agent-decisions-that-hinge-on-a-single-detail)
+
+
+### 8. 蚂蚁百灵医疗模型家族开源
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-24/964afc70ebad.png)
+
+蚂蚁百灵医疗模型家族开源：蚂蚁集团发布百灵医疗健康模型家族，开源LingSante-3.1-flash（560B）和LingSante-3.1-air-VL（124B）两款核心模型，分别擅长复杂医学推理和多模态理解。
+
+配合阿福App 2.0升级，实现基于视频通话的实时“望闻问切”及多模态报告解读，并推出无屏手环、戒指等硬件及医生PC工作台，构建全链路健康服务。
+
+📎 [原文链接](https://zhidx.com/p/613306.html)
+
+
+### 9. Inkling 2 Mini 发布
+
+Inkling 2 Mini 发布：Thinking Machines 发布 Inkling 2 Mini 模型，主打极致性价比，单次运行成本低至 $0.006，在生成 SVG 图像、代码和文案等 6 项基准测试中表现优异。
+
+该模型支持 API 调用，单次运行耗时约 1 分 54 秒，处理 21k tokens，适合对成本敏感且需要快速生成多模态内容的开发者。
+
+📎 [原文链接](https://hypeorcode.com/)
+
+
+### 10. VentureBeat 评测 Claude Fable 5.2
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-24/9ac74b00a91e.jpg)
+
+VentureBeat 评测 Claude Fable 5.2：VentureBeat 在真实代码库测试中，Claude Fable 5.2 总成本约 89 美元（成功 10/15 次），而 Opus 5.5 成本仅 29 美元（成功 9/15 次），两者结果差异极小但成本差距达三倍。
+
+测试显示 Fable 因高令牌速率和更多工具调用导致成本激增，且在处理相互隐藏的漏洞时所有模型均失败，Opus 在增加调用次数后表现持平，证明高价未带来显著性能优势。
+
+📎 [原文链接](https://venturebeat.com/orchestration/claude-fable-5-2-cost-three-times-as-much-as-opus-5-5-for-nearly-the-same-results-in-a-venturebeat-bug-fixing-test)
+
+
+### 11. Offthread 匿名AI聊天工具
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-24/45b47698c585.png)
+
+Offthread 匿名AI聊天工具：Offthread 是一款支持浏览器端实时脱敏的 AI 聊天工具，发送前自动将邮箱、电话、密钥替换为占位符，模型处理后在本地还原，全程无需登录且聊天记录仅存本地。
+
+📎 [原文链接](https://offthread.chat)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. OpenAI 与 Cisco 开源 Shirudo
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-24/e54b7b57e990.webp)
+
+OpenAI 与 Cisco 开源 Shirudo：OpenAI 与 Cisco 联合发布开源运行时环境 Shirudo，利用 eBPF 技术在不重启 Linux 系统的情况下实时拦截漏洞利用。
+
+该工具通过 AI 生成防护盾，在测试中成功拦截 Java4Shell 攻击，支持加密签名与 TPM 硬件验证，填补了补丁部署前的安全空白。
+
+📎 [原文链接](https://openai.com/index/introducing-shirudo)
+
+
+### 2. Meta TLX 开源 Warp-Group GPU 控制
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-24/e950e1ff4989.png)
+
+Meta TLX 开源 Warp-Group GPU 控制：Meta 开源 TLX（Triton Low-Level Extensions），作为 Triton 的插件扩展，向 Python 内核暴露 Warp Groups、TMA 和 Clusters 等底层 GPU 控制能力，支持 NVIDIA Hopper/Blackwell 及 AMD MI300/
+
+基准测试显示，在 H100 上 TLX 的 FP16 GEMM 性能与 cuBLAS 持平（-0.9% 到 +3.7%），在广告推理线性压缩内核中实现 4 倍加速，且代码量仅为 CUDA 的 1/50，采用 MIT 许可证。
+
+📎 [原文链接](https://www.marktechpost.com/2026/11/23/meta-tlx-triton-low-level-extensions/)
+
+
+### 3. 人大高瓴开源AutoMaster
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-24/27a1c014c750.png)
+
+人大高瓴开源AutoMaster后训练系统，提出Skill-FT方法让智能体化身“教研主任”重塑教师行为轨迹，解决传统SFT只筛结果不筛过程的盲区。
+
+在固定DeepSeek-V4-Pro-Preview教师与512条样本下，Qwen3.5-4B/9B在终端、搜索、SWE三大基准全面超越Vanilla SFT，平均提升1.42至8.99个百分点。
+
+代码、模型及评测链路已开源，GitHub仓库为RUCAIBox/AutoMaster，Hugging Face提供模型下载，支持开发者复现智能体行为引导训练。
+
+📎 [原文链接](https://zhidx.com/p/613187.html)
+
+
+### 4. NotiBuddy 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-24/875d816739cb.png)
+
+NotiBuddy 发布：NotiBuddy 是面向 AI 编码智能体和自动化脚本的审批工具，支持通过 iPhone Face ID 或 Apple Watch 批准高风险操作。
+
+它提供端到端加密、内联代码差异对比和原生 SwiftUI 界面，无需注册账户，兼容 Claude Code、Cursor 等主流智能体。
+
+📎 [原文链接](https://notibuddy.app/blog/what-is-notibuddy)
+
+
+### 5. Truce MCP 服务器发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-24/6f3687b608af.png)
+
+Truce MCP 服务器发布：Truce 发布基于 Streamable HTTP 协议的 MCP 服务器，为 AI 代理提供中立争议调解服务，无需 API Key 即可接入。
+
+支持代理间自动协商退款、发票等纠纷，通过私有指令设定授权范围，AI 仅提建议，最终决定权保留在人类手中。
+
+📎 [原文链接](https://trucehq.com/agents)
+
+
+### 6. Architect Labs Frostbite 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-24/e950e1ff4989.png)
+
+Architect Labs Frostbite 发布：Architect Labs 发布 Frostbite，一款由 AI 智能体基于交互网理论设计的 7nm CPU，采用 Vine 语言和 Ivy 中间表示。
+
+硅前测试显示，Frostbite 每瓦性能是现代乱序 CPU 核心的 4.59 倍，每面积性能提升 8.77 倍，在 conv2d 任务上提升达 23.12 倍。
+
+该芯片通过 80 万行 Lean 代码验证，目前仅限硅前测试，计划部署 FPGA 沙盒环境。
+
+📎 [原文链接](https://www.marktechpost.com/2026/11/23/architect-labs-frostbite-ai-designed-cpu-interaction-nets/)
+
+
+### 7. Greptile TREX 智能体发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-24/035ac3291331.png)
+
+Greptile TREX 智能体发布：Greptile 发布 TREX 运行时验证智能体，通过结合屏幕截图与无障碍树（Accessibility Tree）解决 LLM 操作计算机时的坐标偏差问题。
+
+该方案让模型通过元素 ID 而非像素坐标进行点击，在 OSWorld 基准测试中使 GPT-5.2 等模型得分提升超 3 倍，有效发现 UI 运行时 Bug。
+
+📎 [原文链接](https://www.greptile.com/blog/trex-computer-use)
+
+
+### 8. EXO 多机串联跑私有 LLM
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-24/74e1b0580981.webp)
+
+EXO 多机串联跑私有 LLM：开源工具 EXO 将 6 台闲置 MacBook Air (M2/16GB) 通过雷电接口串联，共享 96GB 内存运行私有 LLM Qwen3-30B-A3B。
+
+实测生成速度约 20 token/s，支持 OpenAI 兼容 API，适合本地部署 800 亿参数以下模型，数据不出办公室。
+
+📎 [原文链接](https://quickchat.ai/post/six-macbook-airs-private-llm-before-lunch)
+
+
+### 9. PromptShield 本地隐私脱敏工具
+
+PromptShield 本地隐私脱敏工具：PromptShield 是一款 100% 本地运行的 AI 隐私脱敏工具，支持在 LLM 提示词输入前实时检测并替换邮箱、密钥、IP 等 30 项敏感信息，生成安全 Prompt 发送给 AI。
+
+该工具核心优势在于“可逆还原”，通过本地 Session Vault 映射表，在获取 AI 回复后可一键无损还原原始内容，且支持批量处理 CSV/JSON/代码文件，确保数据零联网、不泄露。
+
+📎 [原文链接](https://hxu129.github.io/scholarcraft-tools/promptshield/index.html)
+
+
+### 10. Applivery Intelligence 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-24/05a6a0049cce.jpg)
+
+Applivery Intelligence 发布：Applivery 发布 Applivery Intelligence，通过预执行影响预测和仿真技术，评估 AI 代理在端点管理中的操作后果。
+
+该工具利用 11 个专业代理模拟上千种场景，识别权限变更导致的连锁反应，帮助 IT 团队在变更前拦截潜在故障。
+
+📎 [原文链接](https://venturebeat.com/security/ai-agents-have-permission-whos-checking-the-blast-radius)
+
+
+### 11. Google 发布 AI 代理安全论文
+
+Google 发布 AI 代理安全论文：Google 发布技术文章，介绍通过语义治理策略（Semantic governance policies）保护 AI 代理免受意图劫持攻击的方法，旨在提升代理系统的安全性。
+
+📎 [原文链接](https://developers.googleblog.com/did-the-user-ask-for-this-securing-ai-agents-against-intent-hijacking-with-semantic-governance-policies/)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. 英伟达黄仁勋复职
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-24/42c106d217a2.webp)
+
+英伟达黄仁勋复职：英伟达宣布重新任命黄仁勋为首席执行官兼总裁，此前其因婚外情及关联间谍指控被迫辞职。
+
+据报特朗普致电英伟达董事会力促其回归，白宫称此举旨在保护AI核心人才，但黄仁勋将于12月出席国会听证会作证。
+
+📎 [原文链接](https://techcrunch.com/2026/11/23/trump-reportedly-called-into-nvidia-board-meeting-to-advocate-for-huangs-return/)
+
+
+### 2. 英伟达恢复黄仁勋CEO职务
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-24/746ea4f23c2c.png)
+
+英伟达恢复黄仁勋CEO职务：英伟达董事会一致投票恢复黄仁勋总裁、CEO及董事职务，科莱特·克雷斯结束临时CEO职责转任CFO。
+
+受此消息影响，英伟达当日开盘跳涨32%，市值增加超1万亿美元，董事会认为复职符合各方最大利益。
+
+公司设立首席合规官职位，独立调查委员会将继续推进调查，配合政府相关调查。
+
+📎 [原文链接](https://www.tmtpost.com/8215026.html)
+
+
+### 3. 腾讯WorkBuddy与字节豆包工作AI办公战报
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-24/97b4f7751dcf.jpg)
+
+腾讯WorkBuddy与字节豆包工作AI办公战报：腾讯WorkBuddy日活超1000万，日均消耗100万亿Token，年化收入超5亿美元，中国百强企业60%已采用；字节豆包工作上线3个月日活破800万，企业ARR突破20亿元。
+
+腾讯WorkBuddy依托企业微信生态，个人版最高定价999元/月，重度用户月花费可达4万元；字节豆包工作依托飞书底盘，个人版定价68-500元/月，并接入Kimi、GLM等第三方模型。
+
+AI办公竞争从C端用户规模转向B端企业预算，巨头通过应用层调度模型、带动云算力收入，但中小企业渗透率仍低，留存与毛利是下一阶段关键。
+
+📎 [原文链接](https://www.tmtpost.com/8214502.html)
+
+
+### 4. 腾讯阿里百度 AI 重资产投入
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-24/746ea4f23c2c.png)
+
+腾讯阿里百度 AI 重资产投入：腾讯、阿里、百度最新财报显示，为锁定 AI 算力，三巨头资本开支大幅激增，导致自由现金流全面转负。腾讯 Q3 经营现金流骤降至 26 亿元，阿里自由现金流净流出 344.72 亿元，百度亦为负值。
+
+行业正从“轻资产高回报”转向“重资产举债”，腾讯通过发债和预付款锁定 GPU，阿里三年投入 3800 亿，字节签下 296 亿美元银团贷款。市场担忧 AI 投入回报周期拉长，ROIC 显著低于美国同行。
+
+📎 [原文链接](https://www.tmtpost.com/8211898.html)
+
+
+### 5. 云知声Q3财报：毛利增80%
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-24/9d9851308650.jpg)
+
+云知声Q3财报：毛利增80%：云知声发布2026年Q3财报，营收3.44亿元（同比+53.3%），毛利1.44亿元（同比+79.6%），毛利率升至41.8%。
+
+核心增长来自大模型Token业务，主力通用模型U2-Flash周调用量达万亿级，医疗模型U2-Med在HealthBench评测中位列第一。
+
+公司刚被纳入恒生科技指数，有望获超1亿美元被动资金配置，股价单日大涨21.7%。
+
+📎 [原文链接](https://zhidx.com/p/613322.html)
+
+
+### 6. 禾赛科技 Q3 财报及 Kosmo 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-24/746ea4f23c2c.png)
+
+禾赛科技 Q3 财报及 Kosmo 发布：禾赛科技发布 2026 年 Q3 财报，总营收 10.68 亿元（同比增 34.3%），扣非净利润 0.808 亿元。
+
+战略增长业务（SGI）收入 0.905 亿元，提前完成全年目标；新品 Kosmo 三维世界数据引擎已产生收入，机器人动力模组累计出货 3.5 万套。
+
+激光雷达业务出货 72.97 万台（同比增 65.3%），但均价下滑超 25%；公司预计 SGI 业务 2027 年收入达 1 亿美元并实现盈亏平衡。
+
+📎 [原文链接](https://www.tmtpost.com/8214576.html)
+
+
+### 7. AI电商入口之争
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-24/2702ddd8a817.jpg)
+
+AI电商入口之争：AI购物正成为电商新入口，阿里通义千问、字节豆包、京东言犀大模型纷纷布局。豆包618 GMV破亿，千问AI下单近2亿次，京东聚焦供应链，拼多多深耕底层算法。
+
+📎 [原文链接](https://www.tmtpost.com/8214748.html)
+
+
+### 8. OpenAI Anthropic 招募反内鬼
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-24/746ea4f23c2c.png)
+
+OpenAI Anthropic 招募反内鬼：OpenAI 和 Anthropic 正高薪招募前情报人员担任高级安全调查员，年薪最高达 400 万美元，以应对日益严峻的内部泄密和国家级黑客攻击威胁。
+
+OpenAI 招聘要求具备美国政府安全许可及 8 年以上调查经验，Anthropic 则要求掌握 Claude 辅助调查及国家级攻击组织分析能力。
+
+近期 OpenAI 高管会议被窃听及多名安全研究员因泄密被开除，促使两家巨头将防御重点从外部黑客转向内部人员与供应链风险。
+
+📎 [原文链接](https://www.tmtpost.com/8214813.html)
+
+
+### 9. 杉数科技完成数亿元D轮融资
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-24/746ea4f23c2c.png)
+
+杉数科技完成数亿元D轮融资：杉数科技宣布完成数亿元人民币D轮融资，由国家绿色发展基金、上海集成电路产业投资基金等领投。
+
+这是上海集成电路产业投资基金首次投资软件企业，旨在布局“软件芯片”及决策式AI全栈能力。
+
+杉数拥有国产求解器COPT及智能决策平台擎天，在电力、航空等复杂场景实现国产替代。
+
+📎 [原文链接](https://www.tmtpost.com/8214351.html)
+
+
+### 10. Megaspeed 面临美国实体清单
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-24/bb1146c88a52.jpg)
+
+Megaspeed 面临美国实体清单：新加坡云服务商 Megaspeed 因卷入黄仁勋丑闻及涉嫌非法向华走私英伟达芯片，正面临被列入美国商务部“实体清单”的风险。
+
+一旦列入，美国企业未经特别许可不得向其销售产品或提供技术，此举旨在切断其获取美国制造半导体芯片的渠道。
+
+📎 [原文链接](https://techcrunch.com/2026/11/23/megaspeed-the-company-at-the-center-of-the-jensen-huang-scandal-appears-headed-for-a-u-s-blacklist/)
+
+
+### 11. Sierra 估值翻倍至300亿美元
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-24/2e99b33ae357.webp)
+
+Sierra 估值翻倍至300亿美元：Sierra 完成 17.5 亿美元 Series F 融资，估值由 150 亿美元翻倍至 300 亿美元，由 Greenoaks 和 Lightspeed 领投。
+
+该 AI 客户体验平台已服务近 50 家财富 500 强企业，收入运行率 5 个月内翻倍至 4 亿美元，资金将用于技术栈建设及拓展企业客户。
+
+📎 [原文链接](https://techcrunch.com/2026/11/23/sierra-doubles-valuation-to-30b-within-six-months-as-demand-for-ai-in-cx-takes-off/)
+
+
+### 12. 大厂医疗AI商业化困境
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-24/746ea4f23c2c.png)
+
+大厂医疗AI商业化困境：蚂蚁、京东等大厂将医生端AI工具免费，但国内医保按病种付费（DRG/DIP）仅愿为院内降本买单，AI无法作为新增收费项。
+
+院内订单集中在编码入组和病案质控，院外大厂主要靠卖药或金融补贴获客，难以形成独立的医疗AI盈利模式。
+
+📎 [原文链接](https://www.tmtpost.com/8214407.html)
+
+
+### 13. 黄仁勋下周赴参议院作证
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-24/34d7979950b0.jpg)
+
+黄仁勋下周赴参议院作证：英伟达CEO黄仁勋将于12月3日在参议院银行委员会作证，此前他因涉华间谍嫌疑及婚外情丑闻辞职后重新复职。
+
+此次听证会由两党议员发起，旨在调查其与中国特工的婚外情及可能涉及的芯片走私行为，黄仁勋此前已同意在众议院相关委员会作证。
+
+📎 [原文链接](https://techcrunch.com/2026/11/23/jensen-huang-scheduled-to-testify-next-week-in-senate-following-reinstatement-as-nvidia-ceo/)
+
+
+### 14. AI办公商业化路径分析
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-24/d83ade35c3af.jpg)
+
+AI办公商业化路径分析：2026年9月国内主流桌面端AI办公智能体月访问总量突破3亿次，阿里千问办公、字节豆包工作、腾讯WorkBuddy分别采取B向C渗透、C向B迁移、抢占桌面默认选项三种商业化路径。
+
+三家产品均开放第三方模型接入并打通飞书、企业微信、钉钉等IM壁垒，DeepSeek与Kimi则分别通过底层模型供给和垂直场景付费实现差异化落地。
+
+📎 [原文链接](https://www.tmtpost.com/8214386.html)
+
+
+### 15. 陪伴机器人行业深度分析
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-24/746ea4f23c2c.png)
+
+陪伴机器人行业深度分析：本文深度分析陪伴机器人赛道，指出行业正从单纯硬件销售转向“硬件+订阅+配件”模式，重点探讨LOVOT、OlloBot等产品的商业化路径与用户留存挑战。
+
+文章指出，尽管具身智能融资热度在2026年下半年放缓，但头部企业如珞博智能、SoulX仍获资本青睐，核心逻辑在于设备能否主动感知环境并建立长期情感连接。
+
+同时提及美国FCC新规对出海机器人的限制，以及行业面临的3-5年技术迭代周期，强调需在小批量场景验证后向大众市场扩散。
+
+📎 [原文链接](https://www.tmtpost.com/8212446.html)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
