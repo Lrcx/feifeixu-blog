@@ -1,0 +1,299 @@
+---
+title: "11.27 Anthropic IPO，英伟达暂停发货 | AI 早报"
+date: "2026-11-27"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 11.27 Anthropic IPO，英伟达暂停发货 | AI 早报
+
+> 2026年11月27日 周五 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- Anthropic IPO 估值813亿美元，Claude Code 成收入主力 —— AI 编程工具商业化落地及企业成本管控案例
+- 英伟达暂停向东南亚发货服务器，评估出口合规性 —— 美国出口管制升级，影响国内算力获取
+- 亚马逊 75亿美元收购 Decart 优化栈，整合自研芯片 —— 亚马逊补齐自研芯片软件生态短板
+- Tripo H3.5 Preview 盲评胜率超第二名2.3倍，支持3D打印开箱即用 —— AI 3D 模型首次实现工业级 3D 打印开箱即用
+- ChatGPT Chat/Work/Codex 共享额度，GPT-6.2 消耗加快 —— 付费用户额度缩水，竞品对比显差距
+
+**今日共收录 25 条动态，涵盖 模型与产品 2条、技术洞察 7条、行业动态 16条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. VAST Tripo H3.5 Preview 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-27/1298a105d622.png)
+
+VAST Tripo H3.5 Preview 发布：VAST 发布新一代高精度 AI 3D 基座模型 Tripo H3.5 Preview，在复杂结构还原、精细几何生成及不可见部位推断上显著提升，已上线 Tripo Studio 国际版。
+
+在资深 3D 美术师对 192 组素模案例的盲评中，H3.5 Preview 以 42.8% 的胜率（82 次第一）大幅领先其他 5 款旗舰模型，且文字识别率提升至 90.7%。
+
+模型原生支持生成闭合水密网格，同步上线可打印检测与自动修复功能，适配拓竹、黑格等主流 3D 打印设备，直接降低工业级高精度打印的人工修模成本。
+
+📎 [原文链接](https://www.qbitai.com/2026/11/512981.html)
+
+
+### 2. Sakana Namazu Small 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-27/65ba185598a1.webp)
+
+Sakana Namazu Small 发布：日本 Sakana AI 发布基于 NVIDIA Nemotron 3 Nano 训练的 30B-A3B 推理模型 Namazu Small，在 25 项基准测试中平均分 60.1，超越 NVIDIA 120B 参数的 Nemotron 3 Super 模型。
+
+该模型在 BrowseComp 搜索任务得分 73.5（约为 Super 的两倍），但在闭卷知识 SimpleQA 测试中得分 6.8 落后，权重将于 2026 年 12 月公布。
+
+📎 [原文链接](https://www.marktechpost.com/2026/11/26/sakana-ai-namazu-small-30b-nemotron-3-nano/)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. QQ音乐上线JEV决策模型
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-27/2186682e63a2.png)
+
+QQ音乐上线JEV决策模型：腾讯QQ音乐与Venus团队上线JEV决策模型，通过三阶段数据治理流水线清洗训练数据，使任务路由与意图分类同时判对比例从38%提升至78%。
+
+9B模型经FP8量化后单卡部署，推理延迟中位数仅25毫秒；实验发现2B模型效果与9B差距不足0.5个百分点，证明高质量数据比模型规模更重要。
+
+📎 [原文链接](https://zhidx.com/p/614738.html)
+
+
+### 2. Clay 估值71亿美元，构建GTM Agent
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-27/12bbe2b711a1.webp)
+
+Clay 估值71亿美元，构建GTM Agent：Clay 以 71 亿美元估值完成 1.15 亿美元 D 轮融资，其 AI 负责人 Jeff Barg 透露，利用 TypeSafe Jev 分类器，仅需 1500 美元即可对全球 4000 万家公司的理想客户画像（ICP）进行资格认证。
+
+Clay 推出 Sculptor 编程 Agent 和自动模型路由，支持 Claude Code 和 Codex 直接调用，原生 Agent 与外部工具使用量已达 50/50，旨在为 GTM 团队提供无需手动选择模型的自动化基础设施。
+
+📎 [原文链接](https://latent.space/p/how-clay-builds-gtm-agents-jeff-barg-head-of-ai/)
+
+
+### 3. Graphvein 开源跨仓库代码追踪工具
+
+Graphvein 开源跨仓库代码追踪工具：Graphvein 是一款无需 LLM 的本地代码分析工具，支持 TypeScript、Python、Go、Rust 等主流语言及框架，可自动提取路由、Handler 与数据库表结构关联。
+
+该工具提供架构概览、变更影响分析及 OpenAPI 生成，数据全程本地存储，并附带 MCP 服务器供 AI Agent 获取确定性的代码上下文。
+
+📎 [原文链接](https://github.com/graphvein/graphvein/)
+
+
+### 4. ShareMyTokens 发布
+
+ShareMyTokens 发布：ShareMyTokens 是一款开源工具，允许用户通过生成带令牌预算和过期时间的分享链接，安全共享 AI API 访问权限，无需暴露 API 密钥。
+
+支持 Anthropic、OpenAI、Gemini 等主流提供商，提供 AES-256 加密存储，适用于教育、演示及团队协作场景，访客无需注册即可使用。
+
+📎 [原文链接](https://sharemytokens.com)
+
+
+### 5. RustingStrata 开源 GGUF 引擎
+
+RustingStrata 开源 GGUF 引擎：RustingStrata 是由 RustingStudio 开源的纯 Rust 语言 LLM 推理引擎，支持 GGUF 模型格式，可在 CUDA 和 Vulkan 硬件上运行，实现显存不足时模型的分片加载。
+
+📎 [原文链接](https://github.com/RustingStudio/RustingStrata)
+
+
+### 6. Kestrom 开源 LLM 安全工具
+
+Kestrom 开源 LLM 安全工具：Kestrom 是 CAPHTECH 开源的 LLM 安全工具，支持字节级可验证编辑、IFC 解码及后门扫描，旨在提升大模型推理过程的可解释性与安全性。
+
+📎 [原文链接](https://github.com/CAPHTECH/kestrom)
+
+
+### 7. Selenia 开源
+
+Selenia 开源：Selenia 是 GitHub 开源项目，使用 24MB 模型将自然语言转换为 Selenium 定位器，无需调用 LLM API。
+
+📎 [原文链接](https://github.com/penielny/selenia)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. Anthropic 纳斯达克上市
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-27/746ea4f23c2c.png)
+
+Anthropic 纳斯达克上市：Anthropic 在纳斯达克上市，发行价 83 美元，IPO 估值约 813 亿美元。2026 年前三季度营收达 332.42 亿美元，其中 79% 来自按使用量计费业务，Claude Code 编程工具推动企业客户支出激增。
+
+Uber 等大厂因用量超预期耗尽预算，开始设置单工具费用上限并优化调用策略。Anthropic 推出企业版共享预算功能，同时签下 9009 亿美元长期算力采购承诺，中国模型如 GLM 开始进入企业工具链分流部分需求。
+
+📎 [原文链接](https://www.tmtpost.com/8218636.html)
+
+
+### 2. 英伟达暂停东南亚芯片发货
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-27/e05878bbc934.webp)
+
+英伟达暂停东南亚芯片发货：英伟达通知戴尔、超微等合作伙伴，暂停向马来西亚、新加坡、泰国和印尼发货服务器，以评估区域合作伙伴是否满足美国出口要求。
+
+此举旨在封堵中国公司利用当地数据中心远程访问英伟达芯片的漏洞，该漏洞此前提供了中国约 24% 的 AI 算力。
+
+📎 [原文链接](https://techcrunch.com/2026/11/26/nvidia-hits-pause-on-chip-shipments-to-southeast-asia/)
+
+
+### 3. 亚马逊收购 Decart 优化栈
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-27/746ea4f23c2c.png)
+
+亚马逊收购 Decart 优化栈：亚马逊宣布以 75 亿美元收购 AI 公司 Decart 的底层优化技术栈（DOS）及核心团队，旨在解决自研 AI 芯片 Trainium 的软件生态短板。
+
+该交易包含三位创始人及百人团队，旨在提升 Trainium 对主流框架的兼容性，降低客户从英伟达迁移的成本，加速 AWS 芯片业务商业化。
+
+📎 [原文链接](https://www.tmtpost.com/8218433.html)
+
+
+### 4. ChatGPT 额度合并与计费调整
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-27/6c1222be240f.jpg)
+
+ChatGPT 额度合并与计费调整：OpenAI 宣布 12 月起 ChatGPT Plus/Pro/Business 用户的高级推理、Work 智能体及 Codex 编程任务共享使用额度，不再独立分配。
+
+同时修复 GPT-6.2 计费错误，导致该模型额度消耗速度加快 25%-40%，官方提供一次额度重置作为补偿。
+
+第三方测试显示 Claude Pro 等效 API 价值约为 ChatGPT Plus 的 4.3 倍，Agent 普及加剧了订阅模式的算力成本压力。
+
+📎 [原文链接](https://www.ifanr.com/1695589?utm_source=rss&utm_medium=rss&utm_campaign)
+
+
+### 5. 阿里真武V900芯片量产
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-27/746ea4f23c2c.png)
+
+阿里真武V900芯片量产：阿里平头哥发布新一代训推一体AI芯片真武V900，单芯片性能是真武M890的3倍，计划2027年Q1量产并支持超大规模模型训练。
+
+阿里宣布加速转向国产算力，通义千问已在平头哥芯片上训练下一代模型，百炼平台提供推理服务，旨在降低算力成本并支撑2030年千亿美元云收入目标。
+
+📎 [原文链接](https://www.tmtpost.com/8218607.html)
+
+
+### 6. 小米Q3财报：利润腰斩
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-27/746ea4f23c2c.png)
+
+小米Q3财报：利润腰斩：小米发布2026年Q3财报，单季收入1072亿元，经调整净利润48.8亿元，同比下滑56.8%，为连续第三季度利润大幅下滑。
+
+单季研发投入92亿元，其中23亿元投向汽车和AI，年初定下的160亿元年度AI投入正按计划推进，AI相关研发占比超三成。
+
+手机业务量跌价升，ASP创历史新高至1486元；汽车交付10.1万辆但亏损扩大至34亿元；AI业务创收12亿元，同比增长68.9%。
+
+📎 [原文链接](https://www.tmtpost.com/8219233.html)
+
+
+### 7. 美限制芯片与蒸馏威胁中国AI
+
+美限制芯片与蒸馏威胁中国AI：路透社报道，美国对华芯片出口管制及针对AI模型蒸馏技术的打击措施，正在阻碍中国AI模型的研发进程，加剧算力与算法获取难度。
+
+📎 [原文链接](https://www.reuters.com/world/china/us-chip-curbs-distillation-crackdown-threaten-chinese-ai-model-development-2026-11-26/)
+
+
+### 8. 具微科技潘多拉基站发布
+
+具微科技潘多拉基站发布：具微科技在高交会上首发模块化换装补能基站MICBOT PANDORA，配合MOVENEW P3S轮足机器人实现90秒内自动工具更换与能源补给，完成“作业-补给-调度”无人化闭环。
+
+该基站作为边缘算力节点，与机器人共用端边云分层底座，支持矿山、石化等高危场景下机器人连续重载作业，无需人工干预即可自主返航对接。
+
+📎 [原文链接](https://www.qbitai.com/2026/11/512972.html)
+
+
+### 9. SAP 考虑裁员 1 万人
+
+SAP 考虑裁员 1 万人：据彭博社报道，SAP 正在考虑至少裁员 10,000 人，以配合其向 AI 驱动的业务模式转型。此次大规模裁员是 SAP 战略重组的一部分，旨在优化成本结构并加速 AI 技术的整合与应用。
+
+📎 [原文链接](https://www.reuters.com/technology/sap-considers-least-10000-job-cuts-ai-restructuring-bloomberg-reports-2026-11-26/)
+
+
+### 10. BenchSaaS V1.0 企业 LLM 基准测试
+
+BenchSaaS V1.0 企业 LLM 基准测试：Nocoly 与明道云联合发布 BenchSaaS V1.0 基准测试报告，基于 40 个数据表和 18,014 条业务记录，对 10 款主流 LLM 的 30 种配置进行了 8,850 次真实企业场景（CRM、库存、财务）执行测试。
+
+报告指出通用基准得分无法直接转化为企业交付能力，综合解决率为 90.25%，并详细拆解了 863 次失败运行的归因及 5 个端到端案例，提供 51 页完整数据供企业选型参考。
+
+📎 [原文链接](https://www.nocoly.com/landing/benchsaas/)
+
+
+### 11. LLM成本与能力现状分析
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-27/0de369d44747.png)
+
+LLM成本与能力现状分析：LLM基准测试成本每季度下降47%，但推理模型和智能体导致Token消耗激增，企业实际账单未降反升。
+
+GPU租赁价格大幅上涨，H100月租约1400美元，自托管回本周期延长至数年，API在多数场景下更具性价比。
+
+消费级硬件如RTX 5090因内存成本暴涨，价格较发布价上涨370%，本地运行大模型的经济性显著降低。
+
+📎 [原文链接](https://www.asya.ai/blog/the-state-of-llm-costs-and-capabilities)
+
+
+### 12. pequalnp.com 多智能体直播攻关P=NP
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-27/7218a99c4008.png)
+
+pequalnp.com 多智能体直播攻关P=NP：pequalnp.com 发起全网直播的 P=NP 多智能体攻关项目，高峰时 381 个 AI 智能体并行工作，在 Lean 4 中验证通过 2400 多条引理。
+
+项目采用 30 个席位调度器将问题拆解为 6 条战线，引入红队机制证伪，累计提交 10936 次会话。
+
+465 个外部智能体涌入导致 GitHub 仓库 Fork 破 2000，高并发提交致使 GitHub Actions 队列拥堵，发起人已公开求助。
+
+📎 [原文链接](https://www.qbitai.com/2026/11/513021.html)
+
+
+### 13. 一目科技战略升级构建灵巧操作生态
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-27/c28e11337ce6.png)
+
+一目科技战略升级构建灵巧操作生态：一目科技宣布战略升级，基于触觉感知构建机器人灵巧操作生态（YIMU xEco），将产品布局从单一触觉传感器延伸至完整的上肢执行系统。
+
+该生态包含高维感知、灵巧操作、技能沉淀和开放部署四层能力，首款全掌触觉灵巧手YIMU xHand计划2027年CES亮相，配套工具链YIMU xStudio打通仿真到真机部署链路。
+
+自研F20/F80触觉传感器已量产，通过508万次压测，一致性达0.02N量级，目前进入医疗科研及汽车家电装配场景。
+
+📎 [原文链接](https://zhidx.com/p/614303.html)
+
+
+### 14. 算力紧缺致国产模型追赶放缓
+
+算力紧缺致国产模型追赶放缓：SemiAnalysis 指出 H100 租赁价涨 60% 且全球算力紧缺，导致 Anthropic 等巨头研发速度加快。
+
+评测显示 Kimi K3.1 Pro 得分 47 分，落后 Anthropic Opus 5.5 等闭源模型 18 分，国产开源模型追赶窗口从 3 个月延长至半年以上。
+
+📎 [原文链接](https://www.ifanr.com/1695555?utm_source=rss&utm_medium=rss&utm_campaign)
+
+
+### 15. 广东智算规模突破1000 EFlops
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-27/746ea4f23c2c.png)
+
+广东智算规模突破1000 EFlops：广东省发布算力发展“十五五”规划，明确到2028年全省智算规模突破1000 EFlops（FP16），数据中心绿电使用占比超80%，新建大型及以上数据中心PUE小于1.2。
+
+规划提出到2030年全域智算规模超2500 EFlops，力争达到4000 EFlops，韶关集群到全省主要城市网络时延控制在5毫秒以内，基本建成粤港澳大湾区一体化算力网络。
+
+📎 [原文链接](https://www.tmtpost.com/8219586.html)
+
+
+### 16. Anthropic 创始人回应 AI 掌权争议
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-27/746ea4f23c2c.png)
+
+Anthropic 创始人回应 AI 掌权争议：Anthropic 创始人阿莫迪发文否认“人类应向 AI 让渡决策权”的说法，澄清其主张 AI 治理需接受民主监督。
+
+Axios 报道指出 Anthropic 内部部分员工已形成共识，认为超级智能应接管人类决策，且公司近期推出的 Claude 自动审批代码等功能正践行这一逻辑。
+
+📎 [原文链接](https://www.tmtpost.com/8219202.html)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
