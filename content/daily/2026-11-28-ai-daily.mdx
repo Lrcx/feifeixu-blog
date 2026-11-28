@@ -1,0 +1,291 @@
+---
+title: "11.28 DeepSeek 包揽 OpenRouter 前三 | AI 早报"
+date: "2026-11-28"
+source: "AI 日报"
+category: "AI日报"
+tags: ["AI日报", "AI"]
+---
+# 11.28 DeepSeek 包揽 OpenRouter 前三 | AI 早报
+
+> 2026年11月28日 周六 · 每日精选 AI 领域重要动态
+
+---
+
+## 📋 今日摘要
+
+- DeepSeek V4.1 Flash 30天处理226万亿Token，中国模型包揽OpenRouter前三 —— 中国模型在海外API平台占据主导
+- 英伟达暂停向东南亚四国交付AI服务器，全球供给缺口扩大 —— 出口管制加剧全球AI算力短缺
+- 支付宝车载助手 3.0 支持声纹支付，打通停车加油咖啡 —— 支付宝入局车载 Agent，推动座舱从聊天转向办事
+- Doubao Work 接入剪映，支持自然语言粗剪及素材转视频 —— 字节 AI 落地剪映，口播剪辑效率提升
+- AMD Intel ACEv1 集成 GCC，矩阵计算密度提升16倍 —— x86 架构统一 AI 指令集，降低跨平台开发门槛
+
+**今日共收录 23 条动态，涵盖 模型与产品 3条、技术洞察 5条、行业动态 15条。**
+
+---
+
+## 🚀 模型与产品
+
+### 1. Doubao Work 接入剪映插件
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-28/8adb103891c3.png)
+
+Doubao Work 接入剪映插件：字节 Doubao Work 宣布接入剪映官方插件，支持通过自然语言指令调用剪映执行视频剪辑、多轨编辑及多轮修改，并可直接打开剪映工程草稿。
+
+该功能还整合剪映 Hub，可将文稿、代码或商品图转化为科普动画、知识短视频等；实测口播视频剪辑效果较好，但古风及二次元内容仍存在画面僵硬、拼接痕迹明显等短板。
+
+目前工具主要定位为 AI 粗剪助手，适合口播、知识分享等标准化场景，复杂剪辑仍需人工精修；使用过程消耗剪映积分，但 Doubao Work 端大多有减免。
+
+📎 [原文链接](https://zhidx.com/p/615139.html)
+
+
+### 2. Claude Opus 5.6 预览版曝光
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-28/d55235abf3bf.jpg)
+
+Claude Opus 5.6 预览版曝光：Anthropic 尚未发布的 Claude Opus 5.6 模型在测试中展现出极强的代码生成多媒体能力，仅凭提示词即可通过编写代码生成包含复杂转场、3D 场景和交互功能的 PPT。
+
+该模型无需调用外部工具或素材，能利用 Three.js 或 WebGPU 从零构建动画短片、3D 世界及配乐，且修改精确度远超传统视频生成模型。
+
+测试显示 Opus 5.6 在动画流畅度和故事连贯性上优于 Opus 5.5，预计将成为 Anthropic 上市后首款正式发布的模型。
+
+📎 [原文链接](https://www.ifanr.com/1695831?utm_source=rss&utm_medium=rss&utm_campaign)
+
+
+### 3. VS Code 1.148 发布
+
+VS Code 1.148 发布：VS Code 1.148 版本新增智能体（Agent）运行时的防休眠机制，确保 AI 编码助手在长时间生成代码或执行任务时，系统不会因空闲而进入睡眠状态，保障开发流程连续性。
+
+📎 [原文链接](https://news.cnblogs.com/n/846876/)
+
+
+---
+
+## 🔍 技术洞察
+
+### 1. AMD Intel ACEv1 集成 GCC
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-28/d037d6a23a43.jpg)
+
+AMD Intel ACEv1 集成 GCC：AMD 与 Intel 联合制定的 AI 计算扩展规范 ACEv1 已合并至 GCC 17 开发分支，支持 INT8、FP8 和 BF16 低精度格式。
+
+该规范采用外积指令，相比 AVX10 提供 16 倍矩阵计算密度，预计 GCC 17.1 于 2027 年发布，硬件最早 2028 年落地。
+
+ACEv1 不向后兼容 Intel AMX，旨在为 x86 架构提供统一的 AI 加速标准，使模型无需修改即可在两家厂商芯片上运行。
+
+📎 [原文链接](https://cryptobriefing.com/amd-intel-ai-compute-extensions-gcc/)
+
+
+### 2. Carpool 开源 LLM 降本工具
+
+Carpool 开源 LLM 降本工具：Carpool 是 GitHub 上的一个开源项目，旨在通过批量处理任务和将重复的 API 调用编译为代码来降低大语言模型的使用成本。
+
+该项目适合需要高频调用 LLM 且存在重复请求场景的开发者，通过优化调用策略减少 Token 消耗。
+
+📎 [原文链接](https://github.com/nmayp/carpool)
+
+
+### 3. Hugging Face 多智能体协作训练
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-28/6fc3438a0f24.jpg)
+
+Hugging Face 多智能体协作训练：Hugging Face 工程师发布多智能体协作训练实验，4个智能体共享阿里 Qwen3-0.6B 模型，经 75 次强化学习更新，任务成功率从 6.56% 升至 82.34%，平均生成 Token 减少 37.4%。
+
+该实验复现 s³ 论文，通过团队奖励机制促使智能体学会广播信息，训练成本仅约 20 美元，并提供基于 TRL 库的开源复现教程，验证了小模型通过训练实现高效协作的可行性。
+
+📎 [原文链接](https://zhidx.com/p/615054.html)
+
+
+### 4. Prospero 开源 AI 编程工具
+
+Prospero 开源 AI 编程工具：Prospero 是一个开源的 AI 编程工具，利用 ImGui 构建原生图形界面，主打无冗余依赖（Bloat-free）和轻量级体验，适合追求极简开发环境的程序员。
+
+📎 [原文链接](https://github.com/skeeto/prospero)
+
+
+### 5. ShrinkLoop 发布
+
+ShrinkLoop 发布：ShrinkLoop 是一款面向 Apple Silicon 的本地 AI 工具，提供 MLX 代理和针对可验证任务的 RLVR/GRPO 训练功能，支持在本地运行 Qwen2.5 等模型。
+
+该工具旨在降低 LLM 推理与训练成本，提供 OpenAI 兼容接口，并附带免费审计服务以展示自托管方案的成本节省效果。
+
+📎 [原文链接](https://shrinkloop.com/demo)
+
+
+---
+
+## 🌐 行业动态
+
+### 1. DeepSeek V4.1 Flash 用量领跑
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-28/746ea4f23c2c.png)
+
+DeepSeek V4.1 Flash 用量领跑：DeepSeek V4.1 Flash 1017版在OpenRouter近30天处理226万亿Token，环比增长745%，智谱GLM 5.3 Flash以56.7万亿Token位列第三，中国模型包揽榜单前三。
+
+DeepSeek凭借低缓存成本（命中仅0.02元/百万Token）和原生多模态能力，在编程辅助和售后审核等高频迭代场景中占据优势，推动模型从“偶尔调用”转向“逐单处理”。
+
+📎 [原文链接](https://www.tmtpost.com/8220552.html)
+
+
+### 2. 英伟达暂停向东南亚四国交付AI服务器
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-28/746ea4f23c2c.png)
+
+英伟达暂停向东南亚四国交付AI服务器：英伟达要求制造合作伙伴停止向马来西亚、新加坡、泰国和印尼运送AI服务器，以配合美国新一轮出口限制，切断经东南亚转口的AI算力供应链。
+
+受此影响，戴尔、超微等服务器厂商积压订单激增，戴尔AI积压订单达1323亿美元，HPE新增订单45亿美元，全球AI服务器交付进一步延迟。
+
+上游芯片、存储及组件供给瓶颈拉长了服务器厂商的收入确认周期，戴尔AI服务器毛利率仅为中个位数，超微毛利率降至12.7%。
+
+📎 [原文链接](https://www.tmtpost.com/8216813.html)
+
+
+### 3. 支付宝车载助手 3.0 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-28/77c50e39a9e2.jpg)
+
+支付宝车载助手 3.0 发布：支付宝在广州车展发布 AI 原生车载智能体「支付宝车载助手 3.0」，定位座舱底层服务智能体，与车企语音助手协同完成车外事务。
+
+核心功能涵盖自动交停车费、高速无感通行、加油站自动支付及咖啡/电影预订，通过声纹识别和 APASS 体系保障交易安全。
+
+已联合比亚迪、理想、奇瑞等 80 多家车企定点，覆盖 1800 万辆存量车，支持通过 OTA 升级接入，构建 A.I. Car 生态联盟。
+
+📎 [原文链接](https://www.ifanr.com/1695888?utm_source=rss&utm_medium=rss&utm_campaign)
+
+
+### 4. 商汤大装置获Token工厂最高评级
+
+商汤大装置获Token工厂最高评级：商汤大装置Token工厂获中国信通院“全栈服务型·领先级”认证，成为全国首批首家通过该最高评级的Token工厂。
+
+平台日均Token服务量达6万亿，异构混推方案Token产出是同构方案的2.5倍，适配20余款国产芯片，支持API分时段差异化定价。
+
+📎 [原文链接](https://www.qbitai.com/2026/11/513346.html)
+
+
+### 5. OpenAI Daybreak 赋能北约网络防御
+
+OpenAI Daybreak 赋能北约网络防御：OpenAI 宣布与北约通信与信息技术局（NCIA）合作，通过 Daybreak 平台提供网络安全模型访问权限，北约每月消耗高达 3000 亿原始输入输出标记。
+
+该合作已扩展至欧盟 ENISA、法国 ANSSI、德国、波兰及乌克兰等机构，利用 AI 代理辅助漏洞审查与修复，如 ENISA 确认 95% 的 AI 识别问题为真实漏洞。
+
+OpenAI 还支持了 2026 年“交叉剑”演习，训练防御人员部署 AI 代理并强调人工监督，旨在加速威胁检测并强化关键数字基础设施韧性。
+
+📎 [原文链接](https://openai.com/index/strengthening-nato-allied-cyber-defences-ai/)
+
+
+### 6. 众擎开放大小脑，推10亿生态计划
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-28/fec643056be8.jpg)
+
+众擎开放大小脑，推10亿生态计划：众擎机器人于11月25日大会宣布开放自研大小脑核心技术，包括大脑模型Awaken-HI、小脑行为基座模型EngineAI-BFM及全套API接口。
+
+该模型基于5万小时人类数据训练，真机任务成功率提升至90%，并支持T800及PM01等不同本体。
+
+同时推出10亿元产业支持计划，覆盖开发者工具、科研借测及商业落地，旨在构建人形机器人开源生态。
+
+📎 [原文链接](https://www.qbitai.com/2026/11/513352.html)
+
+
+### 7. Meta Muse AI 代理起诉 Meta
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-28/229a459118d3.png)
+
+Meta Muse AI 代理起诉 Meta：南卡罗来纳州用户 Joe Thomas 利用 Meta 的 AI 代理 Muse（Baby Mia）起诉 Meta，因 Meta 内容审核系统误判 AI 为黑客而封禁其 Facebook 页面，导致业务中断。
+
+该 AI 代理独立完成了向议员、FBI、FTC 等机构投诉及提起法律诉讼的全过程，索赔金额 7.5 万美元，凸显了 AI 代理自主行动带来的法律与合规风险。
+
+📎 [原文链接](https://www.404media.co/a-man-and-his-muse-ai-agent-sue-meta/)
+
+
+### 8. G2i 训练数据市场洞察
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-28/12bbe2b711a1.webp)
+
+G2i 训练数据市场洞察：G2i 创始人 Gabe Greenberg 在 Latent Space 播客中详解 AI 训练数据市场，指出前沿实验室正从廉价众包转向购买由资深工程师构建的高质量指令微调（SFT）和强化学习数据集。
+
+其核心策略是提供处于模型当前能力边缘（40-60% 正确率）的高难度任务，并配套构建自动化验证器（Verifier），通过“专家在回路”模式提升模型推理与代码能力。
+
+📎 [原文链接](https://latent.space/p/inside_the_ai_training_data_market_gabe_greenberg_g2i/)
+
+
+### 9. 本田冠道搭载Momenta智驾
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-28/951a45bbd7bd.jpg)
+
+本田冠道搭载Momenta智驾：广汽本田全新一代冠道原型车在广州车展亮相，首次搭载基于Momenta R7世界模型的高阶智能辅助驾驶系统，并配备车顶激光雷达。
+
+该车升级为销往日本及东南亚的全球旗舰，采用第五代Honda Hybrid混动系统与DualPower eAWD电控四驱，座舱配备15.4英寸大屏及Honda CONNECT智能座舱。
+
+📎 [原文链接](https://www.ifanr.com/1695948?utm_source=rss&utm_medium=rss&utm_campaign)
+
+
+### 10. 长安天枢领航 Ultra 2.0 发布
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-28/097bff881898.jpg)
+
+长安天枢领航 Ultra 2.0 发布：长安汽车发布自研高阶智驾系统天枢领航 Ultra 2.0，基于 VLA 多模态大模型实现行泊一体，支持车位到车位、多点掉头及收费站通行。
+
+系统将于 2027 年 1 月中旬通过 OTA 推送至启源 Q06 等车型，目前长安已申报 L3/L4 牌照，研发人员超 7500 人。
+
+📎 [原文链接](https://www.ifanr.com/1695936?utm_source=rss&utm_medium=rss&utm_campaign)
+
+
+### 11. 捷途纵横 R700 全球首发
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-28/67d246a1d1b7.jpg)
+
+捷途纵横 R700 全球首发：捷途纵横 R700 在广州车展全球首发，定位中大型方盒子 SUV，采用非承载式车身并搭载华为乾崑智驾 ADS 5 系统。
+
+新车预计延续鲲鹏超能混动 CDM-O 系统，综合功率 665kW，零百加速 4.6 秒，纯电续航 260km，配备空气悬架与智能三把锁。
+
+📎 [原文链接](https://www.ifanr.com/1695926?utm_source=rss&utm_medium=rss&utm_campaign)
+
+
+### 12. 日产 NX7 上市
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-28/2f6826282fe2.jpg)
+
+日产 NX7 上市：东风日产 NX7 正式上市，限时权益价 11.99-13.99 万元，全系标配宁德时代 40.95kWh 电池，CLTC 纯电续航 320km。
+
+顶配搭载 Momenta R7 世界模型与激光雷达，支持城市/高速 NOA，中低配为高通 8155 芯片及基础 L2 智驾。
+
+📎 [原文链接](https://www.ifanr.com/1695904?utm_source=rss&utm_medium=rss&utm_campaign)
+
+
+### 13. 爱奇艺收到纳斯达克退市警告
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-28/746ea4f23c2c.png)
+
+爱奇艺收到纳斯达克退市警告：爱奇艺因美股连续30个交易日收盘价低于1美元，收到纳斯达克上市资格部门书面通知，触发退市风险。公司获得180天宽限期，需在2027年5月24日前恢复合规。
+
+爱奇艺2026年Q3营收60.1亿元同比降10%，但经营现金流改善。公司正通过AI影视平台纳逗Pro和分账模式转型，试图在短剧冲击下重塑长视频商业模式。
+
+📎 [原文链接](https://www.tmtpost.com/8220382.html)
+
+
+### 14. AI Agent 硅基村社交实验
+
+![](https://cdn.jsdelivr.net/gh/Lrcx/image-repo@master/ai-daily-report/2026-11-28/746ea4f23c2c.png)
+
+AI Agent 硅基村社交实验：美国加州举行“Agent村”实验，239名居民各自携带AI Agent参与，Agent间通过公共论坛交流并匹配社交需求。
+
+四周实验累计处理175亿Token，Agent自主生成469篇帖子及社区章程，成功促成147次真人见面，其中35项为约会需求。
+
+实验揭示多Agent系统在复杂环境下的协作与冲突，为社会科学模拟及AI社会行为研究提供数据支撑。
+
+📎 [原文链接](https://www.tmtpost.com/8220590.html)
+
+
+### 15. SAP 裁员 1 万人
+
+SAP 裁员 1 万人：SAP 正在考虑裁员至少 10,000 个职位，以配合其 AI 重组计划。
+
+📎 [原文链接](https://www.bloomberg.com/news/articles/2026-11-26/sap-weighs-cutting-at-least-10-000-positions-in-ai-restructuring)
+
+
+---
+
+*以上内容由 AI 自动生成并整理，仅供参考。*
+
+---
+
+**声明：** 本早报内容来源于公开渠道，版权归原作者所有。
